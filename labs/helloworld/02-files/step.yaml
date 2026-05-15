@@ -1,0 +1,6 @@
+title: "Exploring Files"
+layout:
+  - type: terminal
+    target: local
+  - type: browser
+    url: "https://nodejs.org/"
