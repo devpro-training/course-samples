@@ -1,0 +1,5 @@
+title: "Start the demo app"
+layout:
+  - type: terminal
+    target: local
+  - type: vnc

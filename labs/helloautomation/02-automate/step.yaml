@@ -1,0 +1,5 @@
+title: "Run automation"
+layout:
+  - type: terminal
+    target: local
+  - type: vnc

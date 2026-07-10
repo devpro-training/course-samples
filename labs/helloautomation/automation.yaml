@@ -1,0 +1,48 @@
+version: 1
+
+defaults:
+  timeout: 8000          # ms per step primitive
+
+pages:
+  login:
+    url: "http://localhost:8080/login.html"
+    selectors:
+      username: 'input[name="username"]'
+      password: 'input[name="password"]'
+      submit:   { role: button, name: "Sign in" }   # role locator form — preferred
+  users:
+    url: "http://localhost:8080/users.html"
+    selectors:
+      addUser:  { role: button, name: "Add user" }
+      nameField: '#name'
+      saveBtn:  { role: button, name: "Save" }
+      rows:     '#rows'
+
+actions:
+  login.as-admin:
+    page: login
+    steps:
+      - goto: $page          # navigate to the page's url
+      - fill: { target: username, value: "admin" }
+      # ${VAR} is resolved server-side from the pod env at run time — convenience,
+      # not secrecy (see docs/courses.md). This demo app doesn't check the value.
+      - fill: { target: password, value: "${LAB_DEMO_PASSWORD}" }
+      - click: submit
+
+  users.create-demo:
+    page: users
+    steps:
+      - goto: $page
+      - click: addUser
+      - fill: { target: nameField, value: "demo-user" }
+      - click: saveBtn
+
+checks:                       # same primitives + expect; used for step validation
+  users.demo-exists:
+    page: users
+    steps:
+      - goto: $page
+      - expect:
+          target: rows
+          toContainText: "demo-user"
+          hint: "No demo-user row yet — run \"Create a demo user\" first."

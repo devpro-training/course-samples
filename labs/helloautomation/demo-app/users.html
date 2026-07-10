@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+<head><title>Demo App — Users</title></head>
+<body style="font-family: sans-serif; max-width: 480px; margin: 60px auto;">
+  <h1>Users</h1>
+  <button id="add-user">Add user</button>
+  <div id="new-user-form" style="display: none; margin-top: 12px;">
+    <input id="name" placeholder="name" style="padding: 6px;" />
+    <button id="save">Save</button>
+  </div>
+  <table style="margin-top: 16px; width: 100%; border-collapse: collapse;">
+    <tbody id="rows"></tbody>
+  </table>
+  <script>
+    // Users live in localStorage, not just the DOM — a `goto: $page` step (used by
+    // every action/check to start from a known page) reloads this document, and a
+    // demo app that only held state in memory would lose it on the very next step.
+    function loadUsers() {
+      return JSON.parse(localStorage.getItem('demo-users') ?? '[]')
+    }
+    function renderUsers() {
+      const rows = document.getElementById('rows')
+      rows.innerHTML = ''
+      for (const name of loadUsers()) {
+        const tr = document.createElement('tr')
+        const td = document.createElement('td')
+        td.textContent = name
+        td.style.padding = '6px 0'
+        tr.appendChild(td)
+        rows.appendChild(tr)
+      }
+    }
+    document.getElementById('add-user').addEventListener('click', () => {
+      document.getElementById('new-user-form').style.display = 'block'
+    })
+    document.getElementById('save').addEventListener('click', () => {
+      const name = document.getElementById('name').value
+      if (!name) return
+      const users = loadUsers()
+      users.push(name)
+      localStorage.setItem('demo-users', JSON.stringify(users))
+      renderUsers()
+      document.getElementById('new-user-form').style.display = 'none'
+      document.getElementById('name').value = ''
+    })
+    renderUsers()
+  </script>
+</body>
+</html>
