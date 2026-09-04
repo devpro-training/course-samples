@@ -1,2 +1,3 @@
-# course-samples
+# Course samples
+
 Course samples

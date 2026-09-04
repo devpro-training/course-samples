@@ -2,10 +2,7 @@
 
 This a self-hosted, interactive lab environment that lets you follow step-by-step instructions alongside a live terminal — all in your browser.
 
-## How it works
-
-Instructions live in **Markdown files**.
-Code blocks marked with `exec` become runnable — click the **▶ Run** button and the command executes in the terminal on the right.
+<!-- include: ../../shared/how-it-works.md -->
 
 ## Your first command
 
