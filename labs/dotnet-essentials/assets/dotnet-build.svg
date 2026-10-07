@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 440" width="1040" height="440">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#475569"/>
+    </marker>
+  </defs>
+  <rect x="0" y="0" width="1040" height="440" fill="#ffffff"/>
+  <text x="520" y="40" fill="#0f172a" font-family="sans-serif" font-size="22" font-weight="bold" text-anchor="middle">From C# source to a running program</text>
+
+  <rect x="30" y="100" width="170" height="130" rx="8" fill="#f1f5f9" stroke="#7c3aed" stroke-width="2"/>
+  <text x="115" y="132" fill="#0f172a" font-family="sans-serif" font-size="16" font-weight="bold" text-anchor="middle">Source code</text>
+  <text x="115" y="164" fill="#7c3aed" font-family="monospace" font-size="13" text-anchor="middle">Program.cs</text>
+  <text x="115" y="184" fill="#7c3aed" font-family="monospace" font-size="13" text-anchor="middle">Greeting.cs</text>
+  <text x="115" y="212" fill="#475569" font-family="sans-serif" font-size="12" text-anchor="middle">C#</text>
+
+  <rect x="250" y="100" width="170" height="130" rx="8" fill="#f1f5f9" stroke="#0284c7" stroke-width="2"/>
+  <text x="335" y="132" fill="#0f172a" font-family="sans-serif" font-size="16" font-weight="bold" text-anchor="middle">Build</text>
+  <text x="335" y="164" fill="#0284c7" font-family="monospace" font-size="13" text-anchor="middle">dotnet build</text>
+  <text x="335" y="190" fill="#475569" font-family="sans-serif" font-size="12" text-anchor="middle">C# compiler (Roslyn)</text>
+  <text x="335" y="210" fill="#475569" font-family="sans-serif" font-size="12" text-anchor="middle">restores NuGet packages</text>
+
+  <rect x="470" y="100" width="170" height="130" rx="8" fill="#f1f5f9" stroke="#b45309" stroke-width="2"/>
+  <text x="555" y="132" fill="#0f172a" font-family="sans-serif" font-size="16" font-weight="bold" text-anchor="middle">IL assembly</text>
+  <text x="555" y="164" fill="#b45309" font-family="monospace" font-size="13" text-anchor="middle">Greeter.dll</text>
+  <text x="555" y="190" fill="#475569" font-family="sans-serif" font-size="12" text-anchor="middle">Intermediate Language</text>
+  <text x="555" y="210" fill="#475569" font-family="sans-serif" font-size="12" text-anchor="middle">same on every system</text>
+
+  <rect x="690" y="100" width="170" height="130" rx="8" fill="#f1f5f9" stroke="#16a34a" stroke-width="2"/>
+  <text x="775" y="132" fill="#0f172a" font-family="sans-serif" font-size="16" font-weight="bold" text-anchor="middle">Runtime</text>
+  <text x="775" y="164" fill="#16a34a" font-family="monospace" font-size="13" text-anchor="middle">dotnet Greeter.dll</text>
+  <text x="775" y="190" fill="#475569" font-family="sans-serif" font-size="12" text-anchor="middle">CoreCLR, JIT compiler</text>
+  <text x="775" y="210" fill="#475569" font-family="sans-serif" font-size="12" text-anchor="middle">IL to machine code</text>
+
+  <rect x="910" y="100" width="100" height="130" rx="8" fill="#f1f5f9" stroke="#475569" stroke-width="2"/>
+  <text x="960" y="132" fill="#0f172a" font-family="sans-serif" font-size="16" font-weight="bold" text-anchor="middle">CPU</text>
+  <text x="960" y="164" fill="#475569" font-family="sans-serif" font-size="12" text-anchor="middle">Linux</text>
+  <text x="960" y="184" fill="#475569" font-family="sans-serif" font-size="12" text-anchor="middle">Windows</text>
+  <text x="960" y="204" fill="#475569" font-family="sans-serif" font-size="12" text-anchor="middle">macOS</text>
+
+  <line x1="202" y1="165" x2="246" y2="165" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="422" y1="165" x2="466" y2="165" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="642" y1="165" x2="686" y2="165" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="862" y1="165" x2="906" y2="165" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <rect x="250" y="268" width="170" height="44" rx="8" fill="#f1f5f9" stroke="#7c3aed" stroke-width="2"/>
+  <text x="335" y="288" fill="#0f172a" font-family="sans-serif" font-size="14" font-weight="bold" text-anchor="middle">NuGet package</text>
+  <text x="335" y="305" fill="#7c3aed" font-family="monospace" font-size="12" text-anchor="middle">Humanizer.Core</text>
+  <line x1="335" y1="266" x2="335" y2="234" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <line x1="30" y1="352" x2="640" y2="352" stroke="#0284c7" stroke-width="3"/>
+  <text x="335" y="378" fill="#0284c7" font-family="sans-serif" font-size="16" font-weight="bold" text-anchor="middle">.NET SDK</text>
+  <text x="335" y="398" fill="#475569" font-family="sans-serif" font-size="12" text-anchor="middle">compiler, CLI, templates, and a runtime</text>
+
+  <line x1="690" y1="352" x2="860" y2="352" stroke="#16a34a" stroke-width="3"/>
+  <text x="775" y="378" fill="#16a34a" font-family="sans-serif" font-size="16" font-weight="bold" text-anchor="middle">.NET runtime</text>
+  <text x="775" y="398" fill="#475569" font-family="sans-serif" font-size="12" text-anchor="middle">all a server needs</text>
+</svg>

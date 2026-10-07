@@ -1,0 +1,4 @@
+title: NuGet package
+layout:
+  - type: terminal
+  - type: editor

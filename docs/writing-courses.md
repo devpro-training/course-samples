@@ -42,6 +42,8 @@ export PATH="$HOME/.local/usr/bin:$PATH" && \
 echo 'export PATH="$HOME/.local/usr/bin:$PATH"' >> ~/.bashrc
 ```
 
+A `${...}` that is not an `env:` name, such as `${workspaceFolder}` in a VS Code file, is left to the shell: it stays literal in a quoted heredoc, and is escaped (`\${...}`) in an unquoted one that expands an `env:` value.
+
 Checking what the image carries, before depending on it:
 
 ```bash
@@ -63,6 +65,9 @@ env:
 A block refers to `${GIT_DEB}`, never to the value.
 A shared fragment uses the name only, and each course sets its own value.
 The value in `lab.yaml` is a default, which a sidelab tenant (**Admin > Tenants > Environment**) or an account (**Profile > Environment**) can override.
+
+A tool installed with its own script, such as the .NET SDK, goes under `~/.<tool>` and is added to `PATH` the same way, with the variables the tool reads (`DOTNET_ROOT`).
+Its script and its signature are downloaded and verified in a visible step.
 
 ## Steps
 
@@ -178,3 +183,11 @@ google-chrome --headless=new --screenshot=diagram.png --window-size=1040,430 "fi
 - The Workspace Trust window stays open after **Trust**, and has to be closed with its **✕** (vscode-essentials).
 - code-server's `/healthz` answers `expired` until a browser connects, so a check waits for the answer, not for `alive` (vscode-essentials).
 - The lab image no longer carries npm (vscode-essentials).
+- Checked in the image, Debian 12 already carries the libraries the .NET SDK needs (`libicu72`, `libssl3`, `tzdata`), so no ICU workaround is part of the course (dotnet-essentials).
+- `dotnet-install.sh` does not set `DOTNET_ROOT` and does not touch the `PATH` of new shells, so the setup does both and appends them to `~/.bashrc` (dotnet-essentials).
+- `dotnet test` prints `Passed!` without a terminal and a `Test summary: total: ...` line in one, so a check on its output names the part both runs share, or the one the terminal prints, since `course verify` types into a terminal (dotnet-essentials).
+- A CLI-first tool, such as `dotnet`, is taught in the terminal with the lab editor for files, with no code-server: Visual Studio and Rider are a closing slide, not a dependency (dotnet-essentials).
+- A web app the lab starts is run with `--no-launch-profile --urls`, since `launchSettings.json` holds a developer machine's ports and opens a browser, and `ASPNETCORE_ENVIRONMENT=Development` is set explicitly: it is `Production` otherwise, and the OpenAPI document is not served (dotnet-essentials).
+- `kill $(cat <file>.pid)` on the `dotnet run` process stops its child too, so a step can free its port itself (dotnet-essentials).
+- A link such as `:navigate:` is plain markdown, so its port cannot be an `env:` variable: the value is written in the link and kept equal to the variable by hand (dotnet-essentials).
+- A `verify` directive's `expect` takes a double-quoted text, since single quotes are not parsed (dotnet-essentials).

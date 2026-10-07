@@ -1,0 +1,23 @@
+title: ".NET essentials"
+description: "Install the .NET SDK, create, build and run a C# console app, add a NuGet package, write a unit test, then a web app and a web API."
+duration: 30
+tags:
+  - dotnet
+  - csharp
+  - cli
+  - beginner
+sidebarWidth: 560
+backend: container
+workdir: ~/lab
+env:
+  # https://learn.microsoft.com/dotnet/core/tools/dotnet-install-script, the stable location of the install script, its signature and its public key
+  DOTNET_INSTALL_URL: https://dot.net/v1
+  # https://builds.dotnet.microsoft.com/dotnet/release-metadata/10.0/releases.json, "latest-sdk" of .NET 10, the current LTS
+  DOTNET_SDK_VERSION: 10.0.401
+  # The target framework moniker of that SDK, https://learn.microsoft.com/dotnet/standard/frameworks
+  DOTNET_TFM: net10.0
+  # https://www.nuget.org/packages/Humanizer.Core
+  HUMANIZER_VERSION: 3.0.10
+  # The ports the web apps listen on, set on the command line: https://learn.microsoft.com/aspnet/core/fundamentals/servers/kestrel/endpoints
+  WEB_PORT: 5080
+  API_PORT: 5090
