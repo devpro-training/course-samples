@@ -9,6 +9,7 @@ Course                                | Topic
 [Git essentials](labs/git-essentials) | Install, configure, commit, clone, branch, push, pull, stash
 [VS Code essentials](labs/vscode-essentials) | Workspace Trust, commands, settings, extensions, source control, debugging
 [.NET essentials](labs/dotnet-essentials) | SDK and runtime, LTS and STS, console app, NuGet, xUnit tests, web app, web API
+[Automated testing, the test pyramid](labs/test-pyramid) | Unit, integration and end-to-end tests of a .NET web API, and the layer that catches each bug
 
 ## Contributing
 

@@ -1,0 +1,4 @@
+title: The application
+layout:
+  - type: terminal
+  - type: editor

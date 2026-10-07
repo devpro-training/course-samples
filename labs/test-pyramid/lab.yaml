@@ -1,0 +1,20 @@
+title: "Automated testing, the test pyramid"
+description: "Write a unit test, an integration test and an end-to-end test for a small .NET web API, then see which layer catches which bug."
+duration: 30
+tags:
+  - testing
+  - dotnet
+  - xunit
+  - beginner
+sidebarWidth: 560
+backend: container
+workdir: ~/lab
+env:
+  # https://learn.microsoft.com/dotnet/core/tools/dotnet-install-script, the stable location of the install script, its signature and its public key
+  DOTNET_INSTALL_URL: https://dot.net/v1
+  # https://builds.dotnet.microsoft.com/dotnet/release-metadata/10.0/releases.json, "latest-sdk" of .NET 10, the current LTS
+  DOTNET_SDK_VERSION: 10.0.401
+  # https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.Testing, the version follows the ASP.NET Core 10 patch
+  MVC_TESTING_VERSION: 10.0.12
+  # The port the application listens on, set on the command line: https://learn.microsoft.com/aspnet/core/fundamentals/servers/kestrel/endpoints
+  SHOP_PORT: 5080

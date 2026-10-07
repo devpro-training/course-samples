@@ -1,0 +1,4 @@
+title: End-to-end test
+layout:
+  - type: terminal
+  - type: editor

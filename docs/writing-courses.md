@@ -78,6 +78,8 @@ Its script and its signature are downloaded and verified in a visible step.
 - A command that waits for input, a pager or an editor, stalls `course verify` until it times out, and the following blocks fail with it.
   `git commit -m` avoids the editor, `PAGER=less` exits on output shorter than the screen.
 - A server the lab starts runs in the background with `nohup ... &`, and the block waits until it answers, with `wget --retry-connrefused`.
+  It is stopped with `pkill -f "<command line>"`, not with a pid file.
+- A Markdown table has no pipe at the start or the end of a row.
 
 ## Web applications
 
@@ -191,3 +193,11 @@ google-chrome --headless=new --screenshot=diagram.png --window-size=1040,430 "fi
 - `kill $(cat <file>.pid)` on the `dotnet run` process stops its child too, so a step can free its port itself (dotnet-essentials).
 - A link such as `:navigate:` is plain markdown, so its port cannot be an `env:` variable: the value is written in the link and kept equal to the variable by hand (dotnet-essentials).
 - A `verify` directive's `expect` takes a double-quoted text, since single quotes are not parsed (dotnet-essentials).
+- `$!` of a `nohup ... &` typed in the lab terminal was not the pid of `dotnet run`: `kill $(cat <file>.pid)` left the server running, which then answered the next step on the same port, with the old code, so a step stops its server with `pkill -f` (test-pyramid).
+- A script that starts a server, checks it and stops it uses `trap 'kill $pid; wait $pid' EXIT`: without `wait`, the old process still holds the port when the script is run again at once (test-pyramid).
+- A test of a bug needs the proof that it fails: the step breaks the code on purpose, expects the failure in a `verify` directive, restores the code, and expects the pass (test-pyramid).
+- `dotnet test` of a solution prints `failed: 0, succeeded: 6` in the terminal, with the total of every project, and one `Passed!` line per project without a terminal (test-pyramid).
+- Headless Chrome of the lab image needs `--no-sandbox`, since the container does not allow the namespaces of its sandbox, and `--dump-dom` prints the page after its script has run, with `--virtual-time-budget` to let it finish (test-pyramid).
+- A test of a course that uses the real clock must hold on every day of the week: the end-to-end check accepts the total of a Friday as well as of other days (test-pyramid).
+- `WebApplicationFactory` needs the web SDK in the test project, the `Microsoft.AspNetCore.Mvc.Testing` package at the ASP.NET Core patch version, and a public `Program` class (`public partial class Program;`) (test-pyramid).
+- A course that has no instruction in a web UI, only links and a terminal, needs no Playwright probe: the browser of an end-to-end test is Chrome in the terminal (test-pyramid).
