@@ -1,0 +1,4 @@
+title: Push and pull
+layout:
+  - type: terminal
+  - type: editor

@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 430" width="1040" height="430">
+  <rect x="0" y="0" width="1040" height="430" fill="#0f172a"/>
+  <text x="520" y="40" fill="#e2e8f0" font-family="sans-serif" font-size="22" font-weight="bold" text-anchor="middle">Where changes live</text>
+
+  <rect x="20" y="70" width="190" height="50" rx="8" fill="#1e293b" stroke="#fbbf24" stroke-width="2"/>
+  <text x="115" y="101" fill="#e2e8f0" font-family="sans-serif" font-size="15" font-weight="bold" text-anchor="middle">Stash</text>
+  <line x1="80" y1="180" x2="80" y2="132" stroke="#fbbf24" stroke-width="2"/>
+  <polygon points="80,120 74,132 86,132" fill="#fbbf24"/>
+  <line x1="150" y1="120" x2="150" y2="168" stroke="#fbbf24" stroke-width="2"/>
+  <polygon points="150,180 144,168 156,168" fill="#fbbf24"/>
+  <text x="230" y="140" fill="#fbbf24" font-family="monospace" font-size="13">git stash push: put changes aside</text>
+  <text x="230" y="160" fill="#fbbf24" font-family="monospace" font-size="13">git stash pop: bring them back</text>
+
+  <rect x="20" y="180" width="190" height="100" rx="10" fill="#1e293b" stroke="#38bdf8" stroke-width="2"/>
+  <text x="115" y="222" fill="#e2e8f0" font-family="sans-serif" font-size="16" font-weight="bold" text-anchor="middle">Working tree</text>
+  <text x="115" y="246" fill="#94a3b8" font-family="sans-serif" font-size="13" text-anchor="middle">files on disk</text>
+
+  <rect x="290" y="180" width="190" height="100" rx="10" fill="#1e293b" stroke="#38bdf8" stroke-width="2"/>
+  <text x="385" y="222" fill="#e2e8f0" font-family="sans-serif" font-size="16" font-weight="bold" text-anchor="middle">Staging area</text>
+  <text x="385" y="246" fill="#94a3b8" font-family="sans-serif" font-size="13" text-anchor="middle">next commit, the index</text>
+
+  <rect x="560" y="180" width="190" height="100" rx="10" fill="#1e293b" stroke="#4ade80" stroke-width="2"/>
+  <text x="655" y="222" fill="#e2e8f0" font-family="sans-serif" font-size="16" font-weight="bold" text-anchor="middle">Local repository</text>
+  <text x="655" y="246" fill="#94a3b8" font-family="monospace" font-size="13" text-anchor="middle">.git/</text>
+
+  <rect x="830" y="180" width="190" height="100" rx="10" fill="#1e293b" stroke="#a78bfa" stroke-width="2"/>
+  <text x="925" y="222" fill="#e2e8f0" font-family="sans-serif" font-size="16" font-weight="bold" text-anchor="middle">Remote repository</text>
+  <text x="925" y="246" fill="#94a3b8" font-family="monospace" font-size="13" text-anchor="middle">origin</text>
+
+  <line x1="210" y1="230" x2="278" y2="230" stroke="#38bdf8" stroke-width="2"/>
+  <polygon points="290,230 278,224 278,236" fill="#38bdf8"/>
+  <text x="250" y="218" fill="#38bdf8" font-family="monospace" font-size="13" text-anchor="middle">add</text>
+
+  <line x1="480" y1="230" x2="548" y2="230" stroke="#4ade80" stroke-width="2"/>
+  <polygon points="560,230 548,224 548,236" fill="#4ade80"/>
+  <text x="520" y="218" fill="#4ade80" font-family="monospace" font-size="13" text-anchor="middle">commit</text>
+
+  <line x1="750" y1="230" x2="818" y2="230" stroke="#a78bfa" stroke-width="2"/>
+  <polygon points="830,230 818,224 818,236" fill="#a78bfa"/>
+  <text x="790" y="218" fill="#a78bfa" font-family="monospace" font-size="13" text-anchor="middle">push</text>
+
+  <polyline points="925,280 925,330 115,330 115,292" fill="none" stroke="#a78bfa" stroke-width="2"/>
+  <polygon points="115,280 109,292 121,292" fill="#a78bfa"/>
+  <text x="520" y="322" fill="#a78bfa" font-family="monospace" font-size="13" text-anchor="middle">pull: fetch the new commits, then merge them</text>
+
+  <polyline points="990,280 990,380 60,380 60,292" fill="none" stroke="#94a3b8" stroke-width="2" stroke-dasharray="6 4"/>
+  <polygon points="60,280 54,292 66,292" fill="#94a3b8"/>
+  <text x="520" y="372" fill="#94a3b8" font-family="monospace" font-size="13" text-anchor="middle">clone, once: full history and a working tree</text>
+
+  <text x="520" y="415" fill="#94a3b8" font-family="sans-serif" font-size="13" text-anchor="middle">Everything but the remote is on the local machine, so most commands work offline.</text>
+</svg>
