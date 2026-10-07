@@ -1,0 +1,20 @@
+﻿name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch: {}
+
+concurrency:
+  group: "${{ github.ref }}-ci"
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  content-validate:
+    name: Markup
+    uses: devpro/github-workflow-parts/.github/workflows/reusable-markup-lint.yml@35750e9d1a21724d3a7e028ee9bc6da02dcb5afb
