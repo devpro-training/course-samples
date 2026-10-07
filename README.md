@@ -7,6 +7,7 @@ Short IT courses, each a [sidelab](https://www.npmjs.com/package/sidelab-cli) la
 Course                                | Topic
 --------------------------------------|---------------------------------------------------------
 [Git essentials](labs/git-essentials) | Install, configure, commit, clone, branch, push, pull, stash
+[VS Code essentials](labs/vscode-essentials) | Workspace Trust, commands, settings, extensions, source control, debugging
 
 ## Contributing
 

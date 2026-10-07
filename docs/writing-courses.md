@@ -28,13 +28,14 @@ labs/<course>/
 ## Lab environment
 
 The default lab image (`sidelab-app`) is Debian 12, run as `labuser`, with no root access and no `sudo`.
-It carries node, npm, wget, python3 and dpkg-deb, and no curl, git, less, editor or unzip.
+It carries node, wget, python3, dpkg-deb and Google Chrome, and no npm, curl, git, less, editor or unzip.
 
 - A Debian package is unpacked with `dpkg-deb -x <file>.deb ~/.local/`, rather than installed with `apt`.
 - A zip is expanded with `python3 -m zipfile -e`.
 - Debian's own programs call `pager`, which is `more` in the image, so `PAGER=less` is exported once `less` is unpacked.
 
-The terminal is reset when moving to another step, so every `export` is also appended to `~/.bashrc`:
+The terminal is reset when moving to another step, and a tool such as VS Code reads its environment from a new login shell,
+so every `export` is also appended to `~/.bashrc`:
 
 ```bash
 export PATH="$HOME/.local/usr/bin:$PATH" && \
@@ -71,6 +72,38 @@ The value in `lab.yaml` is a default, which a sidelab tenant (**Admin > Tenants 
   `course verify` runs every block in one shell without entering the steps, so a step `workdir:` is not applied there.
 - A command that waits for input, a pager or an editor, stalls `course verify` until it times out, and the following blocks fail with it.
   `git commit -m` avoids the editor, `PAGER=less` exits on output shorter than the screen.
+- A server the lab starts runs in the background with `nohup ... &`, and the block waits until it answers, with `wget --retry-connrefused`.
+
+## Web applications
+
+An application started in the lab, such as code-server, is shown in a `vnc` panel: a Chrome running inside the lab, where `http://localhost:<port>` is the application.
+A named tab keeps it open across steps:
+
+```yaml
+layout:
+  - type: vnc
+    url: http://localhost:8080/
+    page: vscode
+  - type: terminal
+```
+
+A `browser` panel reaches an application only through the `/app/<host>/<port>/` proxy, which does not carry WebSockets.
+
+Instructions in a web UI are written against the real UI, checked with Playwright in the lab image before being written:
+
+- a menu path or a command name, never an icon position, since extensions add icons;
+- `course verify` cannot see what is done in the UI, so a terminal block that depends on it is marked `skip` with a reason.
+
+The lab image has Chrome, and Playwright comes from a sidelab checkout, mounted read-only:
+
+```bash
+docker run --rm \
+  -v "$PWD/probe.mjs:/p/probe.mjs:ro" \
+  -v "<sidelab>/node_modules/playwright-core:/p/node_modules/playwright-core:ro" \
+  --entrypoint bash sidelab-app:latest -c '<start the application> && cd /p && node probe.mjs'
+```
+
+`automation.yaml` can drive the same UI from the instructions, with links that click, fill or check for the learner.
 
 ## Checks
 
@@ -137,6 +170,11 @@ google-chrome --headless=new --screenshot=diagram.png --window-size=1040,430 "fi
 ## Lessons learned
 
 - Debian's Git calls `pager`, not `less`, so installing `less` is not enough without `PAGER=less` (git-essentials).
-- `course verify` does not apply a step `workdir:`, so each step moves to its folder in its first block (git-essentials).
+- Each step moves to its folder in its first block, so the commands can be run anywhere, not only in the lab (git-essentials).
 - `git init` warns about missing templates when Git is unpacked outside `/usr`, which `init.templateDir` fixes (git-essentials).
 - `git pull` on a diverged branch fails until `pull.rebase` is set, so the configuration step sets it (git-essentials).
+- VS Code reads `PATH` from a login shell, so a tool only exported in the terminal is not found by it: "Git installation not found" (vscode-essentials).
+- code-server opens a folder in Restricted Mode, where debugging and most extensions are disabled, so the course trusts it first (vscode-essentials).
+- The Workspace Trust window stays open after **Trust**, and has to be closed with its **✕** (vscode-essentials).
+- code-server's `/healthz` answers `expired` until a browser connects, so a check waits for the answer, not for `alive` (vscode-essentials).
+- The lab image no longer carries npm (vscode-essentials).
