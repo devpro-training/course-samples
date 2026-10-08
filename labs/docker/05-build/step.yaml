@@ -1,0 +1,4 @@
+title: Build an image
+layout:
+  - type: terminal
+    target: docker

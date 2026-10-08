@@ -1,0 +1,28 @@
+title: "CI/CD"
+description: "Build a pipeline that lints, tests and packages every push, run it on a Git server, deliver the artifact and roll it back."
+duration: 30
+tags:
+  - ci-cd
+  - git
+  - beginner
+sidebarWidth: 620
+backend: container
+workdir: ~/lab
+env:
+  # The lab image is Debian 12, and its user has no root access, so packages are unpacked rather than installed.
+  # Debian removes a superseded package from the pool, so this follows https://packages.debian.org/bookworm/git
+  DEBIAN_MIRROR: https://deb.debian.org/debian
+  GIT_DEB: git_2.39.5-0+deb12u3_amd64.deb
+  # https://packages.debian.org/bookworm/less
+  LESS_DEB: less_590-2.1~deb12u2_amd64.deb
+  # The identity commits are recorded with, which a tenant or an account can set to its own.
+  GIT_USER_NAME: Ada Lovelace
+  GIT_USER_EMAIL: ada@example.com
+  # https://github.com/rhysd/actionlint/releases, a linter for GitHub Actions workflows, a single binary that runs offline.
+  ACTIONLINT_VERSION: 1.7.12
+  # https://github.com/actions/checkout/releases
+  CHECKOUT_VERSION: v7
+  # https://github.com/actions/upload-artifact/releases
+  UPLOAD_ARTIFACT_VERSION: v7
+  # https://github.com/actions/download-artifact/releases
+  DOWNLOAD_ARTIFACT_VERSION: v8

@@ -1,0 +1,19 @@
+title: "Docker"
+description: "Install Docker Engine, then run, build, store and connect containers."
+duration: 30
+tags:
+  - docker
+  - containers
+  - beginner
+sidebarWidth: 620
+backend: container
+hosts:
+  # The lab itself, which only serves the course.
+  - name: control
+  # Docker needs a kernel, root and cgroups, which a lab container does not give, so it runs in a virtual machine of its own.
+  # The image is the lab image, and the disk is larger than its default since Docker Engine and the images pulled need about 1 GiB.
+  - name: docker
+    runtime: vm
+    cores: 2
+    memory: 2048
+    disk: 8192

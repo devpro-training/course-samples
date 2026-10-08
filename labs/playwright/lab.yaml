@@ -1,0 +1,19 @@
+title: "Playwright"
+description: "Install Playwright, then write end-to-end tests of a small web app: locators, auto-waiting assertions, a mocked API, a report and a trace."
+duration: 30
+tags:
+  - testing
+  - playwright
+  - beginner
+sidebarWidth: 620
+backend: container
+workdir: ~/lab
+env:
+  # https://www.npmjs.com/package/npm, a registry tarball carries its dependencies, so it runs once unpacked.
+  NPM_VERSION: 12.2.0
+  # https://registry.npmjs.org, where npm and Playwright are downloaded from, with the metadata that holds their checksum.
+  NPM_REGISTRY_URL: https://registry.npmjs.org
+  # https://playwright.dev/docs/release-notes, pinned so the output shown in the steps stays the one the learner gets.
+  PLAYWRIGHT_VERSION: 1.64.0
+  # The port the app under test listens on, also written in playwright.config.ts: https://playwright.dev/docs/test-webserver
+  APP_PORT: 4173

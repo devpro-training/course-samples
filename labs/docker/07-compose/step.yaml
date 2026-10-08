@@ -1,0 +1,4 @@
+title: Compose
+layout:
+  - type: terminal
+    target: docker

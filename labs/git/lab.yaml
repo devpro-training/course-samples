@@ -1,0 +1,19 @@
+title: "Git"
+description: "Install and configure Git, then commit, branch, share and stash changes."
+duration: 30
+tags:
+  - git
+  - beginner
+sidebarWidth: 620
+backend: container
+workdir: ~/lab
+env:
+  # The lab image is Debian 12, and its user has no root access, so packages are unpacked rather than installed.
+  # Debian removes a superseded package from the pool, so this follows https://packages.debian.org/bookworm/git
+  DEBIAN_MIRROR: https://deb.debian.org/debian
+  GIT_DEB: git_2.39.5-0+deb12u3_amd64.deb
+  # https://packages.debian.org/bookworm/less
+  LESS_DEB: less_590-2.1~deb12u2_amd64.deb
+  # The identity commits are recorded with, which a tenant or an account can set to its own.
+  GIT_USER_NAME: Ada Lovelace
+  GIT_USER_EMAIL: ada@example.com
