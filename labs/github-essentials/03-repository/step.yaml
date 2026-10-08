@@ -1,0 +1,6 @@
+title: Repository
+layout:
+  - type: vnc
+    url: https://github.com/devpro-training/course-samples
+    page: github
+  - type: terminal

@@ -1,0 +1,7 @@
+title: Actions
+layout:
+  - type: vnc
+    url: https://github.com/actions/checkout/actions/workflows/test.yml
+    page: github
+  - type: terminal
+  - type: editor

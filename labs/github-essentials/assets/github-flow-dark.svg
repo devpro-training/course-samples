@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 430" width="1040" height="430">
+  <rect x="0" y="0" width="1040" height="430" fill="#0f172a"/>
+  <text x="520" y="40" fill="#e2e8f0" font-family="sans-serif" font-size="22" font-weight="bold" text-anchor="middle">One repository, three ways in</text>
+
+  <rect x="20" y="90" width="200" height="140" rx="10" fill="#1e293b" stroke="#4ade80" stroke-width="2"/>
+  <text x="120" y="140" fill="#e2e8f0" font-family="sans-serif" font-size="16" font-weight="bold" text-anchor="middle">Local repository</text>
+  <text x="120" y="166" fill="#94a3b8" font-family="monospace" font-size="13" text-anchor="middle">git</text>
+  <text x="120" y="190" fill="#94a3b8" font-family="sans-serif" font-size="13" text-anchor="middle">on the local machine</text>
+
+  <rect x="340" y="70" width="360" height="190" rx="10" fill="#1e293b" stroke="#a78bfa" stroke-width="2"/>
+  <text x="520" y="100" fill="#e2e8f0" font-family="sans-serif" font-size="16" font-weight="bold" text-anchor="middle">GitHub repository</text>
+  <text x="520" y="120" fill="#94a3b8" font-family="monospace" font-size="13" text-anchor="middle">github.com/&lt;owner&gt;/&lt;repo&gt;</text>
+  <rect x="360" y="136" width="320" height="30" rx="6" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="520" y="156" fill="#e2e8f0" font-family="monospace" font-size="13" text-anchor="middle">refs/heads/*  refs/tags/*</text>
+  <rect x="360" y="174" width="320" height="30" rx="6" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="520" y="194" fill="#e2e8f0" font-family="monospace" font-size="13" text-anchor="middle">refs/pull/&lt;n&gt;/head</text>
+  <rect x="360" y="212" width="320" height="30" rx="6" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="520" y="232" fill="#e2e8f0" font-family="monospace" font-size="13" text-anchor="middle">.github/workflows/*.yml</text>
+
+  <rect x="820" y="90" width="200" height="60" rx="10" fill="#1e293b" stroke="#38bdf8" stroke-width="2"/>
+  <text x="920" y="115" fill="#e2e8f0" font-family="sans-serif" font-size="16" font-weight="bold" text-anchor="middle">REST API</text>
+  <text x="920" y="135" fill="#94a3b8" font-family="monospace" font-size="13" text-anchor="middle">api.github.com</text>
+
+  <rect x="820" y="180" width="200" height="60" rx="10" fill="#1e293b" stroke="#fbbf24" stroke-width="2"/>
+  <text x="920" y="205" fill="#e2e8f0" font-family="sans-serif" font-size="16" font-weight="bold" text-anchor="middle">Web interface</text>
+  <text x="920" y="225" fill="#94a3b8" font-family="monospace" font-size="13" text-anchor="middle">github.com</text>
+
+  <line x1="220" y1="140" x2="328" y2="140" stroke="#4ade80" stroke-width="2"/>
+  <polygon points="340,140 328,134 328,146" fill="#4ade80"/>
+  <text x="280" y="128" fill="#4ade80" font-family="monospace" font-size="13" text-anchor="middle">push</text>
+  <line x1="340" y1="190" x2="232" y2="190" stroke="#4ade80" stroke-width="2"/>
+  <polygon points="220,190 232,184 232,196" fill="#4ade80"/>
+  <text x="280" y="212" fill="#4ade80" font-family="monospace" font-size="13" text-anchor="middle">clone, fetch</text>
+
+  <line x1="808" y1="120" x2="712" y2="120" stroke="#38bdf8" stroke-width="2"/>
+  <polygon points="700,120 712,114 712,126" fill="#38bdf8"/>
+  <line x1="808" y1="210" x2="712" y2="210" stroke="#fbbf24" stroke-width="2"/>
+  <polygon points="700,210 712,204 712,216" fill="#fbbf24"/>
+
+  <text x="520" y="300" fill="#e2e8f0" font-family="sans-serif" font-size="15" text-anchor="middle">A pull request is a branch plus a discussion, and its commits are also a Git ref.</text>
+  <text x="520" y="326" fill="#e2e8f0" font-family="sans-serif" font-size="15" text-anchor="middle">A workflow is a file in the repository, run by GitHub Actions on an event.</text>
+
+  <text x="520" y="400" fill="#94a3b8" font-family="sans-serif" font-size="13" text-anchor="middle">Public repositories need no account to be read, by Git, by the API or in a browser.</text>
+</svg>

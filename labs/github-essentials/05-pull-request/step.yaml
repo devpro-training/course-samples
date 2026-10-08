@@ -1,0 +1,6 @@
+title: Pull request
+layout:
+  - type: vnc
+    url: https://github.com/actions/checkout/pull/1
+    page: github
+  - type: terminal
