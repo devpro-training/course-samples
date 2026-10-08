@@ -32,29 +32,15 @@ The terminal of this lab is that machine.
 
 ## Versions
 
-Every version and URL of this lab is a variable, defined once in the shell of this machine, now and for every new shell.
+Every version and URL of this lab is a variable declared under `env:` in `lab.yaml`, so every shell of this machine has them.
 They are the ones to change to follow a newer release, or another mirror.
 
-1. Define them:
+1. Check that they arrived:
 
    <!-- verify: expect="Docker 5:29" -->
 
    ```bash exec target=docker
-   tee -a ~/.bashrc <<'EOT'
-   # https://docs.docker.com/engine/install/debian/
-   export DOCKER_APT_URL=https://download.docker.com/linux/debian
-   # The fingerprint of the key that signs the packages, from the same page.
-   export DOCKER_GPG_FINGERPRINT=9DC858229FC7DD38854AE2D88D81803C0EBFCD88
-   # Output of apt-cache madison docker-ce, for Debian 12 (bookworm).
-   export DOCKER_VERSION=5:29.8.2-1~debian.12~bookworm
-   # https://hub.docker.com/_/nginx
-   export NGINX_IMAGE=nginx:1.29-alpine
-   # https://hub.docker.com/_/alpine
-   export ALPINE_IMAGE=alpine:3.22
-   # https://hub.docker.com/_/redis
-   export REDIS_IMAGE=redis:8-alpine
-   EOT
-   . ~/.bashrc && echo "Docker ${DOCKER_VERSION}"
+   echo "Docker ${DOCKER_VERSION}"
    ```
 
 ## Docker's apt repository
