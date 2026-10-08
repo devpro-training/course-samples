@@ -1,0 +1,4 @@
+title: Server
+layout:
+  - type: terminal
+  - type: editor

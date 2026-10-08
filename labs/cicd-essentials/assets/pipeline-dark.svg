@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 430" width="1040" height="430">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#94a3b8"/>
+    </marker>
+  </defs>
+  <rect x="0" y="0" width="1040" height="430" fill="#0f172a"/>
+  <text x="520" y="40" fill="#e2e8f0" font-family="sans-serif" font-size="22" font-weight="bold" text-anchor="middle">From a push to a release</text>
+
+  <rect x="30" y="130" width="130" height="90" rx="10" fill="#1e293b" stroke="#38bdf8" stroke-width="2"/>
+  <text x="95" y="167" fill="#e2e8f0" font-family="sans-serif" font-size="16" font-weight="bold" text-anchor="middle">Push</text>
+  <text x="95" y="191" fill="#94a3b8" font-family="monospace" font-size="12" text-anchor="middle">git push</text>
+
+  <rect x="210" y="90" width="410" height="170" rx="10" fill="#1e293b" stroke="#4ade80" stroke-width="2"/>
+  <text x="415" y="118" fill="#4ade80" font-family="sans-serif" font-size="15" font-weight="bold" text-anchor="middle">Continuous integration: the pipeline</text>
+  <rect x="226" y="140" width="100" height="70" rx="8" fill="#0f172a" stroke="#334155" stroke-width="2"/>
+  <text x="276" y="181" fill="#e2e8f0" font-family="monospace" font-size="15" text-anchor="middle">lint</text>
+  <rect x="365" y="140" width="100" height="70" rx="8" fill="#0f172a" stroke="#334155" stroke-width="2"/>
+  <text x="415" y="181" fill="#e2e8f0" font-family="monospace" font-size="15" text-anchor="middle">test</text>
+  <rect x="504" y="140" width="100" height="70" rx="8" fill="#0f172a" stroke="#334155" stroke-width="2"/>
+  <text x="554" y="181" fill="#e2e8f0" font-family="monospace" font-size="15" text-anchor="middle">package</text>
+  <line x1="326" y1="175" x2="363" y2="175" stroke="#94a3b8" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="465" y1="175" x2="502" y2="175" stroke="#94a3b8" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="415" y="240" fill="#94a3b8" font-family="sans-serif" font-size="12" text-anchor="middle">a failing stage stops the pipeline</text>
+
+  <rect x="670" y="130" width="150" height="90" rx="10" fill="#1e293b" stroke="#a78bfa" stroke-width="2"/>
+  <text x="745" y="167" fill="#e2e8f0" font-family="sans-serif" font-size="16" font-weight="bold" text-anchor="middle">Artifact</text>
+  <text x="745" y="191" fill="#94a3b8" font-family="monospace" font-size="12" text-anchor="middle">hello-3e269dd</text>
+
+  <rect x="870" y="130" width="140" height="90" rx="10" fill="#1e293b" stroke="#fbbf24" stroke-width="2"/>
+  <text x="940" y="167" fill="#e2e8f0" font-family="sans-serif" font-size="16" font-weight="bold" text-anchor="middle">Release</text>
+  <text x="940" y="191" fill="#94a3b8" font-family="monospace" font-size="12" text-anchor="middle">current</text>
+
+  <line x1="160" y1="175" x2="208" y2="175" stroke="#94a3b8" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="620" y1="175" x2="668" y2="175" stroke="#94a3b8" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="820" y1="175" x2="868" y2="175" stroke="#94a3b8" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="745" y="115" fill="#a78bfa" font-family="sans-serif" font-size="13" text-anchor="middle">built once</text>
+  <text x="940" y="115" fill="#fbbf24" font-family="sans-serif" font-size="13" text-anchor="middle">deployed, smoke tested</text>
+
+  <path d="M415,262 L415,330 L95,330 L95,224" fill="none" stroke="#38bdf8" stroke-width="2" stroke-dasharray="6 5" marker-end="url(#arrow)"/>
+  <text x="255" y="352" fill="#94a3b8" font-family="sans-serif" font-size="13" text-anchor="middle">failed: the author fixes it first</text>
+
+  <path d="M940,224 L940,330 L745,330 L745,224" fill="none" stroke="#94a3b8" stroke-width="2" stroke-dasharray="6 5" marker-end="url(#arrow)"/>
+  <text x="842" y="352" fill="#94a3b8" font-family="sans-serif" font-size="13" text-anchor="middle">rollback: deploy the previous artifact</text>
+
+  <text x="520" y="400" fill="#94a3b8" font-family="sans-serif" font-size="13" text-anchor="middle">Continuous delivery keeps every artifact ready to release, continuous deployment releases each one with no human decision.</text>
+</svg>

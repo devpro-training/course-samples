@@ -208,3 +208,11 @@ google-chrome --headless=new --screenshot=diagram.png --window-size=1040,430 "fi
 - A pull request is fetched with `git fetch origin pull/<n>/head:<branch>`, and `--depth` bounds the download to the commits of the pull request (github-essentials).
 - On github.com, an anonymous visitor sees the tabs **Code**, **Issues**, **Pull requests**, **Actions**, **Projects** or **Discussions**, **Security and quality** and **Insights**, according to what the owner enabled, and the filter menus of the **Actions** page answer "Sorry, something went wrong" until signed in, so the instructions only name the buttons (github-essentials).
 - A course taught with `gh` would need a token, which `course verify` has not, so GitHub is taught with Git, a browser and `wget`, which show what `gh` relies on (github-essentials).
+- A course about a hosted service, GitHub Actions or GitLab CI, does not log in to it: the concept is taught with what runs in the lab, here a bare repository with a `post-receive` hook as the CI server, and the services appear as a file checked offline and a table of equivalent keys (cicd-essentials).
+- The pipeline logic lives in a script of the repository, and the hook and the service file only call it, so the course is not tied to one product (cicd-essentials).
+- A `post-receive` hook cannot refuse a push, and its output comes back to the pusher as `remote:` lines, which a `verify` directive reads like any other output (cicd-essentials).
+- The lab image's default directory is not writable by `labuser`: a block run from `/` fails with "Permission denied", so every block starts with `cd ~/lab` or its step folder, also when it is tried by hand in `docker run` (cicd-essentials).
+- A release archive is checked with `sha256sum --check --ignore-missing <name>_checksums.txt`, which skips the other platforms listed in the file (cicd-essentials).
+- A file with `${{ ... }}`, such as a GitHub Actions workflow, written by an unquoted heredoc that expands `env:` values escapes it as `\${{ ... }}` (cicd-essentials).
+- A step finds its artifacts with `git rev-parse --short=7 <commit>`, the length the pipeline cuts the commit to, since a bare `--short` can grow with the repository (cicd-essentials).
+- A course whose instructions are a terminal and an editor, with no web UI, needs no Playwright probe, as for test-pyramid (cicd-essentials).

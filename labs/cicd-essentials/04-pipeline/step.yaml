@@ -1,0 +1,4 @@
+title: Pipeline
+layout:
+  - type: terminal
+  - type: editor

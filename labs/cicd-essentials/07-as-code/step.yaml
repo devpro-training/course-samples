@@ -1,0 +1,4 @@
+title: As code
+layout:
+  - type: terminal
+  - type: editor
