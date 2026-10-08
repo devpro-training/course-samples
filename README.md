@@ -12,6 +12,7 @@ Course                                | Topic
 [Automated testing, the test pyramid](labs/test-pyramid) | Unit, integration and end-to-end tests of a .NET web API, and the layer that catches each bug
 [GitHub essentials](labs/github-essentials) | Repository page, REST API and its rate limit, pull requests as Git references, Actions workflows
 [CI/CD essentials](labs/cicd-essentials) | A pipeline script, a Git hook as CI server, red and green runs, an artifact deployed and rolled back, the same pipeline as a workflow
+[Playwright essentials](labs/playwright-essentials) | Install, locators, auto-waiting assertions, a mocked API, the HTML report and the trace viewer
 
 ## Contributing
 

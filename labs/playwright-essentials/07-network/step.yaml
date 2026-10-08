@@ -1,0 +1,4 @@
+title: Network
+layout:
+  - type: terminal
+  - type: editor

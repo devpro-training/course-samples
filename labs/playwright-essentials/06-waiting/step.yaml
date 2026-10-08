@@ -1,0 +1,4 @@
+title: Waiting
+layout:
+  - type: terminal
+  - type: editor

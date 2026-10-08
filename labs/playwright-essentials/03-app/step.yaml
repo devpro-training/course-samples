@@ -1,0 +1,6 @@
+title: The app
+layout:
+  - type: terminal
+  - type: editor
+  - type: vnc
+    page: app

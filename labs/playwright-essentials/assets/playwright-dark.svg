@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 430" width="1040" height="430">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#94a3b8"/>
+    </marker>
+  </defs>
+  <rect x="0" y="0" width="1040" height="430" fill="#0f172a"/>
+  <text x="520" y="40" fill="#e2e8f0" font-family="sans-serif" font-size="22" font-weight="bold" text-anchor="middle">How a test drives a browser</text>
+
+  <rect x="30" y="110" width="170" height="110" rx="10" fill="#1e293b" stroke="#38bdf8" stroke-width="2"/>
+  <text x="115" y="147" fill="#e2e8f0" font-family="sans-serif" font-size="16" font-weight="bold" text-anchor="middle">Test file</text>
+  <text x="115" y="173" fill="#94a3b8" font-family="monospace" font-size="12" text-anchor="middle">tasks.spec.ts</text>
+  <text x="115" y="195" fill="#94a3b8" font-family="monospace" font-size="12" text-anchor="middle">async ({ page })</text>
+
+  <rect x="250" y="110" width="190" height="110" rx="10" fill="#1e293b" stroke="#4ade80" stroke-width="2"/>
+  <text x="345" y="140" fill="#4ade80" font-family="sans-serif" font-size="15" font-weight="bold" text-anchor="middle">Test runner</text>
+  <text x="345" y="165" fill="#94a3b8" font-family="monospace" font-size="12" text-anchor="middle">npx playwright test</text>
+  <text x="345" y="187" fill="#94a3b8" font-family="sans-serif" font-size="12" text-anchor="middle">Node.js, config, workers</text>
+  <text x="345" y="206" fill="#94a3b8" font-family="sans-serif" font-size="12" text-anchor="middle">expect, retries, reporters</text>
+
+  <rect x="490" y="80" width="330" height="170" rx="10" fill="#1e293b" stroke="#a78bfa" stroke-width="2"/>
+  <text x="655" y="106" fill="#a78bfa" font-family="sans-serif" font-size="15" font-weight="bold" text-anchor="middle">Browser: Chromium, Firefox or WebKit</text>
+  <rect x="510" y="122" width="290" height="110" rx="8" fill="#0f172a" stroke="#334155" stroke-width="2"/>
+  <text x="655" y="146" fill="#e2e8f0" font-family="sans-serif" font-size="14" font-weight="bold" text-anchor="middle">Context, new for each test</text>
+  <text x="655" y="165" fill="#94a3b8" font-family="sans-serif" font-size="12" text-anchor="middle">own cookies and storage</text>
+  <rect x="560" y="178" width="190" height="42" rx="6" fill="#1e293b" stroke="#334155" stroke-width="2"/>
+  <text x="655" y="204" fill="#e2e8f0" font-family="monospace" font-size="14" text-anchor="middle">page</text>
+
+  <rect x="870" y="110" width="140" height="110" rx="10" fill="#1e293b" stroke="#fbbf24" stroke-width="2"/>
+  <text x="940" y="147" fill="#e2e8f0" font-family="sans-serif" font-size="16" font-weight="bold" text-anchor="middle">App under test</text>
+  <text x="940" y="173" fill="#94a3b8" font-family="monospace" font-size="12" text-anchor="middle">localhost:4173</text>
+  <text x="940" y="195" fill="#94a3b8" font-family="sans-serif" font-size="12" text-anchor="middle">any web app</text>
+
+  <line x1="200" y1="165" x2="248" y2="165" stroke="#94a3b8" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="440" y1="165" x2="488" y2="165" stroke="#94a3b8" stroke-width="2" marker-start="url(#arrow)" marker-end="url(#arrow)"/>
+  <line x1="820" y1="165" x2="868" y2="165" stroke="#94a3b8" stroke-width="2" marker-start="url(#arrow)" marker-end="url(#arrow)"/>
+  <text x="464" y="270" fill="#94a3b8" font-family="sans-serif" font-size="13" text-anchor="middle">browser protocol:</text>
+  <text x="464" y="288" fill="#94a3b8" font-family="sans-serif" font-size="13" text-anchor="middle">click, fill, read, wait</text>
+  <text x="845" y="270" fill="#94a3b8" font-family="sans-serif" font-size="13" text-anchor="middle">HTTP, like a user</text>
+
+  <path d="M345,224 L345,345 L653,345" fill="none" stroke="#38bdf8" stroke-width="2" stroke-dasharray="6 5" marker-end="url(#arrow)"/>
+  <rect x="655" y="320" width="280" height="50" rx="10" fill="#1e293b" stroke="#38bdf8" stroke-width="2"/>
+  <text x="795" y="342" fill="#e2e8f0" font-family="sans-serif" font-size="15" font-weight="bold" text-anchor="middle">Report and trace</text>
+  <text x="795" y="360" fill="#94a3b8" font-family="sans-serif" font-size="12" text-anchor="middle">every action, with a snapshot</text>
+
+  <text x="520" y="410" fill="#94a3b8" font-family="sans-serif" font-size="13" text-anchor="middle">The test only says what a user does and sees, the runner waits for the page to be ready.</text>
+</svg>

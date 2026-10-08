@@ -29,9 +29,11 @@ labs/<course>/
 
 The default lab image (`sidelab-app`) is Debian 12, run as `labuser`, with no root access and no `sudo`.
 It carries node, wget, python3, dpkg-deb and Google Chrome, and no npm, curl, git, less, editor or unzip.
+It sets `NODE_ENV=production`, with which npm skips the development dependencies.
 
 - A Debian package is unpacked with `dpkg-deb -x <file>.deb ~/.local/`, rather than installed with `apt`.
 - A zip is expanded with `python3 -m zipfile -e`.
+- npm is unpacked from its registry tarball, which carries its dependencies, by `labs/shared/setup-npm.md`.
 - Debian's own programs call `pager`, which is `more` in the image, so `PAGER=less` is exported once `less` is unpacked.
 
 The terminal is reset when moving to another step, and a tool such as VS Code reads its environment from a new login shell,
@@ -94,6 +96,8 @@ layout:
   - type: terminal
 ```
 
+A `vnc` panel with no `url` opens empty, and a `[..](:navigate:<page>:<url>)` link in the step shows the application once it runs.
+
 A `browser` panel reaches an application only through the `/app/<host>/<port>/` proxy, which does not carry WebSockets.
 
 Instructions in a web UI are written against the real UI, checked with Playwright in the lab image before being written:
@@ -126,6 +130,7 @@ A directive in an HTML comment, right before the block, says what the block must
 
 ## Diagrams
 
+A course has at least one diagram, which shows how the topic works, whatever the topic: the parts and what moves between them.
 One SVG per diagram for the dark lab, `<name>-dark.svg`, and one for the light PDF, `<name>.svg`, shown with:
 
 ```markdown
@@ -216,3 +221,12 @@ google-chrome --headless=new --screenshot=diagram.png --window-size=1040,430 "fi
 - A file with `${{ ... }}`, such as a GitHub Actions workflow, written by an unquoted heredoc that expands `env:` values escapes it as `\${{ ... }}` (cicd-essentials).
 - A step finds its artifacts with `git rev-parse --short=7 <commit>`, the length the pipeline cuts the commit to, since a bare `--short` can grow with the repository (cicd-essentials).
 - A course whose instructions are a terminal and an editor, with no web UI, needs no Playwright probe, as for test-pyramid (cicd-essentials).
+- `NODE_ENV=production` in the lab image makes `npm install --save-dev` print "up to date, audited 1 package" and install nothing, so `npx` then downloads the tool on its own, and a config that imports it fails with `MODULE_NOT_FOUND`: the setup exports `NODE_ENV=development` (playwright-essentials).
+- npm is not in the image, and its registry tarball unpacks and runs with `bin/npm-cli.js`, since it bundles its dependencies: the setup compares its `sha512` with the `dist.integrity` of the registry metadata (playwright-essentials).
+- `npx playwright install --only-shell chromium` downloads the headless Chromium only, about 120 MB, where `chromium` alone is more than 400 MB (playwright-essentials).
+- `npx playwright show-report` listens on `localhost`, which `wget` and a probe reach on `127.0.0.1` only with `--host 127.0.0.1` (playwright-essentials).
+- `a && b &` puts the whole chain in the background, `cd` included, so a command that starts a server is on a line of its own (playwright-essentials).
+- A step that fails on purpose is written `{ <command> || true; }`, and its `expect` names a line of the failure, since a non zero exit status fails the block (playwright-essentials).
+- The tests of a Playwright course are themselves the probe of the app, and the probe of the HTML report and the trace viewer found that the links of the report render late, so a probe waits for the first **View Trace** link before counting them (playwright-essentials).
+- A `verify` directive checks the count of a run, so adding a test file changes the `expect` of every later step that runs the whole project (playwright-essentials).
+- npm 12 prints `npm notice run <project> <event>` and `npm notice run <command>` before any command it runs with the terminal attached, `npx` included, from `@npmcli/run-script`: it replaces the `> project@1.0.0 script` banner and only disappears with `--loglevel=warn`, so the course explains the two lines where they first appear instead of hiding them (playwright-essentials).
