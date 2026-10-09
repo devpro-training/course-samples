@@ -17,6 +17,7 @@ Course                                | Topic
 [Linux](labs/linux) | The kernel and the distributions, Red Hat and SUSE included, files, text and pipes, users, groups and permissions, why sudo, apt and dpkg, processes, systemd units
 [Containers](labs/containers) | What a container is: `chroot`, namespaces and cgroups by hand, the OCI standards, Podman, images and registries
 [Container base images](labs/base-images) | Size, files, shell and libc of base images, SUSE BCI, Red Hat UBI, distroless, free and enterprise offers, multi-stage builds, non-root user, pinned digests
+[Application catalog](labs/app-catalog) | Supply chain and compliance of the images and charts a team deploys: Artifact Hub, Docker Official Images, MinIO, Bitnami, SUSE Application Collection, Chainguard, signatures, SBOM, provenance, mirroring
 
 ## Contributing
 

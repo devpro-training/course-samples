@@ -1,0 +1,57 @@
+title: "Application catalog"
+description: "Challenge the images and Helm charts a team deploys: who builds them, what proves it, how long they are maintained, and what it costs to leave."
+duration: 30
+tags:
+  - containers
+  - helm
+  - security
+  - supply-chain
+sidebarWidth: 620
+backend: container
+workdir: ~/lab
+# Every version, URL and image of the course, so a step refers to one by name.
+env:
+  # https://github.com/jqlang/jq/releases
+  JQ_VERSION: 1.8.2
+  # https://github.com/google/go-containerregistry/releases (crane)
+  CRANE_VERSION: 0.22.1
+  # https://github.com/sigstore/cosign/releases
+  COSIGN_VERSION: 3.1.3
+  # https://github.com/helm/helm/releases, served by https://get.helm.sh
+  HELM_VERSION: 4.3.0
+  # https://artifacthub.io/docs/api/
+  ARTIFACTHUB_API: https://artifacthub.io/api/v1
+  # https://docs.docker.com/docker-hub/api/latest/
+  DOCKER_HUB_API: https://hub.docker.com/v2
+  # https://hub.docker.com/_/postgres (a Docker Official Image)
+  OFFICIAL_IMAGE: docker.io/library/postgres:18
+  # https://github.com/minio/minio/issues/21647 (MinIO stopped publishing images in October 2025)
+  MINIO_IMAGE: docker.io/minio/minio
+  # https://github.com/bitnami/containers/issues/83267 (the Bitnami catalog change of August 2025)
+  BITNAMI_CHART: oci://registry-1.docker.io/bitnamicharts/postgresql
+  # The last chart released before the change, on 2025-08-28 or before, and the current one.
+  BITNAMI_CHART_OLD: 16.7.27
+  BITNAMI_CHART_NEW: 18.12.4
+  BITNAMI_IMAGE: docker.io/bitnami/postgresql
+  BITNAMI_LEGACY_IMAGE: docker.io/bitnamilegacy/postgresql
+  # https://docs.apps.rancher.io/ (SUSE Application Collection)
+  APPCO_API: https://api.apps.rancher.io
+  APPCO_REGISTRY: dp.apps.rancher.io
+  APPCO_PUBLIC_KEY: https://apps.rancher.io/ap-pubkey.pem
+  # The branch of PostgreSQL whose image is read, from https://apps.rancher.io/applications/postgresql
+  APPCO_BRANCH: 18
+  # https://images.chainguard.dev/directory/image/postgres (the free image has a latest tag only)
+  CHAINGUARD_IMAGE: cgr.dev/chainguard/postgres:latest
+  # The workflow that signs Chainguard's images, from https://edu.chainguard.dev/chainguard/containers/security-and-compliance/verifying-chainguard-images-and-metadata-signatures-with-cosign/
+  CHAINGUARD_SIGNER: https://github.com/chainguard-images/images/.github/workflows/release.yaml@refs/heads/main
+  GITHUB_OIDC_ISSUER: https://token.actions.githubusercontent.com
+  # The registry of the team, started in the lab.
+  MIRROR: 127.0.0.1:5000
+# An Application Collection account, Free subscription or above, for the only step that pulls from it.
+secrets:
+  - name: APPCO_USERNAME
+    description: User name of an account of https://apps.rancher.io
+    optional: true
+  - name: APPCO_TOKEN
+    description: Access token of the same account, from its Settings page
+    optional: true

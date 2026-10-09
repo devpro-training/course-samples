@@ -36,6 +36,7 @@ It sets `NODE_ENV=production`, with which npm skips the development dependencies
 - A Debian package is unpacked with `dpkg-deb -x <file>.deb ~/.local/`, rather than installed with `apt`.
 - A zip is expanded with `python3 -m zipfile -e`.
 - npm is unpacked from its registry tarball, which carries its dependencies, by `labs/shared/setup-npm.md`.
+- A tool released as a single binary goes in `~/.local/bin`, which `labs/shared/setup-local-bin.md` creates and adds to the `PATH` once, before the fragments of the tools (`setup-jq.md`, `setup-crane.md`, `setup-cosign.md`, `setup-helm.md`), each checked against the checksums of its release.
 - Debian's own programs call `pager`, which is `more` in the image, so `PAGER=less` is exported once `less` is unpacked.
 
 The terminal is reset when moving to another step, and a tool such as VS Code reads its environment from a new login shell,
@@ -287,3 +288,15 @@ google-chrome --headless=new --screenshot=diagram.png --window-size=1040,430 "fi
 - Offers change within months: Chainguard's free images are `latest` only, Docker Hardened Images answer `unauthorized` to an anonymous pull from `dhi.io`, and SlimToolkit's last release stops with "client version 1.33 is too old" against Docker 29, so a slide dates every claim and the lab only pulls what is anonymous (base-images).
 - A course that is the prerequisite of another is written first: Containers explains the kernel and the OCI standards once, and Docker and Container base images refer to it (containers, base-images).
 - The courses of this series with no web UI need no Playwright probe, as for docker (containers, base-images).
+- A course about images and registries needs no container engine: `crane` lists tags and reads manifests and configurations, `cosign` reads and verifies what is attached, and `helm template` renders a chart with no cluster, all as `labuser` in the lab container (app-catalog).
+- `crane export <image> - | tar -xO --wildcards '*os-release'` names the Linux behind an image of any distribution, since `/etc/os-release` is a symlink on Debian and a file on others, and the labels of `crane config` give the declared base image with no download of the layers (app-catalog).
+- `crane registry serve --address 127.0.0.1:5000 --disk <dir>` runs a registry as `labuser`, `cosign copy` copies an image with its signature and attestations, and `cosign verify --allow-insecure-registry` checks the copy over HTTP (app-catalog).
+- `cosign verify-attestation` on a multi-platform tag reads the attestation of the index, an SBOM of three entries, so the SBOM of an image is read at the digest of its platform, from `crane digest --platform linux/amd64` (app-catalog).
+- Docker Hub answers `UNAUTHORIZED: authentication required` for a repository that does not exist, and `MANIFEST_UNKNOWN` for a tag that does not exist: a check of something gone names these words (app-catalog).
+- A `jq` filter that prints `"label: \(.value)"` holds the label in the command, which the linter refuses as an `expect`: the check names the label with the start of its value, `publisher: library`, `entrypoint: docker-entrypoint` (app-catalog).
+- SUSE Application Collection serves its metadata API and the documents of each image, SBOMs, SLSA provenance and scans, with no account, and its registry only with one: the pull and signature blocks read declared optional `secrets:`, and are `skip` with a reason, the rest of the step being verified (app-catalog).
+- The GitHub API refused anonymous calls after a few dozen requests during research, and `curl -sI https://github.com/<owner>/<repo>/releases/latest` gives the latest version in its `location` header with no API call (app-catalog).
+- Testing a step block by block with `docker exec <container> bash -c` misses `~/.bashrc`, which Debian's version leaves early for a shell that is not interactive, so the blocks are run with `bash -ic`, as the lab terminal does (app-catalog).
+- The probe of the Application Collection found its subscription chip twice in the page, the cells of a table row joined with no space (so `\b` does not match inside a row's text), and tab names that end with a count, `VULNERABILITIES 0`, so a probe uses `.first()`, plain patterns, and checks the tab texts (app-catalog).
+- A course that compares publishers, a community project, a vendor or an individual maintainer, states what each one's pages state, measures the rest in the lab, and judges none of them: each is a dependency with its own way to fail (app-catalog).
+- A course that depends on a vendor's catalog pins what it reads, chart versions and image branches, as variables, since the vendor's `latest` and its terms change between two runs (app-catalog).
