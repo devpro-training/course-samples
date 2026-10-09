@@ -1,0 +1,26 @@
+title: "Containers"
+description: "What a container is: a process isolated by the Linux kernel, built by hand, then run the standard way."
+duration: 30
+tags:
+  - containers
+  - linux
+  - beginner
+sidebarWidth: 620
+backend: container
+# Every version and image of the course, delivered to each host's environment, so a step refers to one by name.
+env:
+  # https://packages.debian.org/bookworm/busybox-static
+  BUSYBOX_VERSION: 1:1.35.0-4+deb12u1+b1
+  # https://packages.debian.org/bookworm/podman
+  PODMAN_VERSION: 4.3.1+ds1-8+deb12u1+b3
+  # https://hub.docker.com/_/alpine
+  ALPINE_IMAGE: docker.io/library/alpine:3.22
+hosts:
+  # The lab itself, which only serves the course.
+  - name: control
+  # Namespaces, cgroups and chroot need root and a kernel of their own, which a lab container does not give.
+  - name: machine
+    runtime: vm
+    cores: 2
+    memory: 2048
+    disk: 4096

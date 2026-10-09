@@ -15,6 +15,8 @@ Course                                | Topic
 [Playwright](labs/playwright) | Install, locators, auto-waiting assertions, a mocked API, the HTML report and the trace viewer
 [Docker](labs/docker) | Docker Engine in a virtual machine, run, images and layers, Dockerfile and cache, volumes, networks, Compose
 [Linux](labs/linux) | The kernel and the distributions, Red Hat and SUSE included, files, text and pipes, users, groups and permissions, why sudo, apt and dpkg, processes, systemd units
+[Containers](labs/containers) | What a container is: `chroot`, namespaces and cgroups by hand, the OCI standards, Podman, images and registries
+[Container base images](labs/base-images) | Size, files, shell and libc of base images, SUSE BCI, Red Hat UBI, distroless, free and enterprise offers, multi-stage builds, non-root user, pinned digests
 
 ## Contributing
 

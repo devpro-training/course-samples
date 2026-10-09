@@ -1,0 +1,45 @@
+title: "Container base images"
+description: "Compare the base images a Dockerfile starts from, in size, content and cost, then build, run and improve an image on them."
+duration: 30
+tags:
+  - docker
+  - containers
+  - security
+sidebarWidth: 620
+backend: container
+# Every version and URL of the course, delivered to each host's environment, so a step refers to one by name.
+env:
+  # https://docs.docker.com/engine/install/debian/
+  DOCKER_APT_URL: https://download.docker.com/linux/debian
+  # The fingerprint of the key that signs the packages, from the same page.
+  DOCKER_GPG_FINGERPRINT: 9DC858229FC7DD38854AE2D88D81803C0EBFCD88
+  # Output of apt-cache madison docker-ce, for Debian 12 (bookworm).
+  DOCKER_VERSION: 5:29.8.2-1~debian.12~bookworm
+  # https://hub.docker.com/_/ubuntu
+  UBUNTU_IMAGE: ubuntu:24.04
+  # https://hub.docker.com/_/debian
+  DEBIAN_IMAGE: debian:13-slim
+  # https://hub.docker.com/_/alpine
+  ALPINE_IMAGE: alpine:3.22
+  # https://registry.suse.com/ (SUSE Linux BCI, free to use and to redistribute)
+  BCI_BASE_IMAGE: registry.suse.com/bci/bci-base:16.0
+  BCI_MICRO_IMAGE: registry.suse.com/bci/bci-micro:16.0
+  # https://catalog.redhat.com/en/software/base-images (Red Hat Universal Base Image, free to redistribute)
+  UBI_MINIMAL_IMAGE: registry.access.redhat.com/ubi10/ubi-minimal:10.2
+  UBI_MICRO_IMAGE: registry.access.redhat.com/ubi10/ubi-micro:10.2
+  # https://github.com/GoogleContainerTools/distroless
+  DISTROLESS_IMAGE: gcr.io/distroless/static-debian13:nonroot
+  # https://edu.chainguard.dev/ (the free images have a latest tag only, which moves)
+  CHAINGUARD_IMAGE: cgr.dev/chainguard/static:latest
+  # https://hub.docker.com/_/golang
+  GOLANG_IMAGE: golang:1.25-alpine
+hosts:
+  # The lab itself, which only serves the course.
+  - name: control
+  # Docker needs a kernel, root and cgroups, which a lab container does not give, so it runs in a virtual machine of its own.
+  # The disk holds Docker Engine and about 1.5 GiB of images.
+  - name: docker
+    runtime: vm
+    cores: 2
+    memory: 2048
+    disk: 8192

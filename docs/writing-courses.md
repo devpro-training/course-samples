@@ -78,6 +78,7 @@ hosts:
 - The `env:` variables of `lab.yaml` reach the shell of the machine, as `${NAME}`, which a setup step checks by printing them (linux, docker).
 - `HOME` is `/tmp` and `localhost` does not resolve there, so a command reaches a published port at `127.0.0.1`.
 - The editor panel shows the files of the lab container only, so the files of the course are written by a command that shows their content.
+- Docker Engine is installed by `labs/shared/setup-docker.md`, which a course includes after its own "On a workstation" section, and which needs the `DOCKER_*` variables under `env:` (docker, base-images).
 - The host needs the bridge pool of Firecracker (`task setup:firecracker` in a sidelab checkout, which needs `sudo`, and is lost on a restart of WSL).
 
 ## Variables
@@ -275,3 +276,15 @@ google-chrome --headless=new --screenshot=diagram.png --window-size=1040,430 "fi
 - As `labuser`, `apt-get update` fails on `/var/lib/apt/lists`, and works with `Dir::State`, `Dir::Cache` and `Debug::NoLocking` set in a file named by `APT_CONFIG`, after which `apt-get download` and `dpkg-deb -x` give a package without root, with one harmless `rm: cannot remove` line from the image's `docker-clean` hook (linux).
 - Some pages of the official sources, the Red Hat blog and the freedesktop.org manuals, refuse the fetch tool (404 or 403): a claim taken from a search excerpt of such a page is worded as the excerpt says, with the page linked in the slide (linux).
 - Dates and versions in slides, Debian and Ubuntu releases, the lifecycle of RHEL and SLES, age quickly: each is stated with its date and checked again when the course is revisited (linux).
+- A privileged lab-image container run as root (`docker run --privileged --user root --cgroupns=host`) is enough to try `chroot`, `unshare`, cgroups and Podman before writing a step, and only `course verify` proves the steps in the machine itself (containers).
+- `busybox --install -s /bin` run from the host writes symlinks to the host's path, which dangle in the new root, so `chroot <root> /bin/busybox --install -s /bin` creates them from inside (containers).
+- A cgroup memory limit does not kill the process while swap is available: `memory.swap.max` is set to 0 as well, and the process then ends with status 137 (containers).
+- The kernel of the machine has no `xt_comment` netfilter module, so Podman's netavark fails with "Extension comment revision 0 not supported" for the default network, with `iptables-legacy` too: a container runs with `--network none`, and Docker, which does not use that match, is not affected (containers).
+- `podman` resolves a short image name only with a `registries.conf`, so a course writes the full name, `docker.io/library/alpine:3.22` (containers).
+- `docker create <image> /unused` is needed for an image with no command, and `docker export <container> | tar -t` lists the files of an image that has no shell (base-images).
+- `command -v` of busybox `ash` takes one name, so a list of programs is tested with a `for` loop, and `docker top` needs the `pid` field: `-o pid,user,args` works, `-eo user,args` fails with "Couldn't find PID field" (base-images).
+- `ARG BASE` before the first `FROM` makes the base image a build argument, and in an unquoted heredoc that expands `env:` values it is written `FROM \${BASE}` (base-images).
+- A comparison of vendors states what their own pages state and flags the rest: a free tier, a CVE count or a reduction rate is a claim until measured, and a product with no public page (WizOS, in private preview) is described by what its announcement does not say (base-images).
+- Offers change within months: Chainguard's free images are `latest` only, Docker Hardened Images answer `unauthorized` to an anonymous pull from `dhi.io`, and SlimToolkit's last release stops with "client version 1.33 is too old" against Docker 29, so a slide dates every claim and the lab only pulls what is anonymous (base-images).
+- A course that is the prerequisite of another is written first: Containers explains the kernel and the OCI standards once, and Docker and Container base images refer to it (containers, base-images).
+- The courses of this series with no web UI need no Playwright probe, as for docker (containers, base-images).

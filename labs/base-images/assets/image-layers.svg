@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 430" width="1040" height="430">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#475569"/>
+    </marker>
+  </defs>
+  <rect x="0" y="0" width="1040" height="430" fill="#ffffff"/>
+  <text x="520" y="40" fill="#0f172a" font-family="sans-serif" font-size="22" font-weight="bold" text-anchor="middle">What an application image is made of</text>
+
+  <rect x="30" y="70" width="520" height="290" rx="10" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="2"/>
+  <text x="290" y="96" fill="#475569" font-family="sans-serif" font-size="14" font-weight="bold" text-anchor="middle">The image that is built and shipped</text>
+
+  <rect x="50" y="112" width="480" height="52" rx="6" fill="#ffffff" stroke="#0284c7" stroke-width="2"/>
+  <text x="290" y="135" fill="#0284c7" font-family="sans-serif" font-size="15" font-weight="bold" text-anchor="middle">Application</text>
+  <text x="290" y="154" fill="#475569" font-family="monospace" font-size="12" text-anchor="middle">COPY --from=build, USER, CMD</text>
+
+  <rect x="50" y="174" width="480" height="52" rx="6" fill="#ffffff" stroke="#7c3aed" stroke-width="2"/>
+  <text x="290" y="197" fill="#7c3aed" font-family="sans-serif" font-size="15" font-weight="bold" text-anchor="middle">Runtime and packages</text>
+  <text x="290" y="216" fill="#475569" font-family="monospace" font-size="12" text-anchor="middle">only what the application loads</text>
+
+  <rect x="50" y="236" width="480" height="108" rx="6" fill="#ffffff" stroke="#16a34a" stroke-width="2"/>
+  <text x="290" y="262" fill="#16a34a" font-family="sans-serif" font-size="15" font-weight="bold" text-anchor="middle">Base image: FROM</text>
+  <text x="290" y="284" fill="#475569" font-family="monospace" font-size="12" text-anchor="middle">libc (glibc or musl), CA certificates, time zones</text>
+  <text x="290" y="304" fill="#475569" font-family="monospace" font-size="12" text-anchor="middle">shell, package manager, utilities: or nothing</text>
+  <text x="290" y="324" fill="#475569" font-family="monospace" font-size="12" text-anchor="middle">a user: root or nonroot</text>
+
+  <rect x="590" y="70" width="420" height="290" rx="10" fill="#f1f5f9" stroke="#b45309" stroke-width="2"/>
+  <text x="800" y="100" fill="#b45309" font-family="sans-serif" font-size="15" font-weight="bold" text-anchor="middle">The choice of the base image sets</text>
+  <text x="800" y="140" fill="#0f172a" font-family="sans-serif" font-size="14" text-anchor="middle">Size, pulled by every node</text>
+  <text x="800" y="172" fill="#0f172a" font-family="sans-serif" font-size="14" text-anchor="middle">Attack surface and CVEs to patch</text>
+  <text x="800" y="204" fill="#0f172a" font-family="sans-serif" font-size="14" text-anchor="middle">Who builds and patches it</text>
+  <text x="800" y="236" fill="#0f172a" font-family="sans-serif" font-size="14" text-anchor="middle">Its licence and its lifetime</text>
+  <text x="800" y="268" fill="#0f172a" font-family="sans-serif" font-size="14" text-anchor="middle">The registry every build depends on</text>
+  <text x="800" y="320" fill="#475569" font-family="sans-serif" font-size="13" text-anchor="middle">No image holds a kernel: the host's runs it</text>
+
+  <line x1="530" y1="290" x2="588" y2="290" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <text x="520" y="400" fill="#475569" font-family="sans-serif" font-size="13" text-anchor="middle">A multi-stage build keeps the compiler in the build stage, and ships only the application on a small base</text>
+</svg>

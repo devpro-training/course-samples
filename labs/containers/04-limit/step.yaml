@@ -1,0 +1,4 @@
+title: Limit
+layout:
+  - type: terminal
+    target: machine
