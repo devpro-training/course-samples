@@ -1,0 +1,29 @@
+title: "Linux"
+description: "Understand a Linux system, its distributions and its users, then run the basic commands for files, text, packages, processes and services."
+duration: 30
+tags:
+  - linux
+  - beginner
+sidebarWidth: 620
+backend: container
+# Every name and version of the course, delivered to each host's environment, so a step refers to one by name.
+env:
+  # The user and the group the course creates, to see how accounts and groups work.
+  LINUX_USER: alice
+  LINUX_GROUP: devs
+  # The password of that user, which sudo asks for.
+  LINUX_PASSWORD: wonderland
+  # https://packages.debian.org/bookworm/tree
+  LINUX_PACKAGE: tree
+  # https://packages.debian.org/bookworm/sudo
+  SUDO_PACKAGE: sudo
+hosts:
+  # The lab itself, which only serves the course.
+  - name: control
+  # The commands of this course need root: users, groups, packages and services.
+  # The lab container has no administrator rights, so the course runs in a virtual machine, a Debian 12 with a shell that is root.
+  - name: linux
+    runtime: vm
+    cores: 2
+    memory: 2048
+    disk: 4096

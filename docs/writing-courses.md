@@ -75,7 +75,7 @@ hosts:
 - The machine is Debian 12 on the lab image, its shell is `root`, so the course uses `apt-get`, with `DEBIAN_FRONTEND=noninteractive`.
 - `disk` is declared when anything is installed: the default leaves about 226 MiB.
 - The machine runs no init system, so a daemon is started with `nohup ... &`.
-- The environment of the lab (`env:`, `[[ NAME ]]`) does not reach the machine: the setup step defines the variables in its shell and in `~/.bashrc`, and `lab.yaml` declares none for it.
+- The `env:` variables of `lab.yaml` reach the shell of the machine, as `${NAME}`, which a setup step checks by printing them (linux, docker).
 - `HOME` is `/tmp` and `localhost` does not resolve there, so a command reaches a published port at `127.0.0.1`.
 - The editor panel shows the files of the lab container only, so the files of the course are written by a command that shows their content.
 - The host needs the bridge pool of Firecracker (`task setup:firecracker` in a sidelab checkout, which needs `sudo`, and is lost on a restart of WSL).
@@ -265,3 +265,13 @@ google-chrome --headless=new --screenshot=diagram.png --window-size=1040,430 "fi
 - Docker's package signing key is checked with `gpg --show-keys --fingerprint` against the fingerprint of the installation page, which the setup keeps in a variable (docker).
 - A course whose instructions are a terminal needs no Playwright probe, as for cicd (docker).
 - A disposable launcher kept with `KEEP=1` holds port 3151 until its process group is killed: `kill -- -$(cat /tmp/sidelab-verifycourse-*/launcher.pid)` (docker).
+- A `verify` directive's `expect` is refused by the linter when its text is in the command, a heredoc included: the check names a count (`wc -l` prints `8 access.log`), a status (`echo "status $?"`) or a path only the output prints (linux).
+- A course that needs root, users, `sudo` or `apt` runs all of its steps in one `runtime: vm` host, whose shell is `root`: `adduser`, `runuser -u <user> --`, `apt-get install sudo` and `systemd-analyze verify` all work there (linux).
+- `runuser -u <user> -- <command>` acts as another user from a root script, and `sudo -S` reads the password from its input, so `echo "<password>" | runuser -u <user> -- sudo -S <command>` runs without a person typing (linux).
+- `/etc/sudoers` separates its fields with a tab, so a check names `parsed OK`, the line `visudo -c` prints, and not the rule (linux).
+- The machine has no init system, so `systemctl` answers "System has not been booted with systemd as init system", and a systemd course writes a unit file and checks it with `systemd-analyze verify`, which needs no running systemd and reports `is not executable` for a missing program (linux).
+- bash remembers where it ran a command, so `command -v tree` still prints `/usr/bin/tree` after the package is removed until `hash -r` (linux).
+- Debian 12 merged `/bin`, `/sbin` and `/lib` into `/usr`: `dpkg -S /bin/ls` finds `coreutils`, and `dpkg -S /usr/bin/ls` finds nothing (linux).
+- As `labuser`, `apt-get update` fails on `/var/lib/apt/lists`, and works with `Dir::State`, `Dir::Cache` and `Debug::NoLocking` set in a file named by `APT_CONFIG`, after which `apt-get download` and `dpkg-deb -x` give a package without root, with one harmless `rm: cannot remove` line from the image's `docker-clean` hook (linux).
+- Some pages of the official sources, the Red Hat blog and the freedesktop.org manuals, refuse the fetch tool (404 or 403): a claim taken from a search excerpt of such a page is worded as the excerpt says, with the page linked in the slide (linux).
+- Dates and versions in slides, Debian and Ubuntu releases, the lifecycle of RHEL and SLES, age quickly: each is stated with its date and checked again when the course is revisited (linux).

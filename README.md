@@ -14,6 +14,7 @@ Course                                | Topic
 [CI/CD](labs/cicd) | A pipeline script, a Git hook as CI server, red and green runs, an artifact deployed and rolled back, the same pipeline as a workflow
 [Playwright](labs/playwright) | Install, locators, auto-waiting assertions, a mocked API, the HTML report and the trace viewer
 [Docker](labs/docker) | Docker Engine in a virtual machine, run, images and layers, Dockerfile and cache, volumes, networks, Compose
+[Linux](labs/linux) | The kernel and the distributions, Red Hat and SUSE included, files, text and pipes, users, groups and permissions, why sudo, apt and dpkg, processes, systemd units
 
 ## Contributing
 

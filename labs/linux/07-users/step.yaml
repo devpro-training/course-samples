@@ -1,0 +1,4 @@
+title: Users and groups
+layout:
+  - type: terminal
+    target: linux

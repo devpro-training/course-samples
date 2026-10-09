@@ -1,0 +1,4 @@
+title: Files and folders
+layout:
+  - type: terminal
+    target: linux
