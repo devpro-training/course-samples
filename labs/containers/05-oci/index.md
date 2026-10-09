@@ -3,10 +3,6 @@
 A container tool does what the previous steps did by hand, from an **image**: the root filesystem in layers, and the command to run, in the format of the OCI.
 Podman is used here, since it needs no daemon, and Docker takes the same commands and the same files.
 
-> [!NOTE]
-> The kernel of the lab machine lacks a netfilter module that Podman's bridge network needs, so every container here runs with `--network none`, which gives it the loopback only, as in the previous step.
-> On a workstation, the option is not needed, and the container gets a bridge network.
-
 ## A runtime
 
 1. Podman hands the container to a low level runtime, which applies the namespaces and the control groups:
@@ -38,8 +34,8 @@ Podman is used here, since it needs no daemon, and Docker takes the same command
 
    ```bash exec target=machine
    cd ~/lab/app && \
-   podman build -q --network none -t hello:1 . > /dev/null && \
-   podman run --rm --network none hello:1
+   podman build -q -t hello:1 . > /dev/null && \
+   podman run --rm hello:1
    ```
 
 ## A process of the machine
@@ -49,7 +45,7 @@ Podman is used here, since it needs no daemon, and Docker takes the same command
    <!-- verify: requires=network timeout=120 -->
 
    ```bash exec target=machine
-   podman run -d --network none --name sleeper "${ALPINE_IMAGE}" sleep 300 > /dev/null
+   podman run -d --name sleeper "${ALPINE_IMAGE}" sleep 300 > /dev/null
    ```
 
 2. The machine sees it as a process like any other:
@@ -82,7 +78,7 @@ Podman is used here, since it needs no daemon, and Docker takes the same command
    <!-- verify: expect="20971520" -->
 
    ```bash exec target=machine
-   podman run --rm --network none --memory 20m "${ALPINE_IMAGE}" cat /sys/fs/cgroup/memory.max
+   podman run --rm --memory 20m "${ALPINE_IMAGE}" cat /sys/fs/cgroup/memory.max
    ```
 
 6. Remove the container:

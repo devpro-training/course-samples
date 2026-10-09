@@ -46,7 +46,7 @@ Every version and image of this lab is a variable declared under `env:` in `lab.
 
 1. Install the tools of the lab.
    `busybox-static` is a single program with the common Unix commands, which becomes the content of the container built by hand.
-   `iproute2` shows the network of the machine, and Podman is a container tool, installed here to show the standard way to run what was built by hand.
+   `iproute2` shows the network of the machine, `iptables` is what Podman uses to give a container a network, and Podman is a container tool, installed here to show the standard way to run what was built by hand.
    `DEBIAN_FRONTEND=noninteractive` stops `apt-get` from asking questions that nobody would answer:
 
    <!-- verify: requires=network timeout=300 expect="podman version 4.3" -->
@@ -54,7 +54,7 @@ Every version and image of this lab is a variable declared under `env:` in `lab.
    ```bash exec target=machine
    export DEBIAN_FRONTEND=noninteractive && \
    apt-get update -qq && \
-   apt-get install -y -qq busybox-static="${BUSYBOX_VERSION}" podman="${PODMAN_VERSION}" iproute2 > /dev/null 2>&1 ; \
+   apt-get install -y -qq busybox-static="${BUSYBOX_VERSION}" podman="${PODMAN_VERSION}" iproute2 iptables > /dev/null 2>&1 ; \
    podman --version
    ```
 
