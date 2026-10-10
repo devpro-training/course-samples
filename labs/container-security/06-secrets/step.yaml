@@ -1,0 +1,4 @@
+title: Keep secrets out of images
+layout:
+  - type: terminal
+    target: docker

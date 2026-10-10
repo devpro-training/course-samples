@@ -1,0 +1,34 @@
+title: "Container security"
+description: "The risks of a container running as root, with a socket, a bind mount or a secret, and the options that deny them by default."
+duration: 30
+tags:
+  - containers
+  - docker
+  - security
+sidebarWidth: 620
+backend: container
+# Every version and image of the course, delivered to each host's environment, so a step refers to one by name.
+env:
+  # https://docs.docker.com/engine/install/debian/
+  DOCKER_APT_URL: https://download.docker.com/linux/debian
+  # The fingerprint of the key that signs the packages, from the same page.
+  DOCKER_GPG_FINGERPRINT: 9DC858229FC7DD38854AE2D88D81803C0EBFCD88
+  # Output of apt-cache madison docker-ce, for Debian 12 (bookworm).
+  DOCKER_VERSION: 5:29.8.2-1~debian.12~bookworm
+  # https://packages.debian.org/bookworm/libcap2-bin
+  LIBCAP_VERSION: 1:2.66-4+deb12u3+b1
+  # https://hub.docker.com/_/alpine
+  ALPINE_IMAGE: alpine:3.22
+  # https://hub.docker.com/_/docker
+  DOCKER_CLI_IMAGE: docker:29-cli
+  # https://hub.docker.com/r/nginxinc/nginx-unprivileged
+  NGINX_UNPRIVILEGED_IMAGE: nginxinc/nginx-unprivileged:1.29-alpine
+hosts:
+  # The lab itself, which only serves the course.
+  - name: control
+  # Docker needs a kernel, root and cgroups, which a lab container does not give, so it runs in a virtual machine of its own.
+  - name: docker
+    runtime: vm
+    cores: 2
+    memory: 2048
+    disk: 8192

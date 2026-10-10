@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 430" width="1040" height="430">
+  <rect x="0" y="0" width="1040" height="430" fill="#0f172a"/>
+  <text x="520" y="38" fill="#e2e8f0" font-family="sans-serif" font-size="22" font-weight="bold" text-anchor="middle">Where a container is attacked, and where each control acts</text>
+
+  <rect x="20" y="66" width="230" height="272" rx="10" fill="#1e293b" stroke="#38bdf8" stroke-width="2"/>
+  <text x="135" y="94" fill="#38bdf8" font-family="sans-serif" font-size="16" font-weight="bold" text-anchor="middle">Build</text>
+  <text x="135" y="114" fill="#94a3b8" font-family="sans-serif" font-size="12" text-anchor="middle">Dockerfile, base image</text>
+  <rect x="36" y="128" width="198" height="82" rx="6" fill="#0f172a" stroke="#fbbf24"/>
+  <text x="135" y="150" fill="#fbbf24" font-family="sans-serif" font-size="12" font-weight="bold" text-anchor="middle">RISK</text>
+  <text x="135" y="172" fill="#e2e8f0" font-family="monospace" font-size="12" text-anchor="middle">secret in a layer</text>
+  <text x="135" y="192" fill="#e2e8f0" font-family="monospace" font-size="12" text-anchor="middle">vulnerable base</text>
+  <rect x="36" y="222" width="198" height="104" rx="6" fill="#0f172a" stroke="#4ade80"/>
+  <text x="135" y="244" fill="#4ade80" font-family="sans-serif" font-size="12" font-weight="bold" text-anchor="middle">CONTROL</text>
+  <text x="135" y="266" fill="#e2e8f0" font-family="monospace" font-size="12" text-anchor="middle">--mount=type=secret</text>
+  <text x="135" y="286" fill="#e2e8f0" font-family="monospace" font-size="12" text-anchor="middle">small, pinned base</text>
+  <text x="135" y="306" fill="#e2e8f0" font-family="monospace" font-size="12" text-anchor="middle">non-root USER</text>
+
+  <rect x="270" y="66" width="230" height="272" rx="10" fill="#1e293b" stroke="#38bdf8" stroke-width="2"/>
+  <text x="385" y="94" fill="#38bdf8" font-family="sans-serif" font-size="16" font-weight="bold" text-anchor="middle">Distribute</text>
+  <text x="385" y="114" fill="#94a3b8" font-family="sans-serif" font-size="12" text-anchor="middle">registry, tag, digest</text>
+  <rect x="286" y="128" width="198" height="82" rx="6" fill="#0f172a" stroke="#fbbf24"/>
+  <text x="385" y="150" fill="#fbbf24" font-family="sans-serif" font-size="12" font-weight="bold" text-anchor="middle">RISK</text>
+  <text x="385" y="172" fill="#e2e8f0" font-family="monospace" font-size="12" text-anchor="middle">unknown publisher</text>
+  <text x="385" y="192" fill="#e2e8f0" font-family="monospace" font-size="12" text-anchor="middle">a tag that moves</text>
+  <rect x="286" y="222" width="198" height="104" rx="6" fill="#0f172a" stroke="#4ade80"/>
+  <text x="385" y="244" fill="#4ade80" font-family="sans-serif" font-size="12" font-weight="bold" text-anchor="middle">CONTROL</text>
+  <text x="385" y="266" fill="#e2e8f0" font-family="monospace" font-size="12" text-anchor="middle">digest, signature</text>
+  <text x="385" y="286" fill="#e2e8f0" font-family="monospace" font-size="12" text-anchor="middle">scan, SBOM</text>
+  <text x="385" y="306" fill="#e2e8f0" font-family="monospace" font-size="12" text-anchor="middle">own mirror</text>
+
+  <rect x="520" y="66" width="250" height="272" rx="10" fill="#1e293b" stroke="#a78bfa" stroke-width="2"/>
+  <text x="645" y="94" fill="#a78bfa" font-family="sans-serif" font-size="16" font-weight="bold" text-anchor="middle">Run</text>
+  <text x="645" y="114" fill="#94a3b8" font-family="sans-serif" font-size="12" text-anchor="middle">daemon, container, network</text>
+  <rect x="536" y="128" width="218" height="82" rx="6" fill="#0f172a" stroke="#fbbf24"/>
+  <text x="645" y="150" fill="#fbbf24" font-family="sans-serif" font-size="12" font-weight="bold" text-anchor="middle">RISK</text>
+  <text x="645" y="172" fill="#e2e8f0" font-family="monospace" font-size="12" text-anchor="middle">root, capabilities, any write</text>
+  <text x="645" y="192" fill="#e2e8f0" font-family="monospace" font-size="12" text-anchor="middle">socket, bind mount</text>
+  <rect x="536" y="222" width="218" height="104" rx="6" fill="#0f172a" stroke="#4ade80"/>
+  <text x="645" y="244" fill="#4ade80" font-family="sans-serif" font-size="12" font-weight="bold" text-anchor="middle">CONTROL</text>
+  <text x="645" y="266" fill="#e2e8f0" font-family="monospace" font-size="12" text-anchor="middle">--user, --cap-drop ALL</text>
+  <text x="645" y="286" fill="#e2e8f0" font-family="monospace" font-size="12" text-anchor="middle">--read-only, no-new-priv.</text>
+  <text x="645" y="306" fill="#e2e8f0" font-family="monospace" font-size="12" text-anchor="middle">no socket, internal network</text>
+
+  <rect x="790" y="66" width="230" height="272" rx="10" fill="#1e293b" stroke="#a78bfa" stroke-width="2"/>
+  <text x="905" y="94" fill="#a78bfa" font-family="sans-serif" font-size="16" font-weight="bold" text-anchor="middle">Kernel and host</text>
+  <text x="905" y="114" fill="#94a3b8" font-family="sans-serif" font-size="12" text-anchor="middle">one kernel, shared</text>
+  <rect x="806" y="128" width="198" height="82" rx="6" fill="#0f172a" stroke="#fbbf24"/>
+  <text x="905" y="150" fill="#fbbf24" font-family="sans-serif" font-size="12" font-weight="bold" text-anchor="middle">RISK</text>
+  <text x="905" y="172" fill="#e2e8f0" font-family="monospace" font-size="12" text-anchor="middle">a flaw in a syscall</text>
+  <text x="905" y="192" fill="#e2e8f0" font-family="monospace" font-size="12" text-anchor="middle">escape to the host</text>
+  <rect x="806" y="222" width="198" height="104" rx="6" fill="#0f172a" stroke="#4ade80"/>
+  <text x="905" y="244" fill="#4ade80" font-family="sans-serif" font-size="12" font-weight="bold" text-anchor="middle">CONTROL</text>
+  <text x="905" y="266" fill="#e2e8f0" font-family="monospace" font-size="12" text-anchor="middle">seccomp, AppArmor, SELinux</text>
+  <text x="905" y="286" fill="#e2e8f0" font-family="monospace" font-size="12" text-anchor="middle">user namespace, rootless</text>
+  <text x="905" y="306" fill="#e2e8f0" font-family="monospace" font-size="12" text-anchor="middle">sandbox runtime, updates</text>
+
+  <rect x="20" y="360" width="1000" height="52" rx="10" fill="#1e293b" stroke="#4ade80" stroke-width="2"/>
+  <text x="520" y="383" fill="#4ade80" font-family="sans-serif" font-size="16" font-weight="bold" text-anchor="middle">Deny by default</text>
+  <text x="520" y="402" fill="#94a3b8" font-family="sans-serif" font-size="13" text-anchor="middle">Start from no rights, and allow only what the application needs</text>
+</svg>

@@ -1,0 +1,4 @@
+title: Keep the host out of reach
+layout:
+  - type: terminal
+    target: docker

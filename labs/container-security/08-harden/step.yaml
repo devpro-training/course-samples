@@ -1,0 +1,4 @@
+title: Deny by default
+layout:
+  - type: terminal
+    target: docker
