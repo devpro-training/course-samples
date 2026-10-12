@@ -9,14 +9,14 @@ pages:
     selectors:
       username: 'input[name="username"]'
       password: 'input[name="password"]'
-      submit:   { role: button, name: "Sign in" }   # role locator form — preferred
+      submit: { role: button, name: "Sign in" }   # role locator form — preferred
   users:
     url: "http://localhost:8080/users.html"
     selectors:
-      addUser:  { role: button, name: "Add user" }
+      addUser: { role: button, name: "Add user" }
       nameField: '#name'
-      saveBtn:  { role: button, name: "Save" }
-      rows:     '#rows'
+      saveBtn: { role: button, name: "Save" }
+      rows: '#rows'
 
 actions:
   login.as-admin:

@@ -9,5 +9,7 @@ rules:
   indentation:
     spaces: 2
     indent-sequences: whatever
+  braces:
+    max-spaces-inside: 1
   brackets:
     max-spaces-inside: 1
