@@ -1,0 +1,4 @@
+title: Pods
+layout:
+  - type: terminal
+    target: kube

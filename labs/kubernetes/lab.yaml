@@ -1,0 +1,31 @@
+title: "Kubernetes"
+description: "What Kubernetes is and why it exists, then a real cluster with k3s: nodes, Pods, Deployments, Services, configuration and the datastore."
+duration: 40
+tags:
+  - kubernetes
+  - k3s
+  - beginner
+sidebarWidth: 620
+backend: container
+# Every version and URL of the course, delivered to each host's environment, so a step refers to one by name.
+env:
+  # https://github.com/k3s-io/k3s/releases, the stable channel of https://update.k3s.io/v1-release/channels
+  K3S_VERSION: v1.36.5+k3s1
+  # The release assets are named by the version, with the + of the build written %2B in a URL.
+  K3S_URL: https://github.com/k3s-io/k3s/releases/download
+  # https://hub.docker.com/_/nginx
+  NGINX_IMAGE: nginx:1.30-alpine
+  # The image the rolling update moves to.
+  NGINX_NEXT_IMAGE: nginx:1.31-alpine
+  # https://hub.docker.com/_/busybox
+  BUSYBOX_IMAGE: busybox:1.37
+hosts:
+  # The lab itself, which only serves the course.
+  - name: control
+  # k3s needs a kernel, root and cgroups, which a lab container does not give, so it runs in a virtual machine of its own.
+  # A server asks for 2 cores and 2 GiB at least (https://docs.k3s.io/installation/requirements), and the images pulled need disk.
+  - name: kube
+    runtime: vm
+    cores: 2
+    memory: 3072
+    disk: 8192
