@@ -1,0 +1,4 @@
+title: CMDB
+layout:
+  - type: terminal
+  - type: editor

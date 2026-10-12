@@ -1,0 +1,4 @@
+title: Structure
+layout:
+  - type: terminal
+  - type: editor

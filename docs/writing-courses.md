@@ -38,6 +38,7 @@ It sets `NODE_ENV=production`, with which npm skips the development dependencies
 - npm is unpacked from its registry tarball, which carries its dependencies, by `labs/shared/setup-npm.md`.
 - A tool released as a single binary goes in `~/.local/bin`, which `labs/shared/setup-local-bin.md` creates and adds to the `PATH` once, before the fragments of the tools (`setup-jq.md`, `setup-crane.md`, `setup-cosign.md`, `setup-helm.md`), each checked against the checksums of its release.
 - Terraform and OpenTofu are single binaries from a release zip, installed by `labs/shared/setup-terraform.md` (GPG key, signed checksums) and `labs/shared/setup-opentofu.md` (cosign), which need `HASHICORP_GPG_FINGERPRINT` and the `*_VERSION` variables under `env:`.
+- A Python tool is installed in a virtual environment of the home directory, `python3 -m venv --without-pip ~/.<tool>-venv`, filled by the wheel of pip run as a zip (`python3 pip-<version>-py3-none-any.whl/pip --python ~/.<tool>-venv/bin/python install <package>`), which `labs/shared/setup-ansible.md` checks against the SHA-256 of the package index, and the `PATH` gets the `bin` folder of the environment.
 - Debian's own programs call `pager`, which is `more` in the image, so `PAGER=less` is exported once `less` is unpacked.
 
 The terminal is reset when moving to another step, and a tool such as VS Code reads its environment from a new login shell,
@@ -348,3 +349,16 @@ google-chrome --headless=new --screenshot=diagram.png --window-size=1040,430 "fi
 - `tofu` reads the state and the code written by Terraform and plans no change, rewrites the lock file for `registry.opentofu.org` and keeps the versions, and writes its own version in the `terraform_version` field of the state (terraform).
 - The `type` argument of an `output` is accepted by Terraform 1.16, and left out here so the same files run with OpenTofu (terraform).
 - The courses of this series with a terminal and an editor only, and no web UI, need no Playwright probe, as for docker (terraform).
+- The image has Python 3.11, no pip and no `ensurepip`, and `pip install --user` is refused (PEP 668): pip comes from its wheel, run as a zip, and installs into a virtual environment made with `--without-pip` (ansible).
+- A tool pinned to what the lab runs states why: `ansible-core` 2.20 and 2.21 need Python 3.12 or newer on the control node, so the course uses 2.19, whose end of life is November 2026 in the support matrix, and the slide dates it (ansible).
+- A lab with no SSH server reaches its hosts with `ansible_connection: local`, set once in `group_vars/all.yml`, and each host owns a folder computed from `playbook_dir` and `inventory_hostname`: the only difference with a real node is the connection (ansible).
+- `interpreter_python = auto_silent` in `ansible.cfg` removes the "discovered Python interpreter" warning that Ansible prints for each host (ansible).
+- An inventory source of truth is taught with a small one the lab owns: a JSON document served by `python3 -m http.server`, read by an executable script that prints `--list` with `_meta` and `hostvars`, so no call per host is made, while the plugins of NetBox (`netbox.netbox.nb_inventory`) and ServiceNow (`servicenow.itsm.now`) are only read, since they need a server and credentials (ansible).
+- A group of an inventory is an identifier, so the CMDB environment `prod` becomes `env_prod`, and `group_vars/env_prod.yml` then carries what differs per environment (ansible).
+- `command` and `shell` always report `changed`, and are skipped by `--check`: showing them next to `file` and `copy` is the shortest proof of idempotence, with `changed=2` twice, then `changed=0` (ansible).
+- `ansible-playbook` colors its recap in the lab terminal, so a check names one token (`changed=0`, `skipped=2`) and not the spacing between two of them (ansible).
+- `ansible-doc` pages its output, so a block pipes it to `head`, and `-s` prints the snippet of a module (ansible).
+- `ansible-lint` without a `.ansible-lint` file warns that `/.ansible` is not writable, and with one containing `profile: production` the project passes, the playbook with a bare `shell` fails (ansible).
+- Handlers run once at the end of the play and only when a notifying task changed something: the second apply shows `changed=0` and no `RUNNING HANDLER` (ansible).
+- `ansible-vault encrypt_string` with a `vault_password_file` in `ansible.cfg` encrypts a value into `group_vars/all/vault.yml`, beside the plain `vars.yml` of the same group, with `no_log: true` on the task that uses it (ansible).
+- The courses of this series with a terminal and an editor only, and no web UI, need no Playwright probe, as for docker (ansible).

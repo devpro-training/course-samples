@@ -1,0 +1,4 @@
+title: Playbook
+layout:
+  - type: terminal
+  - type: editor

@@ -22,6 +22,7 @@ Course                                | Topic
 [Trivy](labs/trivy) | Scan an image, a project, its configuration and an SBOM from a verified release binary, a gate in a pipeline script and a workflow, accepted risks with an expiry, a comparison with Grype and OSV-Scanner
 [Infrastructure as Code](labs/iac) | Imperative and declarative, idempotence, a desired state with plan and apply, state and drift on a local environment, the same code in Terraform and Ansible, a scan of Terraform with Trivy before anything is created
 [Terraform](labs/terraform) | HCL, init, plan and apply, variables and outputs, state and drift, modules with `for_each`, providers and the lock file, a local and an HTTP backend (MongoDB), OpenTofu as the compatible alternative, a gate script
+[Ansible](labs/ansible) | Agentless push over SSH, a static inventory and one read from a CMDB (script, NetBox and ServiceNow plugins), modules against commands, idempotence, check mode and diff, `group_vars` per environment, a loop, a template, handlers, a role, Vault, `serial`, `ansible-lint`
 
 ## Contributing
 
