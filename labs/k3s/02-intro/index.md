@@ -24,12 +24,12 @@ Kubernetes in one binary.
 
 ## Where it comes from
 
-Date                 | Event
----------------------|------------------------------------------------------------------
-February 2019        | Rancher Labs announces k3s, a Kubernetes for the edge and constrained machines
-November 2019        | General availability, announced by Rancher Labs
-19 August 2020       | k3s is accepted by the CNCF, at the **Sandbox** maturity level
-1 December 2020      | SUSE completes the acquisition of Rancher Labs
+Date            | Event
+----------------|-------------------------------------------------------------------------------
+February 2019   | Rancher Labs announces k3s, a Kubernetes for the edge and constrained machines
+November 2019   | General availability, announced by Rancher Labs
+19 August 2020  | k3s is accepted by the CNCF, at the **Sandbox** maturity level
+1 December 2020 | SUSE completes the acquisition of Rancher Labs
 
 - k3s was the second project Rancher gave to the CNCF, after Longhorn.
 
@@ -56,15 +56,15 @@ November 2019        | General availability, announced by Rancher Labs
 
 ## Why it is interesting
 
-Need                  | What k3s gives
-----------------------|--------------------------------------------------------------
-Small machines        | A server asks for 2 cores and 2 GiB, an agent for 1 core and 512 MiB
-Edge, IoT, ARM        | x86_64, armhf and arm64, on most modern Linux distributions
-Install in a minute   | A script, or a binary and a command, and a working cluster
-Development and CI    | A real cluster in seconds on a laptop or in a pipeline, then the same manifests in production
-Offline sites         | Air-gapped installation, and a registry mirror shared between the nodes (Spegel)
-No expert at hand     | Defaults that work: DNS, storage, ingress, load balancer, metrics
-Embedding             | A cluster inside a product, since it is one file and a few options
+Need                | What k3s gives
+--------------------|----------------------------------------------------------------------------------------------
+Small machines      | A server asks for 2 cores and 2 GiB, an agent for 1 core and 512 MiB
+Edge, IoT, ARM      | x86_64, armhf and arm64, on most modern Linux distributions
+Install in a minute | A script, or a binary and a command, and a working cluster
+Development and CI  | A real cluster in seconds on a laptop or in a pipeline, then the same manifests in production
+Offline sites       | Air-gapped installation, and a registry mirror shared between the nodes (Spegel)
+No expert at hand   | Defaults that work: DNS, storage, ingress, load balancer, metrics
+Embedding           | A cluster inside a product, since it is one file and a few options
 
 - The requirements are a modern kernel and cgroup mounts, nothing else.
 
@@ -98,11 +98,11 @@ Embedding             | A cluster inside a product, since it is one file and a f
 
 - **Kine** answers the part of the etcd API that the API server needs, on top of SQLite, MySQL, MariaDB or PostgreSQL.
 
-Cluster                       | Datastore                      | Chosen with
-------------------------------|--------------------------------|---------------------------
-One server                    | SQLite (default)               | nothing
-Several servers (3 or more)   | Embedded etcd                  | `--cluster-init`, then `--server`
-Several servers (2 or more)   | An external database           | `--datastore-endpoint`
+Cluster                     | Datastore            | Chosen with
+----------------------------|----------------------|----------------------------------
+One server                  | SQLite (default)     | nothing
+Several servers (3 or more) | Embedded etcd        | `--cluster-init`, then `--server`
+Several servers (2 or more) | An external database | `--datastore-endpoint`
 
 - A backup of SQLite is a copy of the `db` folder, and of the token.
 
@@ -114,17 +114,17 @@ Several servers (2 or more)   | An external database           | `--datastore-en
 
 ## What it installs
 
-Component               | Role                        | Packaged as
-------------------------|-----------------------------|----------------------------------
-containerd              | Container runtime           | In the binary
-Flannel                 | Pod network (VXLAN)         | In the binary
-Network policy controller | Enforces `NetworkPolicy`  | In the binary
-CoreDNS                 | DNS of the cluster          | Manifest
-Traefik                 | Ingress controller          | Helm chart
-ServiceLB               | `LoadBalancer` Services on the nodes | In the binary
-local-path-provisioner  | Storage: folders of the node | Manifest
-metrics-server          | `kubectl top`, autoscaling  | Manifest
-Helm controller         | Installs `HelmChart` objects | In the binary
+Component                 | Role                                 | Packaged as
+--------------------------|--------------------------------------|--------------
+containerd                | Container runtime                    | In the binary
+Flannel                   | Pod network (VXLAN)                  | In the binary
+Network policy controller | Enforces `NetworkPolicy`             | In the binary
+CoreDNS                   | DNS of the cluster                   | Manifest
+Traefik                   | Ingress controller                   | Helm chart
+ServiceLB                 | `LoadBalancer` Services on the nodes | In the binary
+local-path-provisioner    | Storage: folders of the node         | Manifest
+metrics-server            | `kubectl top`, autoscaling           | Manifest
+Helm controller           | Installs `HelmChart` objects         | In the binary
 
 - A manifest in `/var/lib/rancher/k3s/server/manifests` is applied when the server starts and when it changes.
 
@@ -156,13 +156,13 @@ curl -sfL https://get.k3s.io | sh -
 
 ## Day two
 
-Operation   | How
-------------|-----------------------------------------------------------------------
-Upgrade     | Servers first, one at a time, then the agents: the script with a version, a new binary, or the system-upgrade-controller
-Scale       | `k3s agent` with the address of a server and the token
-Back up     | SQLite: copy `db/` and the token. Embedded etcd: `k3s etcd-snapshot`
-Remove      | Delete the node from the cluster, then `k3s-agent-uninstall.sh` or `k3s-uninstall.sh`
-Harden      | A hardening guide of the documentation for the CIS benchmark, measured with kube-bench
+Operation | How
+----------|-------------------------------------------------------------------------------------------------------------------------
+Upgrade   | Servers first, one at a time, then the agents: the script with a version, a new binary, or the system-upgrade-controller
+Scale     | `k3s agent` with the address of a server and the token
+Back up   | SQLite: copy `db/` and the token. Embedded etcd: `k3s etcd-snapshot`
+Remove    | Delete the node from the cluster, then `k3s-agent-uninstall.sh` or `k3s-uninstall.sh`
+Harden    | A hardening guide of the documentation for the CIS benchmark, measured with kube-bench
 
 - A channel is a stream of releases: `stable` is the default, `latest` is the newest, and `v1.36` follows one minor version.
 
@@ -189,7 +189,7 @@ Harden      | A hardening guide of the documentation for the CIS benchmark, meas
 ## In this lab
 
 Step               | What it shows
--------------------|------------------------------------------------------------------
+-------------------|---------------------------------------------------------------------------------------------------------------------------
 Setup              | The binary of the release, checked against its checksum, and a running server
 Install            | The install script and why it stops here, what the binary carries, the files, the datastore options
 Bundled components | CoreDNS, local-path, Traefik, ServiceLB and metrics-server, then Traefik and ServiceLB removed with the configuration file

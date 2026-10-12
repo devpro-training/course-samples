@@ -4,18 +4,18 @@
 
 ## Cheat sheet
 
-Command                          | Does
----------------------------------|--------------------------------------------
-`git config --global user.name`  | Set the author name, once per machine
-`git init`                       | Turn a folder into a repository
-`git clone <url>`                | Copy an existing repository
-`git status`                     | Show what changed
-`git add <file>`                 | Stage a change for the next commit
-`git commit -m "<message>"`      | Record the staged changes
-`git log --oneline`              | Show the history
-`git switch -c <branch>`         | Create a branch and switch to it
-`git merge <branch>`             | Bring a branch into the current one
-`git push` / `git pull`          | Send / get commits to / from the remote
+Command                            | Does
+-----------------------------------|----------------------------------------
+`git config --global user.name`    | Set the author name, once per machine
+`git init`                         | Turn a folder into a repository
+`git clone <url>`                  | Copy an existing repository
+`git status`                       | Show what changed
+`git add <file>`                   | Stage a change for the next commit
+`git commit -m "<message>"`        | Record the staged changes
+`git log --oneline`                | Show the history
+`git switch -c <branch>`           | Create a branch and switch to it
+`git merge <branch>`               | Bring a branch into the current one
+`git push` / `git pull`            | Send / get commits to / from the remote
 `git stash push` / `git stash pop` | Put changes aside / bring them back
 
 ---

@@ -4,15 +4,15 @@
 
 ## Cheat sheet
 
-Command                                | Does
----------------------------------------|----------------------------------------------
-`bash ci/pipeline.sh`                  | Every stage: lint, test, package
-`bash ci/pipeline.sh <stage>`          | One stage
-`echo $?`                              | The exit code of the last command, 0 is green
+Command                                   | Does
+------------------------------------------|----------------------------------------------
+`bash ci/pipeline.sh`                     | Every stage: lint, test, package
+`bash ci/pipeline.sh <stage>`             | One stage
+`echo $?`                                 | The exit code of the last command, 0 is green
 `git archive <commit> \| tar -x -C <dir>` | A clean copy of one commit
-`.git/hooks/post-receive` (server)     | A script run after every push
-`ln -sfn <target> <link>`, `mv -T`     | A link replaced in one step
-`actionlint <file>`                    | Checks a GitHub Actions workflow offline
+`.git/hooks/post-receive` (server)        | A script run after every push
+`ln -sfn <target> <link>`, `mv -T`        | A link replaced in one step
+`actionlint <file>`                       | Checks a GitHub Actions workflow offline
 
 ---
 
@@ -62,4 +62,6 @@ Command                                | Does
 
 - Docker: the artifact becomes an image.
 
-- Further reading: [Continuous Integration](https://martinfowler.com/articles/continuousIntegration.html), [Continuous Delivery](https://martinfowler.com/bliki/ContinuousDelivery.html), [GitHub Actions](https://docs.github.com/en/actions), [GitLab CI/CD](https://docs.gitlab.com/ci/) and [Azure Pipelines](https://learn.microsoft.com/azure/devops/pipelines/).
+- Further reading:
+  [Continuous Integration](https://martinfowler.com/articles/continuousIntegration.html), [Continuous Delivery](https://martinfowler.com/bliki/ContinuousDelivery.html), [GitHub Actions](https://docs.github.com/en/actions),
+  [GitLab CI/CD](https://docs.gitlab.com/ci/) and [Azure Pipelines](https://learn.microsoft.com/azure/devops/pipelines/).

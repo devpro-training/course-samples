@@ -5,7 +5,6 @@ The documented way is a script, which does more: it also creates a service, and 
 
 ## The install script
 
-
 1. Download the script of the quick start, and read the stages it runs:
 
    <!-- verify: requires=network expect="download_and_verify" -->

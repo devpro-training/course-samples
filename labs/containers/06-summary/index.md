@@ -4,19 +4,19 @@
 
 ## Cheat sheet
 
-Need                  | Kernel feature       | By hand
-----------------------|----------------------|----------------------------------------
-Its own files         | root filesystem      | `chroot <dir> <command>`
-Its own view          | namespaces           | `unshare --pid --uts --net --mount --fork <command>`
-A cap on resources    | control groups       | files under `/sys/fs/cgroup/<group>/`
-The namespaces of a process | `/proc`        | `readlink /proc/<pid>/ns/pid`
+Need                        | Kernel feature  | By hand
+----------------------------|-----------------|-----------------------------------------------------
+Its own files               | root filesystem | `chroot <dir> <command>`
+Its own view                | namespaces      | `unshare --pid --uts --net --mount --fork <command>`
+A cap on resources          | control groups  | files under `/sys/fs/cgroup/<group>/`
+The namespaces of a process | `/proc`         | `readlink /proc/<pid>/ns/pid`
 
-Tool command                  | Does
-------------------------------|-----------------------------------------------
-`podman build -t <name> .`    | Builds an image from a Containerfile or a Dockerfile
-`podman run --rm <image>`     | Runs a container, and removes it at exit
-`podman run -d --name <n> <image>` | Runs it in the background
-`podman exec <n> <command>`   | Runs a command in a running container
+Tool command                                      | Does
+--------------------------------------------------|-----------------------------------------------------
+`podman build -t <name> .`                        | Builds an image from a Containerfile or a Dockerfile
+`podman run --rm <image>`                         | Runs a container, and removes it at exit
+`podman run -d --name <n> <image>`                | Runs it in the background
+`podman exec <n> <command>`                       | Runs a command in a running container
 `podman run --memory 20m --pids-limit 10 <image>` | Sets the control group
 
 ---

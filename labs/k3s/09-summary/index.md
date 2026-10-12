@@ -4,26 +4,26 @@
 
 ## Cheat sheet
 
-Task                      | Command
---------------------------|------------------------------------------------------------------
-Start a server            | `k3s server` (a service, with the install script)
-Join an agent             | `k3s agent --server https://<server>:6443 --token <token>`
-Use the cluster           | `k3s kubectl ...`, or a link named `kubectl`
-Containers of the node    | `k3s crictl ps`, `k3s ctr`
-Disable a component       | `disable: [traefik]` in `config.yaml`, or `--disable=traefik`
-Deploy with the server    | A file in `/var/lib/rancher/k3s/server/manifests`
-Encrypt the Secrets       | `secrets-encryption: true`, then `k3s secrets-encrypt status`
-Back up (SQLite)          | Copy `/var/lib/rancher/k3s/server/db` and `.../server/token`
-Back up (etcd)            | `k3s etcd-snapshot save`
-Upgrade                   | The script with `INSTALL_K3S_VERSION`, or replace the binary and restart
-Remove                    | `kubectl drain`, `kubectl delete node`, then `k3s-agent-uninstall.sh` or `k3s-uninstall.sh`
+Task                   | Command
+-----------------------|--------------------------------------------------------------------------------------------
+Start a server         | `k3s server` (a service, with the install script)
+Join an agent          | `k3s agent --server https://<server>:6443 --token <token>`
+Use the cluster        | `k3s kubectl ...`, or a link named `kubectl`
+Containers of the node | `k3s crictl ps`, `k3s ctr`
+Disable a component    | `disable: [traefik]` in `config.yaml`, or `--disable=traefik`
+Deploy with the server | A file in `/var/lib/rancher/k3s/server/manifests`
+Encrypt the Secrets    | `secrets-encryption: true`, then `k3s secrets-encrypt status`
+Back up (SQLite)       | Copy `/var/lib/rancher/k3s/server/db` and `.../server/token`
+Back up (etcd)         | `k3s etcd-snapshot save`
+Upgrade                | The script with `INSTALL_K3S_VERSION`, or replace the binary and restart
+Remove                 | `kubectl drain`, `kubectl delete node`, then `k3s-agent-uninstall.sh` or `k3s-uninstall.sh`
 
 ---
 
 ## Where things are
 
 What                         | Where
------------------------------|---------------------------------------------------------------
+-----------------------------|----------------------------------------------------------------------------------------------------------------------------
 Configuration                | `/etc/rancher/k3s/config.yaml` and `config.yaml.d/*.yaml` ([documentation](https://docs.k3s.io/installation/configuration))
 Kubeconfig of the server     | `/etc/rancher/k3s/k3s.yaml`
 Datastore (SQLite)           | `/var/lib/rancher/k3s/server/db/state.db`
@@ -70,8 +70,8 @@ Logs with the install script | `journalctl -u k3s`, and `journalctl -u k3s-agent
 
 ## Natural next steps
 
-Need                        | Next
-----------------------------|------------------------------------------------------------------
+Need                         | Next
+-----------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------
 Several clusters on a laptop | **k3d**: k3s nodes in containers, for development and tests
 HTTP routes to the Services  | **An ingress controller**: Traefik configured, or replaced
 Storage that survives a node | A **CSI driver** with a storage class of its own, replicated (Longhorn, a SUSE project hosted by the CNCF, for example), in place of `local-path`

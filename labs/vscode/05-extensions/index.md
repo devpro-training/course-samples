@@ -2,10 +2,10 @@
 
 An extension adds a language, a linter, a debugger, a theme or a whole tool to VS Code.
 
-Marketplace                                               | Used by
-----------------------------------------------------------|---------------------------------------------
+Marketplace                                                              | Used by
+-------------------------------------------------------------------------|-----------------------------------------------------
 [Visual Studio Marketplace](https://marketplace.visualstudio.com/vscode) | VS Code, as distributed by Microsoft
-[Open VSX](https://open-vsx.org)                          | code-server, VSCodium and other builds of Code - OSS
+[Open VSX](https://open-vsx.org)                                         | code-server, VSCodium and other builds of Code - OSS
 
 Microsoft's terms reserve its marketplace to its own products, so a few extensions are only found there.
 

@@ -36,10 +36,10 @@ It hosts nothing: it lists what publishers declare, links to their repositories,
 
 Artifact Hub defines its two badges in its [documentation](https://artifacthub.io/docs/topics/repositories/):
 
-Badge                | Means                                                      | Does not mean
----------------------|------------------------------------------------------------|--------------------------------------
-**Verified publisher** | the publisher "owns or has control over the repository"  | that the chart is maintained, reviewed or safe
-**Official**         | the publisher "owns the software a package primarily focuses on" | that the images are patched or supported
+Badge                  | Means                                                            | Does not mean
+-----------------------|------------------------------------------------------------------|-----------------------------------------------
+**Verified publisher** | the publisher "owns or has control over the repository"          | that the chart is maintained, reviewed or safe
+**Official**           | the publisher "owns the software a package primarily focuses on" | that the images are patched or supported
 
 1. Look for a chart of PostgreSQL that is official:
 

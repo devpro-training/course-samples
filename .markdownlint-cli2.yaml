@@ -5,5 +5,7 @@ config:
   default: true
   MD013:
     line_length: 240
+  MD010:
+    code_blocks: false  # Go is indented with tabs
   MD033: false
   MD041: false

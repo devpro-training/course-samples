@@ -23,21 +23,21 @@
    ls ~/lab/Greeter
    ```
 
-   File | Role
-   -----|---------------------------------------------------------------
-   `Greeter.csproj` | The **project**: how to build it, as MSBuild XML
-   `Program.cs`     | The source: the entry point of the program
-   `obj/`           | Intermediate files, such as the restored NuGet packages
+File             | Role
+-----------------|--------------------------------------------------------
+`Greeter.csproj` | The **project**: how to build it, as MSBuild XML
+`Program.cs`     | The source: the entry point of the program
+`obj/`           | Intermediate files, such as the restored NuGet packages
 
 3. [Open Greeter.csproj](:open:Greeter/Greeter.csproj), then [open Program.cs](:open:Greeter/Program.cs).
 
-   Setting          | Means
-   -----------------|----------------------------------------------------------
-   `Sdk`            | The MSBuild SDK that brings the C# build rules
-   `OutputType`     | `Exe` produces a program, a library has none
-   `TargetFramework`| `net10.0`, the .NET version the app runs on
-   `ImplicitUsings` | Common namespaces, such as `System`, are imported for every file
-   `Nullable`       | The compiler warns about a possible `null`
+Setting           | Means
+------------------|-----------------------------------------------------------------
+`Sdk`             | The MSBuild SDK that brings the C# build rules
+`OutputType`      | `Exe` produces a program, a library has none
+`TargetFramework` | `net10.0`, the .NET version the app runs on
+`ImplicitUsings`  | Common namespaces, such as `System`, are imported for every file
+`Nullable`        | The compiler warns about a possible `null`
 
    `Program.cs` is one line: a **top-level statement**, so a small program needs no class or `Main` method.
 

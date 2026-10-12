@@ -4,18 +4,18 @@
 
 ## Cheat sheet
 
-Command                                  | Does
------------------------------------------|----------------------------------------------
+Command                                       | Does
+----------------------------------------------|-----------------------------------------------------
 `docker run -d --name <n> -p 8080:80 <image>` | Starts a container in the background, port published
-`docker ps`, `docker ps -a`              | Running containers, all containers
-`docker logs <n>`                        | The output of the container
-`docker exec <n> <command>`              | Runs a command in a running container
-`docker stop <n>`, `docker rm <n>`       | Stops, removes
-`docker images`, `docker history <image>`| Images, their layers
-`docker build -t <name>:<tag> .`         | Builds an image from a Dockerfile
-`docker volume create`, `-v <vol>:<path>`| A volume, and its mount
-`docker network create`                  | A network where names resolve
-`docker compose up -d`, `down`           | Starts and removes the services of a file
+`docker ps`, `docker ps -a`                   | Running containers, all containers
+`docker logs <n>`                             | The output of the container
+`docker exec <n> <command>`                   | Runs a command in a running container
+`docker stop <n>`, `docker rm <n>`            | Stops, removes
+`docker images`, `docker history <image>`     | Images, their layers
+`docker build -t <name>:<tag> .`              | Builds an image from a Dockerfile
+`docker volume create`, `-v <vol>:<path>`     | A volume, and its mount
+`docker network create`                       | A network where names resolve
+`docker compose up -d`, `down`                | Starts and removes the services of a file
 
 ---
 

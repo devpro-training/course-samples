@@ -4,17 +4,17 @@
 
 ## Cheat sheet
 
-Command or API                              | Does
---------------------------------------------|------------------------------------------------
-`npm init playwright@latest`                | Create a project, its config and an example test
+Command or API                                 | Does
+-----------------------------------------------|--------------------------------------------------
+`npm init playwright@latest`                   | Create a project, its config and an example test
 `npx playwright install --only-shell chromium` | Download the headless Chromium
-`npx playwright test`                       | Run the tests, all of them or a file or `-g` name
-`await page.goto('/')`                      | Open a page of the `baseURL`
-`page.getByRole`, `getByLabel`, `getByText` | Find an element as a user describes it
-`fill`, `click`, `check`                    | Act, after waiting for the element to be ready
-`await expect(locator).toBeVisible()`       | Assert, and retry until it holds
-`page.route(url, handler)`                  | Answer a request of the page in the test
-`npx playwright show-report`                | Open the HTML report, with the traces
+`npx playwright test`                          | Run the tests, all of them or a file or `-g` name
+`await page.goto('/')`                         | Open a page of the `baseURL`
+`page.getByRole`, `getByLabel`, `getByText`    | Find an element as a user describes it
+`fill`, `click`, `check`                       | Act, after waiting for the element to be ready
+`await expect(locator).toBeVisible()`          | Assert, and retry until it holds
+`page.route(url, handler)`                     | Answer a request of the page in the test
+`npx playwright show-report`                   | Open the HTML report, with the traces
 
 ---
 

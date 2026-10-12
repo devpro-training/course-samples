@@ -3,12 +3,12 @@
 A locator says which element a test means, the way a user would describe it.
 It is looked up again at each use, so a page that redraws its list does not break it.
 
-Locator                          | Finds
----------------------------------|------------------------------------------------
+Locator                                     | Finds
+--------------------------------------------|------------------------------------------------
 `page.getByRole('button', { name: 'Add' })` | An element by its ARIA role and accessible name
-`page.getByLabel('New task')`    | A form control by its label
-`page.getByText('1 left')`       | An element by its text
-`page.getByTestId('id')`         | An element by its `data-testid` attribute
+`page.getByLabel('New task')`               | A form control by its label
+`page.getByText('1 left')`                  | An element by its text
+`page.getByTestId('id')`                    | An element by its `data-testid` attribute
 
 The Playwright documentation recommends them in this order, and `page.locator()` with a CSS selector last, since it breaks when the markup changes.
 

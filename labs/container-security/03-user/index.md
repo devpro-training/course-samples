@@ -7,13 +7,13 @@ What keeps it contained is a list of **capabilities**, a split of the powers of 
 
 ## The logic
 
-Capability   | Allows
--------------|----------------------------------------------------
-`CHOWN`      | change the owner of any file
+Capability     | Allows
+---------------|-----------------------------------------------
+`CHOWN`        | change the owner of any file
 `DAC_OVERRIDE` | ignore the read, write and execute permissions
-`NET_RAW`    | craft any network packet
-`SETUID`     | become any user
-`SYS_ADMIN`  | mount, and a lot more: not in the default list
+`NET_RAW`      | craft any network packet
+`SETUID`       | become any user
+`SYS_ADMIN`    | mount, and a lot more: not in the default list
 
 A process that runs as another user holds none of them, a process that runs as root holds them, until the container drops them.
 

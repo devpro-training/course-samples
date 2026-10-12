@@ -4,18 +4,18 @@
 
 ## Cheat sheet
 
-Command                                                         | Does
-----------------------------------------------------------------|----------------------------------------------
-`crane ls <repository>`                                         | list the tags of a repository
-`crane digest --platform linux/amd64 <image>`                   | the digest of an image, for one platform
-`crane config <image>`                                          | the configuration: user, entry point, labels
-`crane export <image> - \| tar -xO --wildcards '*os-release'`   | the Linux behind an image
-`helm template <name> oci://<chart> --version <v>`              | render a chart, with no cluster
-`cosign tree <image>`                                           | what is attached: signatures, attestations
-`cosign verify --key <key> <image>`                             | verify a signature by a key (SUSE)
+Command                                                                                | Does
+---------------------------------------------------------------------------------------|---------------------------------------------
+`crane ls <repository>`                                                                | list the tags of a repository
+`crane digest --platform linux/amd64 <image>`                                          | the digest of an image, for one platform
+`crane config <image>`                                                                 | the configuration: user, entry point, labels
+`crane export <image> - \| tar -xO --wildcards '*os-release'`                          | the Linux behind an image
+`helm template <name> oci://<chart> --version <v>`                                     | render a chart, with no cluster
+`cosign tree <image>`                                                                  | what is attached: signatures, attestations
+`cosign verify --key <key> <image>`                                                    | verify a signature by a key (SUSE)
 `cosign verify --certificate-identity <id> --certificate-oidc-issuer <issuer> <image>` | verify a keyless signature (Chainguard)
-`cosign verify-attestation --type spdxjson ...`                 | verify, then read, an SBOM
-`cosign copy <image>@<digest> <mirror>/<name>:<tag>`            | mirror an image with its signature
+`cosign verify-attestation --type spdxjson ...`                                        | verify, then read, an SBOM
+`cosign copy <image>@<digest> <mirror>/<name>:<tag>`                                   | mirror an image with its signature
 
 ---
 

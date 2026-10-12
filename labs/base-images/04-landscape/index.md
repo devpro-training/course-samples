@@ -14,7 +14,9 @@ The same question for every base image: who builds it, who patches it, and what 
 
 - **Continuity**: the lifetime of the support, 5 years, 10 years or until the next release, is a property of the base image, and the application inherits it.
 
-- Reading: [The siren's call of secure images: Community Linux versus vendor-specific distributions](https://devpro.fr/the-sirens-call-of-secure-images-community-linux-versus-vendor-specific-distributions/), by Bertrand Thomas, November 2025.
+- Reading:
+  [The siren's call of secure images:
+  Community Linux versus vendor-specific distributions](https://devpro.fr/the-sirens-call-of-secure-images-community-linux-versus-vendor-specific-distributions/), by Bertrand Thomas, November 2025.
 
 ---
 
@@ -27,13 +29,13 @@ The same question for every base image: who builds it, who patches it, and what 
 
 ## Community distributions
 
-Image                   | Maintained by                 | Libc  | Support
-------------------------|-------------------------------|-------|-----------------------------------------------
-`debian`, `debian:slim` | the Debian project            | glibc | community, with a published lifecycle
-`ubuntu`                | Canonical                     | glibc | free security patching for 5 years from `main`, 10 years with Ubuntu Pro
-`alpine`                | the Alpine Linux project      | musl  | community, several releases maintained at once
-`distroless`            | Google                        | glibc | open source, signed with cosign, community
-`scratch`               | nobody: it is empty           | none  | a static binary brings everything it needs
+Image                   | Maintained by            | Libc  | Support
+------------------------|--------------------------|-------|-------------------------------------------------------------------------
+`debian`, `debian:slim` | the Debian project       | glibc | community, with a published lifecycle
+`ubuntu`                | Canonical                | glibc | free security patching for 5 years from `main`, 10 years with Ubuntu Pro
+`alpine`                | the Alpine Linux project | musl  | community, several releases maintained at once
+`distroless`            | Google                   | glibc | open source, signed with cosign, community
+`scratch`               | nobody: it is empty      | none  | a static binary brings everything it needs
 
 - Debian, Ubuntu and Alpine are Docker Official Images, curated by Docker, with the maintainers of each image.
 
@@ -43,13 +45,14 @@ Image                   | Maintained by                 | Libc  | Support
 
 ## Free to use, with an enterprise offer
 
-Image                       | Free                                                       | Enterprise offer
-----------------------------|------------------------------------------------------------|-------------------------------------------------
+Image                                                                  | Free                                                                                                                    | Enterprise offer
+-----------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------
 SUSE Linux BCI (`bci-base`, `bci-minimal`, `bci-micro`, `bci-busybox`) | The images and the SLE_BCI repository: free to use and to redistribute, under the SUSE BCI EULA, with community support | Support of a SUSE Linux Enterprise subscription, the SLES repositories through `container-suseconnect`, LTSS for certified FIPS
-Red Hat UBI (`ubi`, `ubi-minimal`, `ubi-micro`, `ubi-init`) | The images and the UBI repositories: free to deploy and to redistribute, under the UBI EULA | Support when the container runs on a Red Hat platform with a subscription (RHEL, OpenShift); Red Hat supports the latest UBI version
-Docker Hardened Images      | The Community catalog: Apache 2.0, signed SBOM, SLSA Build Level 3 provenance | Select and Enterprise: a 7-day SLA on critical and high CVEs, FIPS and STIG variants, customizations, extended lifecycle support
-Chainguard                  | Five free images, with a `latest` tag only and no CVE remediation SLA | Per image: all upstream supported tags, a contractual SLA (7 days critical, 14 days others), pricing on request
-Canonical, chiselled Ubuntu | The images, for .NET, Java and Python among others         | Ubuntu Pro, for the 10 years of security patching and the support
+Red Hat UBI (`ubi`, `ubi-minimal`, `ubi-micro`, `ubi-init`)            | The images and the UBI repositories: free to deploy and to redistribute, under the UBI EULA                             | Support when the container runs on a Red Hat platform with a subscription (RHEL, OpenShift); Red Hat supports the latest UBI version
+Docker Hardened Images                                                 | The Community catalog:
+Apache 2.0, signed SBOM, SLSA Build Level 3 provenance                                           | Select and Enterprise: a 7-day SLA on critical and high CVEs, FIPS and STIG variants, customizations, extended lifecycle support
+Chainguard                                                             | Five free images, with a `latest` tag only and no CVE remediation SLA                                                   | Per image: all upstream supported tags, a contractual SLA (7 days critical, 14 days others), pricing on request
+Canonical, chiselled Ubuntu                                            | The images, for .NET, Java and Python among others                                                                      | Ubuntu Pro, for the 10 years of security patching and the support
 
 - Read the free column as "what is built and published", and the enterprise column as "what is promised, and by whom".
 

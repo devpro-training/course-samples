@@ -38,7 +38,7 @@ The operating system under most servers, containers and clouds.
 ## The tree
 
 Directory | Holds
-----------|----------------------------------------------
+----------|-------------------------------------------
 `/etc`    | Configuration of this machine
 `/home`   | Home directories of the users
 `/root`   | Home directory of `root`
@@ -63,10 +63,10 @@ Directory | Holds
 ## In this lab
 
 Topic          | Commands
----------------|---------------------------------------------------------
+---------------|-----------------------------------------------
 The system     | `uname`, `/etc/os-release`, `/proc`, `ls /`
 Files          | `pwd`, `ls`, `cd`, `mkdir`, `cp`, `mv`, `rm`
-Text and pipes | `grep`, `head`, `tail`, `wc`, `sort`, `|`, `>`
+Text and pipes | `grep`, `head`, `tail`, `wc`, `sort`, `\|`, `>`
 Users, groups  | `id`, `adduser`, `usermod`, `chmod`, `chown`
 Sudo           | `sudo`, `/etc/sudoers`
 Packages       | `apt`, `dpkg`

@@ -57,17 +57,19 @@ One API to run containers on any infrastructure.
 
 - Today the project maintains the three most recent minor versions, 1.35, 1.36 and 1.37 at the time of writing, and this lab runs 1.36.
 
-- References: [CNCF, 21 July 2015](https://www.cncf.io/news/2015/07/21/techcrunch-as-kubernetes-hits-1-0-google-donates-technology-to-newly-formed-cloud-native-computing-foundation), [CNCF, 6 March 2018](https://www.cncf.io/announcements/2018/03/06/kubernetes-first-cncf-project-graduate/), [Releases](https://kubernetes.io/releases/).
+- References:
+  [CNCF, 21 July 2015](https://www.cncf.io/news/2015/07/21/techcrunch-as-kubernetes-hits-1-0-google-donates-technology-to-newly-formed-cloud-native-computing-foundation), [CNCF,
+  6 March 2018](https://www.cncf.io/announcements/2018/03/06/kubernetes-first-cncf-project-graduate/), [Releases](https://kubernetes.io/releases/).
 
 ---
 
 ## From servers to containers
 
-Era            | How an application runs                                | What was missing
----------------|--------------------------------------------------------|---------------------------------------
-Physical       | One or more applications on a physical server          | No resource boundary between applications
-Virtualized    | Virtual machines on a physical server                  | A whole system per application
-Containers     | Processes isolated by the kernel, sharing the system   | Someone to place, restart and connect them
+Era         | How an application runs                              | What was missing
+------------|------------------------------------------------------|-------------------------------------------
+Physical    | One or more applications on a physical server        | No resource boundary between applications
+Virtualized | Virtual machines on a physical server                | A whole system per application
+Containers  | Processes isolated by the kernel, sharing the system | Someone to place, restart and connect them
 
 The three eras are the ones of the [Kubernetes documentation](https://kubernetes.io/docs/concepts/overview/).
 
@@ -79,7 +81,7 @@ One container on one machine is `docker run`.
 A hundred containers on twenty machines is a different problem, and every question below has to be answered by something.
 
 Question                                         | In Kubernetes
--------------------------------------------------|----------------------------------------------
+-------------------------------------------------|---------------------------------------------
 Which machine has room for it?                   | The scheduler places each Pod
 What if it crashes, or the machine dies?         | The Pod is replaced, on a healthy node
 How do others find it, when its address changes? | A Service and a DNS name
@@ -134,21 +136,23 @@ How does it grow when the load grows?            | The number of replicas, by ha
 
 - The **Certified Kubernetes** program checks that a distribution, a hosted platform or an installer behaves like Kubernetes, with a public test suite.
 
-- References: [CNCF definition](https://github.com/cncf/toc/blob/main/DEFINITION.md), [Who we are](https://www.cncf.io/about/who-we-are/), [100 certified vendors, 2019](https://www.cncf.io/announcements/2019/11/19/cloud-native-computing-foundation-reaches-over-100-certified-kubernetes-vendors/).
+- References:
+  [CNCF definition](https://github.com/cncf/toc/blob/main/DEFINITION.md), [Who we are](https://www.cncf.io/about/who-we-are/), [100 certified vendors,
+  2019](https://www.cncf.io/announcements/2019/11/19/cloud-native-computing-foundation-reaches-over-100-certified-kubernetes-vendors/).
 
 ---
 
 ## Cloud native patterns
 
-Pattern                  | The idea                                                 | In Kubernetes
--------------------------|----------------------------------------------------------|----------------------------
-Declarative              | Describe the result, not the steps                       | A manifest, `kubectl apply`
-Immutable infrastructure | Replace a running thing, never patch it                  | A rolling update of Pods
-Health probes            | The application says whether it is alive and ready       | Liveness and readiness probes
-Service discovery        | A stable name in front of a changing set                 | A Service and its DNS name
-Configuration outside    | The same image in every environment                      | ConfigMap and Secret
+Pattern                  | The idea                                                  | In Kubernetes
+-------------------------|-----------------------------------------------------------|---------------------------------------------------------------------------------------------
+Declarative              | Describe the result, not the steps                        | A manifest, `kubectl apply`
+Immutable infrastructure | Replace a running thing, never patch it                   | A rolling update of Pods
+Health probes            | The application says whether it is alive and ready        | Liveness and readiness probes
+Service discovery        | A stable name in front of a changing set                  | A Service and its DNS name
+Configuration outside    | The same image in every environment                       | ConfigMap and Secret
 Sidecar                  | A helper container that shares the Pod of the application | [Sidecar containers](https://kubernetes.io/docs/concepts/workloads/pods/sidecar-containers/)
-Operator                 | The knowledge of an operator written as a controller     | [Operator pattern](https://kubernetes.io/docs/concepts/extend-kubernetes/operator/)
+Operator                 | The knowledge of an operator written as a controller      | [Operator pattern](https://kubernetes.io/docs/concepts/extend-kubernetes/operator/)
 
 The lab shows the first five.
 
@@ -156,8 +160,10 @@ The lab shows the first five.
 
 ## What a cluster is
 
-![A cluster has a control plane, made of the API server, a datastore, the scheduler and the controller manager, and worker nodes that run the Pods through the kubelet and a container runtime](../assets/kubernetes-cluster-dark.svg#gh-dark-mode-only)
-![A cluster has a control plane, made of the API server, a datastore, the scheduler and the controller manager, and worker nodes that run the Pods through the kubelet and a container runtime](../assets/kubernetes-cluster.svg#gh-light-mode-only)
+![A cluster has a control plane, made of the API server, a datastore, the scheduler and the controller manager,
+and worker nodes that run the Pods through the kubelet and a container runtime](../assets/kubernetes-cluster-dark.svg#gh-dark-mode-only)
+![A cluster has a control plane, made of the API server, a datastore, the scheduler and the controller manager,
+and worker nodes that run the Pods through the kubelet and a container runtime](../assets/kubernetes-cluster.svg#gh-light-mode-only)
 
 ---
 
@@ -165,15 +171,15 @@ The lab shows the first five.
 
 A cluster is a **control plane** and one or more **worker nodes**.
 
-Part          | Component               | Does
---------------|-------------------------|------------------------------------------------------
-Control plane | `kube-apiserver`        | Exposes the Kubernetes HTTP API: the only way in
-Control plane | `etcd`                  | The consistent key value store of all the API data
-Control plane | `kube-scheduler`        | Assigns each new Pod to a suitable node
+Part          | Component                 | Does
+--------------|---------------------------|----------------------------------------------------
+Control plane | `kube-apiserver`          | Exposes the Kubernetes HTTP API: the only way in
+Control plane | `etcd`                    | The consistent key value store of all the API data
+Control plane | `kube-scheduler`          | Assigns each new Pod to a suitable node
 Control plane | `kube-controller-manager` | Runs the controllers that implement the API
-Node          | `kubelet`               | Makes sure the Pods and their containers run
-Node          | `kube-proxy`            | Maintains the network rules that implement Services
-Node          | Container runtime       | Runs the containers (containerd, for example)
+Node          | `kubelet`                 | Makes sure the Pods and their containers run
+Node          | `kube-proxy`              | Maintains the network rules that implement Services
+Node          | Container runtime         | Runs the containers (containerd, for example)
 
 Reference: [Kubernetes components](https://kubernetes.io/docs/concepts/overview/components/).
 
@@ -188,7 +194,7 @@ Reference: [Kubernetes components](https://kubernetes.io/docs/concepts/overview/
 - **An installer** builds a cluster from the upstream components, `kubeadm` for example, and leaves the choices to the operator.
 
 Name    | Kind         | What it chooses
---------|--------------|--------------------------------------------------------------------
+--------|--------------|-------------------------------------------------------------------------------------------------------------------------------------------------
 k3s     | Distribution | One binary under 100 MB: containerd, Flannel, CoreDNS, Traefik, a local storage provisioner, SQLite by default
 RKE2    | Distribution | Security and compliance first: defaults that pass the CIS benchmark, FIPS 140-2, control plane as static Pods, containerd. Combines k3s and RKE1
 kubeadm | Installer    | The upstream way to start a cluster, with no choice made for the network or the storage
@@ -203,12 +209,12 @@ References: [k3s](https://docs.k3s.io/), [RKE2](https://docs.rke2.io/), [Product
 
 - **Running a distribution** means building that availability: several control plane machines, a load balancer in front of the API, backups of the datastore, certificates, upgrades.
 
-Question                    | Distribution on own machines          | Managed service
-----------------------------|---------------------------------------|--------------------------------------
-Who runs the control plane? | The team                              | The provider
+Question                    | Distribution on own machines               | Managed service
+----------------------------|--------------------------------------------|----------------------------------------------
+Who runs the control plane? | The team                                   | The provider
 Where does it run?          | Anywhere: a laptop, a server, an edge site | The cloud of the provider
-What does the team keep?    | Everything, the machines included     | The workloads, the configuration and the cost
-What does it tie it to?     | The distribution and its upgrade path | The provider and its integrations
+What does the team keep?    | Everything, the machines included          | The workloads, the configuration and the cost
+What does it tie it to?     | The distribution and its upgrade path      | The provider and its integrations
 
 - Both are Kubernetes: a manifest written for one is applied to the other, which is the point of the standard.
 
@@ -236,7 +242,7 @@ What does it tie it to?     | The distribution and its upgrade path | The provid
 ## In this lab
 
 Step        | What it shows
-------------|----------------------------------------------------------------------
+------------|-------------------------------------------------------------------------
 Setup       | The k3s binary, checked against its checksum, and a running server
 Cluster     | The node, the system Pods, the API, and the datastore file
 Pods        | A manifest, `kubectl apply`, logs, `exec`, and a Pod that stays gone

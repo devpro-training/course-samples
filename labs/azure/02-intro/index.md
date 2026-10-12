@@ -17,11 +17,11 @@ Everything is created, changed and deleted by calls to that API, whichever tool 
 - **One of the big three.**
   The share of the worldwide cloud infrastructure services spending in the second quarter of 2026, according to Synergy Research (release of 30 July 2026, a market of $143.4 billion):
 
-  Provider                | Share
-  ------------------------|------
-  Amazon Web Services     | 28%
-  Microsoft Azure         | 20%
-  Google Cloud            | 15%
+Provider            | Share
+--------------------|------
+Amazon Web Services | 28%
+Microsoft Azure     | 20%
+Google Cloud        | 15%
 
   Another firm, with another definition of the market, gives other figures.
 
@@ -58,15 +58,15 @@ Everything is created, changed and deleted by calls to that API, whichever tool 
 
 ## How to interact with Azure
 
-Way                | Use                                    | Calls ARM through
--------------------|----------------------------------------|-------------------------------------------
-Azure portal       | explore, click, look at a resource     | the portal's own back end
-Cloud Shell        | a shell in the browser, already signed in | the CLI or PowerShell
-Azure CLI (`az`)   | scripts, one-off commands, discovery   | REST calls
-Azure PowerShell   | the same, for PowerShell users         | REST calls
-Bicep, ARM template | a desired state, deployed by Azure    | a deployment, run by Resource Manager
-Terraform          | a desired state across providers, with a state file | the `azurerm` provider
-SDKs, REST         | an application that manages resources  | HTTPS calls
+Way                 | Use                                                 | Calls ARM through
+--------------------|-----------------------------------------------------|--------------------------------------
+Azure portal        | explore, click, look at a resource                  | the portal's own back end
+Cloud Shell         | a shell in the browser, already signed in           | the CLI or PowerShell
+Azure CLI (`az`)    | scripts, one-off commands, discovery                | REST calls
+Azure PowerShell    | the same, for PowerShell users                      | REST calls
+Bicep, ARM template | a desired state, deployed by Azure                  | a deployment, run by Resource Manager
+Terraform           | a desired state across providers, with a state file | the `azurerm` provider
+SDKs, REST          | an application that manages resources               | HTTPS calls
 
 - **Click in the portal to learn, write a file to keep.**
   What was clicked cannot be reviewed, repeated or reverted.
@@ -77,20 +77,20 @@ SDKs, REST         | an application that manages resources  | HTTPS calls
 
 ## Terminology
 
-Term                   | Means
------------------------|-------------------------------------------------------------------
-Tenant                 | a Microsoft Entra directory: the identities of an organization
-Management group       | a container of subscriptions, to apply policy and access to many
-Subscription           | the unit of billing and quotas, trusting one tenant
-Resource group         | a container of resources with the same lifecycle, in one subscription
-Resource               | one manageable item: a virtual machine, a storage account, a network
-Resource provider      | the service that supplies a type: `Microsoft.Compute`, `Microsoft.Storage`
-Region                 | where a resource runs and its data is stored: `westeurope`
-Availability zone      | one or more datacenters of a region with separate power, cooling and networking
-SKU                    | a size or tier of a resource, with its price: `Standard_LRS`, `Standard_B2s`
-Tag                    | a name and value on a resource, for cost allocation and ownership
-Policy                 | a rule that Azure evaluates on resources: allowed regions, required tags
-Azure RBAC             | the permissions: a role, an identity and a scope make a role assignment
+Term              | Means
+------------------|--------------------------------------------------------------------------------
+Tenant            | a Microsoft Entra directory: the identities of an organization
+Management group  | a container of subscriptions, to apply policy and access to many
+Subscription      | the unit of billing and quotas, trusting one tenant
+Resource group    | a container of resources with the same lifecycle, in one subscription
+Resource          | one manageable item: a virtual machine, a storage account, a network
+Resource provider | the service that supplies a type: `Microsoft.Compute`, `Microsoft.Storage`
+Region            | where a resource runs and its data is stored: `westeurope`
+Availability zone | one or more datacenters of a region with separate power, cooling and networking
+SKU               | a size or tier of a resource, with its price: `Standard_LRS`, `Standard_B2s`
+Tag               | a name and value on a resource, for cost allocation and ownership
+Policy            | a rule that Azure evaluates on resources: allowed regions, required tags
+Azure RBAC        | the permissions: a role, an identity and a scope make a role assignment
 
 ![The Microsoft Entra tenant holds the identities and is trusted by subscriptions. Below a management group, a subscription holds resource groups, and a resource group holds resources. Policy and role assignments at a scope apply to everything below it](../assets/azure-scope-dark.svg#gh-dark-mode-only)
 ![The Microsoft Entra tenant holds the identities and is trusted by subscriptions. Below a management group, a subscription holds resource groups, and a resource group holds resources. Policy and role assignments at a scope apply to everything below it](../assets/azure-scope.svg#gh-light-mode-only)
@@ -122,15 +122,15 @@ Azure RBAC             | the permissions: a role, an identity and a scope make a
 
 ## In this lab
 
-Step       | What it shows
------------|-----------------------------------------------------------------
-Setup      | Azure CLI, Bicep, Terraform, jq and Azurite, each checked and unpacked in the home directory
+Step                        | What it shows
+----------------------------|---------------------------------------------------------------------------------------------
+Setup                       | Azure CLI, Bicep, Terraform, jq and Azurite, each checked and unpacked in the home directory
 Tenant and Resource Manager | the tenant of a domain, the `401` of ARM, the clouds, why a command asks for `az login`
-Azure CLI  | the tree of commands, `--query`, `az rest`, the HTTP behind a command
-Bicep      | a storage account, compiled to the ARM template, a subscription scope with a module
-Terraform  | the same account with `azurerm`, validated, and the plan that stops at Resource Manager
-Regions and prices | the public price list of Azure, one size in three regions
-Storage emulator | Azurite, the data plane on the local machine
+Azure CLI                   | the tree of commands, `--query`, `az rest`, the HTTP behind a command
+Bicep                       | a storage account, compiled to the ARM template, a subscription scope with a module
+Terraform                   | the same account with `azurerm`, validated, and the plan that stops at Resource Manager
+Regions and prices          | the public price list of Azure, one size in three regions
+Storage emulator            | Azurite, the data plane on the local machine
 
 > No Azure account is used, so nothing is deployed and nothing is billed.
 > A command that needs an account is shown, and not run.

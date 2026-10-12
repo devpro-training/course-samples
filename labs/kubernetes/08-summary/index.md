@@ -4,18 +4,18 @@
 
 ## Cheat sheet
 
-Command                                          | Does
--------------------------------------------------|------------------------------------------------------
-`kubectl get nodes`, `get pods -A`               | The nodes, the Pods of every namespace
-`kubectl apply -f <file>`                        | Moves the cluster to what the file declares
-`kubectl get <kind> [-o wide\|yaml\|jsonpath=...]` | Lists objects, or prints their actual state
-`kubectl describe <kind> <name>`                 | The object and its events
-`kubectl logs <pod>`, `exec <pod> -- <command>`  | The output of a container, a command in it
-`kubectl wait --for=condition=Ready <kind>/<n>`  | Returns when the condition is true
-`kubectl scale deployment <n> --replicas=<k>`    | Changes the number of Pods
+Command                                                | Does
+-------------------------------------------------------|--------------------------------------------
+`kubectl get nodes`, `get pods -A`                     | The nodes, the Pods of every namespace
+`kubectl apply -f <file>`                              | Moves the cluster to what the file declares
+`kubectl get <kind> [-o wide\|yaml\|jsonpath=...]`     | Lists objects, or prints their actual state
+`kubectl describe <kind> <name>`                       | The object and its events
+`kubectl logs <pod>`, `exec <pod> -- <command>`        | The output of a container, a command in it
+`kubectl wait --for=condition=Ready <kind>/<n>`        | Returns when the condition is true
+`kubectl scale deployment <n> --replicas=<k>`          | Changes the number of Pods
 `kubectl rollout status\|history\|undo deployment/<n>` | Follows, lists and reverts a rollout
-`kubectl delete -f <file>`, `delete <kind> <n>`  | Removes objects
-`kubectl api-resources`                          | The kinds of objects the API knows
+`kubectl delete -f <file>`, `delete <kind> <n>`        | Removes objects
+`kubectl api-resources`                                | The kinds of objects the API knows
 
 ---
 

@@ -37,14 +37,14 @@ End-to-end tests that drive a real browser, the way a user does.
 
 ## In this lab
 
-Step          | What it covers
---------------|----------------------------------------------------------
-The app       | A small task list, served as static files
-First test    | `playwright.config.ts`, `page.goto`, `expect`
-Locators      | `getByRole`, `getByLabel`, `getByText`, `fill`, `click`, `check`
-Waiting       | Web-first assertions, and the one that does not wait
-Network       | `page.route` to replace the API response
-Page objects   | A class that holds the locators and actions of a page
-Report        | The HTML report and the trace viewer
+Step         | What it covers
+-------------|-----------------------------------------------------------------
+The app      | A small task list, served as static files
+First test   | `playwright.config.ts`, `page.goto`, `expect`
+Locators     | `getByRole`, `getByLabel`, `getByText`, `fill`, `click`, `check`
+Waiting      | Web-first assertions, and the one that does not wait
+Network      | `page.route` to replace the API response
+Page objects | A class that holds the locators and actions of a page
+Report       | The HTML report and the trace viewer
 
 > A test belongs to the test pyramid, at the top: few of them, on the paths that matter.

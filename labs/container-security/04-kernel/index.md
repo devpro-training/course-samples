@@ -3,13 +3,15 @@
 ## The risk
 
 A container shares the kernel, and a process reaches the kernel through system calls, over three hundred of them.
-Most applications use a few dozen, and a flaw in a rarely used call is a way out of the container, which the runtimes themselves have had: runc, the runtime under Docker and Kubernetes, fixed three escapes in November 2025 (CVE-2025-31133, CVE-2025-52565 and CVE-2025-52881, in runc 1.2.8, 1.3.3 and 1.4.0-rc.3).
+Most applications use a few dozen, and a flaw in a rarely used call is a way out of the container, which the runtimes themselves have had: runc, the runtime under Docker and Kubernetes, fixed three escapes in November 2025 (CVE-2025-31133,
+CVE-2025-52565 and CVE-2025-52881, in runc 1.2.8, 1.3.3 and 1.4.0-rc.3).
 
 ## The logic
 
 **seccomp** is a feature of the Linux kernel: a process gets a filter, and the kernel applies it to each call before running it.
 Docker applies a default profile to every container.
-It is an allow list, which refuses with an error everything it does not name, and it disables about 44 of the 300 calls and more, among them `mount`, `bpf`, `ptrace` and `reboot`, and the creation of a user namespace is refused to a container without `CAP_SYS_ADMIN`.
+It is an allow list, which refuses with an error everything it does not name, and it disables about 44 of the 300 calls and more, among them `mount`, `bpf`, `ptrace` and `reboot`,
+and the creation of a user namespace is refused to a container without `CAP_SYS_ADMIN`.
 
 ## The default profile
 
@@ -99,11 +101,11 @@ It is an allow list, which refuses with an error everything it does not name, an
 
 ## The limits
 
-Control                    | Where it comes from        | Limit
----------------------------|----------------------------|----------------------------------------------------
-seccomp                    | the Linux kernel, in Docker, Podman, containerd | a profile of the team is a file to maintain with the application
-AppArmor                   | Debian, Ubuntu and SUSE kernels | profiles are written in its own language, and do not exist on a Red Hat kernel
-SELinux                    | Red Hat, Fedora kernels    | labels and policies of its own, with a policy package per container engine
+Control                                        | Where it comes from                                           | Limit
+-----------------------------------------------|---------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+seccomp                                        | the Linux kernel, in Docker, Podman, containerd               | a profile of the team is a file to maintain with the application
+AppArmor                                       | Debian, Ubuntu and SUSE kernels                               | profiles are written in its own language, and do not exist on a Red Hat kernel
+SELinux                                        | Red Hat, Fedora kernels                                       | labels and policies of its own, with a policy package per container engine
 A sandboxed runtime, gVisor or Kata Containers | a second boundary between the application and the host kernel | gVisor implements part of the Linux interface, so some applications fail and calls cost more, Kata starts a virtual machine, which needs virtualization on the host
 
 - **Check what runs**: Docker enables AppArmor or SELinux when the kernel has it, and a lab or a workstation often runs without one, which `docker info` shows under `Security Options`.

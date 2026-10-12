@@ -79,7 +79,8 @@ Everything is a file, which can be kept in Git and applied to every node.
    ```
 
 2. An audit policy that records the metadata of every request, and the admission configuration of the guide.
-   The guide enforces the `restricted` Pod Security Standard, which refuses a Pod that runs as root with its default capabilities, as the images of this lab do, so this lab enforces `baseline` and keeps `restricted` for the warnings and the audit:
+   The guide enforces the `restricted` Pod Security Standard, which refuses a Pod that runs as root with its default capabilities, as the images of this lab do,
+   so this lab enforces `baseline` and keeps `restricted` for the warnings and the audit:
 
    ```bash exec target=kube
    mkdir -p -m 700 /var/lib/rancher/k3s/server/logs && \

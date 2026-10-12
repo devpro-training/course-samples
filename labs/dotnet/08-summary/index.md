@@ -4,20 +4,20 @@
 
 ## CLI cheat sheet
 
-Command                                | Does
----------------------------------------|----------------------------------------
-`dotnet --info`                        | SDK, runtimes and operating system
+Command                                 | Does
+----------------------------------------|-----------------------------------
+`dotnet --info`                         | SDK, runtimes and operating system
 `dotnet --list-sdks`, `--list-runtimes` | What is installed
-`dotnet new list`                      | The templates
-`dotnet new console -o <name>`         | A new console project
+`dotnet new list`                       | The templates
+`dotnet new console -o <name>`          | A new console project
 `dotnet new webapp`, `webapi`           | A website, a web API
-`dotnet new sln`, `dotnet sln add <p>` | A solution, and a project in it
-`dotnet add <p> package <id>`          | A NuGet package in a project
-`dotnet add <p> reference <q>`         | A reference to another project
-`dotnet restore`, `dotnet build`       | Download packages, compile
-`dotnet run --project <p>`             | Build and run
-`dotnet test`                          | Run the tests
-`dotnet publish -c Release`            | The files to deploy
+`dotnet new sln`, `dotnet sln add <p>`  | A solution, and a project in it
+`dotnet add <p> package <id>`           | A NuGet package in a project
+`dotnet add <p> reference <q>`          | A reference to another project
+`dotnet restore`, `dotnet build`        | Download packages, compile
+`dotnet run --project <p>`              | Build and run
+`dotnet test`                           | Run the tests
+`dotnet publish -c Release`             | The files to deploy
 
 ---
 

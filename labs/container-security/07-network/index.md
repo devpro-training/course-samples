@@ -81,6 +81,7 @@ A control group caps what a container uses, as the course Containers shows, and 
 
 - **The default network of Docker is flat**: the isolation is a choice of the person who writes the Compose file or the command, and nothing warns when it is not made.
 
-- **Between hosts**, the question is no longer Docker's: an orchestrator's policies, or a tool that learns the traffic of an application and then allows only that (the approach of NeuVector, the subject of a later course), do the same job at the scale of a cluster.
+- **Between hosts**, the question is no longer Docker's: an orchestrator's policies, or a tool that learns the traffic of an application and then allows only that (the approach of NeuVector, the subject of a later course),
+  do the same job at the scale of a cluster.
 
 - **Resource limits protect the host, not the data**: a neighbor that is compromised still reads what it can reach.

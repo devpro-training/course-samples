@@ -30,14 +30,14 @@ The first line of a Dockerfile, `FROM`, decides more than any other.
 
 ## The families
 
-Family                | Examples                                   | Idea
-----------------------|--------------------------------------------|--------------------------------------------
-Full distribution     | `ubuntu`, `debian`, `bci-base`, `ubi`      | a familiar system, with its package manager
-Slim                  | `debian:slim`, `ubi-minimal`, `bci-minimal`| the distribution without its extras
-Small distribution    | `alpine`, `busybox`                        | another libc (musl) and its own tools
-Micro                 | `bci-micro`, `ubi-micro`                   | files and libraries, with no package manager
-Distroless            | `distroless/static`, Chainguard `static`   | the files an application needs, no shell
-Empty                 | `scratch`                                  | nothing at all: a static binary only
+Family             | Examples                                    | Idea
+-------------------|---------------------------------------------|---------------------------------------------
+Full distribution  | `ubuntu`, `debian`, `bci-base`, `ubi`       | a familiar system, with its package manager
+Slim               | `debian:slim`, `ubi-minimal`, `bci-minimal` | the distribution without its extras
+Small distribution | `alpine`, `busybox`                         | another libc (musl) and its own tools
+Micro              | `bci-micro`, `ubi-micro`                    | files and libraries, with no package manager
+Distroless         | `distroless/static`, Chainguard `static`    | the files an application needs, no shell
+Empty              | `scratch`                                   | nothing at all: a static binary only
 
 ---
 
@@ -55,14 +55,14 @@ Empty                 | `scratch`                                  | nothing at 
 
 ## In this lab
 
-Step          | What it shows
---------------|-----------------------------------------------------------------------------------
-Setup         | Docker Engine in a virtual machine
-Compare       | size, files, shell, package manager and libc of nine base images
+Step                | What it shows
+--------------------|--------------------------------------------------------------------------------------------------
+Setup               | Docker Engine in a virtual machine
+Compare             | size, files, shell, package manager and libc of nine base images
 Free and enterprise | SUSE BCI, Red Hat UBI, distroless, Docker Hardened Images, Chainguard, WizOS, and what each costs
-Build         | one application on seven bases, with a multi-stage Dockerfile
-Best practices| layer cache, a user that is not root, a pinned digest
-Improve       | what a package manager adds, and how to hold it back
-Harden        | tools that remove what an application does not use
+Build               | one application on seven bases, with a multi-stage Dockerfile
+Best practices      | layer cache, a user that is not root, a pinned digest
+Improve             | what a package manager adds, and how to hold it back
+Harden              | tools that remove what an application does not use
 
 > A virtual machine of its own, and no account: every image of the lab is pulled anonymously.

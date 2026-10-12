@@ -4,19 +4,19 @@
 
 ## Cheat sheet
 
-Command / idea                                    | Means
---------------------------------------------------|------------------------------------------------------------
-`az login`, `az account show`                     | sign in, then the current subscription and tenant
-`az account set --subscription <id or name>`      | the subscription that commands act on
-`az <group> <command> --help`                     | the arguments of any command
-`--query "<JMESPath>" -o table`                   | filter and format the JSON output
-`az rest --url <ARM URL>`                         | a raw call to Resource Manager, with the token
-`--debug`                                         | the HTTP requests behind a command
-`az group create`, `az group delete`              | a resource group, and everything in it
-`bicep build <file>.bicep`                        | compile to the ARM template, which checks the file
-`az deployment group create` and `sub create`     | deploy a template to a resource group or a subscription
-`az deployment sub what-if`                       | the changes a template would make
-`terraform init`, `validate`, `plan`, `apply`     | the same cycle, with the `azurerm` provider
+Command / idea                                          | Means
+--------------------------------------------------------|--------------------------------------------------------
+`az login`, `az account show`                           | sign in, then the current subscription and tenant
+`az account set --subscription <id or name>`            | the subscription that commands act on
+`az <group> <command> --help`                           | the arguments of any command
+`--query "<JMESPath>" -o table`                         | filter and format the JSON output
+`az rest --url <ARM URL>`                               | a raw call to Resource Manager, with the token
+`--debug`                                               | the HTTP requests behind a command
+`az group create`, `az group delete`                    | a resource group, and everything in it
+`bicep build <file>.bicep`                              | compile to the ARM template, which checks the file
+`az deployment group create` and `sub create`           | deploy a template to a resource group or a subscription
+`az deployment sub what-if`                             | the changes a template would make
+`terraform init`, `validate`, `plan`, `apply`           | the same cycle, with the `azurerm` provider
 `ARM_SUBSCRIPTION_ID`, `ARM_CLIENT_ID`, `ARM_TENANT_ID` | the identity of a pipeline for Terraform
 
 ---

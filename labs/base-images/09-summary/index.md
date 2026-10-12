@@ -4,13 +4,13 @@
 
 ## Choosing
 
-Need                                  | Base
---------------------------------------|----------------------------------------------------------
-A static binary (Go, Rust)            | `scratch`, or `distroless/static`
-A glibc application, no shell         | `distroless/base`, `bci-micro`, `ubi-micro`
-An application that needs packages    | `bci-base`, `ubi-minimal`, `debian:slim`
+Need                                           | Base
+-----------------------------------------------|------------------------------------------------------------
+A static binary (Go, Rust)                     | `scratch`, or `distroless/static`
+A glibc application, no shell                  | `distroless/base`, `bci-micro`, `ubi-micro`
+An application that needs packages             | `bci-base`, `ubi-minimal`, `debian:slim`
 A support contract, same system as the servers | SUSE BCI with a SUSE subscription, UBI on Red Hat platforms
-Small and simple, and musl is fine    | `alpine`
+Small and simple, and musl is fine             | `alpine`
 
 ---
 
@@ -38,7 +38,9 @@ Small and simple, and musl is fine    | `alpine`
 
 - Read the offers with a scanner and a licence, and not with a brochure.
 
-- Further reading: [The siren's call of secure images](https://devpro.fr/the-sirens-call-of-secure-images-community-linux-versus-vendor-specific-distributions/), [SUSE Linux BCI](https://opensource.suse.com/bci-docs/), [Red Hat UBI](https://catalog.redhat.com/en/software/base-images), [distroless](https://github.com/GoogleContainerTools/distroless), [Docker build best practices](https://docs.docker.com/build/building/best-practices/).
+- Further reading:
+  [The siren's call of secure images](https://devpro.fr/the-sirens-call-of-secure-images-community-linux-versus-vendor-specific-distributions/), [SUSE Linux BCI](https://opensource.suse.com/bci-docs/),
+  [Red Hat UBI](https://catalog.redhat.com/en/software/base-images), [distroless](https://github.com/GoogleContainerTools/distroless), [Docker build best practices](https://docs.docker.com/build/building/best-practices/).
 
 ---
 

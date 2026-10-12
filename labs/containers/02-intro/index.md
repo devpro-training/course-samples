@@ -19,7 +19,7 @@ A process that runs isolated from the others, on the kernel of the machine.
 ## Where it comes from
 
 Date | Step
------|-----------------------------------------------------------------------------------
+-----|---------------------------------------------------------------------------
 1979 | `chroot` in Version 7 Unix: a process sees a directory as its root
 2000 | FreeBSD jails: processes, users and network are isolated too
 2004 | Solaris Zones
@@ -75,13 +75,13 @@ Date | Step
 - **A name** is `registry/repository:tag`, and `@sha256:...` pins an exact content.
   When the registry is omitted, the tool uses its default, which is Docker Hub for Docker.
 
-Registry                   | Host                   | Holds
----------------------------|------------------------|---------------------------------------------
-Docker Hub                 | `docker.io`            | the Docker Official Images and the images of the community
-GitHub Container Registry  | `ghcr.io`              | the images of a GitHub account or organization, next to its code
-Quay                       | `quay.io`              | the images of Red Hat projects and of the community
-Microsoft Artifact Registry | `mcr.microsoft.com`   | the images of .NET, SQL Server, Windows
-Vendors, clouds            | `registry.suse.com`, `registry.access.redhat.com`, Azure, AWS, Google | their base images, and private images
+Registry                    | Host                                                                  | Holds
+----------------------------|-----------------------------------------------------------------------|-----------------------------------------------------------------
+Docker Hub                  | `docker.io`                                                           | the Docker Official Images and the images of the community
+GitHub Container Registry   | `ghcr.io`                                                             | the images of a GitHub account or organization, next to its code
+Quay                        | `quay.io`                                                             | the images of Red Hat projects and of the community
+Microsoft Artifact Registry | `mcr.microsoft.com`                                                   | the images of .NET, SQL Server, Windows
+Vendors, clouds             | `registry.suse.com`, `registry.access.redhat.com`, Azure, AWS, Google | their base images, and private images
 
 ---
 
@@ -115,20 +115,20 @@ Vendors, clouds            | `registry.suse.com`, `registry.access.redhat.com`, 
 
 - **A Dockerfile** is the recipe most tools read. The generic name is **Containerfile**, and Podman and Buildah read both.
 
-Tool                | Role
---------------------|-------------------------------------------------------------------
-Docker Engine       | daemon, build and command line, in one product
-Podman and Buildah  | no daemon, rootless by default, the same commands as Docker
-containerd, CRI-O   | the runtimes of Kubernetes, which removed `dockershim` in version 1.24
-runc, crun          | low level runtimes that apply the namespaces and the cgroups
-BuildKit            | the builder behind `docker build`
+Tool               | Role
+-------------------|-----------------------------------------------------------------------
+Docker Engine      | daemon, build and command line, in one product
+Podman and Buildah | no daemon, rootless by default, the same commands as Docker
+containerd, CRI-O  | the runtimes of Kubernetes, which removed `dockershim` in version 1.24
+runc, crun         | low level runtimes that apply the namespaces and the cgroups
+BuildKit           | the builder behind `docker build`
 
 ---
 
 ## In this lab
 
 Step    | What it shows
---------|----------------------------------------------------------------------
+--------|------------------------------------------------------------------------------
 Setup   | a virtual machine with root, busybox and Podman
 Isolate | `chroot`, then `unshare`: a root filesystem, a hostname, processes, a network
 Limit   | a control group that caps the memory and the processes

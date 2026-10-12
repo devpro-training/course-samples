@@ -4,11 +4,11 @@
 
 ## Three ways to reduce an image
 
-Way                    | Idea                                                  | Example
------------------------|-------------------------------------------------------|------------------------------------------
-Choose a smaller base  | start from fewer files                                | `distroless`, `ubi-micro`, `bci-micro`
-Build in stages        | the compiler and the sources never reach the image    | multi-stage Dockerfile
-Remove what is unused  | run the application, record the files it opens, drop the others | SlimToolkit, RapidFort
+Way                   | Idea                                                            | Example
+----------------------|-----------------------------------------------------------------|---------------------------------------
+Choose a smaller base | start from fewer files                                          | `distroless`, `ubi-micro`, `bci-micro`
+Build in stages       | the compiler and the sources never reach the image              | multi-stage Dockerfile
+Remove what is unused | run the application, record the files it opens, drop the others | SlimToolkit, RapidFort
 
 ---
 

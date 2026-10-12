@@ -4,28 +4,28 @@ Short IT courses, each a [sidelab](https://www.npmjs.com/package/sidelab-cli) la
 
 ## Courses
 
-Course                                | Topic
---------------------------------------|---------------------------------------------------------
-[Git](labs/git) | Install, configure, commit, clone, branch, push, pull, stash
-[VS Code](labs/vscode) | Workspace Trust, commands, settings, extensions, source control, debugging
-[.NET](labs/dotnet) | SDK and runtime, LTS and STS, console app, NuGet, xUnit tests, web app, web API
+Course                                                   | Topic
+---------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+[Git](labs/git)                                          | Install, configure, commit, clone, branch, push, pull, stash
+[VS Code](labs/vscode)                                   | Workspace Trust, commands, settings, extensions, source control, debugging
+[.NET](labs/dotnet)                                      | SDK and runtime, LTS and STS, console app, NuGet, xUnit tests, web app, web API
 [Automated testing, the test pyramid](labs/test-pyramid) | Unit, integration and end-to-end tests of a .NET web API, and the layer that catches each bug
-[GitHub](labs/github) | Repository page, REST API and its rate limit, pull requests as Git references, Actions workflows
-[CI/CD](labs/cicd) | A pipeline script, a Git hook as CI server, red and green runs, an artifact deployed and rolled back, the same pipeline as a workflow
-[Playwright](labs/playwright) | Install, locators, auto-waiting assertions, a mocked API, the HTML report and the trace viewer
-[Docker](labs/docker) | Docker Engine in a virtual machine, run, images and layers, Dockerfile and cache, volumes, networks, Compose
-[Linux](labs/linux) | The kernel and the distributions, Red Hat and SUSE included, files, text and pipes, users, groups and permissions, why sudo, apt and dpkg, processes, systemd units
-[Containers](labs/containers) | What a container is: `chroot`, namespaces and cgroups by hand, the OCI standards, Podman, images and registries
-[Container base images](labs/base-images) | Size, files, shell and libc of base images, SUSE BCI, Red Hat UBI, distroless, free and enterprise offers, multi-stage builds, non-root user, pinned digests
-[Application catalog](labs/app-catalog) | Supply chain and compliance of the images and charts a team deploys: Artifact Hub, Docker Official Images, MinIO, Bitnami, SUSE Application Collection, Chainguard, signatures, SBOM, provenance, mirroring
-[Container security](labs/container-security) | The risks of root, capabilities, the Docker socket, bind mounts, secrets in layers and an open network, and the options that deny them by default: user, `--cap-drop`, seccomp, `no-new-privileges`, read-only, user namespace
-[Trivy](labs/trivy) | Scan an image, a project, its configuration and an SBOM from a verified release binary, a gate in a pipeline script and a workflow, accepted risks with an expiry, a comparison with Grype and OSV-Scanner
-[Infrastructure as Code](labs/iac) | Imperative and declarative, idempotence, a desired state with plan and apply, state and drift on a local environment, the same code in Terraform and Ansible, a scan of Terraform with Trivy before anything is created
-[Terraform](labs/terraform) | HCL, init, plan and apply, variables and outputs, state and drift, modules with `for_each`, providers and the lock file, a local and an HTTP backend (MongoDB), OpenTofu as the compatible alternative, a gate script
-[Ansible](labs/ansible) | Agentless push over SSH, a static inventory and one read from a CMDB (script, NetBox and ServiceNow plugins), modules against commands, idempotence, check mode and diff, `group_vars` per environment, a loop, a template, handlers, a role, Vault, `serial`, `ansible-lint`
-[Azure](labs/azure) | Microsoft's cloud with no account: tenant, subscription and resource group, Microsoft Entra and Azure Resource Manager (ARM), the portal, the CLI, Bicep and Terraform as clients of one API, regions and public prices, a storage emulator (Azurite)
-[Kubernetes](labs/kubernetes) | History (Borg, Go, the CNCF), why orchestrate, cloud native patterns, what a cluster and a distribution are, managed or not, then a k3s cluster: nodes, Pods, Deployments, Services, ConfigMaps and Secrets, and the SQLite datastore
-[k3s](labs/k3s) | k3s itself: history and governance (Rancher, SUSE, CNCF), SQLite behind Kine, the install script and the binary, bundled components and how to disable them, the CIS hardening guide measured with kube-bench, an upgrade, a second node, a clean removal
+[GitHub](labs/github)                                    | Repository page, REST API and its rate limit, pull requests as Git references, Actions workflows
+[CI/CD](labs/cicd)                                       | A pipeline script, a Git hook as CI server, red and green runs, an artifact deployed and rolled back, the same pipeline as a workflow
+[Playwright](labs/playwright)                            | Install, locators, auto-waiting assertions, a mocked API, the HTML report and the trace viewer
+[Docker](labs/docker)                                    | Docker Engine in a virtual machine, run, images and layers, Dockerfile and cache, volumes, networks, Compose
+[Linux](labs/linux)                                      | The kernel and the distributions, Red Hat and SUSE included, files, text and pipes, users, groups and permissions, why sudo, apt and dpkg, processes, systemd units
+[Containers](labs/containers)                            | What a container is: `chroot`, namespaces and cgroups by hand, the OCI standards, Podman, images and registries
+[Container base images](labs/base-images)                | Size, files, shell and libc of base images, SUSE BCI, Red Hat UBI, distroless, free and enterprise offers, multi-stage builds, non-root user, pinned digests
+[Application catalog](labs/app-catalog)                  | Supply chain and compliance of the images and charts a team deploys: Artifact Hub, Docker Official Images, MinIO, Bitnami, SUSE Application Collection, Chainguard, signatures, SBOM, provenance, mirroring
+[Container security](labs/container-security)            | The risks of root, capabilities, the Docker socket, bind mounts, secrets in layers and an open network, and the options that deny them by default: user, `--cap-drop`, seccomp, `no-new-privileges`, read-only, user namespace
+[Trivy](labs/trivy)                                      | Scan an image, a project, its configuration and an SBOM from a verified release binary, a gate in a pipeline script and a workflow, accepted risks with an expiry, a comparison with Grype and OSV-Scanner
+[Infrastructure as Code](labs/iac)                       | Imperative and declarative, idempotence, a desired state with plan and apply, state and drift on a local environment, the same code in Terraform and Ansible, a scan of Terraform with Trivy before anything is created
+[Terraform](labs/terraform)                              | HCL, init, plan and apply, variables and outputs, state and drift, modules with `for_each`, providers and the lock file, a local and an HTTP backend (MongoDB), OpenTofu as the compatible alternative, a gate script
+[Ansible](labs/ansible)                                  | Agentless push over SSH, a static inventory and one read from a CMDB (script, NetBox and ServiceNow plugins), modules against commands, idempotence, check mode and diff, `group_vars` per environment, a loop, a template, handlers, a role, Vault, `serial`, `ansible-lint`
+[Azure](labs/azure)                                      | Microsoft's cloud with no account: tenant, subscription and resource group, Microsoft Entra and Azure Resource Manager (ARM), the portal, the CLI, Bicep and Terraform as clients of one API, regions and public prices, a storage emulator (Azurite)
+[Kubernetes](labs/kubernetes)                            | History (Borg, Go, the CNCF), why orchestrate, cloud native patterns, what a cluster and a distribution are, managed or not, then a k3s cluster: nodes, Pods, Deployments, Services, ConfigMaps and Secrets, and the SQLite datastore
+[k3s](labs/k3s)                                          | k3s itself: history and governance (Rancher, SUSE, CNCF), SQLite behind Kine, the install script and the binary, bundled components and how to disable them, the CIS hardening guide measured with kube-bench, an upgrade, a second node, a clean removal
 
 ## Contributing
 

@@ -37,11 +37,11 @@ It is what a CI service does when it receives a webhook, without the web interfa
 
    [Open post-receive](:open:server/hello.git/hooks/post-receive).
 
-   Step                         | Why
-   -----------------------------|----------------------------------------------------------------
-   `git archive` into a new folder | The pipeline sees the pushed commit and nothing else: no file left over from a developer's machine
-   `tee` into `runs/`           | The output is kept, and also sent back to the person who pushed
-   `cp` into `artifacts/`       | Only a green run publishes an artifact
+Step                            | Why
+--------------------------------|---------------------------------------------------------------------------------------------------
+`git archive` into a new folder | The pipeline sees the pushed commit and nothing else: no file left over from a developer's machine
+`tee` into `runs/`              | The output is kept, and also sent back to the person who pushed
+`cp` into `artifacts/`          | Only a green run publishes an artifact
 
 ## Green
 

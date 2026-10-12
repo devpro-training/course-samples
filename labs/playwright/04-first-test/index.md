@@ -68,6 +68,8 @@ A test is a function that receives a `page`, a tab of a new browser, and says wh
    > npm 12 prints them whenever it runs a command with the terminal attached: the project and the event, here `npx`, then the command.
    > `npm run` prints the same two lines for a script of `package.json`, and a project usually keeps its test command there, as `"test": "playwright test"`, which CI then calls with `npm test`.
 
+   <!-- two notes, not one -->
+
    > [!NOTE]
    > The browser ran headless, with no window, and exited.
    > `--headed` shows it, which needs a screen.

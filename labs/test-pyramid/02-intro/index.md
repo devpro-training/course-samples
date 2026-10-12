@@ -25,11 +25,11 @@ Write the three kinds of tests of a web API, and see what each one catches.
 
 ## Three layers
 
-Layer      | Exercises                                             | Speed       | A failure points to
------------|-------------------------------------------------------|-------------|--------------------
-Unit       | One class or method, with its dependencies replaced   | Milliseconds | The line of code
-Integration | Several components together, with real ones          | Under a second | A wrong wiring or a wrong contract
-End-to-end | The whole application, through its user interface     | Seconds     | Something, somewhere
+Layer       | Exercises                                           | Speed          | A failure points to
+------------|-----------------------------------------------------|----------------|-----------------------------------
+Unit        | One class or method, with its dependencies replaced | Milliseconds   | The line of code
+Integration | Several components together, with real ones         | Under a second | A wrong wiring or a wrong contract
+End-to-end  | The whole application, through its user interface   | Seconds        | Something, somewhere
 
 - The idea is from Mike Cohn, in *Succeeding with Agile*: unit, service and UI tests.
 
@@ -66,7 +66,7 @@ Source: [Testing in .NET](https://learn.microsoft.com/dotnet/core/testing/) and 
 ## In this lab
 
 Step             | What
------------------|-----------------------------------------------------------
+-----------------|-------------------------------------------------------------
 The application  | A quote API that applies a discount, with a Friday sale
 Unit test        | xUnit, and a fake for the sale
 Integration test | `WebApplicationFactory`: the API in memory, called over HTTP

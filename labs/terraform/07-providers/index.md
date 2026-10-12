@@ -97,7 +97,8 @@ It is downloaded by `init` from a registry, and pinned by a constraint and by th
 
 ## The providers to know
 
-The registry lists them in tiers: **Official** (owned by HashiCorp), **Partner Premier** and **Partner** (written and maintained by the vendor, which joined the partner program), **Community** (a person or a group) and **Archived** (no longer maintained).
+The registry lists them in tiers:
+**Official** (owned by HashiCorp), **Partner Premier** and **Partner** (written and maintained by the vendor, which joined the partner program), **Community** (a person or a group) and **Archived** (no longer maintained).
 The Terraform [documentation](https://developer.hashicorp.com/terraform/registry/providers) describes them.
 
 Provider                      | Tier      | What it manages

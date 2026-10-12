@@ -65,34 +65,34 @@ A practical guide: what can go wrong with a container, why, and what to switch o
 
 The OWASP Docker Security Cheat Sheet is the checklist the lab follows, rule by rule.
 
-Rule | Title                                    | Step
------|------------------------------------------|----------------
-#0   | Keep the host and Docker up to date      | summary
-#1   | Do not expose the Docker daemon socket   | Host
-#2   | Set a user                               | User
-#3   | Limit capabilities                       | User
-#4   | Prevent in-container privilege escalation | User
-#5   | Be mindful of inter-container connectivity | Network
-#6   | Use a Linux Security Module (seccomp, AppArmor, SELinux) | Kernel
-#7   | Limit resources                          | Network
-#8   | Set filesystem and volumes to read-only  | User, Host
-#9   | Integrate container scanning tools in CI/CD | summary, Trivy
-#11  | Run Docker in rootless mode              | Deny by default
-#12  | Use secrets for sensitive data           | Secrets
-#13  | Enhance supply chain security            | summary, Application catalog
+| Rule | Title                                                    | Step                         |
+| ---- | -------------------------------------------------------- | ---------------------------- |
+| #0   | Keep the host and Docker up to date                      | summary                      |
+| #1   | Do not expose the Docker daemon socket                   | Host                         |
+| #2   | Set a user                                               | User                         |
+| #3   | Limit capabilities                                       | User                         |
+| #4   | Prevent in-container privilege escalation                | User                         |
+| #5   | Be mindful of inter-container connectivity               | Network                      |
+| #6   | Use a Linux Security Module (seccomp, AppArmor, SELinux) | Kernel                       |
+| #7   | Limit resources                                          | Network                      |
+| #8   | Set filesystem and volumes to read-only                  | User, Host                   |
+| #9   | Integrate container scanning tools in CI/CD              | summary, Trivy               |
+| #11  | Run Docker in rootless mode                              | Deny by default              |
+| #12  | Use secrets for sensitive data                           | Secrets                      |
+| #13  | Enhance supply chain security                            | summary, Application catalog |
 
 ---
 
 ## In this lab
 
-Step            | Risk                                  | Control
-----------------|---------------------------------------|--------------------------------------------
-User            | root and fourteen capabilities        | `--user`, `--cap-drop ALL`, `--read-only`, `no-new-privileges`
-Kernel          | a flaw reached through a system call  | seccomp, and what `--privileged` removes
-Host            | the socket and the bind mounts        | no socket, `:ro`
-Secrets         | a token in a layer or in the inspect  | `--mount=type=secret`, a file
-Network         | open network and no limit             | internal network, `127.0.0.1`, `--pids-limit`
-Deny by default | all of them at once                   | one `docker run`, then a user namespace
+| Step            | Risk                                 | Control                                                        |
+| --------------- | ------------------------------------ | -------------------------------------------------------------- |
+| User            | root and fourteen capabilities       | `--user`, `--cap-drop ALL`, `--read-only`, `no-new-privileges` |
+| Kernel          | a flaw reached through a system call | seccomp, and what `--privileged` removes                       |
+| Host            | the socket and the bind mounts       | no socket, `:ro`                                               |
+| Secrets         | a token in a layer or in the inspect | `--mount=type=secret`, a file                                  |
+| Network         | open network and no limit            | internal network, `127.0.0.1`, `--pids-limit`                  |
+| Deny by default | all of them at once                  | one `docker run`, then a user namespace                        |
 
 > Every command of this lab is run as root in a disposable virtual machine.
 > On a real host, `docker` is reserved to administrators, since the step Host shows why.

@@ -4,25 +4,25 @@
 
 ## Cheat sheet
 
-Command                                          | Does
--------------------------------------------------|----------------------------------------------
-`dotnet new xunit -o <name>`                     | A test project
-`dotnet add <tests> reference <app>`             | Makes the application visible to the tests
-`dotnet test`                                    | Runs every test project of the solution
-`dotnet test <project>`                          | Runs one project
+Command                                           | Does
+--------------------------------------------------|--------------------------------------------------------
+`dotnet new xunit -o <name>`                      | A test project
+`dotnet add <tests> reference <app>`              | Makes the application visible to the tests
+`dotnet test`                                     | Runs every test project of the solution
+`dotnet test <project>`                           | Runs one project
 `dotnet test --filter "FullyQualifiedName~Quote"` | Runs the tests whose name contains `Quote`
-`dotnet test --collect:"XPlat Code Coverage"`    | Also writes a coverage report, `coverage.cobertura.xml`
-`google-chrome --headless=new --dump-dom <url>`  | The page, after its JavaScript has run
+`dotnet test --collect:"XPlat Code Coverage"`     | Also writes a coverage report, `coverage.cobertura.xml`
+`google-chrome --headless=new --dump-dom <url>`   | The page, after its JavaScript has run
 
 ---
 
 ## Choosing the layer
 
-Question                                   | Layer
--------------------------------------------|------------------
-Is this rule, this calculation, right?     | Unit
+Question                                       | Layer
+-----------------------------------------------|------------
+Is this rule, this calculation, right?         | Unit
 Are the routes, the binding, the wiring right? | Integration
-Does the user journey work in a browser?   | End-to-end
+Does the user journey work in a browser?       | End-to-end
 
 - Cover each rule at the **lowest** layer that can see it.
 

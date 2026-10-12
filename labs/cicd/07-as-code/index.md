@@ -98,16 +98,16 @@ The file only describes **when** to run, **where**, and **which commands**: the 
 Each CI service has its own keys for the same ideas.
 The commands do not change, which is why they live in a script.
 
-Idea             | GitHub Actions              | GitLab CI                          | Azure Pipelines
------------------|-----------------------------|------------------------------------|----------------------------
-File             | `.github/workflows/*.yml`   | `.gitlab-ci.yml`                   | a YAML file of the repository
-Start            | `on`                        | `rules`                            | `trigger`, `pr`
-Machine          | `runs-on`                   | `image`, or the runner             | `pool`
-Group of steps   | `jobs.<id>`                 | a job, with its `stage`            | `stages`, `jobs`
-Command          | `run`                       | `script`                           | `script`
-Order            | `needs`                     | `stages`, `needs`                  | `dependsOn`
-Condition        | `if`                        | `rules`                            | `condition`
-Artifact         | `upload-artifact`, `download-artifact` | `artifacts:paths`       | `publish`, `download`
-Commit           | `github.sha`                | `CI_COMMIT_SHA`                    | `Build.SourceVersion`
+Idea           | GitHub Actions                         | GitLab CI               | Azure Pipelines
+---------------|----------------------------------------|-------------------------|------------------------------
+File           | `.github/workflows/*.yml`              | `.gitlab-ci.yml`        | a YAML file of the repository
+Start          | `on`                                   | `rules`                 | `trigger`, `pr`
+Machine        | `runs-on`                              | `image`, or the runner  | `pool`
+Group of steps | `jobs.<id>`                            | a job, with its `stage` | `stages`, `jobs`
+Command        | `run`                                  | `script`                | `script`
+Order          | `needs`                                | `stages`, `needs`       | `dependsOn`
+Condition      | `if`                                   | `rules`                 | `condition`
+Artifact       | `upload-artifact`, `download-artifact` | `artifacts:paths`       | `publish`, `download`
+Commit         | `github.sha`                           | `CI_COMMIT_SHA`         | `Build.SourceVersion`
 
 The GitLab and Azure files are not written here: each service validates its own file, which needs an account.

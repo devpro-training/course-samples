@@ -77,11 +77,11 @@ Chainguard signs with Sigstore's keyless signing: the certificate names the work
 
 ## The free offer and what follows
 
-Plan                | What it gives                                                     | Conditions
---------------------|-------------------------------------------------------------------|-----------------------------------------
-Free images         | a set of images, `latest` only, anonymous                         | no SLA, no version to hold
-Catalog Starter     | five non-FIPS images of the catalog, the same as paying customers get; "any Helm charts that depend on those images are included and count toward the five-image limit" | a corporate email, a pull token that expires (30 days by default, one year at most), no CVE SLA, no support tickets
-Catalog or per image | the catalog or a set of images, FIPS images, end-of-life versions, a contractual CVE remediation SLA | a paid subscription, which replaces Catalog Starter
+Plan                 | What it gives                                                                                                                                                           | Conditions
+---------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------
+Free images          | a set of images, `latest` only, anonymous                                                                                                                               | no SLA, no version to hold
+Catalog Starter      | five non-FIPS images of the catalog, the same as paying customers get; "any Helm charts that depend on those images are included and count toward the five-image limit" | a corporate email, a pull token that expires (30 days by default, one year at most), no CVE SLA, no support tickets
+Catalog or per image | the catalog or a set of images, FIPS images, end-of-life versions, a contractual CVE remediation SLA                                                                    | a paid subscription, which replaces Catalog Starter
 
 The figures are from [Catalog Starter](https://edu.chainguard.dev/chainguard/containers/reference/catalog-starter/), in beta, and checked on the day this course was written.
 A team on a paid plan pulls from `cgr.dev/<organization>/`, a path of its own: every chart, Dockerfile and pipeline names Chainguard's registry, and Chainguard's Linux.
