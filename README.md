@@ -19,6 +19,7 @@ Course                                | Topic
 [Container base images](labs/base-images) | Size, files, shell and libc of base images, SUSE BCI, Red Hat UBI, distroless, free and enterprise offers, multi-stage builds, non-root user, pinned digests
 [Application catalog](labs/app-catalog) | Supply chain and compliance of the images and charts a team deploys: Artifact Hub, Docker Official Images, MinIO, Bitnami, SUSE Application Collection, Chainguard, signatures, SBOM, provenance, mirroring
 [Container security](labs/container-security) | The risks of root, capabilities, the Docker socket, bind mounts, secrets in layers and an open network, and the options that deny them by default: user, `--cap-drop`, seccomp, `no-new-privileges`, read-only, user namespace
+[Trivy](labs/trivy) | Scan an image, a project, its configuration and an SBOM from a verified release binary, a gate in a pipeline script and a workflow, accepted risks with an expiry, a comparison with Grype and OSV-Scanner
 
 ## Contributing
 

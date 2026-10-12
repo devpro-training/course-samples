@@ -1,0 +1,4 @@
+title: Config
+layout:
+  - type: terminal
+  - type: editor

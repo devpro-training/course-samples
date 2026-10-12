@@ -1,0 +1,4 @@
+title: SBOM
+layout:
+  - type: terminal
+  - type: editor

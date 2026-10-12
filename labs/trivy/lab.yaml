@@ -1,0 +1,34 @@
+title: "Trivy"
+description: "Scan an image, a project, its configuration and an SBOM with Trivy, gate a pipeline on the result, and compare it with other scanners."
+duration: 30
+tags:
+  - security
+  - containers
+  - supply-chain
+sidebarWidth: 620
+backend: container
+workdir: ~/lab
+# Every version, URL and image of the course, so a step refers to one by name.
+env:
+  # https://github.com/jqlang/jq/releases
+  JQ_VERSION: 1.8.2
+  # https://github.com/sigstore/cosign/releases
+  COSIGN_VERSION: 3.1.3
+  # https://github.com/aquasecurity/trivy/releases
+  TRIVY_VERSION: 0.75.0
+  # https://trivy.dev/docs/latest/getting-started/signature-verification/ (the workflow that signs the release, then @refs/tags/v<version>)
+  TRIVY_SIGNER: https://github.com/aquasecurity/trivy/.github/workflows/reusable-release.yaml
+  # The SHA-256 of trivy_<version>_Linux-64bit.tar.gz, from trivy_<version>_checksums.txt of the release, which the repository pins for its pipeline.
+  TRIVY_SHA256: c6e65abddb348e25f10549df887045629cf28cc72453cd1c63acb717316b3f3f
+  GITHUB_OIDC_ISSUER: https://token.actions.githubusercontent.com
+  # https://github.com/actions/checkout/tags (the commit of v6.0.3, which `git ls-remote <repository> 'refs/tags/v6.0.3^{}'` prints)
+  CHECKOUT_SHA: df4cb1c069e1874edd31b4311f1884172cec0e10
+  # https://github.com/anchore/grype/releases
+  GRYPE_VERSION: 0.120.1
+  # https://github.com/google/osv-scanner/releases
+  OSV_SCANNER_VERSION: 2.7.0
+  # https://hub.docker.com/_/alpine (3.19 reached its end of life, 3.22 is supported)
+  ALPINE_OLD_IMAGE: docker.io/library/alpine:3.19
+  ALPINE_IMAGE: docker.io/library/alpine:3.22
+  # https://hub.docker.com/_/debian
+  DEBIAN_IMAGE: docker.io/library/debian:12-slim
