@@ -25,6 +25,7 @@ Course                                | Topic
 [Ansible](labs/ansible) | Agentless push over SSH, a static inventory and one read from a CMDB (script, NetBox and ServiceNow plugins), modules against commands, idempotence, check mode and diff, `group_vars` per environment, a loop, a template, handlers, a role, Vault, `serial`, `ansible-lint`
 [Azure](labs/azure) | Microsoft's cloud with no account: tenant, subscription and resource group, Microsoft Entra and Azure Resource Manager (ARM), the portal, the CLI, Bicep and Terraform as clients of one API, regions and public prices, a storage emulator (Azurite)
 [Kubernetes](labs/kubernetes) | History (Borg, Go, the CNCF), why orchestrate, cloud native patterns, what a cluster and a distribution are, managed or not, then a k3s cluster: nodes, Pods, Deployments, Services, ConfigMaps and Secrets, and the SQLite datastore
+[k3s](labs/k3s) | k3s itself: history and governance (Rancher, SUSE, CNCF), SQLite behind Kine, the install script and the binary, bundled components and how to disable them, the CIS hardening guide measured with kube-bench, an upgrade, a second node, a clean removal
 
 ## Contributing
 

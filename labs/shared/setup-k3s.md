@@ -19,10 +19,10 @@ They are the ones to change to follow a newer release.
 
 1. Check that they arrived:
 
-   <!-- verify: expect="k3s v1.36" -->
+   <!-- verify: expect="k3s v1." -->
 
    ```bash exec target=kube
-   echo "k3s ${K3S_VERSION}, images ${NGINX_IMAGE} ${NGINX_NEXT_IMAGE} ${BUSYBOX_IMAGE}"
+   echo "k3s ${K3S_VERSION}"
    ```
 
 ## The k3s binary
@@ -37,7 +37,7 @@ Each release publishes the checksum of its binaries, so the download is compared
 
    ```bash exec target=kube
    mkdir -p ~/lab && cd ~/lab && \
-   wget -q "${K3S_URL}/${K3S_VERSION/+/%2B}/k3s" "${K3S_URL}/${K3S_VERSION/+/%2B}/sha256sum-amd64.txt" && \
+   wget -q "${K3S_RELEASE_URL}/${K3S_VERSION/+/%2B}/k3s" "${K3S_RELEASE_URL}/${K3S_VERSION/+/%2B}/sha256sum-amd64.txt" && \
    grep -E " k3s$" sha256sum-amd64.txt | sha256sum --check && \
    install -m 0755 k3s /usr/local/bin/k3s
    ```
@@ -45,7 +45,7 @@ Each release publishes the checksum of its binaries, so the download is compared
 2. Check the version, and the size of the file.
    The binary holds the Kubernetes components, the container runtime and the tools around them:
 
-   <!-- verify: expect="k3s version v1.36" -->
+   <!-- verify: expect="k3s version v1." -->
 
    ```bash exec target=kube
    k3s --version && ls -lh /usr/local/bin/k3s
@@ -53,7 +53,7 @@ Each release publishes the checksum of its binaries, so the download is compared
 
 3. `kubectl` is the command line of Kubernetes, and `k3s` carries it: a link with the name of the program runs it.
 
-   <!-- verify: expect="Client Version: v1.36" -->
+   <!-- verify: expect="Client Version: v1." -->
 
    ```bash exec target=kube
    ln -s k3s /usr/local/bin/kubectl && kubectl version --client

@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 470" width="1040" height="470">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#475569"/>
+    </marker>
+  </defs>
+  <rect x="0" y="0" width="1040" height="470" fill="#ffffff"/>
+  <text x="520" y="38" fill="#0f172a" font-family="sans-serif" font-size="22" font-weight="bold" text-anchor="middle">k3s: one binary, started as a server or as an agent</text>
+
+  <rect x="30" y="64" width="620" height="340" rx="10" fill="#f1f5f9" stroke="#0284c7" stroke-width="2"/>
+  <text x="340" y="92" fill="#0284c7" font-family="monospace" font-size="16" font-weight="bold" text-anchor="middle">k3s server</text>
+
+  <rect x="50" y="108" width="280" height="130" rx="8" fill="#ffffff" stroke="#16a34a" stroke-width="2"/>
+  <text x="190" y="132" fill="#16a34a" font-family="sans-serif" font-size="14" font-weight="bold" text-anchor="middle">Control plane, in the same process</text>
+  <text x="190" y="158" fill="#0f172a" font-family="monospace" font-size="13" text-anchor="middle">API server, scheduler</text>
+  <text x="190" y="178" fill="#0f172a" font-family="monospace" font-size="13" text-anchor="middle">controller manager</text>
+  <text x="190" y="206" fill="#475569" font-family="sans-serif" font-size="12" text-anchor="middle">supervisor and API on port 6443</text>
+
+  <rect x="350" y="108" width="280" height="130" rx="8" fill="#ffffff" stroke="#7c3aed" stroke-width="2"/>
+  <text x="490" y="132" fill="#7c3aed" font-family="sans-serif" font-size="14" font-weight="bold" text-anchor="middle">Datastore</text>
+  <text x="490" y="158" fill="#0f172a" font-family="monospace" font-size="13" text-anchor="middle">Kine, the etcd API</text>
+  <text x="490" y="180" fill="#0f172a" font-family="monospace" font-size="13" text-anchor="middle">SQLite: db/state.db</text>
+  <text x="490" y="206" fill="#475569" font-family="sans-serif" font-size="12" text-anchor="middle">embedded etcd or a database for several servers</text>
+  <line x1="330" y1="173" x2="348" y2="173" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <rect x="50" y="256" width="580" height="60" rx="8" fill="#ffffff" stroke="#b45309" stroke-width="2"/>
+  <text x="340" y="280" fill="#b45309" font-family="sans-serif" font-size="14" font-weight="bold" text-anchor="middle">A node, as in the agent: runs the Pods</text>
+  <text x="340" y="302" fill="#0f172a" font-family="monospace" font-size="13" text-anchor="middle">kubelet, containerd, Flannel (VXLAN), network policy controller</text>
+
+  <rect x="50" y="332" width="580" height="60" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="2"/>
+  <text x="340" y="356" fill="#0f172a" font-family="sans-serif" font-size="14" font-weight="bold" text-anchor="middle">Packaged components, deployed from /var/lib/rancher/k3s/server/manifests</text>
+  <text x="340" y="378" fill="#475569" font-family="monospace" font-size="13" text-anchor="middle">CoreDNS, Traefik, ServiceLB, local-path, metrics-server</text>
+
+  <rect x="740" y="64" width="270" height="200" rx="10" fill="#f1f5f9" stroke="#0284c7" stroke-width="2"/>
+  <text x="875" y="92" fill="#0284c7" font-family="monospace" font-size="16" font-weight="bold" text-anchor="middle">k3s agent</text>
+  <text x="875" y="128" fill="#0f172a" font-family="monospace" font-size="13" text-anchor="middle">kubelet, containerd</text>
+  <text x="875" y="150" fill="#0f172a" font-family="monospace" font-size="13" text-anchor="middle">Flannel (VXLAN)</text>
+  <text x="875" y="172" fill="#0f172a" font-family="monospace" font-size="13" text-anchor="middle">client side load balancer</text>
+  <text x="875" y="206" fill="#475569" font-family="sans-serif" font-size="12" text-anchor="middle">no datastore, no control plane</text>
+  <text x="875" y="226" fill="#475569" font-family="sans-serif" font-size="12" text-anchor="middle">joins with a server address and a token</text>
+
+  <line x1="738" y1="120" x2="652" y2="150" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="700" y="112" fill="#475569" font-family="monospace" font-size="12" text-anchor="middle">TCP 6443</text>
+  <line x1="738" y1="230" x2="652" y2="284" stroke="#475569" stroke-width="2" marker-start="url(#arrow)" marker-end="url(#arrow)"/>
+  <text x="695" y="312" fill="#475569" font-family="monospace" font-size="12" text-anchor="middle">UDP 8472</text>
+
+  <rect x="740" y="290" width="270" height="114" rx="10" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="2"/>
+  <text x="875" y="320" fill="#0f172a" font-family="sans-serif" font-size="14" font-weight="bold" text-anchor="middle">One file, under 100 MB</text>
+  <text x="875" y="344" fill="#475569" font-family="sans-serif" font-size="12" text-anchor="middle">k3s server, k3s agent, kubectl,</text>
+  <text x="875" y="362" fill="#475569" font-family="sans-serif" font-size="12" text-anchor="middle">crictl, ctr, token, secrets-encrypt,</text>
+  <text x="875" y="380" fill="#475569" font-family="sans-serif" font-size="12" text-anchor="middle">etcd-snapshot, certificate</text>
+
+  <rect x="30" y="420" width="980" height="36" rx="10" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="2"/>
+  <text x="520" y="443" fill="#0f172a" font-family="sans-serif" font-size="14" text-anchor="middle">Same Kubernetes API as any other distribution: only the packaging and the defaults change</text>
+</svg>

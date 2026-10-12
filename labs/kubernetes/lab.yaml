@@ -12,7 +12,7 @@ env:
   # https://github.com/k3s-io/k3s/releases, the stable channel of https://update.k3s.io/v1-release/channels
   K3S_VERSION: v1.36.5+k3s1
   # The release assets are named by the version, with the + of the build written %2B in a URL.
-  K3S_URL: https://github.com/k3s-io/k3s/releases/download
+  K3S_RELEASE_URL: https://github.com/k3s-io/k3s/releases/download
   # https://hub.docker.com/_/nginx
   NGINX_IMAGE: nginx:1.30-alpine
   # The image the rolling update moves to.

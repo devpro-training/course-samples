@@ -1,0 +1,51 @@
+title: "k3s"
+description: "k3s, the lightweight Kubernetes distribution: what it is, where it comes from, how it is installed, what it bundles, then an upgrade, a second node and a clean removal."
+duration: 40
+tags:
+  - kubernetes
+  - k3s
+  - beginner
+sidebarWidth: 620
+backend: container
+# Every version and URL of the course, delivered to each host's environment, so a step refers to one by name.
+env:
+  # https://github.com/k3s-io/k3s/releases, the minor version before the stable channel of https://update.k3s.io/v1-release/channels
+  K3S_VERSION: v1.35.9+k3s1
+  # The stable channel, which the upgrade moves to: one minor version up, since a minor version is never skipped.
+  K3S_UPGRADE_VERSION: v1.36.5+k3s1
+  # The script of the quick start, which installs the binary and a service.
+  K3S_INSTALL_URL: https://get.k3s.io
+  # The release assets are named by the version, with the + of the build written %2B in a URL.
+  # Not K3S_URL, which k3s itself reads as the address of the server to join.
+  K3S_RELEASE_URL: https://github.com/k3s-io/k3s/releases/download
+  # The secret an agent presents to join the server, which k3s reads from this variable.
+  # A lab value: a real cluster generates one, and keeps it out of its files (https://docs.k3s.io/cli/token).
+  K3S_TOKEN: lab-join-secret
+  # The address of the server for an agent: its machine name, and the port of its supervisor.
+  CLUSTER_URL: https://kube:6443
+  # https://github.com/aquasecurity/kube-bench/releases
+  # Not KUBE_BENCH_*, which kube-bench itself reads as its own options (KUBE_BENCH_VERSION made it refuse --benchmark).
+  KUBEBENCH_VERSION: v0.16.0
+  KUBEBENCH_URL: https://github.com/aquasecurity/kube-bench/releases/download
+  # The k3s profile of this release that matches the benchmark the hardening guide names (https://docs.k3s.io/security/hardening-guide).
+  KUBEBENCH_PROFILE: k3s-cis-1.9
+  # https://hub.docker.com/_/nginx
+  NGINX_IMAGE: nginx:1.30-alpine
+  # https://hub.docker.com/_/busybox
+  BUSYBOX_IMAGE: busybox:1.37
+hosts:
+  # The lab itself, which only serves the course.
+  - name: control
+  # The server: k3s needs a kernel, root and cgroups, which a lab container does not give, so it runs in a virtual machine of its own.
+  # A server asks for 2 cores and 2 GiB at least (https://docs.k3s.io/installation/requirements), and the images pulled need disk.
+  - name: kube
+    runtime: vm
+    cores: 2
+    memory: 3072
+    disk: 8192
+  # The second node, added by the scale step: an agent asks for 1 core and 512 MiB at least.
+  - name: agent
+    runtime: vm
+    cores: 1
+    memory: 1536
+    disk: 4096
