@@ -1,0 +1,4 @@
+title: Checks
+layout:
+  - type: terminal
+  - type: editor

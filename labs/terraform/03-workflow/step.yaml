@@ -1,0 +1,4 @@
+title: Workflow
+layout:
+  - type: terminal
+  - type: editor

@@ -37,6 +37,7 @@ It sets `NODE_ENV=production`, with which npm skips the development dependencies
 - A zip is expanded with `python3 -m zipfile -e`.
 - npm is unpacked from its registry tarball, which carries its dependencies, by `labs/shared/setup-npm.md`.
 - A tool released as a single binary goes in `~/.local/bin`, which `labs/shared/setup-local-bin.md` creates and adds to the `PATH` once, before the fragments of the tools (`setup-jq.md`, `setup-crane.md`, `setup-cosign.md`, `setup-helm.md`), each checked against the checksums of its release.
+- Terraform and OpenTofu are single binaries from a release zip, installed by `labs/shared/setup-terraform.md` (GPG key, signed checksums) and `labs/shared/setup-opentofu.md` (cosign), which need `HASHICORP_GPG_FINGERPRINT` and the `*_VERSION` variables under `env:`.
 - Debian's own programs call `pager`, which is `more` in the image, so `PAGER=less` is exported once `less` is unpacked.
 
 The terminal is reset when moving to another step, and a tool such as VS Code reads its environment from a new login shell,
@@ -333,3 +334,17 @@ google-chrome --headless=new --screenshot=diagram.png --window-size=1040,430 "fi
 - A folder bind-mounted from the host is not writable by `labuser` (uid 1001), so a render of a diagram in the lab image to a mounted folder runs with `--user root` besides `--no-sandbox` (iac).
 - A vendor event is dated from the vendor's own page and not from a summary: the license change of 10 August 2023 (HashiCorp), the announcement of OpenTofu of 20 September 2023 (Linux Foundation) and the completion of the acquisition of 27 February 2025 (IBM), where one search result gave 2024 (iac).
 - The courses of this series with a terminal and an editor only, and no web UI, need no Playwright probe, as for docker (iac).
+- A course on a tool that needs a cloud account is taught with providers that need none: `hashicorp/local` and `hashicorp/random` make files and names, `terraform init` downloads them from the registry, and everything runs as `labuser` in the lab container (terraform).
+- Terraform has no Debian package and no signed script: the release zip is checked with `gpg --show-keys --with-colons ... | grep -q "fpr:::::::::<fingerprint>:"` against the fingerprint of HashiCorp's security page, then `gpg --verify` of the `SHA256SUMS.sig`, then `sha256sum --check --ignore-missing`, and `gpg` is in the lab image (terraform).
+- `python3 -m zipfile -e` drops the executable bit, so a binary unpacked from a zip is installed with `install -m 0755` (terraform).
+- OpenTofu's checksums are signed keylessly: `cosign verify-blob --signature ... --certificate ...` with the identity `<workflow>@refs/heads/v<major.minor>`, which prints a deprecation notice for `--signature` and `--certificate` that the step filters with `grep -v deprecated` (terraform).
+- `terraform` prints colors in the lab terminal, and they cut a line such as `Plan: 1 to add` in separate spans, so a check names text inside one span (`1 to add, 0 to change, 0 to destroy`, `Apply complete! Resources: 1 added`) (terraform).
+- A step that runs `terraform plan` or `apply` with no value for a variable waits for an answer, so `-input=false` and `-auto-approve` are on every block, and a failure on purpose is `{ ... || true; }` (terraform).
+- A change of the content of a `local_file` is `-/+` with `# forces replacement`, and a file edited by hand is reported by the refresh as deleted, so the drift of this provider shows as a resource to create again (terraform).
+- The list of versions of the registry API (`registry.terraform.io/v1/providers/<namespace>/<type>/versions`) is not sorted: `hashicorp/local` listed 2.6.2 last while the latest was 2.9.1, so a version is taken from a sorted list or from `.../providers/<namespace>/<type>` (terraform).
+- `terraform init -upgrade` is the only way past a lock file that holds an older version than the constraint allows, and a constraint that excludes the locked version fails with "locked provider ... does not match configured version constraint" (terraform).
+- A backend block cannot use variables, and `terraform init -backend=false` then `validate` checks a block for a backend that the lab cannot run, such as the HTTP backend of terraform-backend-mongodb, which needs MongoDB and a container engine (terraform).
+- The tier of a provider is read in the registry API (`tier` is `official`, `partner` or `community`), the page of the Terraform documentation on tiers answered 404, so the claim is worded as the provider overview page says (terraform).
+- `tofu` reads the state and the code written by Terraform and plans no change, rewrites the lock file for `registry.opentofu.org` and keeps the versions, and writes its own version in the `terraform_version` field of the state (terraform).
+- The `type` argument of an `output` is accepted by Terraform 1.16, and left out here so the same files run with OpenTofu (terraform).
+- The courses of this series with a terminal and an editor only, and no web UI, need no Playwright probe, as for docker (terraform).

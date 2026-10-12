@@ -1,0 +1,31 @@
+title: "Terraform"
+description: "Describe infrastructure in HCL and manage it with init, plan and apply: variables, state and drift, modules, providers, a backend, and OpenTofu as the compatible alternative."
+duration: 30
+tags:
+  - infrastructure
+  - devops
+  - terraform
+sidebarWidth: 620
+backend: container
+workdir: ~/lab
+# Every version, URL and identity of the course, so a step refers to one by name.
+env:
+  # https://github.com/sigstore/cosign/releases
+  COSIGN_VERSION: 3.1.3
+  # https://developer.hashicorp.com/terraform/install
+  TERRAFORM_VERSION: 1.16.5
+  # https://www.hashicorp.com/en/trust/security (HashiCorp release signing key, without spaces)
+  HASHICORP_GPG_FINGERPRINT: C874011F0AB405110D02105534365D9472D7468F
+  # https://github.com/opentofu/opentofu/releases
+  OPENTOFU_VERSION: 1.13.1
+  # The release branch of OpenTofu, the identity that signs its checksums ends with refs/heads/v<major.minor>.
+  OPENTOFU_BRANCH: v1.13
+  # https://opentofu.org/docs/intro/install/standalone/
+  OPENTOFU_SIGNER: https://github.com/opentofu/opentofu/.github/workflows/release.yml
+  GITHUB_OIDC_ISSUER: https://token.actions.githubusercontent.com
+  # https://registry.terraform.io/providers/hashicorp/local/latest
+  LOCAL_PROVIDER_VERSION: 2.9.1
+  # An older release, to show what the lock file does.
+  LOCAL_PROVIDER_OLD_VERSION: 2.5.3
+  # https://registry.terraform.io/providers/hashicorp/random/latest
+  RANDOM_PROVIDER_VERSION: 3.9.1

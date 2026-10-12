@@ -1,0 +1,4 @@
+title: Variables
+layout:
+  - type: terminal
+  - type: editor
