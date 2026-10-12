@@ -1,0 +1,19 @@
+title: "Infrastructure as Code"
+description: "Describe an environment in a file instead of a script: idempotence, a desired state, plan and apply, state, drift, the real tools, and a scan of the code before anything is created."
+duration: 25
+tags:
+  - infrastructure
+  - devops
+  - security
+sidebarWidth: 620
+backend: container
+workdir: ~/lab
+# Every version, URL and identity of the course, so a step refers to one by name.
+env:
+  # https://github.com/sigstore/cosign/releases
+  COSIGN_VERSION: 3.1.3
+  # https://github.com/aquasecurity/trivy/releases
+  TRIVY_VERSION: 0.75.0
+  # https://trivy.dev/docs/latest/getting-started/signature-verification/ (the workflow that signs the release, then @refs/tags/v<version>)
+  TRIVY_SIGNER: https://github.com/aquasecurity/trivy/.github/workflows/reusable-release.yaml
+  GITHUB_OIDC_ISSUER: https://token.actions.githubusercontent.com

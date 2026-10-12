@@ -1,0 +1,4 @@
+title: Drift
+layout:
+  - type: terminal
+  - type: editor

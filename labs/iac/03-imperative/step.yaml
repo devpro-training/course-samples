@@ -1,0 +1,4 @@
+title: Imperative
+layout:
+  - type: terminal
+  - type: editor
