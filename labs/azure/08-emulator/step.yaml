@@ -1,0 +1,4 @@
+title: Storage emulator
+layout:
+  - type: terminal
+  - type: editor

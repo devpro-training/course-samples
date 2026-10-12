@@ -1,0 +1,48 @@
+title: "Azure"
+description: "Microsoft's cloud, from a terminal and with no account: the hierarchy of tenant, subscription and resource group, Microsoft Entra and Azure Resource Manager, the portal, the CLI, Bicep and Terraform as clients of the same API, regions and prices, and a storage emulator."
+duration: 30
+tags:
+  - cloud
+  - azure
+  - beginner
+sidebarWidth: 620
+backend: container
+workdir: ~/lab
+# Every version, URL and identity of the course, so a step refers to one by name.
+env:
+  # https://learn.microsoft.com/en-us/cli/azure/release-notes-azure-cli
+  AZURE_CLI_VERSION: 2.91.0
+  # https://pypi.org/project/pip/#files
+  PIP_VERSION: 26.2.1
+  PIP_WHEEL_URL: https://files.pythonhosted.org/packages/f3/6e/1736e5b4ae2b778ef2f81c47d797de9f891d4d8acb047a24ca37a60294dd/pip-26.2.1-py3-none-any.whl
+  PIP_WHEEL_SHA256: 71138adf1f4ca900cdb7d289c21b7494329f2332b6d85f0e1c42108c0384ed3e
+  # https://github.com/Azure/bicep/releases, the SHA-256 is the digest GitHub shows for the asset bicep-linux-x64.
+  BICEP_VERSION: 0.48.1
+  BICEP_SHA256: b09ec25a9d376c1f8e33ede6ed22b587f915ad68488d5db77a6f9541748c7f6e
+  # https://www.npmjs.com/package/azurite, which needs Node.js 22 or newer.
+  AZURITE_VERSION: 3.37.0
+  # https://learn.microsoft.com/en-us/azure/storage/common/storage-connect-azurite
+  AZURITE_ACCOUNT: devstoreaccount1
+  AZURITE_KEY: Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==
+  # https://www.npmjs.com/package/npm, a registry tarball carries its dependencies, so it runs once unpacked.
+  NPM_VERSION: 12.2.0
+  # https://registry.npmjs.org, where npm and Azurite are downloaded from, with the metadata that holds their checksum.
+  NPM_REGISTRY_URL: https://registry.npmjs.org
+  # https://github.com/jqlang/jq/releases
+  JQ_VERSION: 1.8.2
+  # https://developer.hashicorp.com/terraform/install
+  TERRAFORM_VERSION: 1.16.5
+  # https://www.hashicorp.com/en/trust/security (HashiCorp release signing key, without spaces)
+  HASHICORP_GPG_FINGERPRINT: C874011F0AB405110D02105534365D9472D7468F
+  # https://registry.terraform.io/providers/hashicorp/azurerm/latest, an official provider of HashiCorp.
+  AZURERM_VERSION: 5.9.0
+  # A domain whose tenant the sign-in service answers for without any account.
+  TENANT_DOMAIN: microsoft.com
+  # A subscription identifier that cannot exist, for a provider that insists on one.
+  DEMO_SUBSCRIPTION_ID: 00000000-0000-0000-0000-000000000000
+  # https://learn.microsoft.com/en-us/rest/api/cost-management/retail-prices/azure-retail-prices
+  PRICES_URL: https://prices.azure.com/api/retail/prices
+  # The size compared between regions in the prices step.
+  VM_SKU: Standard_B2s
+  # The name of a storage account is global, 3 to 24 lowercase letters and digits.
+  STORAGE_NAME: stcoursedemo001

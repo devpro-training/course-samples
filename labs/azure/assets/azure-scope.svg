@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 400" width="1000" height="400" font-family="Inter, Segoe UI, Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#475569"/>
+    </marker>
+    <marker id="arrow-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#0284c7"/>
+    </marker>
+  </defs>
+  <rect width="1000" height="400" fill="#ffffff"/>
+
+  <!-- Entra tenant -->
+  <rect x="20" y="20" width="250" height="300" rx="10" fill="#f1f5f9" stroke="#0284c7" stroke-width="2"/>
+  <text x="145" y="50" text-anchor="middle" font-size="17" font-weight="600" fill="#0284c7">Microsoft Entra tenant</text>
+  <text x="145" y="72" text-anchor="middle" font-size="12" fill="#475569">the directory, one GUID</text>
+  <text x="145" y="112" text-anchor="middle" font-size="14" fill="#0f172a">users and groups</text>
+  <text x="145" y="140" text-anchor="middle" font-size="14" fill="#0f172a">service principals</text>
+  <text x="145" y="168" text-anchor="middle" font-size="14" fill="#0f172a">managed identities</text>
+  <text x="145" y="196" text-anchor="middle" font-size="14" fill="#0f172a">Entra roles (the directory)</text>
+  <text x="145" y="240" text-anchor="middle" font-size="12" fill="#475569">who can sign in</text>
+  <text x="145" y="300" text-anchor="middle" font-size="12" fill="#0284c7">trusted by many subscriptions</text>
+
+  <!-- Hierarchy -->
+  <text x="640" y="24" text-anchor="middle" font-size="13" fill="#475569">AZURE SCOPES, INHERITED DOWNWARD</text>
+  <rect x="380" y="36" width="520" height="52" rx="10" fill="#f1f5f9" stroke="#cbd5e1"/>
+  <text x="640" y="60" text-anchor="middle" font-size="15" font-weight="600" fill="#0f172a">Management group</text>
+  <text x="640" y="78" text-anchor="middle" font-size="12" fill="#475569">policy and access for several subscriptions</text>
+  <rect x="380" y="112" width="520" height="52" rx="10" fill="#f1f5f9" stroke="#7c3aed" stroke-width="2"/>
+  <text x="640" y="136" text-anchor="middle" font-size="15" font-weight="600" fill="#7c3aed">Subscription</text>
+  <text x="640" y="154" text-anchor="middle" font-size="12" fill="#475569">the billing and quota boundary, trusts one tenant</text>
+  <rect x="380" y="188" width="520" height="52" rx="10" fill="#f1f5f9" stroke="#cbd5e1"/>
+  <text x="640" y="212" text-anchor="middle" font-size="15" font-weight="600" fill="#0f172a">Resource group</text>
+  <text x="640" y="230" text-anchor="middle" font-size="12" fill="#475569">resources with the same lifecycle, deleted together</text>
+  <rect x="380" y="264" width="520" height="56" rx="10" fill="#f1f5f9" stroke="#16a34a" stroke-width="2"/>
+  <text x="640" y="288" text-anchor="middle" font-size="15" font-weight="600" fill="#16a34a">Resource</text>
+  <text x="640" y="306" text-anchor="middle" font-size="12" fill="#475569">a storage account, a virtual machine, in a region</text>
+  <line x1="640" y1="88" x2="640" y2="108" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="640" y1="164" x2="640" y2="184" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="640" y1="240" x2="640" y2="260" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Trust -->
+  <line x1="274" y1="138" x2="376" y2="138" stroke="#0284c7" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#arrow-blue)"/>
+  <text x="325" y="128" text-anchor="middle" font-size="12" fill="#0284c7">trust</text>
+
+  <line x1="20" y1="350" x2="980" y2="350" stroke="#cbd5e1"/>
+  <text x="500" y="372" text-anchor="middle" font-size="13" fill="#0f172a">Entra says who someone is, Azure RBAC says what that identity may do at a scope.</text>
+  <text x="500" y="390" text-anchor="middle" font-size="12" fill="#475569">A role assignment at a scope applies to everything below it.</text>
+</svg>
