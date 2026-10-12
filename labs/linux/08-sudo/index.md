@@ -48,9 +48,9 @@ Working as a user is safe, and **sudo** runs a single command with the rights of
    visudo -c
    ```
 
-Rule                      | Reads
---------------------------|-------------------------------------------------------------------
-`%sudo ALL=(ALL:ALL) ALL` | Members of `sudo`, on any host, as any user and group, any command
+   Rule                      | Reads
+   --------------------------|-------------------------------------------------------------------
+   `%sudo ALL=(ALL:ALL) ALL` | Members of `sudo`, on any host, as any user and group, any command
 
 2. Add the user to the group `sudo`:
 

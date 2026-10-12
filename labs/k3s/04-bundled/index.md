@@ -15,13 +15,13 @@ k3s starts with them, so the cluster is usable at once, and each one can be remo
    kubectl get pods --namespace kube-system
    ```
 
-Component                | Does                                                          | Disabled with
--------------------------|---------------------------------------------------------------|-----------------
-`coredns`                | Cluster DNS: a Service has a name                             | `coredns`
-`local-path-provisioner` | Storage: a volume is a folder of the node                     | `local-storage`
-`metrics-server`         | Usage of CPU and memory, for `kubectl top` and autoscaling    | `metrics-server`
-`traefik`                | Ingress controller: HTTP routes to Services                   | `traefik`
-`svclb-traefik`          | ServiceLB: a `LoadBalancer` Service on the ports of the nodes | `servicelb`
+   Component                | Does                                                          | Disabled with
+   -------------------------|---------------------------------------------------------------|-----------------
+   `coredns`                | Cluster DNS: a Service has a name                             | `coredns`
+   `local-path-provisioner` | Storage: a volume is a folder of the node                     | `local-storage`
+   `metrics-server`         | Usage of CPU and memory, for `kubectl top` and autoscaling    | `metrics-server`
+   `traefik`                | Ingress controller: HTTP routes to Services                   | `traefik`
+   `svclb-traefik`          | ServiceLB: a `LoadBalancer` Service on the ports of the nodes | `servicelb`
 
 2. The server reads its manifests from a folder, and applies them again when a file changes.
    Each file is tracked as an `AddOn` object:

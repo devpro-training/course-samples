@@ -318,7 +318,8 @@ google-chrome --headless=new --screenshot=diagram.png --window-size=1040,430 "fi
 - The courses of this series with no web UI need no Playwright probe, as for docker (containers, base-images).
 - A course about images and registries needs no container engine:
   `crane` lists tags and reads manifests and configurations, `cosign` reads and verifies what is attached, and `helm template` renders a chart with no cluster, all as `labuser` in the lab container (app-catalog).
-- `crane export <image> - | tar -xO --wildcards '*os-release'` names the Linux behind an image of any distribution, since `/etc/os-release` is a symlink on Debian and a file on others, and the labels of `crane config` give the declared base image with no download of the layers (app-catalog).
+- `crane export <image> - | tar -xO --wildcards '*os-release'` names the Linux behind an image of any distribution, since `/etc/os-release` is a symlink on Debian and a file on others,
+  and the labels of `crane config` give the declared base image with no download of the layers (app-catalog).
 - `crane registry serve --address 127.0.0.1:5000 --disk <dir>` runs a registry as `labuser`, `cosign copy` copies an image with its signature and attestations,
   and `cosign verify --allow-insecure-registry` checks the copy over HTTP (app-catalog).
 - `cosign verify-attestation` on a multi-platform tag reads the attestation of the index, an SBOM of three entries, so the SBOM of an image is read at the digest of its platform, from `crane digest --platform linux/amd64` (app-catalog).
@@ -372,7 +373,8 @@ google-chrome --headless=new --screenshot=diagram.png --window-size=1040,430 "fi
   and shows the real tools as files that are only read, since they run in the next courses (iac).
 - A script that fails on its first command still exits with the status of its last one:
   `mkdir` printed "File exists" and `echo "status $?"` printed `status 0`, which makes a better demonstration of the imperative style than any explanation (iac).
-- A fingerprint of a folder, `find ... | sort | xargs sha256sum | sha256sum`, kept in two files and compared with `sort -u | wc -l`, proves that a second run changed nothing, with an `expect="distinct: 1"` that the command does not contain (iac).
+- A fingerprint of a folder, `find ... | sort | xargs sha256sum | sha256sum`, kept in two files and compared with `sort -u | wc -l`, proves that a second run changed nothing,
+  with an `expect="distinct: 1"` that the command does not contain (iac).
 - `trivy config` reads Terraform with no cloud and no plan: a security group open on port 22 to `0.0.0.0/0`, a public ACL and a bucket with no public access block gave seven HIGH findings (`AWS-0086` to `AWS-0132`),
   and the fix that reaches zero needs the public access block, a KMS key with rotation, and an SSE-KMS configuration, so a step lists the findings with `grep -E "^AWS-"` (iac).
 - A Terraform file is no longer clean of lower severities after the fix (versioning, access logs), so the gate names `HIGH,CRITICAL` and the step says the gate is a decision (iac).
@@ -385,13 +387,14 @@ google-chrome --headless=new --screenshot=diagram.png --window-size=1040,430 "fi
 - The courses of this series with a terminal and an editor only, and no web UI, need no Playwright probe, as for docker (iac).
 - A course on a tool that needs a cloud account is taught with providers that need none:
   `hashicorp/local` and `hashicorp/random` make files and names, `terraform init` downloads them from the registry, and everything runs as `labuser` in the lab container (terraform).
-- Terraform has no Debian package and no signed script: the release zip is checked with `gpg --show-keys --with-colons ... | grep -q "fpr:::::::::<fingerprint>:"` against the fingerprint of HashiCorp's security page, then `gpg --verify` of the `SHA256SUMS.sig`, then `sha256sum --check --ignore-missing`, and `gpg` is in the lab image (terraform).
+- Terraform has no Debian package and no signed script: the release zip is checked with `gpg --show-keys --with-colons ... | grep -q "fpr:::::::::<fingerprint>:"` against the fingerprint of HashiCorp's security page,
+  then `gpg --verify` of the `SHA256SUMS.sig`, then `sha256sum --check --ignore-missing`, and `gpg` is in the lab image (terraform).
 - `python3 -m zipfile -e` drops the executable bit, so a binary unpacked from a zip is installed with `install -m 0755` (terraform).
 - OpenTofu's checksums are signed keylessly:
   `cosign verify-blob --signature ... --certificate ...` with the identity `<workflow>@refs/heads/v<major.minor>`,
   which prints a deprecation notice for `--signature` and `--certificate` that the step filters with `grep -v deprecated` (terraform).
-- `terraform` prints colors in the lab terminal, and they cut a line such as `Plan: 1 to add` in separate spans, so a check names text inside one span (`1 to add, 0 to change, 0 to destroy`, `Apply complete!
-  Resources: 1 added`) (terraform).
+- `terraform` prints colors in the lab terminal, and they cut a line such as `Plan: 1 to add` in separate spans, so a check names text inside one span (`1 to add, 0 to change, 0 to destroy`,
+  `Apply complete! Resources: 1 added`) (terraform).
 - A step that runs `terraform plan` or `apply` with no value for a variable waits for an answer, so `-input=false` and `-auto-approve` are on every block, and a failure on purpose is `{ ... || true; }` (terraform).
 - A change of the content of a `local_file` is `-/+` with `# forces replacement`, and a file edited by hand is reported by the refresh as deleted, so the drift of this provider shows as a resource to create again (terraform).
 - The list of versions of the registry API (`registry.terraform.io/v1/providers/<namespace>/<type>/versions`) is not sorted:
@@ -435,12 +438,12 @@ google-chrome --headless=new --screenshot=diagram.png --window-size=1040,430 "fi
 - `bicep build` of a file with `targetScope = 'subscription'` and a module gives a nested deployment of type `Microsoft.Resources/deployments` in the template, and `bicep decompile` of the result fails on the `dependsOn` it wrote,
   which is why the course does not teach it (azure).
 - Azurite 3.37.0 needs Node.js 22 or newer, is started with `azurite-blob` only (the `azurite` program also opens the queue and table ports), accepts the requests of Azure CLI 2.91.0 with no `--skipApiVersionCheck`,
-  puts the account name in the path of the URL, and answers an anonymous read of a private container with `403` and `x-ms-error-code:
-  AuthorizationFailure` (azure).
+  puts the account name in the path of the URL, and answers an anonymous read of a private container with `403` and `x-ms-error-code: AuthorizationFailure` (azure).
 - The emulator holds the data plane only: `az storage account list` still answers "setup account", which makes the difference with the control plane visible (azure).
 - Azurite stops with `pkill -f "^node .*azurite-blob"`: the program is a Node.js script, and the anchor keeps the pattern from matching the shell that types it (azure).
 - The Azure Retail Prices API needs no account:
-  `$filter` is written `%24filter` in the URL, and `jq -rn --arg f "<expression>" '$f|@uri'` encodes the OData expression, a Windows price carrying the license, so the Linux line is selected with `select(.productName | test("Windows") | not)` (azure).
+  `$filter` is written `%24filter` in the URL, and `jq -rn --arg f "<expression>" '$f|@uri'` encodes the OData expression, a Windows price carrying the license,
+  so the Linux line is selected with `select(.productName | test("Windows") | not)` (azure).
 - A figure about a vendor is quoted from its primary source with its date: 80+ regions and 500+ datacenters from Microsoft's page, which states no date, and 28%, 20% and 15% from the release of Synergy Research of 30 July 2026,
   since search summaries and secondary pages disagreed on the figures of the previous year (azure).
 - The rename of Windows Azure to Microsoft Azure is dated March 2014 by one source and April 2014 by others, so the slide gives the year only;
@@ -451,8 +454,8 @@ google-chrome --headless=new --screenshot=diagram.png --window-size=1040,430 "fi
   so the course installs one verified binary and nothing else (kubernetes).
 - The `k3s` release publishes `sha256sum-amd64.txt` beside the binary, the `+` of `v1.36.5+k3s1` is written `%2B` in the URL (`${K3S_VERSION/+/%2B}`),
   and the version is the stable channel of `https://update.k3s.io/v1-release/channels` (kubernetes).
-- With the guest kernel built without netfilter extensions, k3s logs `Extension comment revision 0 not supported, missing kernel module?` and `RULE_APPEND failed ...
-  FLANNEL-FWD`, the Pods start, CoreDNS stays at `0/1` with a readiness probe at 503, and `nslookup`, a ClusterIP and a NodePort all time out: only a kernel built from the fragment passes (kubernetes).
+- With the guest kernel built without netfilter extensions, k3s logs `Extension comment revision 0 not supported, missing kernel module?` and `RULE_APPEND failed ... FLANNEL-FWD`, the Pods start,
+  CoreDNS stays at `0/1` with a readiness probe at 503, and `nslookup`, a ClusterIP and a NodePort all time out: only a kernel built from the fragment passes (kubernetes).
 - `.env` of the sidelab checkout can still point `FIRECRACKER_KERNEL` at an older kernel than the one built, so `FIRECRACKER_KERNEL=<path> task verify:course ...` tries another kernel for one run,
   and `uname -r` ends with `+` for both (kubernetes).
 - A k3s server runs the API server, the scheduler and the controller manager in its own process, so `kube-system` holds CoreDNS, the local path provisioner, metrics-server and Traefik, and no Pod for the control plane,
@@ -494,13 +497,16 @@ google-chrome --headless=new --screenshot=diagram.png --window-size=1040,430 "fi
 - `disable: [traefik, servicelb]` in `/etc/rancher/k3s/config.yaml` removes the chart through a `helm-delete-traefik` Job, the `traefik.yaml` manifest, and the Pods, and leaves the `Completed` Pods of the install Jobs (k3s).
 - `config.yaml.d/*.yaml` is read after `config.yaml`, so the hardening is a second file and the first stays as it is (k3s).
 - `wget` hides the body of an error status unless `--content-on-error` is given: the 404 of Traefik with no route prints `404 page not found` only with it (k3s).
-- kube-bench with the profile `k3s-cis-1.9` (the newest k3s profile of v0.16.0, in the release archive next to the binary, checked with `kube-bench_<version>_checksums.txt`) reads the flags of the API server with `journalctl -m -u k3s | grep 'Running kube-apiserver'`, and filters roles with `jq`: with no journal and no `jq`, the result of the lab was 25 failures whatever the options, and with a stand-in `journalctl` that prints `/var/log/k3s.log` and `jq` from `apt-get`, 4 before the hardening and 2 after, 55 passes and 64 (k3s).
+- kube-bench with the profile `k3s-cis-1.9` (the newest k3s profile of v0.16.0, in the release archive next to the binary,
+  checked with `kube-bench_<version>_checksums.txt`) reads the flags of the API server with `journalctl -m -u k3s | grep 'Running kube-apiserver'`, and filters roles with `jq`: with no journal and no `jq`,
+  the result of the lab was 25 failures whatever the options, and with a stand-in `journalctl` that prints `/var/log/k3s.log` and `jq` from `apt-get`, 4 before the hardening and 2 after, 55 passes and 64 (k3s).
 - The guide of k3s sets `protect-kernel-defaults`, `secrets-encryption`, an audit log, a Pod Security configuration and the kubelet timeouts in one block of `config.yaml`,
   `chmod 600` on the certificates (check 1.1.20) and a patch of the default service accounts (check 5.1.5) by hand: a Secret is then stored as `k8s:enc:aescbc:v1:` in `state.db`,
   a privileged Pod answers `violates PodSecurity "baseline:latest"`, and `k3s secrets-encrypt status` answers `Internal error` for a few seconds after a restart (k3s).
 - The Pod Security configuration of the guide enforces `restricted`, which a plain `nginx` Pod violates (the lab prints the warning `would violate PodSecurity "restricted:latest"`): the lab enforces `baseline`,
   keeps `restricted` for audit and warnings, and says so (k3s).
-- `k3s-uninstall.sh` and `k3s-agent-uninstall.sh` leave `/etc/rancher/node`, and a machine with no init system keeps `<defunct>` entries for the processes they kill, so the check looks at `/etc/rancher/k3s`, `/var/lib/rancher/k3s` and the running processes (`ps -eo stat=,args= | grep -v '^Z'`) (k3s).
+- `k3s-uninstall.sh` and `k3s-agent-uninstall.sh` leave `/etc/rancher/node`, and a machine with no init system keeps `<defunct>` entries for the processes they kill, so the check looks at `/etc/rancher/k3s`,
+  `/var/lib/rancher/k3s` and the running processes (`ps -eo stat=,args= | grep -v '^Z'`) (k3s).
 - k3s writes the token of the cluster as `K10<hash of the CA>::server:<secret>` in `server/token` even when the token given is a short one (`K3S_TOKEN`), and the agent warns that it cannot check the CA (k3s).
 - The Kubernetes network policy controller of k3s logs `Extension NFLOG revision 0 not supported` with the guest kernel of sidelab and keeps working for the lab (k3s).
 - A talk about a platform is dated from several sources:

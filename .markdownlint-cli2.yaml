@@ -5,6 +5,8 @@ config:
   default: true
   MD013:
     line_length: 240
+    tables: false  # a table row cannot be wrapped
+    code_blocks: false  # commands are kept whole, to be copied
   MD010:
     code_blocks: false  # Go is indented with tabs
   MD033: false

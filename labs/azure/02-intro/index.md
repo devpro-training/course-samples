@@ -17,11 +17,11 @@ Everything is created, changed and deleted by calls to that API, whichever tool 
 - **One of the big three.**
   The share of the worldwide cloud infrastructure services spending in the second quarter of 2026, according to Synergy Research (release of 30 July 2026, a market of $143.4 billion):
 
-Provider            | Share
---------------------|------
-Amazon Web Services | 28%
-Microsoft Azure     | 20%
-Google Cloud        | 15%
+  Provider            | Share
+  --------------------|------
+  Amazon Web Services | 28%
+  Microsoft Azure     | 20%
+  Google Cloud        | 15%
 
   Another firm, with another definition of the market, gives other figures.
 
@@ -32,8 +32,12 @@ Google Cloud        | 15%
 
 ## How it works
 
-![Five kinds of clients, the portal, the CLI, Bicep and ARM templates, Terraform and the SDKs, all ask Microsoft Entra ID for a token, then call Azure Resource Manager at management.azure.com. It authenticates and authorizes the call, then forwards it to a resource provider such as Microsoft.Storage, which creates the resource in a region. An application reaches the resource itself on the data plane](../assets/azure-request-dark.svg#gh-dark-mode-only)
-![Five kinds of clients, the portal, the CLI, Bicep and ARM templates, Terraform and the SDKs, all ask Microsoft Entra ID for a token, then call Azure Resource Manager at management.azure.com. It authenticates and authorizes the call, then forwards it to a resource provider such as Microsoft.Storage, which creates the resource in a region. An application reaches the resource itself on the data plane](../assets/azure-request.svg#gh-light-mode-only)
+![Five kinds of clients, the portal, the CLI, Bicep and ARM templates, Terraform and the SDKs, all ask Microsoft Entra ID for a token, then call Azure Resource Manager at management.azure.com.
+It authenticates and authorizes the call, then forwards it to a resource provider such as Microsoft.Storage, which creates the resource in a region.
+An application reaches the resource itself on the data plane](../assets/azure-request-dark.svg#gh-dark-mode-only)
+![Five kinds of clients, the portal, the CLI, Bicep and ARM templates, Terraform and the SDKs, all ask Microsoft Entra ID for a token, then call Azure Resource Manager at management.azure.com.
+It authenticates and authorizes the call, then forwards it to a resource provider such as Microsoft.Storage, which creates the resource in a region.
+An application reaches the resource itself on the data plane](../assets/azure-request.svg#gh-light-mode-only)
 
 ---
 
@@ -92,8 +96,12 @@ Tag               | a name and value on a resource, for cost allocation and owne
 Policy            | a rule that Azure evaluates on resources: allowed regions, required tags
 Azure RBAC        | the permissions: a role, an identity and a scope make a role assignment
 
-![The Microsoft Entra tenant holds the identities and is trusted by subscriptions. Below a management group, a subscription holds resource groups, and a resource group holds resources. Policy and role assignments at a scope apply to everything below it](../assets/azure-scope-dark.svg#gh-dark-mode-only)
-![The Microsoft Entra tenant holds the identities and is trusted by subscriptions. Below a management group, a subscription holds resource groups, and a resource group holds resources. Policy and role assignments at a scope apply to everything below it](../assets/azure-scope.svg#gh-light-mode-only)
+![The Microsoft Entra tenant holds the identities and is trusted by subscriptions.
+Below a management group, a subscription holds resource groups, and a resource group holds resources.
+Policy and role assignments at a scope apply to everything below it](../assets/azure-scope-dark.svg#gh-dark-mode-only)
+![The Microsoft Entra tenant holds the identities and is trusted by subscriptions.
+Below a management group, a subscription holds resource groups, and a resource group holds resources.
+Policy and role assignments at a scope apply to everything below it](../assets/azure-scope.svg#gh-light-mode-only)
 
 ---
 

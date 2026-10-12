@@ -6,14 +6,14 @@ The options of the previous steps are combined in one command, then the root of 
 
 1. A web server made to run as a user that is not root, started with nothing it does not need:
 
-Option                             | Denies
------------------------------------|--------------------------------------
-`--user 101:101`                   | root
-`--cap-drop ALL`                   | every capability
-`--security-opt no-new-privileges` | a gain of rights through `setuid`
-`--read-only --tmpfs /tmp`         | writes, but for a temporary directory
-`--pids-limit 100 --memory 128m`   | a runaway process
-`-p 127.0.0.1:8080:8080`           | access from other machines
+   Option                             | Denies
+   -----------------------------------|--------------------------------------
+   `--user 101:101`                   | root
+   `--cap-drop ALL`                   | every capability
+   `--security-opt no-new-privileges` | a gain of rights through `setuid`
+   `--read-only --tmpfs /tmp`         | writes, but for a temporary directory
+   `--pids-limit 100 --memory 128m`   | a runaway process
+   `-p 127.0.0.1:8080:8080`           | access from other machines
 
    <!-- verify: requires=network timeout=180 -->
 
