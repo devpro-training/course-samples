@@ -3,9 +3,9 @@
 The Kubernetes documentation says the Ingress API is frozen, and recommends the Gateway API instead.
 It splits what the Ingress mixed into resources with an owner each, and carries in its standard what annotations did.
 
-Resource       | Owner               | Says
----------------|---------------------|-----------------------------------------------------------------
-`GatewayClass` | The platform        | Which controller implements the gateways of this class
+Resource       | Owner                | Says
+---------------|----------------------|---------------------------------------------------------------------
+`GatewayClass` | The platform         | Which controller implements the gateways of this class
 `Gateway`      | The cluster operator | Which ports, protocols, names and certificates are open
 `HTTPRoute`    | The application team | Which hosts and paths go to which Services, with filters and weights
 

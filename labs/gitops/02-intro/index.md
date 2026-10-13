@@ -29,12 +29,12 @@ Git is the source of truth of an environment, and a reconciler makes the cluster
 
 OpenGitOps, overseen by the GitOps Working Group, states four principles, in version 1.0.0:
 
-Principle                  | Wording
----------------------------|------------------------------------------------------------------------------------------
-Declarative                | "A system managed by GitOps must have its desired state expressed declaratively."
-Versioned and immutable    | "Desired state is stored in a way that enforces immutability, versioning and retains a complete version history."
-Pulled automatically       | "Software agents automatically pull the desired state declarations from the source."
-Continuously reconciled    | "Software agents continuously observe actual system state and attempt to apply the desired state."
+Principle               | Wording
+------------------------|------------------------------------------------------------------------------------------------------------------
+Declarative             | "A system managed by GitOps must have its desired state expressed declaratively."
+Versioned and immutable | "Desired state is stored in a way that enforces immutability, versioning and retains a complete version history."
+Pulled automatically    | "Software agents automatically pull the desired state declarations from the source."
+Continuously reconciled | "Software agents continuously observe actual system state and attempt to apply the desired state."
 
 - The first two are about the repository, the last two about the program that keeps the cluster equal to it.
   The principles call it a software agent, and this course calls it the **reconciler**, since it reconciles the actual state with the desired one, and since "agent" has other meanings.
@@ -45,13 +45,13 @@ Continuously reconciled    | "Software agents continuously observe actual system
 
 ## Push and pull
 
-Question                  | Push (a pipeline applies)                    | Pull (a reconciler inside applies)
---------------------------|----------------------------------------------|---------------------------------------------
-Who holds the cluster credential | The pipeline, outside                 | The reconciler, inside
-What the cluster allows   | Connections from outside                     | Connections to a Git server, out only
-When the cluster is corrected | When someone pushes                      | Every interval
-Drift                     | Unknown until a push or a `diff`             | Reported, and undone if the reconciler is told to
-Git credential            | One that writes                              | One that only reads
+Question                         | Push (a pipeline applies)        | Pull (a reconciler inside applies)
+---------------------------------|----------------------------------|--------------------------------------------------
+Who holds the cluster credential | The pipeline, outside            | The reconciler, inside
+What the cluster allows          | Connections from outside         | Connections to a Git server, out only
+When the cluster is corrected    | When someone pushes              | Every interval
+Drift                            | Unknown until a push or a `diff` | Reported, and undone if the reconciler is told to
+Git credential                   | One that writes                  | One that only reads
 
 - **A pipeline stays useful** for what happens before a merge: tests, scans, building an image and writing its new tag in the repository.
   What it stops doing is touching the cluster.
@@ -114,13 +114,13 @@ Git credential            | One that writes                              | One t
 
 - **The repository holds a reference or a ciphertext**, and the cluster holds the value:
 
-Tool                               | What the repository holds
------------------------------------|-------------------------------------------------------------
-Sealed Secrets                     | A `SealedSecret`, encrypted for one cluster, decrypted by a controller
-SOPS                               | A file encrypted with a key (age, a cloud KMS), decrypted by the reconciler
-External Secrets Operator          | An `ExternalSecret`, a pointer to a secret manager
-Vault Secrets Operator             | A resource that points to a path in Vault
-Secrets Store CSI Driver           | A volume that mounts a secret from a manager
+Tool                      | What the repository holds
+--------------------------|----------------------------------------------------------------------------
+Sealed Secrets            | A `SealedSecret`, encrypted for one cluster, decrypted by a controller
+SOPS                      | A file encrypted with a key (age, a cloud KMS), decrypted by the reconciler
+External Secrets Operator | An `ExternalSecret`, a pointer to a secret manager
+Vault Secrets Operator    | A resource that points to a path in Vault
+Secrets Store CSI Driver  | A volume that mounts a secret from a manager
 
 - Each ties the team to a component, and to the place where the key is kept.
 
@@ -128,13 +128,13 @@ Secrets Store CSI Driver           | A volume that mounts a secret from a manage
 
 ## In this lab
 
-Step             | What it shows
------------------|---------------------------------------------------------------------------------------
-Setup            | Docker Engine, k3d, kubectl and Gitea, from checked binaries
-Repository       | A repository on Gitea, an application and an environment as files, the first commit
-Push             | A `kubectl apply` from outside, the credential it needs, and drift nobody sees
+Step               | What it shows
+-------------------|---------------------------------------------------------------------------------------------------
+Setup              | Docker Engine, k3d, kubectl and Gitea, from checked binaries
+Repository         | A repository on Gitea, an application and an environment as files, the first commit
+Push               | A `kubectl apply` from outside, the credential it needs, and drift nobody sees
 Pull and reconcile | A read-only token, a short loop of shell, a change that follows a commit, drift undone, a deletion
-Pull request     | A branch that changes nothing, a review, a merge, a revert
-Secrets          | An encoding is not encryption, Git keeps everything, an object outside of Git
+Pull request       | A branch that changes nothing, a review, a merge, a revert
+Secrets            | An encoding is not encryption, Git keeps everything, an object outside of Git
 
 > One virtual machine and no account: Gitea is the Git server, and the reconciler is a script that is read, so every line of the loop can be seen.

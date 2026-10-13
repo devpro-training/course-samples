@@ -12,11 +12,11 @@ How HTTP gets into a Kubernetes cluster, and how HTTPS is handled once there.
 
 - **By default, nothing is reachable from outside**: an application running in the cluster has no way to be called by a browser.
 
-Service type  | What it gives                            | Limit
---------------|------------------------------------------|-----------------------------------------------------------
-`ClusterIP`    | A stable address inside the cluster      | Inside only
+Service type   | What it gives                               | Limit
+---------------|---------------------------------------------|----------------------------------------------------------------
+`ClusterIP`    | A stable address inside the cluster         | Inside only
 `NodePort`     | The same port, 30000 to 32767, on each node | A port per Service, at the address of a node
-`LoadBalancer` | An external address from the platform    | An address per Service, with no names, no paths, no certificate
+`LoadBalancer` | An external address from the platform       | An address per Service, with no names, no paths, no certificate
 
 - A web site is more than a port: names, paths, one certificate per name, one entry for the whole cluster.
 
@@ -48,14 +48,14 @@ Service type  | What it gives                            | Limit
 
 ## Rules
 
-Rule                 | Meaning
----------------------|--------------------------------------------------------------------------------------
-`host`               | An exact name, or a wildcard such as `*.foo.com` which covers one label only
-`path` and `Prefix`  | Matches by path element, case sensitive: `/shop` matches `/shop/items`, not `/shopping`
-`path` and `Exact`   | The path exactly, case sensitive
+Rule                     | Meaning
+-------------------------|------------------------------------------------------------------------------------------
+`host`                   | An exact name, or a wildcard such as `*.foo.com` which covers one label only
+`path` and `Prefix`      | Matches by path element, case sensitive: `/shop` matches `/shop/items`, not `/shopping`
+`path` and `Exact`       | The path exactly, case sensitive
 `ImplementationSpecific` | Left to the class
-Several matches      | The longest path wins, then `Exact` over `Prefix`
-No match             | The default backend, or what the controller decides: Traefik answers `404 page not found`
+Several matches          | The longest path wins, then `Exact` over `Prefix`
+No match                 | The default backend, or what the controller decides: Traefik answers `404 page not found`
 
 - Everything else, removing a prefix, redirecting, limiting, rewriting, is **annotations**, understood by one controller only.
 
@@ -84,11 +84,11 @@ No match             | The default backend, or what the controller decides: Trae
 
 - **The annotation `cert-manager.io/cluster-issuer`** on an Ingress is enough: cert-manager creates the `Certificate` from its `tls` section.
 
-Issuer     | Use
------------|--------------------------------------------------------------------------------------------
+Issuer       | Use
+-------------|---------------------------------------------------------------------------------------------------------------
 `selfSigned` | "Generally useful for bootstrapping a PKI locally": the lab signs the certificate of its own authority with it
-`ca`       | Signs with an authority held in a Secret: a private PKI for internal names, which clients must trust
-`acme`     | An ACME authority such as Let's Encrypt, which checks the name with a challenge
+`ca`         | Signs with an authority held in a Secret: a private PKI for internal names, which clients must trust
+`acme`       | An ACME authority such as Let's Encrypt, which checks the name with a challenge
 
 - **ACME, HTTP-01**: the authority requests a key at a URL of the domain, so the name must be routable from the internet, and cert-manager routes that URL through the Ingress.
 
@@ -115,7 +115,7 @@ Issuer     | Use
 
 - **A controller is a dependency to choose**: its maintenance, its annotations and its security updates are what the team depends on.
 
-- References: [controllers](https://kubernetes.io/docs/concepts/services-networking/ingress-controllers/), 
+- References: [controllers](https://kubernetes.io/docs/concepts/services-networking/ingress-controllers/),
   [retirement of ingress-nginx](https://kubernetes.io/blog/2025/11/11/ingress-nginx-retirement/), [k3s networking](https://docs.k3s.io/networking/networking-services).
 
 ---
@@ -134,7 +134,7 @@ Issuer     | Use
 
 - **cert-manager supports it**: the same annotations on a `Gateway`, for each listener with a hostname and a `Terminate` mode, once `config.gatewayAPI.enabled` is set.
 
-- References: [Gateway API](https://gateway-api.sigs.k8s.io/), 
+- References: [Gateway API](https://gateway-api.sigs.k8s.io/),
   [Traefik provider](https://doc.traefik.io/traefik/reference/routing-configuration/kubernetes/gateway-api/), [cert-manager and Gateways](https://cert-manager.io/docs/usage/gateway/).
 
 ---
@@ -145,10 +145,10 @@ Issuer     | Use
 
 - **A tunnel connects out instead of waiting for connections in**: no open port and no public IP.
 
-Tool         | In its own words
--------------|---------------------------------------------------------------------------------------------------------
-cloudflared  | Cloudflare Tunnel: a daemon that opens outbound connections to the network of Cloudflare, so inbound traffic can be blocked
-ngrok        | The ngrok Kubernetes Operator exposes services "through standard Kubernetes resources", "like Ingress or the Gateway API"
+Tool        | In its own words
+------------|----------------------------------------------------------------------------------------------------------------------------
+cloudflared | Cloudflare Tunnel: a daemon that opens outbound connections to the network of Cloudflare, so inbound traffic can be blocked
+ngrok       | The ngrok Kubernetes Operator exposes services "through standard Kubernetes resources", "like Ingress or the Gateway API"
 
 - Both run in the cluster: `cloudflared` as a Deployment with the token of a tunnel created in Cloudflare, and the ngrok operator installed with Helm (its documentation links a Helm configuration reference).
 
@@ -164,13 +164,13 @@ ngrok        | The ngrok Kubernetes Operator exposes services "through standard 
 
 ## In this lab
 
-Step             | What it shows
------------------|----------------------------------------------------------------------------------------------
-Setup            | Docker Engine, k3d and kubectl, from checked release binaries
+Step                 | What it shows
+---------------------|-----------------------------------------------------------------------------------
+Setup                | Docker Engine, k3d and kubectl, from checked release binaries
 Reach an application | ClusterIP, NodePort, then an Ingress, and a controller that is stopped
-Routing          | Hosts, paths, a middleware for what the Ingress cannot say, balancing between Pods
-HTTPS            | The default certificate, SNI, a Secret by hand, trust, a redirect to HTTPS
-Certificates     | cert-manager, a private authority, a certificate from an annotation, renewal
-Gateway API      | A `Gateway` and routes on Traefik, weights, filters, an HTTPS listener
+Routing              | Hosts, paths, a middleware for what the Ingress cannot say, balancing between Pods
+HTTPS                | The default certificate, SNI, a Secret by hand, trust, a redirect to HTTPS
+Certificates         | cert-manager, a private authority, a certificate from an annotation, renewal
+Gateway API          | A `Gateway` and routes on Traefik, weights, filters, an HTTPS listener
 
 > One virtual machine and no account: no public name is used, so the lab names end in `.test`, mapped to the machine, and the authority is its own.

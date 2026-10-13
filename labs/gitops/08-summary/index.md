@@ -4,29 +4,29 @@
 
 ## Cheat sheet
 
-Task                         | Command
------------------------------|-----------------------------------------------------------------------
-Render an environment        | `kubectl kustomize <folder>`
-Apply an environment         | `kubectl apply -k <folder>`
-Compare with the cluster     | `kubectl diff -k <folder>`, which exits with 1 when they differ
-Prune what files dropped     | `kubectl apply -k <folder> --prune --selector <label> --prune-allowlist <group/version/kind>`
+Task                          | Command
+------------------------------|----------------------------------------------------------------------------------------------
+Render an environment         | `kubectl kustomize <folder>`
+Apply an environment          | `kubectl apply -k <folder>`
+Compare with the cluster      | `kubectl diff -k <folder>`, which exits with 1 when they differ
+Prune what files dropped      | `kubectl apply -k <folder> --prune --selector <label> --prune-allowlist <group/version/kind>`
 Ask a server for its branches | `git ls-remote origin`
 Search the history for a text | `git log --oneline -S <text>`
-Undo a merge                 | `git revert --mainline 1 <merge commit>`
-Can this account do it       | `kubectl auth can-i <verb> <resource>`
-Make a token                 | `POST /api/v1/users/<user>/tokens` on Gitea, with `scopes`
+Undo a merge                  | `git revert --mainline 1 <merge commit>`
+Can this account do it        | `kubectl auth can-i <verb> <resource>`
+Make a token                  | `POST /api/v1/users/<user>/tokens` on Gitea, with `scopes`
 
 ---
 
 ## Where things are
 
-What                    | Where
-------------------------|----------------------------------------------------------------------
-The desired state       | The branch `main` of the repository, folder `envs/<environment>`
-The reconciler               | `reconcile.sh`, and its output in `reconcile.log`
-Its credential          | A token of Gitea with `read:repository`, in the file `token`
-The Git server          | `gitea web`, with `/etc/gitea/app.ini` and `/var/lib/gitea`
-What the reconciler owns     | The objects labeled `app.kubernetes.io/managed-by=reconciler`
+What                     | Where
+-------------------------|-----------------------------------------------------------------
+The desired state        | The branch `main` of the repository, folder `envs/<environment>`
+The reconciler           | `reconcile.sh`, and its output in `reconcile.log`
+Its credential           | A token of Gitea with `read:repository`, in the file `token`
+The Git server           | `gitea web`, with `/etc/gitea/app.ini` and `/var/lib/gitea`
+What the reconciler owns | The objects labeled `app.kubernetes.io/managed-by=reconciler`
 
 ---
 
@@ -64,13 +64,13 @@ What the reconciler owns     | The objects labeled `app.kubernetes.io/managed-by
 
 ## Where it fits
 
-Level          | Practices
----------------|--------------------------------------------------------------------------------
-Awareness      | Git versioning, manual deployments
-Adoption       | CI/CD pipelines, merge requests, unit tests and SAST, automated deployments
-Integration    | Automated testing, artifact scanning, continuous deployment, monitoring, Infrastructure as Code
-Optimization   | **GitOps (pull)**, unified observability, proactive security, high availability, FinOps
-Mastery        | Predictive security, self-service portals, AI-driven processes
+Level        | Practices
+-------------|------------------------------------------------------------------------------------------------
+Awareness    | Git versioning, manual deployments
+Adoption     | CI/CD pipelines, merge requests, unit tests and SAST, automated deployments
+Integration  | Automated testing, artifact scanning, continuous deployment, monitoring, Infrastructure as Code
+Optimization | **GitOps (pull)**, unified observability, proactive security, high availability, FinOps
+Mastery      | Predictive security, self-service portals, AI-driven processes
 
 - The levels come from the author's talk "Cloud Native DevOps" (July 2025): GitOps in pull mode is a step of optimization, after pipelines and Infrastructure as Code.
 
@@ -78,12 +78,12 @@ Mastery        | Predictive security, self-service portals, AI-driven processes
 
 ## Natural next steps
 
-Need                              | Next
-----------------------------------|----------------------------------------------------------------------
-A real reconciler, with a UI           | **Argo CD**: applications, sync status, self-heal, Helm
-A real reconciler, a toolkit           | **Flux**: sources and Kustomizations as resources of the cluster
-Many clusters                     | **Rancher**, with Fleet
-Who may talk to whom              | **Zero trust** and **NeuVector**
-What the cluster does             | **Observability**: the three pillars
+Need                         | Next
+-----------------------------|-----------------------------------------------------------------
+A real reconciler, with a UI | **Argo CD**: applications, sync status, self-heal, Helm
+A real reconciler, a toolkit | **Flux**: sources and Kustomizations as resources of the cluster
+Many clusters                | **Rancher**, with Fleet
+Who may talk to whom         | **Zero trust** and **NeuVector**
+What the cluster does        | **Observability**: the three pillars
 
 - Reference: [OpenGitOps](https://opengitops.dev/), [Argo CD](https://argo-cd.readthedocs.io/en/stable/), [Flux](https://fluxcd.io/flux/concepts/), [Fleet](https://fleet.rancher.io/).

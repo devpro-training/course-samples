@@ -91,9 +91,13 @@ hosts:
 - k3s is installed by `labs/shared/setup-k3s.md`, which needs `K3S_VERSION` and `K3S_RELEASE_URL` under `env:`, and a machine of 3072 MiB (a k3s server asks for 2 cores and 2 GiB at least) (kubernetes, k3s).
 - k3d and kubectl are installed by `labs/shared/setup-k3d.md` and `labs/shared/setup-kubectl.md`, included after `setup-docker.md`, whose blocks target a host named `docker`:
   they need `K3DCLI_VERSION`, `K3DCLI_URL`, `KUBECTL_VERSION` and `KUBECTL_URL` under `env:`, and the course adds the image of its nodes (`NODE_IMAGE`) and a disk of 10240 MiB (k3d).
-- A course on routing needs no more than k3d and kubectl, and k3s's own Traefik: `labs/shared/setup-k3d.md` and `setup-kubectl.md` after `setup-docker.md`, and the names of the lab mapped to `127.0.0.1` in `/etc/hosts` of the machine (ingress-controller).
+- A course on routing needs no more than k3d and kubectl, and k3s's own Traefik: `labs/shared/setup-k3d.md` and `setup-kubectl.md` after `setup-docker.md`,
+  and the names of the lab mapped to `127.0.0.1` in `/etc/hosts` of the machine (ingress-controller).
 - Gitea is installed by `labs/shared/setup-gitea.md`, after `setup-docker.md`: Git from apt, the release binary checked with GPG, a `git` system user, an `app.ini` and an admin account,
   with `GITEA_*` and `GIT_USER_*` variables under `env:` (gitops).
+- Helm and kube-linter are installed in the machine by `labs/shared/setup-helm-machine.md` and `labs/shared/setup-kube-linter.md`, included after `setup-kubectl.md`,
+  with `HELM_VERSION`, `KUBELINTER_VERSION` and `KUBELINTER_SHA256` under `env:`:
+  `setup-helm.md` installs in `~/.local/bin` of the lab container, which is not the machine that reaches the cluster (helm).
 - Several `runtime: vm` hosts of a course reach each other by their names (`https://kube:6443` from the host `agent`), and each has its own terminal, which a step shows with one `terminal` panel per `target` (k3s).
 - Kubernetes, Podman and any other iptables user need the guest kernel of sidelab built from `scripts/firecracker_kernel.fragment` (`vmlinux-sidelab-<version>.bin`, `task setup:firecracker:bin`), and `FIRECRACKER_KERNEL` pointing at it:
   the CI kernel has no `xt_comment`, `xt_mark`, `multiport`, `statistic` or `recent` (kubernetes).
@@ -189,7 +193,7 @@ One SVG per diagram for the dark lab, `<name>-dark.svg`, and one for the light P
 The light version is generated from the dark one by swapping colors:
 
 Dark      | Light     | Use
-----------|-----------|-------------------
+----------|-----------|---------------
 `#0f172a` | `#ffffff` | Background
 `#1e293b` | `#f1f5f9` | Box
 `#e2e8f0` | `#0f172a` | Text
@@ -523,28 +527,37 @@ google-chrome --headless=new --screenshot=diagram.png --window-size=1040,430 "fi
 - The k3s documentation says an SQLite cluster is converted to embedded etcd by restarting its server with `--cluster-init`, and the README says k3s removes only the in-tree storage drivers and cloud provider,
   with well under 1000 lines of patches: both were first written from memory in the slides, and one was wrong (k3s).
 - The courses of this series with a terminal and no web UI need no Playwright probe, as for docker (k3s).
-- k3d needs only Docker, and `kubectl` is a binary of its own: `dl.k8s.io/release/<version>/bin/linux/amd64/kubectl` comes with a `.sha256` file that holds the hash alone, so the check is `echo "$(cat kubectl.sha256)  kubectl" | sha256sum --check` (k3d).
+- k3d needs only Docker, and `kubectl` is a binary of its own: `dl.k8s.io/release/<version>/bin/linux/amd64/kubectl` comes with a `.sha256` file that holds the hash alone,
+  so the check is `echo "$(cat kubectl.sha256)  kubectl" | sha256sum --check` (k3d).
 - The `checksums.txt` of a k3d release names its files `_dist/k3d-linux-amd64`, so `grep " _dist/k3d-linux-amd64$" checksums.txt | sed "s# _dist/# #" | sha256sum --check` checks the download (k3d).
 - k3d reads `K3D_*` environment variables as options of its own, so the course names its variables `K3DCLI_VERSION` and `K3DCLI_URL`, and `k3d version` prints the k3s version k3d uses when none is given (v1.35.5-k3s1 for k3d v5.9.0),
   so the course pins the image of the nodes, `rancher/k3s:v1.36.5-k3s1`, where the tag writes the `+` of the k3s version as a `-` (k3d).
-- A k3d cluster of one server is ready in 15 to 25 seconds in the lab machine once the images are pulled, an idle server uses about 750 MiB and its load balancer 6 to 20 MiB, and the node containers run privileged (`HostConfig.Privileged` is `true`) (k3d).
-- The load balancer of k3d is an nginx in `stream` mode, `/etc/nginx/nginx.conf` lists one `upstream` per port with the server nodes only, and `docker port k3d-dev-serverlb` shows the published ports: `--port "8080:80@loadbalancer"` is enough for an Ingress to answer on the machine (k3d).
+- A k3d cluster of one server is ready in 15 to 25 seconds in the lab machine once the images are pulled, an idle server uses about 750 MiB and its load balancer 6 to 20 MiB,
+  and the node containers run privileged (`HostConfig.Privileged` is `true`) (k3d).
+- The load balancer of k3d is an nginx in `stream` mode, `/etc/nginx/nginx.conf` lists one `upstream` per port with the server nodes only, and `docker port k3d-dev-serverlb` shows the published ports:
+  `--port "8080:80@loadbalancer"` is enough for an Ingress to answer on the machine (k3d).
 - A second `LoadBalancer` Service on the port 80 got an address when it was created seconds after the cluster, before the ServiceLB Pod of Traefik held the port, and a Pod `Pending` with "didn't have free ports" later:
   the result depends on the order, so the course uses the port 8000 and quotes the documentation of k3s for the rest (k3d).
 - The external address of a `LoadBalancer` Service is the one of the node container, which answers from a Linux machine, and the Docker documentation says the `bridge` network is not reachable from the host on Docker Desktop,
   so the portable way is `k3d cluster edit <cluster> --port-add "8081:8000@loadbalancer"`, which replaces the load balancer container (k3d).
-- `host.k3d.internal` is the gateway of the Docker network and is added to the DNS of the cluster, and CoreDNS answered it only a few minutes after the creation in one probe, so the step waits with `kubectl exec <pod> -- nslookup host.k3d.internal.`,
+- `host.k3d.internal` is the gateway of the Docker network and is added to the DNS of the cluster, and CoreDNS answered it only a few minutes after the creation in one probe,
+  so the step waits with `kubectl exec <pod> -- nslookup host.k3d.internal.`,
   the final dot being what makes busybox `nslookup` skip the search domains (k3d).
-- The folder of a `local-path` volume is in the node container, on its Docker volume at `/var/lib/rancher/k3s`, and the volume of the PV is tied to that node by `nodeAffinity`: it survives a deleted Pod and a stop, and `k3d cluster delete` removes the volumes (`volumes left: 0`),
+- The folder of a `local-path` volume is in the node container, on its Docker volume at `/var/lib/rancher/k3s`, and the volume of the PV is tied to that node by `nodeAffinity`:
+  it survives a deleted Pod and a stop, and `k3d cluster delete` removes the volumes (`volumes left: 0`),
   where `--volume "${HOME}/lab/storage/keep:/var/lib/rancher/k3s/storage@all"` leaves the files on the machine (k3d).
 - `k3d cluster stop` runs `kubectl drain "$HOSTNAME" --force --delete-emptydir-data --ignore-daemonsets --disable-eviction` in the entrypoint of each server (`/bin/k3d-entrypoint.sh`), which deletes the Pods that no controller owns:
-  a bare Pod on the server was gone after the restart, and it survived in a probe only because the scheduler had put it on an agent, which is not drained. A step that stops a cluster uses a Deployment (k3d).
-- A probe on the host kernel passed what the lab machine failed, since the placement of a Pod differed, so the machine of `course verify` is the test, and a temporary course in the repository that prints the state (`--show-output`) finds the cause (k3d).
+  a bare Pod on the server was gone after the restart, and it survived in a probe only because the scheduler had put it on an agent, which is not drained.
+  A step that stops a cluster uses a Deployment (k3d).
+- A probe on the host kernel passed what the lab machine failed, since the placement of a Pod differed, so the machine of `course verify` is the test,
+  and a temporary course in the repository that prints the state (`--show-output`) finds the cause (k3d).
 - `k3d registry create registry.localhost --port 5000` starts the container `k3d-registry.localhost` from `registry:2`, the machine pushes to `127.0.0.1:5000`, which Docker accepts without TLS, a manifest uses `k3d-registry.localhost:5000`,
   `--registry-use` writes `/etc/rancher/k3s/registries.yaml` in the nodes and the name in CoreDNS, and `k3d registry delete` prints nothing, so the check counts the containers left (k3d).
-- `k3d image import` of an image built on the machine works, and with Docker 29 an image that was pulled, `busybox:1.37`, ends with `ERRO ... failed to import images in node` followed by `ctr: content digest sha256:...: not found`, then "Successfully imported image(s)":
+- `k3d image import` of an image built on the machine works, and with Docker 29 an image that was pulled, `busybox:1.37`, ends with `ERRO ... failed to import images in node` followed by `ctr: content digest sha256:...: not found`,
+  then "Successfully imported image(s)":
   the check names `content digest`, since the words `not found` are on the second line and also in the command (k3d).
-- An image imported under a new name after a Pod pulled the same content from the registry stayed in `ErrImageNeverPull` with a pull policy of `Never`, although `crictl images` lists it, and an image with new content imports and runs, so the step imports a second build (k3d).
+- An image imported under a new name after a Pod pulled the same content from the registry stayed in `ErrImageNeverPull` with a pull policy of `Never`, although `crictl images` lists it, and an image with new content imports and runs,
+  so the step imports a second build (k3d).
 - The k3d documentation page has a footer of 2020-2023 and its install example pins v5.0.0, so the version, the date (2 June 2026) and the assets come from the release page, and the licence (MIT) from the repository;
   kind and minikube are quoted with their own sentences (k3d).
 - The two first runs of this course went past ten minutes, which the tool that runs the command moves to the background, because blocks failed on their timeouts of 300 seconds and the next ones waited behind them:
@@ -555,11 +568,14 @@ google-chrome --headless=new --screenshot=diagram.png --window-size=1040,430 "fi
 - `*.example.test` names, with one line in `/etc/hosts` of the machine, give the course real names, real TLS verification and no `Host` header typed by hand, and `.test` is reserved for tests so no DNS ever knows it (ingress-controller).
 - k3s installs Traefik v3, its CRDs and the Gateway API definitions (v1.6.1 with k3s v1.36.5) with the chart, so `kubectl apply --server-side` of the release's `standard-install.yaml` fails with a conflict with `helm`:
   the course reads the `bundle-version` annotation of the CRD instead (ingress-controller).
-- With the `HelmChartConfig` `traefik` setting `providers.kubernetesGateway.enabled: true`, the `GatewayClass` `traefik` (controller `traefik.io/gateway-controller`) appears within a minute, and a `Gateway` listener uses the port of the entry point in the Pod,
+- With the `HelmChartConfig` `traefik` setting `providers.kubernetesGateway.enabled: true`, the `GatewayClass` `traefik` (controller `traefik.io/gateway-controller`) appears within a minute,
+  and a `Gateway` listener uses the port of the entry point in the Pod,
   8000 for `web` and 8443 for `websecure`, not 80 and 443 (ingress-controller).
-- An Ingress with a `tls` section answers plain HTTP too in Traefik, and wins against a redirect Ingress on the same host: `traefik.ingress.kubernetes.io/router.entrypoints: websecure` on the first, `web` and a `redirectScheme` middleware on the second (ingress-controller).
+- An Ingress with a `tls` section answers plain HTTP too in Traefik, and wins against a redirect Ingress on the same host:
+  `traefik.ingress.kubernetes.io/router.entrypoints: websecure` on the first, `web` and a `redirectScheme` middleware on the second (ingress-controller).
 - Traefik answers `404 page not found` for a host no rule has, and `wget` exits with 8 and hides the body unless `--content-on-error` is given, so the block is `{ wget --content-on-error ... || true; }` (ingress-controller).
-- The linter refuses an `expect` text that is in the command, so a count is printed by `echo "answering Pods: $(...)"` and checked as `answering Pods: 3`: the command holds the label and the substitution, never the value (ingress-controller).
+- The linter refuses an `expect` text that is in the command, so a count is printed by `echo "answering Pods: $(...)"` and checked as `answering Pods: 3`:
+  the command holds the label and the substitution, never the value (ingress-controller).
 - A `for` loop that waits for an apply to succeed hides the `created` lines of the successful attempt when its output is discarded, so the block ends with a `kubectl get` and its column header is the check (`READY`) (ingress-controller).
 - cert-manager v1.21.2 installs with `kubectl apply --server-side -f cert-manager.yaml` in about 15 seconds, a `selfSigned` ClusterIssuer signs a `Certificate` with `isCA: true`, a `ca` ClusterIssuer built on its Secret signs the rest,
   and the `cert-manager.io/cluster-issuer` annotation on an Ingress gives a Secret with `tls.crt`, `tls.key` and `ca.crt` in a few seconds, valid 90 days with `status.renewalTime` 30 days before the end (ingress-controller).
@@ -577,12 +593,41 @@ google-chrome --headless=new --screenshot=diagram.png --window-size=1040,430 "fi
 - Gitea's `/api/v1/repos/<owner>/<repo>/commits` answered `409` right after the first push to a repository created empty, so a step asks the server with `git ls-remote origin` (gitops).
 - `git config credential.helper store` saves the credentials of any URL that worked, so a clone with `http://user:<token>@host/...` replaced the account of the lab and the next push answered `403`:
   the reconciler runs `git -c credential.helper=` (gitops).
-- A Gitea token is made with `POST /api/v1/users/<user>/tokens` and `{"name":..., "scopes":["read:repository"]}`, the answer carries it as `sha1`, it reads (`200`) and cannot write (`403`), which shows the least privilege of a pull reconciler (gitops).
-- `kubectl apply -k <folder> --prune --selector <label>` without `--prune-allowlist` warns that pruning of non namespaced resources is deprecated: the Kubernetes documentation calls allowlist pruning alpha and strongly encourages the allowlist and a selector,
+- A Gitea token is made with `POST /api/v1/users/<user>/tokens` and `{"name":..., "scopes":["read:repository"]}`, the answer carries it as `sha1`, it reads (`200`) and cannot write (`403`),
+  which shows the least privilege of a pull reconciler (gitops).
+- `kubectl apply -k <folder> --prune --selector <label>` without `--prune-allowlist` warns that pruning of non namespaced resources is deprecated:
+  the Kubernetes documentation calls allowlist pruning alpha and strongly encourages the allowlist and a selector,
   so the loop lists `core/v1/Service`, `core/v1/ConfigMap` and `apps/v1/Deployment`, and a Namespace is never pruned (gitops).
-- A deployment is read in a loop that ends with the value it waited for (`for ...; do [ "$(...)" = 2 ] && break; sleep 2; done; echo "replicas in the cluster: $(...)"`), and the reconciler of a step runs with `nohup bash -c 'while true; ...'` and stops with `pkill -f "^bash -c while true"` (gitops).
-- The linter refused `expect="new branch"`, `Remove the password` and `cluster-admin`, all in the command: a check names `shop-v2 -> shop-v2` (what `git push` prints), `commits: 2` (a count) and `yes` (what `kubectl auth can-i` prints) (gitops).
-- The talks of the author were the outline (push and pull, principles, environment strategies, secrets, tools, the levels of a journey), and the official pages checked each date: Argo CD joined the CNCF on 26 March 2020 and graduated on 6 December 2022,
+- A deployment is read in a loop that ends with the value it waited for (`for ...; do [ "$(...)" = 2 ] && break; sleep 2; done; echo "replicas in the cluster: $(...)"`),
+  and the reconciler of a step runs with `nohup bash -c 'while true; ...'` and stops with `pkill -f "^bash -c while true"` (gitops).
+- The linter refused `expect="new branch"`, `Remove the password` and `cluster-admin`, all in the command: a check names `shop-v2 -> shop-v2` (what `git push` prints),
+  `commits: 2` (a count) and `yes` (what `kubectl auth can-i` prints) (gitops).
+- The talks of the author were the outline (push and pull, principles, environment strategies, secrets, tools, the levels of a journey), and the official pages checked each date:
+  Argo CD joined the CNCF on 26 March 2020 and graduated on 6 December 2022,
   Flux was accepted on 15 July 2019 and graduated on 30 November 2022, and the origin of the word GitOps is credited to Weaveworks by the press only, so the slide says so (gitops).
 - The pages of Argo CD, Flux and Fleet do not use the words "pull model", so the slides say what each page states, and the pull is the lab's demonstration (gitops).
 - The course on GitOps has no UI in the lab: Gitea runs in the machine, which the editor and the browser panels do not reach, so everything is the terminal and the API, and no Playwright probe is needed, as for docker (gitops).
+- A course for newcomers to a tool that every cloud native project uses starts with the use, then the creation: the same four commands (`repo add`, `search repo`, `install`, `upgrade`) on a public chart,
+  then a chart from two plain manifests,
+  then the quality, then the publication, and the reasons come first in the slides (helm).
+- A chart is a recipe, not an image: it runs with the rights of the user and can create roles and hooks, so the first step reads a chart before installing it (`helm template | grep '^kind:'`, `helm pull --untar` and a search for
+  `helm.sh/hook`),
+  and the summary treats the chart and its images as two parts of the supply chain (helm).
+- Helm 4.3.0 is a single archive checked with the `.sha256sum` file of its release, and `helm install --wait` is stricter than the Pod status: an upgrade to a missing image tag with `--rollback-on-failure --timeout 45s` fails with
+  `UPGRADE FAILED: ... has been rolled back`, `helm history` lists revision 3 as `failed` and revision 4 as `deployed` with `Rollback to 2`, and the Pod of the good revision kept answering (helm).
+- `helm rollback web 1` is revision 3 with the content of revision 1, so `helm get values` prints `null` when the first revision had no value, and the Secrets `sh.helm.release.v1.web.v1` to `v3` are all kept (helm).
+- `helm test <release> --logs` prints `Phase:          Succeeded` with several spaces, so a check names `Succeeded`, and a chart test is a Pod with `helm.sh/hook: test` and the policy `before-hook-creation,hook-succeeded` (helm).
+- `values.schema.json` makes `helm template --set replicaCount=0` fail with `values don't meet the specifications of the schema(s)`, before any cluster is involved (helm).
+- kube-linter 0.8.3 finds four things in a plain Deployment, `no-read-only-root-fs`, `run-as-non-root`, `unset-cpu-requirements` and `unset-memory-requirements`, and none once the chart has a security context and resources;
+  its release has no checksum file, so the SHA-256 of the archive is a variable (helm).
+- `traefik/whoami` runs as a user that is not root with `readOnlyRootFilesystem` on a port above 1024 set with `WHOAMI_PORT_NUMBER` (helm).
+- A chart repository is a folder of archives and the output of `helm repo index <folder> --url <url>`, served by `python3 -m http.server`, and a new version is `helm package`, then `helm repo index --merge <folder>/index.yaml`,
+  then `helm repo update` (helm).
+- `helm push <archive> oci://127.0.0.1:5000/charts --plain-http` against `registry:3` printed `Digest: sha256:...`, and `helm show chart oci://... --version <v> --plain-http` reads it back (helm).
+- GitHub hosting is `helm/chart-releaser-action` (releases per chart version, `index.yaml` on the branch `gh-pages`, Pages served from that branch), and the checks are `helm/chart-testing-action` with `ct list-changed`, `ct lint`,
+  and `ct install` in a `helm/kind-action` cluster: the workflows are written by the course as files with their actions pinned to full commits, and only checked offline, since a workflow runs on GitHub (helm).
+- The terminal of `course verify` does not print the blank lines of a heredoc echoed by `tee`, and a count taken in the block (`ls | wc -l`) was wrong twice in the first draft (the folder `templates` is an entry of `ls`, `- main` is an item
+  of a list like the steps),
+  so a count names the pattern it counts, `grep -c '^      - \(uses\|name\)'` (helm).
+- The first run of a course written in one go had seven failing blocks of 70, all from the checks and none from the commands, and the third was green in about four minutes (helm).
+- The course on Helm has no UI in the lab, so it needs no Playwright probe, as for docker (helm).
