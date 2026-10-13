@@ -25,12 +25,12 @@ An object is written as a manifest, a YAML file that `kubectl apply` sends to th
    EOT
    ```
 
-   Field         | Says
-   --------------|------------------------------------------------------------
-   `apiVersion`  | The group and version of the API that defines the kind
-   `kind`        | The kind of object
-   `metadata`    | Its name, in a namespace, and its labels
-   `spec`        | The desired state: here the containers of the Pod
+   Field        | Says
+   -------------|-------------------------------------------------------
+   `apiVersion` | The group and version of the API that defines the kind
+   `kind`       | The kind of object
+   `metadata`   | Its name, in a namespace, and its labels
+   `spec`       | The desired state: here the containers of the Pod
 
 ## Apply
 

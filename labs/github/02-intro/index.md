@@ -37,12 +37,12 @@ The most widely used host of Git repositories.
 
 ## In this lab
 
-Topic         | Where
---------------|------------------------------------------------------
-Repository    | the web interface, `git clone`, `git log`
-REST API      | `wget` on `api.github.com`
-Pull request  | the web interface, `git fetch origin pull/<n>/head`
-Actions       | a workflow file, and the **Actions** tab
+Topic        | Where
+-------------|----------------------------------------------------
+Repository   | the web interface, `git clone`, `git log`
+REST API     | `wget` on `api.github.com`
+Pull request | the web interface, `git fetch origin pull/<n>/head`
+Actions      | a workflow file, and the **Actions** tab
 
 > Everything is read without an account, from public repositories.
 > Writing to GitHub (push, fork, open a pull request) needs an account and a token, and is the next step after this lab.

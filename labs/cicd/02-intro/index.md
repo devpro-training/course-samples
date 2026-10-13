@@ -47,12 +47,12 @@ Every change built, tested and ready to ship, without a human in the loop.
 
 ## In this lab
 
-Step                | What it shows
---------------------|-------------------------------------------------------
-Project             | a small Python app and its unit tests
-Pipeline            | lint, test and package in one script, exit codes
-Server              | a Git server that runs the pipeline on every push, red and green
-Delivery            | one artifact deployed as a release, smoke tested, rolled back
-As code             | the same pipeline as a GitHub Actions workflow, checked offline
+Step     | What it shows
+---------|-----------------------------------------------------------------
+Project  | a small Python app and its unit tests
+Pipeline | lint, test and package in one script, exit codes
+Server   | a Git server that runs the pipeline on every push, red and green
+Delivery | one artifact deployed as a release, smoke tested, rolled back
+As code  | the same pipeline as a GitHub Actions workflow, checked offline
 
 > No account and no network service: the Git server and the pipeline run in the lab.

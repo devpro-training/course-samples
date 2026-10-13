@@ -11,7 +11,7 @@ Every option of this lab is one of Docker Engine, and the same ideas apply to Po
 The lab runs commands that are meant to be dangerous, such as giving a container the control of the machine, so a disposable machine is the right place for them.
 
 System         | Install
----------------|--------------------------------------------------------------------
+---------------|--------------------------------------------------------------------------
 Windows, macOS | [Docker Desktop](https://docs.docker.com/desktop/)
 Debian         | Docker Engine from Docker's apt repository, as in this step
 Ubuntu, Fedora | [docs.docker.com/engine/install](https://docs.docker.com/engine/install/)

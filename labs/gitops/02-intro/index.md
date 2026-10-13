@@ -94,7 +94,8 @@ Git credential                   | One that writes                  | One that o
 
 - **`kubectl apply -k`** applies a Kustomize folder, and `--prune` deletes what a file used to declare.
 
-- **Pruning is alpha**: the Kubernetes documentation says the mode "has existed since kubectl v1.5 but is still in alpha due to usability, correctness and performance issues with its design", and warns that which objects are deleted depends on the flags.
+- **Pruning is alpha**: the Kubernetes documentation says the mode "has existed since kubectl v1.5 but is still in alpha due to usability, correctness and performance issues with its design",
+  and warns that which objects are deleted depends on the flags.
   It recommends `--prune-allowlist` and a selector, which the lab uses, and `kubectl delete` as the explicit way.
 
 - **Only an object that `kubectl apply` created is pruned**: it carries the annotation `kubectl.kubernetes.io/last-applied-configuration`.

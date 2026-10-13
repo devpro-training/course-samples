@@ -10,11 +10,11 @@ The tools are installed in the virtual machine that has just been created for th
 A container is a feature of the Linux kernel, so it needs a Linux machine.
 Windows and macOS run a Linux virtual machine for it, and a tool manages that machine.
 
-System         | Container tool
----------------|------------------------------------------------------------------
-Windows        | WSL 2 with a Linux distribution, [Docker Desktop](https://docs.docker.com/desktop/) or [Podman Desktop](https://podman-desktop.io/)
-macOS          | [Docker Desktop](https://docs.docker.com/desktop/) or [Podman Desktop](https://podman-desktop.io/)
-Linux          | Docker Engine or Podman, from the distribution
+System  | Container tool
+--------|------------------------------------------------------------------------------------------------------------------------------------
+Windows | WSL 2 with a Linux distribution, [Docker Desktop](https://docs.docker.com/desktop/) or [Podman Desktop](https://podman-desktop.io/)
+macOS   | [Docker Desktop](https://docs.docker.com/desktop/) or [Podman Desktop](https://podman-desktop.io/)
+Linux   | Docker Engine or Podman, from the distribution
 
 ## The machine
 

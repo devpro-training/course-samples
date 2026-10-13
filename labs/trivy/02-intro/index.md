@@ -55,14 +55,14 @@ A scanner lists them and compares them with what is publicly known.
 
 ## In this lab
 
-Step      | What it shows
-----------|-----------------------------------------------------------------------
-Setup     | cosign and Trivy, verified: checksum and signature
-Image     | scan an image of a registry, severities, unfixed, an end of life Linux
-Project   | the dependencies of a project, a secret, and a gate on the exit code
-Config    | the misconfigurations of a Dockerfile and a Kubernetes manifest
-SBOM      | generate one, scan it later, and accept a risk with an expiry date
-Pipeline  | a gate in a script, a failing run, a fix, and the install in a workflow
-Compare   | Grype and OSV-Scanner on the same project
+Step     | What it shows
+---------|------------------------------------------------------------------------
+Setup    | cosign and Trivy, verified: checksum and signature
+Image    | scan an image of a registry, severities, unfixed, an end of life Linux
+Project  | the dependencies of a project, a secret, and a gate on the exit code
+Config   | the misconfigurations of a Dockerfile and a Kubernetes manifest
+SBOM     | generate one, scan it later, and accept a risk with an expiry date
+Pipeline | a gate in a script, a failing run, a fix, and the install in a workflow
+Compare  | Grype and OSV-Scanner on the same project
 
 > No account and no container engine: Trivy reads the registry and the files.

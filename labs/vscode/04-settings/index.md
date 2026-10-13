@@ -2,10 +2,10 @@
 
 Every setting has a default, which can be changed at two levels.
 
-Level     | Stored in                    | Applies to
-----------|------------------------------|-----------------------------------------------
-User      | The user profile             | Every folder opened by this user
-Workspace | `.vscode/settings.json`      | The opened folder, for everyone who clones it
+Level     | Stored in               | Applies to
+----------|-------------------------|----------------------------------------------
+User      | The user profile        | Every folder opened by this user
+Workspace | `.vscode/settings.json` | The opened folder, for everyone who clones it
 
 A workspace value wins over a user value.
 A workspace file committed with the project gives the whole team the same formatting rules.

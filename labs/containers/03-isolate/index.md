@@ -41,13 +41,13 @@ Both are done here with the commands of the system, before any container tool.
 
 `unshare` starts a command in new namespaces:
 
-Option       | Namespace | The process gets its own
--------------|-----------|-------------------------------------------
-`--pid`      | PID       | process numbers, so it is process 1
-`--uts`      | UTS       | hostname
-`--net`      | network   | interfaces, which are empty
-`--mount`    | mount     | mounts, so `/proc` can be its own
-`--fork`     |           | starts the command as a child, required by `--pid`
+Option    | Namespace | The process gets its own
+----------|-----------|---------------------------------------------------
+`--pid`   | PID       | process numbers, so it is process 1
+`--uts`   | UTS       | hostname
+`--net`   | network   | interfaces, which are empty
+`--mount` | mount     | mounts, so `/proc` can be its own
+`--fork`  |           | starts the command as a child, required by `--pid`
 
 1. Run the same shell with its own hostname, processes and network:
 

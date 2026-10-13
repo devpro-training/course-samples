@@ -18,7 +18,7 @@ A `Dockerfile` lists the instructions that build an image: a base image, the fil
    ```
 
    Instruction | Does
-   ------------|----------------------------------------------------------------
+   ------------|---------------------------------------------------------------------
    `FROM`      | the base image, pinned to a tag
    `COPY`      | adds files of the build context as a new layer
    `RUN`       | runs a command at build time, and keeps the result as a layer

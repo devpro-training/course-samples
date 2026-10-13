@@ -4,18 +4,18 @@
 
 ## Cheat sheet
 
-Idea                         | Means
------------------------------|------------------------------------------------------------
-Infrastructure as Code       | the environment described in files that are versioned, reviewed and applied
-Imperative                   | the commands to run, in order
-Declarative                  | the final state, the tool finds the steps
-Idempotent                   | running it again gives the same result
-Plan                         | the list of changes, with nothing changed yet
-Apply                        | make the changes of the plan
-State                        | what the tool remembers it manages
-Drift                        | a difference between the code and the environment, made outside the tool
-`trivy config <folder>`      | scan Terraform, Kubernetes, Helm, Dockerfile... before anything exists
-`--exit-code 1`              | fail the job on a finding of the chosen severity
+Idea                    | Means
+------------------------|----------------------------------------------------------------------------
+Infrastructure as Code  | the environment described in files that are versioned, reviewed and applied
+Imperative              | the commands to run, in order
+Declarative             | the final state, the tool finds the steps
+Idempotent              | running it again gives the same result
+Plan                    | the list of changes, with nothing changed yet
+Apply                   | make the changes of the plan
+State                   | what the tool remembers it manages
+Drift                   | a difference between the code and the environment, made outside the tool
+`trivy config <folder>` | scan Terraform, Kubernetes, Helm, Dockerfile... before anything exists
+`--exit-code 1`         | fail the job on a finding of the chosen severity
 
 ---
 

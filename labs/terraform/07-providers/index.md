@@ -101,19 +101,19 @@ The registry lists them in tiers:
 **Official** (owned by HashiCorp), **Partner Premier** and **Partner** (written and maintained by the vendor, which joined the partner program), **Community** (a person or a group) and **Archived** (no longer maintained).
 The Terraform [documentation](https://developer.hashicorp.com/terraform/registry/providers) describes them.
 
-Provider                      | Tier      | What it manages
-------------------------------|-----------|---------------------------------------------------
-`hashicorp/aws`               | Official  | Amazon Web Services
-`hashicorp/azurerm`           | Official  | Microsoft Azure
-`hashicorp/google`            | Official  | Google Cloud
-`hashicorp/kubernetes`        | Official  | the objects of a Kubernetes cluster
-`hashicorp/helm`              | Official  | Helm releases on a cluster
-`integrations/github`         | Partner   | repositories, teams and settings of GitHub
-`cloudflare/cloudflare`       | Partner   | DNS and the services of Cloudflare
-`rancher/rancher2`            | Partner   | Rancher, its clusters and its projects
-`kreuzwerker/docker`          | Community | images and containers of a Docker daemon
-`hashicorp/random`            | Official  | random values, for names and passwords
-`hashicorp/local`             | Official  | files on the disk, used by this lab
+Provider                | Tier      | What it manages
+------------------------|-----------|-------------------------------------------
+`hashicorp/aws`         | Official  | Amazon Web Services
+`hashicorp/azurerm`     | Official  | Microsoft Azure
+`hashicorp/google`      | Official  | Google Cloud
+`hashicorp/kubernetes`  | Official  | the objects of a Kubernetes cluster
+`hashicorp/helm`        | Official  | Helm releases on a cluster
+`integrations/github`   | Partner   | repositories, teams and settings of GitHub
+`cloudflare/cloudflare` | Partner   | DNS and the services of Cloudflare
+`rancher/rancher2`      | Partner   | Rancher, its clusters and its projects
+`kreuzwerker/docker`    | Community | images and containers of a Docker daemon
+`hashicorp/random`      | Official  | random values, for names and passwords
+`hashicorp/local`       | Official  | files on the disk, used by this lab
 
 > The tier is read in the registry (`registry.terraform.io/v1/providers/<namespace>/<type>`), and it can change.
 > A provider is a dependency that holds the credentials of an account: its tier says who maintains it, not that it is safe.

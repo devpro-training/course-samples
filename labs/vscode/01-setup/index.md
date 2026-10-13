@@ -5,7 +5,7 @@
 VS Code is a desktop application, available for Windows, macOS and Linux.
 
 System         | Command
----------------|--------------------------------------------------------------------------
+---------------|-------------------------------------------------------------------------
 Windows        | `winget install --id Microsoft.VisualStudioCode -e`
 macOS          | `brew install --cask visual-studio-code`
 Debian, Ubuntu | `sudo apt install ./<file>.deb`, with the package from the download page

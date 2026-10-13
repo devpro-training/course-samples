@@ -71,18 +71,18 @@ It reads **unit files**, which say what to run and what it depends on.
 
 ## On a machine with systemd
 
-Command                              | Does
--------------------------------------|--------------------------------------------------
-`systemctl daemon-reload`            | Read the unit files again
-`systemctl start hello`              | Start the service now
-`systemctl stop hello`               | Stop it
-`systemctl restart hello`            | Stop it and start it again
-`systemctl status hello`             | Show its state and its last log lines
-`systemctl enable hello`             | Start it at every boot
-`systemctl enable --now hello`       | Enable it and start it
-`systemctl list-units --type=service`| List the services
-`journalctl -u hello`                | Read the log of the service
-`journalctl -u hello -f`             | Follow it
+Command                               | Does
+--------------------------------------|--------------------------------------
+`systemctl daemon-reload`             | Read the unit files again
+`systemctl start hello`               | Start the service now
+`systemctl stop hello`                | Stop it
+`systemctl restart hello`             | Stop it and start it again
+`systemctl status hello`              | Show its state and its last log lines
+`systemctl enable hello`              | Start it at every boot
+`systemctl enable --now hello`        | Enable it and start it
+`systemctl list-units --type=service` | List the services
+`journalctl -u hello`                 | Read the log of the service
+`journalctl -u hello -f`              | Follow it
 
 > [!TIP]
 > A package that ships a service, such as `nginx` or `openssh-server`, starts and enables it when it is installed on a machine with systemd.

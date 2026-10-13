@@ -4,15 +4,15 @@
 
 ## Cheat sheet
 
-Need                    | Command or place
-------------------------|------------------------------------------------------
-Read a repository       | `git clone https://github.com/<owner>/<repo>.git`
-The same, in a page     | `https://github.com/<owner>/<repo>`
-Read it as JSON         | `wget -O - https://api.github.com/repos/<owner>/<repo>`
-Rate limit              | 60 requests per hour and per IP address, `/rate_limit`
-A pull request          | `git fetch origin pull/<n>/head:<branch>`
-A tag's commit          | `git ls-remote --tags <url> <tag>`
-A workflow              | `.github/workflows/<name>.yml`, runs in the **Actions** tab
+Need                | Command or place
+--------------------|------------------------------------------------------------
+Read a repository   | `git clone https://github.com/<owner>/<repo>.git`
+The same, in a page | `https://github.com/<owner>/<repo>`
+Read it as JSON     | `wget -O - https://api.github.com/repos/<owner>/<repo>`
+Rate limit          | 60 requests per hour and per IP address, `/rate_limit`
+A pull request      | `git fetch origin pull/<n>/head:<branch>`
+A tag's commit      | `git ls-remote --tags <url> <tag>`
+A workflow          | `.github/workflows/<name>.yml`, runs in the **Actions** tab
 
 ---
 

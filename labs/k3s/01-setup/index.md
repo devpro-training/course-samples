@@ -11,10 +11,10 @@ A second machine, `agent`, waits for the step that adds a node.
 k3s runs on Linux, as a single binary.
 Windows and macOS run it in a Linux virtual machine, as Docker Desktop does for Docker.
 
-System          | Install
-----------------|--------------------------------------------------------------------
-Linux           | The script of the [quick start](https://docs.k3s.io/quick-start), or the binary of the release, as in this step
-Windows, macOS  | A Linux virtual machine, then the same steps
+System         | Install
+---------------|----------------------------------------------------------------------------------------------------------------
+Linux          | The script of the [quick start](https://docs.k3s.io/quick-start), or the binary of the release, as in this step
+Windows, macOS | A Linux virtual machine, then the same steps
 
 This lab starts with the minor version before the stable channel, so the upgrade step has something to upgrade.
 

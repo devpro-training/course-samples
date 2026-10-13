@@ -5,7 +5,7 @@
 Git is a command line tool, available on every operating system.
 
 System         | Command
----------------|-----------------------------------------------------
+---------------|-------------------------------------------------
 Windows        | `winget install --id Git.Git -e --source winget`
 macOS          | `brew install git`, or `xcode-select --install`
 Debian, Ubuntu | `sudo apt install git`

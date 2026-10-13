@@ -4,19 +4,19 @@
 
 ## Cheat sheet
 
-Command / idea                                  | Means
-------------------------------------------------|------------------------------------------------------------
-`ansible-inventory -i <src> --graph`            | the groups and hosts as Ansible reads them; `--host <name>` the variables of one
-`ansible <pattern> -m <module>`                 | one module on hosts; `web:db` union, `web:&env_prod` intersection, `:!` exclusion
-`ansible-playbook <file>`                       | run a playbook
-`--check --diff`                                | simulate and show the changes, nothing written
-`--limit <group>`, `serial`                     | a smaller run, a few hosts at a time
-`--syntax-check`                                | read the playbook, run nothing
-`ansible-doc -s <module>`                       | the documentation of a module, offline
-`group_vars/<group>.yml`, `host_vars/<host>.yml`| the data, by group and by host
-`ansible-vault encrypt_string`                  | an encrypted value, inline
-`ansible-lint`                                  | the rules of good practice, with profiles
-`notify` and a handler                          | an action that follows a change, once
+Command / idea                                   | Means
+-------------------------------------------------|----------------------------------------------------------------------------------
+`ansible-inventory -i <src> --graph`             | the groups and hosts as Ansible reads them; `--host <name>` the variables of one
+`ansible <pattern> -m <module>`                  | one module on hosts; `web:db` union, `web:&env_prod` intersection, `:!` exclusion
+`ansible-playbook <file>`                        | run a playbook
+`--check --diff`                                 | simulate and show the changes, nothing written
+`--limit <group>`, `serial`                      | a smaller run, a few hosts at a time
+`--syntax-check`                                 | read the playbook, run nothing
+`ansible-doc -s <module>`                        | the documentation of a module, offline
+`group_vars/<group>.yml`, `host_vars/<host>.yml` | the data, by group and by host
+`ansible-vault encrypt_string`                   | an encrypted value, inline
+`ansible-lint`                                   | the rules of good practice, with profiles
+`notify` and a handler                           | an action that follows a change, once
 
 ---
 

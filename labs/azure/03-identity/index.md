@@ -68,7 +68,7 @@ Its identifier is a GUID, and the sign-in service publishes it for any domain th
    ```
 
    Option                | Identity
-   ----------------------|-------------------------------------------------------------
+   ----------------------|---------------------------------------------------------------
    `az login`            | a person, in a browser, with multifactor authentication
    `--use-device-code`   | a person, on a machine with no browser
    `--service-principal` | an application, with a secret or a certificate

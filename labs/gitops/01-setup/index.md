@@ -12,7 +12,7 @@ Any cluster and any Git server do: kind, minikube or a managed service, GitHub, 
 This lab keeps everything in one machine, with no account.
 
 System         | Install
----------------|------------------------------------------------------------------------------------------------
+---------------|---------------------------------------------------------------------------------------------------------------------------------------
 Windows, macOS | [Docker Desktop](https://docs.docker.com/desktop/), then k3d with Homebrew, Chocolatey or Scoop
 Linux          | Docker Engine, as in this step, then the binary of the release, or the install script
 Any            | [k3d installation](https://k3d.io/stable/#installation), [Gitea installation](https://docs.gitea.com/installation/install-from-binary)

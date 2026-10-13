@@ -11,7 +11,7 @@ Docker Engine is the daemon and the command line that run containers, on Linux.
 Windows and macOS run it in a Linux virtual machine, which Docker Desktop manages.
 
 System         | Install
----------------|--------------------------------------------------------------------
+---------------|--------------------------------------------------------------------------
 Windows, macOS | [Docker Desktop](https://docs.docker.com/desktop/)
 Debian         | Docker Engine from Docker's apt repository, as in this step
 Ubuntu, Fedora | [docs.docker.com/engine/install](https://docs.docker.com/engine/install/)

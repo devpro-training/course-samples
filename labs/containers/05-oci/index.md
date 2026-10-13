@@ -113,9 +113,9 @@ Podman is used here, since it needs no daemon, and Docker takes the same command
 An image built by Podman or Docker follows the OCI image specification, so the same image runs with Docker, containerd, CRI-O or Kubernetes.
 Only the tool that runs it changes.
 
-Docker command           | Podman command
--------------------------|-------------------------
-`docker build -t x .`    | `podman build -t x .`
-`docker run --rm x`      | `podman run --rm x`
-`docker ps`              | `podman ps`
-`docker exec c ps`       | `podman exec c ps`
+Docker command        | Podman command
+----------------------|----------------------
+`docker build -t x .` | `podman build -t x .`
+`docker run --rm x`   | `podman run --rm x`
+`docker ps`           | `podman ps`
+`docker exec c ps`    | `podman exec c ps`

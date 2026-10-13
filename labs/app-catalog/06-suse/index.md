@@ -104,12 +104,12 @@ Each document is downloaded by the digest of the image, with no account.
 
 Every pull needs an account, even of a free application, and the [subscriptions](https://docs.apps.rancher.io/get-started/subscriptions) set the limits, per 24 hours:
 
-Subscription | Comes with                         | Content                 | User accounts | Pulls per user | Service accounts | Pulls per service account
--------------|------------------------------------|-------------------------|---------------|----------------|------------------|--------------------------
-Free         | a SUSE Customer Center account     | Free                    | 1             | 100            | 0                | none
-Prime        | SUSE Rancher Prime                 | Free, Prime             | 10            | 200            | 5                | 2000
-Extended     | SUSE Rancher Suite + SUSE AI Suite | Free, Prime, Extended   | 100           | 500            | 10               | 5000
-SUSE AI      | SUSE AI Suite                      | Free, Prime, SUSE AI    | 100           | 500            | 10               | 5000
+Subscription | Comes with                         | Content               | User accounts | Pulls per user | Service accounts | Pulls per service account
+-------------|------------------------------------|-----------------------|---------------|----------------|------------------|--------------------------
+Free         | a SUSE Customer Center account     | Free                  | 1             | 100            | 0                | none
+Prime        | SUSE Rancher Prime                 | Free, Prime           | 10            | 200            | 5                | 2000
+Extended     | SUSE Rancher Suite + SUSE AI Suite | Free, Prime, Extended | 100           | 500            | 10               | 5000
+SUSE AI      | SUSE AI Suite                      | Free, Prime, SUSE AI  | 100           | 500            | 10               | 5000
 
 The Free subscription has one user, 100 pulls a day, and no service account, which is the identity a pipeline or a cluster pulls with.
 A team that runs on it pulls through a mirror of its own, as in the step Mirror, or with a paid subscription.

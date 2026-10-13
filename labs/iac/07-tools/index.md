@@ -60,13 +60,13 @@ Both run in the next courses: here the files are only read, and compared with `i
 
 ## The same workflow
 
-Idea                   | This lab                  | Terraform and OpenTofu          | Ansible
------------------------|---------------------------|---------------------------------|----------------------------
-The code               | `infra.json`              | `*.tf`                          | a playbook
-See the changes        | `reconcile.py plan`       | `terraform plan`                | `ansible-playbook --check --diff`
-Make them              | `reconcile.py apply`      | `terraform apply`               | `ansible-playbook`
-What is remembered     | `.state.json`             | the state file                  | nothing: the host is read
-Drift                  | the plan lists it         | `plan -refresh-only`            | the next run reports `changed`
+Idea               | This lab             | Terraform and OpenTofu | Ansible
+-------------------|----------------------|------------------------|----------------------------------
+The code           | `infra.json`         | `*.tf`                 | a playbook
+See the changes    | `reconcile.py plan`  | `terraform plan`       | `ansible-playbook --check --diff`
+Make them          | `reconcile.py apply` | `terraform apply`      | `ansible-playbook`
+What is remembered | `.state.json`        | the state file         | nothing: the host is read
+Drift              | the plan lists it    | `plan -refresh-only`   | the next run reports `changed`
 
 1. Count the lines of the two files:
 

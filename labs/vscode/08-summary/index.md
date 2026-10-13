@@ -5,7 +5,7 @@
 ## Shortcuts
 
 Shortcut             | Does
----------------------|-------------------------------
+---------------------|-----------------------------
 `F1`, `Ctrl+Shift+P` | Command Palette
 `Ctrl+P`             | Quick Open a file
 `` Ctrl+` ``         | Terminal

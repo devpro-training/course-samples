@@ -51,7 +51,7 @@ It deploys an image and a Helm chart that someone else built, and inherits every
 ## In this lab
 
 Step            | What it shows
-----------------|-----------------------------------------------------------------------------
+----------------|---------------------------------------------------------------------
 Setup           | jq, crane, cosign and Helm, as single binaries
 Discover        | Artifact Hub, and what its badges mean
 Official images | what a Docker Official Image proves, and the MinIO case

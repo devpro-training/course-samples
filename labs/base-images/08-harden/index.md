@@ -18,7 +18,8 @@ Remove what is unused | run the application, record the files it opens, drop the
 
 - Anything absent from the profile is a candidate for removal: a shell, a compiler, a package manager, packages the application never loads.
 
-- **RapidFort** does it as a commercial product, with a runtime profile (a runtime bill of materials) and presets that remove unused packages: all of them, the ones with known vulnerabilities, or the ones with high and critical vulnerabilities.
+- **RapidFort** does it as a commercial product, with a runtime profile (a runtime bill of materials) and presets that remove unused packages:
+  all of them, the ones with known vulnerabilities, or the ones with high and critical vulnerabilities.
 
 - **SlimToolkit** (now named `mint`) is the open source tool of the same idea, a CNCF Sandbox project, with a static analysis and a dynamic one.
   The release tried while writing this course stopped with `client version 1.33 is too old` against Docker 29: check that a tool follows the engine before building on it.
@@ -27,7 +28,8 @@ Remove what is unused | run the application, record the files it opens, drop the
 
 ## The limits
 
-- **Unused is not unneeded**: a path of the application that the profile did not run, a rare error branch or a monthly job, can fail once its file is gone. The quality of the profile is the quality of the result.
+- **Unused is not unneeded**: a path of the application that the profile did not run, a rare error branch or a monthly job, can fail once its file is gone.
+  The quality of the profile is the quality of the result.
 
 - **Removal does not patch**: a vulnerability in a library that the application uses stays.
 

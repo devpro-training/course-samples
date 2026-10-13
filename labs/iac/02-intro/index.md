@@ -55,13 +55,13 @@ Infrastructure as Code is the second way.
 
 ## The tools
 
-Tool           | What it is
----------------|--------------------------------------------------------------
-Terraform      | declarative configuration (HCL) of cloud and on-premises resources: write, plan, apply, with a state file
-OpenTofu       | an open source fork of Terraform, hosted by the Linux Foundation
-Ansible        | automation of remote systems, which "controls their desired state", with playbooks in YAML
-Bicep          | a declarative language for Azure, converted by its CLI to an ARM template
-Pulumi, CDK    | the same idea in a general programming language
+Tool        | What it is
+------------|----------------------------------------------------------------------------------------------------------
+Terraform   | declarative configuration (HCL) of cloud and on-premises resources: write, plan, apply, with a state file
+OpenTofu    | an open source fork of Terraform, hosted by the Linux Foundation
+Ansible     | automation of remote systems, which "controls their desired state", with playbooks in YAML
+Bicep       | a declarative language for Azure, converted by its CLI to an ARM template
+Pulumi, CDK | the same idea in a general programming language
 
 ---
 
@@ -80,15 +80,15 @@ Pulumi, CDK    | the same idea in a general programming language
 
 ## In this lab
 
-Step         | What it shows
--------------|--------------------------------------------------------------
-Setup        | cosign and Trivy, verified
-Imperative   | a script, run twice: an error, a duplicated line, and a success status
-Idempotent   | the same script made safe to repeat, and what it still cannot do
-Declarative  | a file of resources and a small Python tool: plan, apply, state
-Drift        | a change by hand, found by the plan, and a resource removed from the code
-Tools        | the same file in Terraform and Ansible
-Scan         | `trivy config` on a Terraform file, before anything exists
+Step        | What it shows
+------------|--------------------------------------------------------------------------
+Setup       | cosign and Trivy, verified
+Imperative  | a script, run twice: an error, a duplicated line, and a success status
+Idempotent  | the same script made safe to repeat, and what it still cannot do
+Declarative | a file of resources and a small Python tool: plan, apply, state
+Drift       | a change by hand, found by the plan, and a resource removed from the code
+Tools       | the same file in Terraform and Ansible
+Scan        | `trivy config` on a Terraform file, before anything exists
 
 > The environment is a folder of files: no account, no cloud, nothing to pay.
 > The real tools come in the next courses.

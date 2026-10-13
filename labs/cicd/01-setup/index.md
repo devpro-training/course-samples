@@ -5,7 +5,7 @@
 The pipeline of this lab is a shell script, and its server is Git itself, so a workstation needs Git and a Bash shell.
 
 System         | Command
----------------|-----------------------------------------------------
+---------------|--------------------------------------------------------------------------
 Windows        | `winget install --id Git.Git -e --source winget`, which includes Git Bash
 macOS          | `brew install git`, or `xcode-select --install`
 Debian, Ubuntu | `sudo apt install git`

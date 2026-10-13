@@ -5,7 +5,7 @@ Every commit records the name and email of its author, so Git needs both before 
 ## Three levels
 
 Option     | File             | Applies to
------------|------------------|------------------------------------------
+-----------|------------------|-----------------------------------------
 `--system` | `/etc/gitconfig` | Every user of the machine
 `--global` | `~/.gitconfig`   | The current user, in every repository
 `--local`  | `.git/config`    | One repository, the default when writing

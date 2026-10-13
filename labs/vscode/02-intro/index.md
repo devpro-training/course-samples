@@ -38,7 +38,7 @@ The code editor most developers work in.
 ## In this lab
 
 Topic          | What
----------------|-----------------------------------------------------
+---------------|-----------------------------------------------------------------
 Tour           | Workspace Trust, Explorer, Command Palette, Quick Open, terminal
 Settings       | User and workspace settings
 Extensions     | Marketplace, install from the UI and the command line

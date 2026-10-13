@@ -5,7 +5,7 @@
 Playwright needs Node.js, current 22, 24 or 26, on Windows, macOS or Linux.
 
 System         | Command
----------------|-----------------------------------------------
+---------------|------------------------------------------------------------
 Windows        | `winget install OpenJS.NodeJS.LTS`
 macOS          | `brew install node`
 Debian, Ubuntu | the package of [nodejs.org](https://nodejs.org/en/download)

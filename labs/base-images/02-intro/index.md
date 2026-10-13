@@ -22,7 +22,8 @@ The first line of a Dockerfile, `FROM`, decides more than any other.
 
 - **Cost**: a smaller image is pulled faster, by every node, on every deployment.
 
-- **Sovereignty and independence**: the base image is a supply chain. It says who builds the packages, which registry is called by every build, under which licence, and for how long.
+- **Sovereignty and independence**: the base image is a supply chain.
+  It says who builds the packages, which registry is called by every build, under which licence, and for how long.
 
 - **Operations**: a base without a shell is harder to debug, and one with a different libc can break a binary.
 
@@ -43,13 +44,15 @@ Empty              | `scratch`                                   | nothing at al
 
 ## Docker is not mandatory
 
-- A **Dockerfile** is the recipe most tools read, and `docker` the command most people know. Both are a de facto standard.
+- A **Dockerfile** is the recipe most tools read, and `docker` the command most people know.
+  Both are a de facto standard.
 
 - The **OCI** specifications define the image and the runtime, so any compliant tool builds and runs the same images: Podman and Buildah, BuildKit, containerd, CRI-O.
 
 - A **Containerfile** is the same file under a neutral name, read by Podman and Buildah, and by Docker with `-f`.
 
-- Base images are OCI images, usable with any of them. This lab uses Docker Engine since it is the common reference.
+- Base images are OCI images, usable with any of them.
+  This lab uses Docker Engine since it is the common reference.
 
 ---
 

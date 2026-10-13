@@ -50,7 +50,7 @@ Package an application with everything it needs, and run it the same way anywher
 ## In this lab
 
 Step    | What it shows
---------|----------------------------------------------------------------
+--------|------------------------------------------------------------------
 Setup   | Docker Engine from Docker's apt repository
 Run     | `docker run`, ports, logs, `exec`, stop and remove
 Images  | pull, tags, layers, and what a container writes

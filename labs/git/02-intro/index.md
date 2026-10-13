@@ -37,13 +37,13 @@ The version control system behind almost every software project.
 
 ## In this lab
 
-Topic                 | Commands
-----------------------|-------------------------------------------------------------
-Configure             | `git config`
-Create and commit     | `git init`, `git status`, `git add`, `git commit`, `git log`
-Clone                 | `git clone`, `git remote`
-Branch                | `git branch`, `git switch`, `git merge`
-Push and pull         | `git push`, `git pull`
-Stash                 | `git stash`
+Topic             | Commands
+------------------|-------------------------------------------------------------
+Configure         | `git config`
+Create and commit | `git init`, `git status`, `git add`, `git commit`, `git log`
+Clone             | `git clone`, `git remote`
+Branch            | `git branch`, `git switch`, `git merge`
+Push and pull     | `git push`, `git pull`
+Stash             | `git stash`
 
 > All commands run in a Linux terminal, and work the same on Windows and macOS.

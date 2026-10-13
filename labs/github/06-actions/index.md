@@ -24,13 +24,13 @@ The workflow is part of the repository, so it is read like any other file, at th
 
    [Open test.yml](:open:checkout/test.yml)
 
-   Part       | Does
-   -----------|----------------------------------------------------------
-   `name`     | The name displayed in the **Actions** tab
-   `on`       | The events that start a run: `pull_request`, and a `push` to `main` or a `releases/*` branch
-   `jobs`     | The jobs, here `build`, run on the `ubuntu-latest` runner
-   `uses`     | An action: `actions/setup-node@v4`, and `actions/checkout` pinned to a version
-   `run`      | A shell command: `npm ci`, `npm run build`, `npm test`
+   Part   | Does
+   -------|---------------------------------------------------------------------------------------------
+   `name` | The name displayed in the **Actions** tab
+   `on`   | The events that start a run: `pull_request`, and a `push` to `main` or a `releases/*` branch
+   `jobs` | The jobs, here `build`, run on the `ubuntu-latest` runner
+   `uses` | An action: `actions/setup-node@v4`, and `actions/checkout` pinned to a version
+   `run`  | A shell command: `npm ci`, `npm run build`, `npm test`
 
 3. Check that the events and the runner are in the file:
 

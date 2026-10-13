@@ -165,13 +165,13 @@ What differs between the environments is data, kept in `group_vars`, and the gro
 
 ## What is applied
 
-Practice                                         | Where it shows
--------------------------------------------------|------------------------------------------------
-Keep it simple, use the modules, not commands    | `file` and `template`, no `shell`
-Name every play and task, say why                | the names are the lines of the output
-Fully qualified names, an explicit `state`       | `ansible.builtin.file`, `state: directory`
-Describe the state, so a run is idempotent       | `changed=0` on the second run
-Look before changing                             | `--check --diff`, `--syntax-check`
-DRY: one playbook, the data apart                | `group_vars`, a loop, a template
-Group by function, and by environment            | `web`, `db`, `env_prod`, `env_staging`
-Handlers for what follows a change               | the reload only when the file changed
+Practice                                      | Where it shows
+----------------------------------------------|-------------------------------------------
+Keep it simple, use the modules, not commands | `file` and `template`, no `shell`
+Name every play and task, say why             | the names are the lines of the output
+Fully qualified names, an explicit `state`    | `ansible.builtin.file`, `state: directory`
+Describe the state, so a run is idempotent    | `changed=0` on the second run
+Look before changing                          | `--check --diff`, `--syntax-check`
+DRY: one playbook, the data apart             | `group_vars`, a loop, a template
+Group by function, and by environment         | `web`, `db`, `env_prod`, `env_staging`
+Handlers for what follows a change            | the reload only when the file changed

@@ -16,15 +16,15 @@ Both describe themselves in files.
 
    `ID` names the distribution, `ID_LIKE` the ones it derives from, and a script reads them to choose what to do.
 
-   Distribution  | `ID`     | `ID_LIKE`
-   --------------|----------|----------
-   Debian        | `debian` | none
-   Ubuntu        | `ubuntu` | `debian`
-   Fedora        | `fedora` | none
-   RHEL          | `rhel`   | `fedora`
-   SLES          | `sles`   | `suse`
-   Alpine        | `alpine` | none
-   Arch          | `arch`   | none
+   Distribution | `ID`     | `ID_LIKE`
+   -------------|----------|----------
+   Debian       | `debian` | none
+   Ubuntu       | `ubuntu` | `debian`
+   Fedora       | `fedora` | none
+   RHEL         | `rhel`   | `fedora`
+   SLES         | `sles`   | `suse`
+   Alpine       | `alpine` | none
+   Arch         | `arch`   | none
 
    > [!NOTE]
    > The format of the file is described in the [os-release manual](https://www.freedesktop.org/software/systemd/man/latest/os-release.html).

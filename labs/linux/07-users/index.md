@@ -55,11 +55,11 @@ The kernel compares them with the permissions of the file to allow or refuse an 
    ls -l notes.txt
    ```
 
-   Digit | Permission | On a file          | On a folder
-   ------|------------|--------------------|---------------------------
-   4     | `r`        | Read it            | List its content
-   2     | `w`        | Change it          | Create and remove entries
-   1     | `x`        | Run it             | Enter it
+   Digit | Permission | On a file | On a folder
+   ------|------------|-----------|--------------------------
+   4     | `r`        | Read it   | List its content
+   2     | `w`        | Change it | Create and remove entries
+   1     | `x`        | Run it    | Enter it
 
    `640` is `6` (4+2) for the owner, `4` for the group and `0` for others.
 

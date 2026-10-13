@@ -28,11 +28,11 @@ Build and test a C# application with the .NET SDK, from the command line.
 
 ## SDK or runtime
 
-|              | SDK                                                  | Runtime                       |
-| ------------ | ---------------------------------------------------- | ----------------------------- |
-| Used to      | Create, build, test and publish                      | Run an application            |
-| Contains     | Compiler, `dotnet` CLI, templates, **and a runtime** | The runtime and its libraries |
-| Installed on | A developer machine, a build agent                   | A server, a container image   |
+             | SDK                                                  | Runtime
+-------------|------------------------------------------------------|------------------------------
+Used to      | Create, build, test and publish                      | Run an application
+Contains     | Compiler, `dotnet` CLI, templates, **and a runtime** | The runtime and its libraries
+Installed on | A developer machine, a build agent                   | A server, a container image
 
 - The **ASP.NET Core runtime** adds the web libraries to the runtime.
 
@@ -42,11 +42,11 @@ Build and test a C# application with the .NET SDK, from the command line.
 
 ## LTS or STS
 
-| Version | Type | Latest patch | Released   | End of support |
-| ------- | ---- | ------------ | ---------- | -------------- |
-| .NET 10 | LTS  | 10.0.12      | 2025-11-11 | 2028-11-14     |
-| .NET 9  | STS  | 9.0.20       | 2024-11-12 | 2026-11-10     |
-| .NET 8  | LTS  | 8.0.31       | 2023-11-14 | 2026-11-10     |
+Version | Type | Latest patch | Released   | End of support
+--------|------|--------------|------------|---------------
+.NET 10 | LTS  | 10.0.12      | 2025-11-11 | 2028-11-14
+.NET 9  | STS  | 9.0.20       | 2024-11-12 | 2026-11-10
+.NET 8  | LTS  | 8.0.31       | 2023-11-14 | 2026-11-10
 
 - A new major version is released every November, and the quality is the same for both types.
 
@@ -62,10 +62,10 @@ Source: the [.NET support policy](https://dotnet.microsoft.com/platform/support/
 
 ## In this lab
 
-| Topic       | What                                                          |
-| ----------- | ------------------------------------------------------------- |
-| Console app | `dotnet new`, the project files, `dotnet build`, `dotnet run` |
-| NuGet       | `dotnet add package`                                          |
-| Unit test   | An xUnit project, `dotnet test`                               |
-| Web app     | `dotnet new webapp`, Razor Pages                              |
-| Web API     | `dotnet new webapi`, minimal APIs and OpenAPI                 |
+Topic       | What
+------------|--------------------------------------------------------------
+Console app | `dotnet new`, the project files, `dotnet build`, `dotnet run`
+NuGet       | `dotnet add package`
+Unit test   | An xUnit project, `dotnet test`
+Web app     | `dotnet new webapp`, Razor Pages
+Web API     | `dotnet new webapi`, minimal APIs and OpenAPI

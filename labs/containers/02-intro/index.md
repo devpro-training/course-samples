@@ -113,7 +113,8 @@ Vendors, clouds             | `registry.suse.com`, `registry.access.redhat.com`,
 
 - **Docker** made the format popular, and is a standard in practice, but any tool that follows the specifications runs the same images.
 
-- **A Dockerfile** is the recipe most tools read. The generic name is **Containerfile**, and Podman and Buildah read both.
+- **A Dockerfile** is the recipe most tools read.
+  The generic name is **Containerfile**, and Podman and Buildah read both.
 
 Tool               | Role
 -------------------|-----------------------------------------------------------------------

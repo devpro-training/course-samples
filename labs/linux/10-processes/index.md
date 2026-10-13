@@ -13,7 +13,8 @@ The kernel lists them in `/proc`, and `ps` and `top` read it.
    ps -eo pid,ppid,user,comm | head -n 8
    ```
 
-2. `top` shows them live, sorted by the CPU they use. `-b` prints one screen and exits instead of waiting for keys:
+2. `top` shows them live, sorted by the CPU they use.
+   `-b` prints one screen and exits instead of waiting for keys:
 
    <!-- verify: expect="load average" -->
 

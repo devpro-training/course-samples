@@ -137,11 +137,11 @@ As for any pipeline of this series, the logic is in scripts of the repository, a
 
 ## Why not the image or the action
 
-Way                       | What to pin                            | What it adds to trust
---------------------------|----------------------------------------|---------------------------------------------------
-Release binary            | a version and its SHA-256, a signature | one downloaded file, checked before it runs
-Container image           | a digest                               | the image and its registry: Aqua flagged the Docker Hub tags 0.69.5 and 0.69.6 of March 2026
-GitHub Action             | a full commit SHA                      | its code runs in the job: the malicious one read the secrets in the memory of the runner
+Way             | What to pin                            | What it adds to trust
+----------------|----------------------------------------|---------------------------------------------------------------------------------------------
+Release binary  | a version and its SHA-256, a signature | one downloaded file, checked before it runs
+Container image | a digest                               | the image and its registry: Aqua flagged the Docker Hub tags 0.69.5 and 0.69.6 of March 2026
+GitHub Action   | a full commit SHA                      | its code runs in the job: the malicious one read the secrets in the memory of the runner
 
 - A tag, of an image or of an action, is moved by whoever holds the credentials of the repository.
 - A digest or a commit SHA is the content, and a signature says who built it.

@@ -12,7 +12,7 @@ Linux runs on a server, a laptop, a virtual machine, a container or a Raspberry 
 To follow this lab on a workstation, a Debian or an Ubuntu is enough, and the commands are the same.
 
 System         | Linux
----------------|--------------------------------------------------------------------------------
+---------------|-------------------------------------------------------------------------------
 Windows        | WSL: `wsl --install` in an administrator PowerShell installs Ubuntu by default
 macOS          | A virtual machine, or a container: `docker run -it debian:bookworm`
 Debian, Ubuntu | Already there, `sudo` gives the administrator rights used in this lab

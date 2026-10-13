@@ -82,7 +82,7 @@ A **pipe** (`|`) sends the output of a command to the input of the next, and `>`
    ```
 
 Operator | Does
----------|----------------------------------------------
+---------|-------------------------------------------------
 `> f`    | Writes the output to `f`, replacing it
 `>> f`   | Appends the output to `f`
 `2> f`   | Writes the errors to `f`

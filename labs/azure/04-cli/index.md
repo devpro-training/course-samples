@@ -14,15 +14,15 @@ Its commands are a tree of groups, so the tool is explored from the help.
    az --help | grep -E "^ +(account|group|storage|vm|network|role|ad) "
    ```
 
-   Group      | Manages
-   -----------|--------------------------------------------------
-   `account`  | the subscriptions and the sign-in
-   `group`    | resource groups
-   `storage`  | storage accounts and their data
-   `vm`       | virtual machines
-   `network`  | virtual networks and what runs on them
-   `role`     | Azure role assignments, the permissions
-   `ad`       | Microsoft Entra objects, users and applications
+   Group     | Manages
+   ----------|------------------------------------------------
+   `account` | the subscriptions and the sign-in
+   `group`   | resource groups
+   `storage` | storage accounts and their data
+   `vm`      | virtual machines
+   `network` | virtual networks and what runs on them
+   `role`    | Azure role assignments, the permissions
+   `ad`      | Microsoft Entra objects, users and applications
 
 2. The help of a command lists its arguments, the required ones first:
 

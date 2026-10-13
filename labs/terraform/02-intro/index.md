@@ -30,14 +30,14 @@ The description is in files, the changes are listed before they are made, and th
 
 ## The commands
 
-Command                    | What it does
----------------------------|-----------------------------------------------------------
-`terraform init`           | installs the providers and modules, and the backend, and writes the lock file
-`terraform fmt`            | formats the files in the canonical style
-`terraform validate`       | checks the syntax and the consistency, with no API call
-`terraform plan`           | lists the changes: `+` create, `~` update in place, `-` destroy, `-/+` replace
-`terraform apply`          | makes the changes of a plan
-`terraform destroy`        | plans to destroy everything that is managed, and does it
+Command              | What it does
+---------------------|-------------------------------------------------------------------------------
+`terraform init`     | installs the providers and modules, and the backend, and writes the lock file
+`terraform fmt`      | formats the files in the canonical style
+`terraform validate` | checks the syntax and the consistency, with no API call
+`terraform plan`     | lists the changes: `+` create, `~` update in place, `-` destroy, `-/+` replace
+`terraform apply`    | makes the changes of a plan
+`terraform destroy`  | plans to destroy everything that is managed, and does it
 
 ---
 
@@ -57,17 +57,17 @@ Command                    | What it does
 
 ## In this lab
 
-Step         | What it shows
--------------|--------------------------------------------------------------
-Setup        | Terraform, verified with the key and the checksums of HashiCorp
-Workflow     | init, fmt, validate, plan, apply, the lock file, a second apply that changes nothing
-Variables    | inputs, validation, locals, outputs, and a secret that ends up in the state
-State        | the state file, a change by hand, a replace, a destroy
-Modules      | the same code used for two environments
-Providers    | versions, constraints, the lock file, the providers worth knowing
-Backend      | where the state lives, from a local file to the MongoDB backend of devpro
-OpenTofu     | the same files and state with `tofu`
-Checks       | a script that gates the code in a pipeline
+Step      | What it shows
+----------|-------------------------------------------------------------------------------------
+Setup     | Terraform, verified with the key and the checksums of HashiCorp
+Workflow  | init, fmt, validate, plan, apply, the lock file, a second apply that changes nothing
+Variables | inputs, validation, locals, outputs, and a secret that ends up in the state
+State     | the state file, a change by hand, a replace, a destroy
+Modules   | the same code used for two environments
+Providers | versions, constraints, the lock file, the providers worth knowing
+Backend   | where the state lives, from a local file to the MongoDB backend of devpro
+OpenTofu  | the same files and state with `tofu`
+Checks    | a script that gates the code in a pipeline
 
 > The infrastructure is a folder of files, written by the `local` provider: no account, no cloud, nothing to pay.
 > The same commands apply to AWS, Azure, Kubernetes or GitHub, only the provider changes.

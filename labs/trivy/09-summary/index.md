@@ -4,20 +4,20 @@
 
 ## Cheat sheet
 
-Command                                                          | Does
------------------------------------------------------------------|---------------------------------------------
-`trivy image <image>`                                            | scan an image of a registry
-`trivy fs <folder>`                                              | scan a project: dependencies, secrets, configuration
-`trivy config <folder>`                                          | the misconfigurations of Dockerfile, Kubernetes, Terraform...
-`trivy sbom <file>`                                              | scan an SBOM
-`--format cyclonedx --output <file>`                             | write an SBOM
-`--severity HIGH,CRITICAL`                                       | filter by severity
-`--ignore-unfixed`                                               | hide what has no fix yet
-`--exit-code 1`                                                  | fail the job when something is found
-`--scanners vuln,secret,misconfig,license`                       | choose what is looked for
-`.trivyignore` with `<id> exp:<date>`                            | accept a risk until a date
-`trivy version`                                                  | the version and the date of the database
-`cosign verify-blob --bundle <file>.sigstore.json ...`           | verify a release of Trivy
+Command                                                | Does
+-------------------------------------------------------|--------------------------------------------------------------
+`trivy image <image>`                                  | scan an image of a registry
+`trivy fs <folder>`                                    | scan a project: dependencies, secrets, configuration
+`trivy config <folder>`                                | the misconfigurations of Dockerfile, Kubernetes, Terraform...
+`trivy sbom <file>`                                    | scan an SBOM
+`--format cyclonedx --output <file>`                   | write an SBOM
+`--severity HIGH,CRITICAL`                             | filter by severity
+`--ignore-unfixed`                                     | hide what has no fix yet
+`--exit-code 1`                                        | fail the job when something is found
+`--scanners vuln,secret,misconfig,license`             | choose what is looked for
+`.trivyignore` with `<id> exp:<date>`                  | accept a risk until a date
+`trivy version`                                        | the version and the date of the database
+`cosign verify-blob --bundle <file>.sigstore.json ...` | verify a release of Trivy
 
 ---
 

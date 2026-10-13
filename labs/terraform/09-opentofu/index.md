@@ -63,12 +63,12 @@ This step runs the files and the state of the previous steps with `tofu`, and sh
 
 ## Choosing
 
-Question                              | Terraform                      | OpenTofu
---------------------------------------|--------------------------------|--------------------------------
-Command                               | `terraform`                    | `tofu`
-License                               | Business Source License 1.1    | open source, a Linux Foundation project
-Registry of providers and modules     | registry.terraform.io          | registry.opentofu.org
-Configuration, state, providers       | the reference                  | compatible, per its documentation
+Question                          | Terraform                   | OpenTofu
+----------------------------------|-----------------------------|----------------------------------------
+Command                           | `terraform`                 | `tofu`
+License                           | Business Source License 1.1 | open source, a Linux Foundation project
+Registry of providers and modules | registry.terraform.io       | registry.opentofu.org
+Configuration, state, providers   | the reference               | compatible, per its documentation
 
 - **Migrating is a procedure, not a given.**
   The OpenTofu migration guide says: back up the state and the code, install, `tofu init`, `tofu plan` with no unexpected change, then `tofu apply`, and that an apply may update the format of the state file.

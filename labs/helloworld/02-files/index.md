@@ -36,7 +36,8 @@ uname -a
 
 ---
 
-That's it! From here you can:
+That's it!
+From here you can:
 
 - Add more steps by creating new numbered folders
 - Add a `browser` panel in `step.yaml` to show a web preview alongside the terminal

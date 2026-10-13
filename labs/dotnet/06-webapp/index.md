@@ -2,16 +2,16 @@
 
 The same SDK creates every kind of .NET application, with a template per kind.
 
-Template        | Short name  | For
-----------------|-------------|--------------------------------------------
-Console App     | `console`   | A command line tool, as in this lab
-Razor Pages     | `webapp`    | A website with server-rendered pages
-MVC             | `mvc`       | A website with controllers and views
-Blazor Web App  | `blazor`    | A website with C# components instead of JavaScript
-Web API         | `webapi`    | An HTTP API returning JSON
-gRPC Service    | `grpc`      | A service for gRPC
-Class Library   | `classlib`  | Code shared by other projects
-MCP Server App  | `mcpserver` | A server for AI tools
+Template       | Short name  | For
+---------------|-------------|---------------------------------------------------
+Console App    | `console`   | A command line tool, as in this lab
+Razor Pages    | `webapp`    | A website with server-rendered pages
+MVC            | `mvc`       | A website with controllers and views
+Blazor Web App | `blazor`    | A website with C# components instead of JavaScript
+Web API        | `webapi`    | An HTTP API returning JSON
+gRPC Service   | `grpc`      | A service for gRPC
+Class Library  | `classlib`  | Code shared by other projects
+MCP Server App | `mcpserver` | A server for AI tools
 
 `dotnet new list` shows them all, and each one builds, runs and tests with the same commands.
 

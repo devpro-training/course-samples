@@ -84,14 +84,14 @@ On Debian and Ubuntu, `dpkg` handles the `.deb` files on the machine, and `apt` 
 
 Each family has its own tool, and does the same things:
 
-Task               | Debian, Ubuntu    | Fedora, RHEL      | openSUSE, SLES      | Alpine            | Arch
--------------------|-------------------|-------------------|---------------------|-------------------|------------------
-Refresh the index  | `apt update`      | `dnf makecache`   | `zypper refresh`    | `apk update`      | `pacman -Sy`
-Install            | `apt install x`   | `dnf install x`   | `zypper install x`  | `apk add x`       | `pacman -S x`
-Remove             | `apt remove x`    | `dnf remove x`    | `zypper remove x`   | `apk del x`       | `pacman -R x`
-Search             | `apt search x`    | `dnf search x`    | `zypper search x`   | `apk search x`    | `pacman -Ss x`
-Update all         | `apt upgrade`     | `dnf upgrade`     | `zypper update`     | `apk upgrade`     | `pacman -Syu`
-Which package owns | `dpkg -S file`    | `rpm -qf file`    | `rpm -qf file`      | `apk info -W file`| `pacman -Qo file`
+Task               | Debian, Ubuntu  | Fedora, RHEL    | openSUSE, SLES     | Alpine             | Arch
+-------------------|-----------------|-----------------|--------------------|--------------------|------------------
+Refresh the index  | `apt update`    | `dnf makecache` | `zypper refresh`   | `apk update`       | `pacman -Sy`
+Install            | `apt install x` | `dnf install x` | `zypper install x` | `apk add x`        | `pacman -S x`
+Remove             | `apt remove x`  | `dnf remove x`  | `zypper remove x`  | `apk del x`        | `pacman -R x`
+Search             | `apt search x`  | `dnf search x`  | `zypper search x`  | `apk search x`     | `pacman -Ss x`
+Update all         | `apt upgrade`   | `dnf upgrade`   | `zypper update`    | `apk upgrade`      | `pacman -Syu`
+Which package owns | `dpkg -S file`  | `rpm -qf file`  | `rpm -qf file`     | `apk info -W file` | `pacman -Qo file`
 
 > [!NOTE]
 > Installing, removing and updating need `root`, which is why a user goes through `sudo`.

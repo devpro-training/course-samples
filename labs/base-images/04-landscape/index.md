@@ -10,7 +10,8 @@ The same question for every base image: who builds it, who patches it, and what 
 
 - **Sovereignty**: the base image decides whose registry is pulled at every build, whose pipeline builds the packages, and whose decisions the product follows.
 
-- **Independence**: an image built on a vendor's catalog is bound to the vendor's terms, price and lifetime. Starting free and being unable to leave is the cost to look at first.
+- **Independence**: an image built on a vendor's catalog is bound to the vendor's terms, price and lifetime.
+  Starting free and being unable to leave is the cost to look at first.
 
 - **Continuity**: the lifetime of the support, 5 years, 10 years or until the next release, is a property of the base image, and the application inherits it.
 
@@ -63,7 +64,8 @@ Canonical, chiselled Ubuntu                                            | The ima
 
 - **A free tier is a marketing choice**: Chainguard's free images are `latest` only, so a build cannot be pinned to a version, and a pinned digest receives no updates, which the vendor says itself.
 
-- **"Near zero CVEs" is a claim about a scanner at a date**: it depends on the scanner, its database, and what is counted. Ask for the method, and measure with the scanner the team uses.
+- **"Near zero CVEs" is a claim about a scanner at a date**: it depends on the scanner, its database, and what is counted.
+  Ask for the method, and measure with the scanner the team uses.
 
 - **A hardened image from a vendor is still a vendor's image**: check the licence, the registry that serves it, what happens to a pinned image if the contract stops, and whether the build can be reproduced elsewhere.
 

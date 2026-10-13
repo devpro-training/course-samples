@@ -5,7 +5,7 @@
 ## Cheat sheet
 
 Command                         | Does
---------------------------------|--------------------------------------------
+--------------------------------|---------------------------------------------
 `uname -a`, `/etc/os-release`   | The kernel, the distribution
 `pwd`, `ls -la`, `cd`           | Where, what, move
 `mkdir -p`, `cp`, `mv`, `rm -r` | Create, copy, move, remove

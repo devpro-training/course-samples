@@ -4,20 +4,20 @@
 
 ## Cheat sheet
 
-Command / idea                       | Means
--------------------------------------|------------------------------------------------------------
-`terraform init`                     | install providers and modules, configure the backend, write the lock file
-`terraform fmt`, `validate`          | format, and check without any API call
-`terraform plan`                     | the changes, nothing done: `+` create, `~` update, `-` destroy, `-/+` replace
-`terraform apply`                    | make the changes; `-auto-approve` for a script
-`terraform plan -refresh-only`       | report drift only
-`terraform plan -detailed-exitcode`  | 0 no change, 1 error, 2 changes
-`-replace=<address>`                 | destroy and create one resource again
-`terraform state list`, `show`       | what is managed
-`variable`, `local`, `output`        | an input, a computed value, a result
-`module`                             | a folder of resources, called with inputs
-`.terraform.lock.hcl`                | the provider versions and checksums, committed
-`tofu`                               | the OpenTofu command, same files and state
+Command / idea                      | Means
+------------------------------------|------------------------------------------------------------------------------
+`terraform init`                    | install providers and modules, configure the backend, write the lock file
+`terraform fmt`, `validate`         | format, and check without any API call
+`terraform plan`                    | the changes, nothing done: `+` create, `~` update, `-` destroy, `-/+` replace
+`terraform apply`                   | make the changes; `-auto-approve` for a script
+`terraform plan -refresh-only`      | report drift only
+`terraform plan -detailed-exitcode` | 0 no change, 1 error, 2 changes
+`-replace=<address>`                | destroy and create one resource again
+`terraform state list`, `show`      | what is managed
+`variable`, `local`, `output`       | an input, a computed value, a result
+`module`                            | a folder of resources, called with inputs
+`.terraform.lock.hcl`               | the provider versions and checksums, committed
+`tofu`                              | the OpenTofu command, same files and state
 
 ---
 

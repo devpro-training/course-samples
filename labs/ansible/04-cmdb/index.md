@@ -159,11 +159,11 @@ The documentation recommends inventory plugins over scripts.
 A plugin is a file with a `plugin:` key, and Ansible calls the code of a collection.
 The collections are installed with `ansible-galaxy collection install`, and the files below are only read here, since they need a server and credentials.
 
-Source          | Plugin                         | Credentials
-----------------|--------------------------------|-------------------------------------------
-NetBox          | `netbox.netbox.nb_inventory`   | `api_endpoint`, and a token or `NETBOX_TOKEN`
-ServiceNow CMDB | `servicenow.itsm.now`          | `SN_HOST`, `SN_USERNAME`, `SN_PASSWORD`
-Azure           | `azure.azcollection.azure_rm`  | the next course
+Source          | Plugin                        | Credentials
+----------------|-------------------------------|----------------------------------------------
+NetBox          | `netbox.netbox.nb_inventory`  | `api_endpoint`, and a token or `NETBOX_TOKEN`
+ServiceNow CMDB | `servicenow.itsm.now`         | `SN_HOST`, `SN_USERNAME`, `SN_PASSWORD`
+Azure           | `azure.azcollection.azure_rm` | the next course
 
 ```yaml
 # netbox.yml: the hosts of NetBox, grouped by site and role
@@ -183,11 +183,11 @@ plugin: servicenow.itsm.now
 
 ## Choosing
 
-Source                  | Use it when                                  | The limit
-------------------------|----------------------------------------------|----------------------------------------
-A static file           | a few stable machines                        | a copy: it drifts from what exists
-A plugin                | the source has an API with a plugin          | a collection and a credential to maintain
-A script                | no plugin exists for the source              | the code is the team's to maintain
+Source        | Use it when                         | The limit
+--------------|-------------------------------------|------------------------------------------
+A static file | a few stable machines               | a copy: it drifts from what exists
+A plugin      | the source has an API with a plugin | a collection and a credential to maintain
+A script      | no plugin exists for the source     | the code is the team's to maintain
 
 - The inventory is only as right as the CMDB: a wrong role or a missing record is a wrong or missed host.
 - Ansible reads the CMDB and does not write it, so the record stays the owner's.
