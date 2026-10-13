@@ -1,0 +1,4 @@
+title: A cluster as a file
+layout:
+  - type: terminal
+    target: docker

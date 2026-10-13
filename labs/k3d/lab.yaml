@@ -1,0 +1,42 @@
+title: "k3d"
+description: "k3d, a small Kubernetes cluster in Docker for developers: nodes as containers, ingress and ports, storage, a local registry, a config file."
+duration: 30
+tags:
+  - kubernetes
+  - k3d
+  - docker
+  - beginner
+sidebarWidth: 620
+backend: container
+# Every version and URL of the course, delivered to each host's environment, so a step refers to one by name.
+env:
+  # https://docs.docker.com/engine/install/debian/
+  DOCKER_APT_URL: https://download.docker.com/linux/debian
+  # The fingerprint of the key that signs the packages, from the same page.
+  DOCKER_GPG_FINGERPRINT: 9DC858229FC7DD38854AE2D88D81803C0EBFCD88
+  # Output of apt-cache madison docker-ce, for Debian 12 (bookworm).
+  DOCKER_VERSION: 5:29.8.2-1~debian.12~bookworm
+  # https://github.com/k3d-io/k3d/releases
+  # Not K3D_*, which k3d itself reads as options of its own.
+  K3DCLI_VERSION: v5.9.0
+  K3DCLI_URL: https://github.com/k3d-io/k3d/releases/download
+  # https://kubernetes.io/releases/download/, the minor version of the cluster below.
+  KUBECTL_VERSION: v1.36.5
+  KUBECTL_URL: https://dl.k8s.io/release
+  # https://hub.docker.com/r/rancher/k3s/tags, the stable channel of https://update.k3s.io/v1-release/channels
+  # The image tag writes the + of the k3s version as a -.
+  NODE_IMAGE: rancher/k3s:v1.36.5-k3s1
+  # https://hub.docker.com/_/nginx
+  NGINX_IMAGE: nginx:1.30-alpine
+  # https://hub.docker.com/_/busybox
+  BUSYBOX_IMAGE: busybox:1.37
+hosts:
+  # The lab itself, which only serves the course.
+  - name: control
+  # k3d runs the nodes of the cluster as Docker containers, which need a kernel, root and cgroups, so everything runs in a virtual machine of its own.
+  # The disk holds Docker Engine and the images of the nodes, the load balancer and the registry.
+  - name: docker
+    runtime: vm
+    cores: 2
+    memory: 3072
+    disk: 10240

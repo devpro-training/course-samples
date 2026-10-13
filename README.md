@@ -5,7 +5,7 @@ Short IT courses, each a [sidelab](https://www.npmjs.com/package/sidelab-cli) la
 ## Courses
 
 Course                                                   | Topic
----------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 [Git](labs/git)                                          | Install, configure, commit, clone, branch, push, pull, stash
 [VS Code](labs/vscode)                                   | Workspace Trust, commands, settings, extensions, source control, debugging
 [.NET](labs/dotnet)                                      | SDK and runtime, LTS and STS, console app, NuGet, xUnit tests, web app, web API
@@ -26,6 +26,7 @@ Course                                                   | Topic
 [Azure](labs/azure)                                      | Microsoft's cloud with no account: tenant, subscription and resource group, Microsoft Entra and Azure Resource Manager (ARM), the portal, the CLI, Bicep and Terraform as clients of one API, regions and public prices, a storage emulator (Azurite)
 [Kubernetes](labs/kubernetes)                            | History (Borg, Go, the CNCF), why orchestrate, cloud native patterns, what a cluster and a distribution are, managed or not, then a k3s cluster: nodes, Pods, Deployments, Services, ConfigMaps and Secrets, and the SQLite datastore
 [k3s](labs/k3s)                                          | k3s itself: history and governance (Rancher, SUSE, CNCF), SQLite behind Kine, the install script and the binary, bundled components and how to disable them, the CIS hardening guide measured with kube-bench, an upgrade, a second node, a clean removal
+[k3d](labs/k3d)                                          | k3s in Docker for developers on any system: nodes as containers, the load balancer and published ports, an Ingress, `LoadBalancer` Services and `host.k3d.internal`, `local-path` storage and what survives a stop or a delete, a local registry and `image import`, a config file, several clusters
 
 ## Contributing
 

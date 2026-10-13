@@ -1,0 +1,4 @@
+title: A local registry
+layout:
+  - type: terminal
+    target: docker

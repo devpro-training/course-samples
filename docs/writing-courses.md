@@ -89,6 +89,8 @@ hosts:
 - The editor panel shows the files of the lab container only, so the files of the course are written by a command that shows their content.
 - Docker Engine is installed by `labs/shared/setup-docker.md`, which a course includes after its own "On a workstation" section, and which needs the `DOCKER_*` variables under `env:` (docker, base-images).
 - k3s is installed by `labs/shared/setup-k3s.md`, which needs `K3S_VERSION` and `K3S_RELEASE_URL` under `env:`, and a machine of 3072 MiB (a k3s server asks for 2 cores and 2 GiB at least) (kubernetes, k3s).
+- k3d and kubectl are installed by `labs/shared/setup-k3d.md` and `labs/shared/setup-kubectl.md`, included after `setup-docker.md`, whose blocks target a host named `docker`:
+  they need `K3DCLI_VERSION`, `K3DCLI_URL`, `KUBECTL_VERSION` and `KUBECTL_URL` under `env:`, and the course adds the image of its nodes (`NODE_IMAGE`) and a disk of 10240 MiB (k3d).
 - Several `runtime: vm` hosts of a course reach each other by their names (`https://kube:6443` from the host `agent`), and each has its own terminal, which a step shows with one `terminal` panel per `target` (k3s).
 - Kubernetes, Podman and any other iptables user need the guest kernel of sidelab built from `scripts/firecracker_kernel.fragment` (`vmlinux-sidelab-<version>.bin`, `task setup:firecracker:bin`), and `FIRECRACKER_KERNEL` pointing at it:
   the CI kernel has no `xt_comment`, `xt_mark`, `multiport`, `statistic` or `recent` (kubernetes).
@@ -121,6 +123,9 @@ Its script and its signature are downloaded and verified in a visible step.
   `git commit -m` avoids the editor, `PAGER=less` exits on output shorter than the screen.
 - A server the lab starts runs in the background with `nohup ... &`, and the block waits until it answers, with `wget --retry-connrefused`.
   It is stopped with `pkill -f "<command line>"`, not with a pid file.
+- A block that waits is a bounded `for` loop, not an `until` loop, and it ends by printing the state it waited for:
+  a loop that never ends holds the terminal, the next blocks are typed into it, and the whole run fails after a timeout that hides the first cause (k3d).
+- A command that talks to a node, `kubectl exec` right after a restart for instance, runs with `timeout 20`, so one stuck attempt does not use the whole loop (k3d).
 - A Markdown table has no pipe at the start or the end of a row.
 
 ## Web applications
@@ -515,3 +520,30 @@ google-chrome --headless=new --screenshot=diagram.png --window-size=1040,430 "fi
 - The k3s documentation says an SQLite cluster is converted to embedded etcd by restarting its server with `--cluster-init`, and the README says k3s removes only the in-tree storage drivers and cloud provider,
   with well under 1000 lines of patches: both were first written from memory in the slides, and one was wrong (k3s).
 - The courses of this series with a terminal and no web UI need no Playwright probe, as for docker (k3s).
+- k3d needs only Docker, and `kubectl` is a binary of its own: `dl.k8s.io/release/<version>/bin/linux/amd64/kubectl` comes with a `.sha256` file that holds the hash alone, so the check is `echo "$(cat kubectl.sha256)  kubectl" | sha256sum --check` (k3d).
+- The `checksums.txt` of a k3d release names its files `_dist/k3d-linux-amd64`, so `grep " _dist/k3d-linux-amd64$" checksums.txt | sed "s# _dist/# #" | sha256sum --check` checks the download (k3d).
+- k3d reads `K3D_*` environment variables as options of its own, so the course names its variables `K3DCLI_VERSION` and `K3DCLI_URL`, and `k3d version` prints the k3s version k3d uses when none is given (v1.35.5-k3s1 for k3d v5.9.0),
+  so the course pins the image of the nodes, `rancher/k3s:v1.36.5-k3s1`, where the tag writes the `+` of the k3s version as a `-` (k3d).
+- A k3d cluster of one server is ready in 15 to 25 seconds in the lab machine once the images are pulled, an idle server uses about 750 MiB and its load balancer 6 to 20 MiB, and the node containers run privileged (`HostConfig.Privileged` is `true`) (k3d).
+- The load balancer of k3d is an nginx in `stream` mode, `/etc/nginx/nginx.conf` lists one `upstream` per port with the server nodes only, and `docker port k3d-dev-serverlb` shows the published ports: `--port "8080:80@loadbalancer"` is enough for an Ingress to answer on the machine (k3d).
+- A second `LoadBalancer` Service on the port 80 got an address when it was created seconds after the cluster, before the ServiceLB Pod of Traefik held the port, and a Pod `Pending` with "didn't have free ports" later:
+  the result depends on the order, so the course uses the port 8000 and quotes the documentation of k3s for the rest (k3d).
+- The external address of a `LoadBalancer` Service is the one of the node container, which answers from a Linux machine, and the Docker documentation says the `bridge` network is not reachable from the host on Docker Desktop,
+  so the portable way is `k3d cluster edit <cluster> --port-add "8081:8000@loadbalancer"`, which replaces the load balancer container (k3d).
+- `host.k3d.internal` is the gateway of the Docker network and is added to the DNS of the cluster, and CoreDNS answered it only a few minutes after the creation in one probe, so the step waits with `kubectl exec <pod> -- nslookup host.k3d.internal.`,
+  the final dot being what makes busybox `nslookup` skip the search domains (k3d).
+- The folder of a `local-path` volume is in the node container, on its Docker volume at `/var/lib/rancher/k3s`, and the volume of the PV is tied to that node by `nodeAffinity`: it survives a deleted Pod and a stop, and `k3d cluster delete` removes the volumes (`volumes left: 0`),
+  where `--volume "${HOME}/lab/storage/keep:/var/lib/rancher/k3s/storage@all"` leaves the files on the machine (k3d).
+- `k3d cluster stop` runs `kubectl drain "$HOSTNAME" --force --delete-emptydir-data --ignore-daemonsets --disable-eviction` in the entrypoint of each server (`/bin/k3d-entrypoint.sh`), which deletes the Pods that no controller owns:
+  a bare Pod on the server was gone after the restart, and it survived in a probe only because the scheduler had put it on an agent, which is not drained. A step that stops a cluster uses a Deployment (k3d).
+- A probe on the host kernel passed what the lab machine failed, since the placement of a Pod differed, so the machine of `course verify` is the test, and a temporary course in the repository that prints the state (`--show-output`) finds the cause (k3d).
+- `k3d registry create registry.localhost --port 5000` starts the container `k3d-registry.localhost` from `registry:2`, the machine pushes to `127.0.0.1:5000`, which Docker accepts without TLS, a manifest uses `k3d-registry.localhost:5000`,
+  `--registry-use` writes `/etc/rancher/k3s/registries.yaml` in the nodes and the name in CoreDNS, and `k3d registry delete` prints nothing, so the check counts the containers left (k3d).
+- `k3d image import` of an image built on the machine works, and with Docker 29 an image that was pulled, `busybox:1.37`, ends with `ERRO ... failed to import images in node` followed by `ctr: content digest sha256:...: not found`, then "Successfully imported image(s)":
+  the check names `content digest`, since the words `not found` are on the second line and also in the command (k3d).
+- An image imported under a new name after a Pod pulled the same content from the registry stayed in `ErrImageNeverPull` with a pull policy of `Never`, although `crictl images` lists it, and an image with new content imports and runs, so the step imports a second build (k3d).
+- The k3d documentation page has a footer of 2020-2023 and its install example pins v5.0.0, so the version, the date (2 June 2026) and the assets come from the release page, and the licence (MIT) from the repository;
+  kind and minikube are quoted with their own sentences (k3d).
+- The two first runs of this course went past ten minutes, which the tool that runs the command moves to the background, because blocks failed on their timeouts of 300 seconds and the next ones waited behind them:
+  a run that is much longer than the previous courses (k3s, 67 blocks and two machines, about three minutes) is a loop waiting for something that never happens, so the first failure is read before anything is rerun (k3d).
+- A course on a command line tool in Docker, with no web UI, needs no Playwright probe, as for docker (k3d).
