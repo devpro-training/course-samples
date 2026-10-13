@@ -1,0 +1,4 @@
+title: Push to the cluster
+layout:
+  - type: terminal
+    target: docker

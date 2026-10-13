@@ -1,0 +1,4 @@
+title: Pull and reconcile
+layout:
+  - type: terminal
+    target: docker

@@ -92,6 +92,8 @@ hosts:
 - k3d and kubectl are installed by `labs/shared/setup-k3d.md` and `labs/shared/setup-kubectl.md`, included after `setup-docker.md`, whose blocks target a host named `docker`:
   they need `K3DCLI_VERSION`, `K3DCLI_URL`, `KUBECTL_VERSION` and `KUBECTL_URL` under `env:`, and the course adds the image of its nodes (`NODE_IMAGE`) and a disk of 10240 MiB (k3d).
 - A course on routing needs no more than k3d and kubectl, and k3s's own Traefik: `labs/shared/setup-k3d.md` and `setup-kubectl.md` after `setup-docker.md`, and the names of the lab mapped to `127.0.0.1` in `/etc/hosts` of the machine (ingress-controller).
+- Gitea is installed by `labs/shared/setup-gitea.md`, after `setup-docker.md`: Git from apt, the release binary checked with GPG, a `git` system user, an `app.ini` and an admin account,
+  with `GITEA_*` and `GIT_USER_*` variables under `env:` (gitops).
 - Several `runtime: vm` hosts of a course reach each other by their names (`https://kube:6443` from the host `agent`), and each has its own terminal, which a step shows with one `terminal` panel per `target` (k3s).
 - Kubernetes, Podman and any other iptables user need the guest kernel of sidelab built from `scripts/firecracker_kernel.fragment` (`vmlinux-sidelab-<version>.bin`, `task setup:firecracker:bin`), and `FIRECRACKER_KERNEL` pointing at it:
   the CI kernel has no `xt_comment`, `xt_mark`, `multiport`, `statistic` or `recent` (kubernetes).
@@ -565,3 +567,22 @@ google-chrome --headless=new --screenshot=diagram.png --window-size=1040,430 "fi
 - `ingress-nginx` was retired in March 2026 (announced 11 November 2025), so the course teaches the controller k3s ships and the Gateway API, and the slides date the retirement from the Kubernetes blog (ingress-controller).
 - A course on exposure names the tools that publish a local cluster, ngrok and cloudflared, in the slides only, with what their own pages state, since both need an account the lab has not (ingress-controller).
 - The course on a topic with a web UI of its own would need a Playwright probe: this one has none, the controller has no UI in the lab, so it needs none, as for docker (ingress-controller).
+- A GitOps course teaches the loop before the tools: Gitea as the Git server and a reconciliation script of a dozen lines, read by the learner, so Argo CD and Flux, in the next courses, are that loop with more care (gitops).
+- `adduser --system --group --disabled-password` and `runuser -u git --` run Gitea as a user that is not `root`, which it refuses to be, from a folder that user can read:
+  `runuser` keeps the current folder, `/root/lab` made Gitea exit at once with no message in the terminal, and a probe from `/tmp` in a container missed it, so the `cd` is its own line (gitops).
+- Gitea writes its secrets into `app.ini` at the first start, so the file is `root:git` with mode 660 (the documentation says 770 for `/etc/gitea` during the installation), and `INSTALL_LOCK = true` skips the web installer,
+  after which `gitea admin user create` makes the administrator (gitops).
+- Gitea's signing key is checked with `gpg --show-keys --with-colons | grep -q "fpr:::::::::<fingerprint>:"` after downloading it from `keys.openpgp.org/vks/v1/by-fingerprint/<fingerprint>`, then `gpg --verify` of the `.asc`,
+  which prints "Good signature" and a warning that the key is not certified (gitops).
+- Gitea's `/api/v1/repos/<owner>/<repo>/commits` answered `409` right after the first push to a repository created empty, so a step asks the server with `git ls-remote origin` (gitops).
+- `git config credential.helper store` saves the credentials of any URL that worked, so a clone with `http://user:<token>@host/...` replaced the account of the lab and the next push answered `403`:
+  the reconciler runs `git -c credential.helper=` (gitops).
+- A Gitea token is made with `POST /api/v1/users/<user>/tokens` and `{"name":..., "scopes":["read:repository"]}`, the answer carries it as `sha1`, it reads (`200`) and cannot write (`403`), which shows the least privilege of a pull reconciler (gitops).
+- `kubectl apply -k <folder> --prune --selector <label>` without `--prune-allowlist` warns that pruning of non namespaced resources is deprecated: the Kubernetes documentation calls allowlist pruning alpha and strongly encourages the allowlist and a selector,
+  so the loop lists `core/v1/Service`, `core/v1/ConfigMap` and `apps/v1/Deployment`, and a Namespace is never pruned (gitops).
+- A deployment is read in a loop that ends with the value it waited for (`for ...; do [ "$(...)" = 2 ] && break; sleep 2; done; echo "replicas in the cluster: $(...)"`), and the reconciler of a step runs with `nohup bash -c 'while true; ...'` and stops with `pkill -f "^bash -c while true"` (gitops).
+- The linter refused `expect="new branch"`, `Remove the password` and `cluster-admin`, all in the command: a check names `shop-v2 -> shop-v2` (what `git push` prints), `commits: 2` (a count) and `yes` (what `kubectl auth can-i` prints) (gitops).
+- The talks of the author were the outline (push and pull, principles, environment strategies, secrets, tools, the levels of a journey), and the official pages checked each date: Argo CD joined the CNCF on 26 March 2020 and graduated on 6 December 2022,
+  Flux was accepted on 15 July 2019 and graduated on 30 November 2022, and the origin of the word GitOps is credited to Weaveworks by the press only, so the slide says so (gitops).
+- The pages of Argo CD, Flux and Fleet do not use the words "pull model", so the slides say what each page states, and the pull is the lab's demonstration (gitops).
+- The course on GitOps has no UI in the lab: Gitea runs in the machine, which the editor and the browser panels do not reach, so everything is the terminal and the API, and no Playwright probe is needed, as for docker (gitops).
