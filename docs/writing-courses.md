@@ -91,6 +91,7 @@ hosts:
 - k3s is installed by `labs/shared/setup-k3s.md`, which needs `K3S_VERSION` and `K3S_RELEASE_URL` under `env:`, and a machine of 3072 MiB (a k3s server asks for 2 cores and 2 GiB at least) (kubernetes, k3s).
 - k3d and kubectl are installed by `labs/shared/setup-k3d.md` and `labs/shared/setup-kubectl.md`, included after `setup-docker.md`, whose blocks target a host named `docker`:
   they need `K3DCLI_VERSION`, `K3DCLI_URL`, `KUBECTL_VERSION` and `KUBECTL_URL` under `env:`, and the course adds the image of its nodes (`NODE_IMAGE`) and a disk of 10240 MiB (k3d).
+- A course on routing needs no more than k3d and kubectl, and k3s's own Traefik: `labs/shared/setup-k3d.md` and `setup-kubectl.md` after `setup-docker.md`, and the names of the lab mapped to `127.0.0.1` in `/etc/hosts` of the machine (ingress-controller).
 - Several `runtime: vm` hosts of a course reach each other by their names (`https://kube:6443` from the host `agent`), and each has its own terminal, which a step shows with one `terminal` panel per `target` (k3s).
 - Kubernetes, Podman and any other iptables user need the guest kernel of sidelab built from `scripts/firecracker_kernel.fragment` (`vmlinux-sidelab-<version>.bin`, `task setup:firecracker:bin`), and `FIRECRACKER_KERNEL` pointing at it:
   the CI kernel has no `xt_comment`, `xt_mark`, `multiport`, `statistic` or `recent` (kubernetes).
@@ -547,3 +548,20 @@ google-chrome --headless=new --screenshot=diagram.png --window-size=1040,430 "fi
 - The two first runs of this course went past ten minutes, which the tool that runs the command moves to the background, because blocks failed on their timeouts of 300 seconds and the next ones waited behind them:
   a run that is much longer than the previous courses (k3s, 67 blocks and two machines, about three minutes) is a loop waiting for something that never happens, so the first failure is read before anything is rerun (k3d).
 - A course on a command line tool in Docker, with no web UI, needs no Playwright probe, as for docker (k3d).
+- A cluster cannot be probed in a privileged lab-image container with Docker inside: k3s stops with `failed to find memory cgroup (v2)`, and `k3d cluster create` then waits until the tool moves it to the background,
+  so the machine of `course verify` is the only test, and it is used from the first draft: a course written in stages, run each time with `--show-output` and `timeout 540`, was green in four runs of about three minutes (ingress-controller).
+- `*.example.test` names, with one line in `/etc/hosts` of the machine, give the course real names, real TLS verification and no `Host` header typed by hand, and `.test` is reserved for tests so no DNS ever knows it (ingress-controller).
+- k3s installs Traefik v3, its CRDs and the Gateway API definitions (v1.6.1 with k3s v1.36.5) with the chart, so `kubectl apply --server-side` of the release's `standard-install.yaml` fails with a conflict with `helm`:
+  the course reads the `bundle-version` annotation of the CRD instead (ingress-controller).
+- With the `HelmChartConfig` `traefik` setting `providers.kubernetesGateway.enabled: true`, the `GatewayClass` `traefik` (controller `traefik.io/gateway-controller`) appears within a minute, and a `Gateway` listener uses the port of the entry point in the Pod,
+  8000 for `web` and 8443 for `websecure`, not 80 and 443 (ingress-controller).
+- An Ingress with a `tls` section answers plain HTTP too in Traefik, and wins against a redirect Ingress on the same host: `traefik.ingress.kubernetes.io/router.entrypoints: websecure` on the first, `web` and a `redirectScheme` middleware on the second (ingress-controller).
+- Traefik answers `404 page not found` for a host no rule has, and `wget` exits with 8 and hides the body unless `--content-on-error` is given, so the block is `{ wget --content-on-error ... || true; }` (ingress-controller).
+- The linter refuses an `expect` text that is in the command, so a count is printed by `echo "answering Pods: $(...)"` and checked as `answering Pods: 3`: the command holds the label and the substitution, never the value (ingress-controller).
+- A `for` loop that waits for an apply to succeed hides the `created` lines of the successful attempt when its output is discarded, so the block ends with a `kubectl get` and its column header is the check (`READY`) (ingress-controller).
+- cert-manager v1.21.2 installs with `kubectl apply --server-side -f cert-manager.yaml` in about 15 seconds, a `selfSigned` ClusterIssuer signs a `Certificate` with `isCA: true`, a `ca` ClusterIssuer built on its Secret signs the rest,
+  and the `cert-manager.io/cluster-issuer` annotation on an Ingress gives a Secret with `tls.crt`, `tls.key` and `ca.crt` in a few seconds, valid 90 days with `status.renewalTime` 30 days before the end (ingress-controller).
+- Traefik serves a certificate named `TRAEFIK DEFAULT CERT` for a name it holds no certificate for, which `openssl s_client -servername` shows, and `wget` fails with status 5 on a certificate nobody signed (ingress-controller).
+- `ingress-nginx` was retired in March 2026 (announced 11 November 2025), so the course teaches the controller k3s ships and the Gateway API, and the slides date the retirement from the Kubernetes blog (ingress-controller).
+- A course on exposure names the tools that publish a local cluster, ngrok and cloudflared, in the slides only, with what their own pages state, since both need an account the lab has not (ingress-controller).
+- The course on a topic with a web UI of its own would need a Playwright probe: this one has none, the controller has no UI in the lab, so it needs none, as for docker (ingress-controller).

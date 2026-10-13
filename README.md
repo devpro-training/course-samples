@@ -27,6 +27,7 @@ Course                                                   | Topic
 [Kubernetes](labs/kubernetes)                            | History (Borg, Go, the CNCF), why orchestrate, cloud native patterns, what a cluster and a distribution are, managed or not, then a k3s cluster: nodes, Pods, Deployments, Services, ConfigMaps and Secrets, and the SQLite datastore
 [k3s](labs/k3s)                                          | k3s itself: history and governance (Rancher, SUSE, CNCF), SQLite behind Kine, the install script and the binary, bundled components and how to disable them, the CIS hardening guide measured with kube-bench, an upgrade, a second node, a clean removal
 [k3d](labs/k3d)                                          | k3s in Docker for developers on any system: nodes as containers, the load balancer and published ports, an Ingress, `LoadBalancer` Services and `host.k3d.internal`, `local-path` storage and what survives a stop or a delete, a local registry and `image import`, a config file, several clusters
+[Ingress controller](labs/ingress-controller)          | How HTTP reaches a cluster, on k3d with Traefik: why a Service is not enough, an Ingress and its controller, hosts and paths, a middleware for what the API cannot say, HTTPS and SNI, a certificate by hand, cert-manager and a private authority, then the Gateway API (gateway, routes, weights, filters), with Let's Encrypt, ngrok and cloudflared in the slides
 
 ## Contributing
 

@@ -1,0 +1,4 @@
+title: Certificates
+layout:
+  - type: terminal
+    target: docker

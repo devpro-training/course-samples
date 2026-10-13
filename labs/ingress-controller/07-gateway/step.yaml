@@ -1,0 +1,4 @@
+title: Gateway API
+layout:
+  - type: terminal
+    target: docker

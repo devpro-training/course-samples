@@ -1,0 +1,4 @@
+title: Reach an application
+layout:
+  - type: terminal
+    target: docker
