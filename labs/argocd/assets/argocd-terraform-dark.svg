@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 480" width="1040" height="480">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#94a3b8"/></marker>
+    <marker id="arrowg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#4ade80"/></marker>
+    <marker id="arrowp" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#a78bfa"/></marker>
+    <marker id="arrowa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#fbbf24"/></marker>
+  </defs>
+  <rect x="0" y="0" width="1040" height="480" fill="#0f172a"/>
+  <text x="520.0" y="32" fill="#e2e8f0" font-family="sans-serif" font-size="22" font-weight="bold" text-anchor="middle">Terraform makes the environment, Argo CD fills it</text>
+  <rect x="20" y="100" width="230" height="300" rx="8" fill="#1e293b" stroke="#a78bfa" stroke-width="2"/>
+  <text x="135.0" y="126" fill="#a78bfa" font-family="sans-serif" font-size="14" font-weight="bold" text-anchor="middle">Terraform</text>
+  <text x="135.0" y="150" fill="#e2e8f0" font-family="sans-serif" font-size="12" text-anchor="middle">state, one apply per environment</text>
+  <text x="135.0" y="170" fill="#e2e8f0" font-family="sans-serif" font-size="12" text-anchor="middle"></text>
+  <text x="135.0" y="190" fill="#94a3b8" font-family="monospace" font-size="11" text-anchor="middle">cloud provider</text>
+  <text x="135.0" y="210" fill="#e2e8f0" font-family="sans-serif" font-size="12" text-anchor="middle">the cluster and its nodes</text>
+  <text x="135.0" y="230" fill="#e2e8f0" font-family="sans-serif" font-size="12" text-anchor="middle"></text>
+  <text x="135.0" y="250" fill="#94a3b8" font-family="monospace" font-size="11" text-anchor="middle">helm provider</text>
+  <text x="135.0" y="270" fill="#e2e8f0" font-family="sans-serif" font-size="12" text-anchor="middle">Argo CD chart, the root</text>
+  <text x="135.0" y="290" fill="#e2e8f0" font-family="sans-serif" font-size="12" text-anchor="middle"></text>
+  <text x="135.0" y="310" fill="#94a3b8" font-family="monospace" font-size="11" text-anchor="middle">kubernetes provider</text>
+  <text x="135.0" y="330" fill="#e2e8f0" font-family="sans-serif" font-size="12" text-anchor="middle">identity and cluster Secret</text>
+  <rect x="340" y="80" width="340" height="190" rx="8" fill="#1e293b" stroke="#38bdf8" stroke-width="2"/>
+  <text x="510.0" y="106" fill="#38bdf8" font-family="sans-serif" font-size="14" font-weight="bold" text-anchor="middle">Hub cluster</text>
+  <text x="510.0" y="130" fill="#94a3b8" font-family="monospace" font-size="11" text-anchor="middle">namespace argocd</text>
+  <text x="510.0" y="150" fill="#e2e8f0" font-family="sans-serif" font-size="12" text-anchor="middle">Argo CD</text>
+  <text x="510.0" y="170" fill="#94a3b8" font-family="monospace" font-size="11" text-anchor="middle">root Application</text>
+  <text x="510.0" y="190" fill="#94a3b8" font-family="monospace" font-size="11" text-anchor="middle">ApplicationSets (clusters, folders)</text>
+  <text x="510.0" y="210" fill="#94a3b8" font-family="monospace" font-size="11" text-anchor="middle">cluster Secrets, label env</text>
+  <rect x="340" y="320" width="340" height="100" rx="8" fill="#1e293b" stroke="#a78bfa" stroke-width="2"/>
+  <text x="510.0" y="346" fill="#a78bfa" font-family="sans-serif" font-size="14" font-weight="bold" text-anchor="middle">Git repository</text>
+  <text x="510.0" y="370" fill="#94a3b8" font-family="monospace" font-size="11" text-anchor="middle">bootstrap/  platform/  apps/</text>
+  <text x="510.0" y="390" fill="#e2e8f0" font-family="sans-serif" font-size="12" text-anchor="middle">read by the root, nothing else is applied by hand</text>
+  <rect x="770" y="100" width="250" height="170" rx="8" fill="#1e293b" stroke="#fbbf24" stroke-width="2"/>
+  <text x="895.0" y="126" fill="#fbbf24" font-family="sans-serif" font-size="14" font-weight="bold" text-anchor="middle">A new cluster</text>
+  <text x="895.0" y="150" fill="#e2e8f0" font-family="sans-serif" font-size="12" text-anchor="middle">made by Terraform</text>
+  <text x="895.0" y="170" fill="#94a3b8" font-family="monospace" font-size="11" text-anchor="middle">ServiceAccount argocd-manager</text>
+  <text x="895.0" y="190" fill="#e2e8f0" font-family="sans-serif" font-size="12" text-anchor="middle">then the platform, then the apps</text>
+  <text x="895.0" y="210" fill="#e2e8f0" font-family="sans-serif" font-size="12" text-anchor="middle">synced by the hub</text>
+  <rect x="770" y="320" width="250" height="100" rx="8" fill="#1e293b" stroke="#fbbf24" stroke-width="2" stroke-dasharray="6 4"/>
+  <text x="895.0" y="346" fill="#fbbf24" font-family="sans-serif" font-size="14" font-weight="bold" text-anchor="middle">The next environment</text>
+  <text x="895.0" y="370" fill="#e2e8f0" font-family="sans-serif" font-size="12" text-anchor="middle">same files, one more Secret</text>
+  <text x="895.0" y="390" fill="#e2e8f0" font-family="sans-serif" font-size="12" text-anchor="middle">with its own labels</text>
+  <path d="M 135 98 L 135 62 L 895 62 L 895 98" fill="none" stroke="#a78bfa" stroke-width="2" marker-end="url(#arrowp)"/>
+  <text x="515" y="56" fill="#a78bfa" font-family="sans-serif" font-size="11" text-anchor="middle">1 creates the cluster and the identity Argo CD uses on it</text>
+  <line x1="252" y1="160" x2="338" y2="160" stroke="#a78bfa" stroke-width="2" marker-end="url(#arrowp)"/>
+  <text x="295" y="150" fill="#a78bfa" font-family="sans-serif" font-size="11" text-anchor="middle">2 install</text>
+  <line x1="252" y1="220" x2="338" y2="220" stroke="#a78bfa" stroke-width="2" marker-end="url(#arrowp)"/>
+  <text x="295" y="210" fill="#a78bfa" font-family="sans-serif" font-size="11" text-anchor="middle">3 register</text>
+  <line x1="510" y1="318" x2="510" y2="272" stroke="#4ade80" stroke-width="2" marker-end="url(#arrowg)"/>
+  <text x="545" y="300" fill="#4ade80" font-family="sans-serif" font-size="11" text-anchor="middle">4 pull</text>
+  <line x1="682" y1="175" x2="768" y2="175" stroke="#4ade80" stroke-width="2" marker-end="url(#arrowg)"/>
+  <text x="725" y="165" fill="#4ade80" font-family="sans-serif" font-size="11" text-anchor="middle">5 sync</text>
+  <line x1="682" y1="235" x2="768" y2="360" stroke="#4ade80" stroke-width="2" marker-end="url(#arrowg)"/>
+  <text x="520.0" y="466" fill="#94a3b8" font-family="sans-serif" font-size="12" text-anchor="middle">The Secret that registers the cluster, and its labels, is the contract between the two.</text>
+</svg>

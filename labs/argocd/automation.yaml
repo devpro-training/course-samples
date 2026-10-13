@@ -1,0 +1,106 @@
+version: 1
+
+defaults:
+  # ms per step primitive
+  timeout: 15000
+
+pages:
+  # One tab for the whole lab: the interface of Argo CD, served by the machine `docker` on the port of UI_PORT.
+  argocd:
+    url: "http://docker:8080/"
+    selectors:
+      username: 'input[name="username"]'
+      password: 'input[name="password"]'
+      signIn: { role: button, name: "Sign in" }
+      newApp: { role: button, name: "New app" }
+      syncButton: 'button:has(span:text-is("Sync"))'
+      synchronize: 'button[qe-id="application-sync-panel-button-synchronize"]'
+      diffButton: 'button:has(span:text-is("Diff"))'
+      historyButton: 'button:has(span:text-is("History and rollback"))'
+      deploymentNode: '.application-resource-tree__node:has(.application-resource-tree__node-kind:text-is("deploy"))'
+      podNode: '.application-resource-tree__node:has(.application-resource-tree__node-kind:text-is("pod")) >> nth=0'
+      liveManifest: '.tabs__nav a:has-text("Live manifest")'
+      logsTab: '.tabs__nav a:has-text("Logs")'
+
+actions:
+  ui.login:
+    page: argocd
+    steps:
+      - goto: $page
+      - fill: { target: username, value: "admin" }
+      - fill: { target: password, value: "${UI_ADMIN_PASSWORD}" }
+      - click: signIn
+      - waitFor: { target: newApp }
+
+  ui.applications:
+    page: argocd
+    steps:
+      - goto: "http://docker:8080/applications"
+      - waitFor: { target: newApp }
+
+  ui.open-shop:
+    page: argocd
+    steps:
+      - goto: "http://docker:8080/applications/argocd/shop"
+      - waitFor: { target: syncButton }
+
+  ui.diff:
+    page: argocd
+    steps:
+      - goto: "http://docker:8080/applications/argocd/shop"
+      - waitFor: { target: diffButton }
+      - click: diffButton
+
+  ui.sync:
+    page: argocd
+    steps:
+      - goto: "http://docker:8080/applications/argocd/shop"
+      - waitFor: { target: syncButton }
+      - click: syncButton
+      - waitFor: { target: synchronize }
+      - click: synchronize
+
+  ui.open-deployment:
+    page: argocd
+    steps:
+      - goto: "http://docker:8080/applications/argocd/shop"
+      - waitFor: { target: deploymentNode }
+      - click: deploymentNode
+      - waitFor: { target: liveManifest }
+
+  ui.pod-logs:
+    page: argocd
+    steps:
+      - goto: "http://docker:8080/applications/argocd/shop"
+      - waitFor: { target: podNode }
+      - click: podNode
+      - waitFor: { target: logsTab }
+      - click: logsTab
+
+  ui.history:
+    page: argocd
+    steps:
+      - goto: "http://docker:8080/applications/argocd/shop"
+      - waitFor: { target: historyButton }
+      - click: historyButton
+
+  ui.open-root:
+    page: argocd
+    steps:
+      - goto: "http://docker:8080/applications/argocd/root"
+      - waitFor: { target: syncButton }
+
+  ui.applicationsets:
+    page: argocd
+    steps:
+      - goto: "http://docker:8080/applicationsets"
+
+  ui.projects:
+    page: argocd
+    steps:
+      - goto: "http://docker:8080/settings/projects"
+
+  ui.clusters:
+    page: argocd
+    steps:
+      - goto: "http://docker:8080/settings/clusters"

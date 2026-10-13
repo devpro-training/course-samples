@@ -1,0 +1,6 @@
+title: Many clusters
+layout:
+  - type: vnc
+    page: argocd
+  - type: terminal
+    target: docker

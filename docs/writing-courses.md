@@ -98,6 +98,9 @@ hosts:
 - Helm and kube-linter are installed in the machine by `labs/shared/setup-helm-machine.md` and `labs/shared/setup-kube-linter.md`, included after `setup-kubectl.md`,
   with `HELM_VERSION`, `KUBELINTER_VERSION` and `KUBELINTER_SHA256` under `env:`:
   `setup-helm.md` installs in `~/.local/bin` of the lab container, which is not the machine that reaches the cluster (helm).
+- The Argo CD command line and Terraform are installed in the machine by `labs/shared/setup-argocd-cli.md` (`ARGOCDREL_VERSION`, `ARGOCDREL_URL`) and `labs/shared/setup-terraform-machine.md` (`TERRAFORM_VERSION`, `HASHICORP_GPG_FINGERPRINT`),
+  and a web UI of the machine is published with a k3d port mapping and a NodePort, since `kubectl port-forward` dies on the first reset connection (argocd).
+- A pod reaches Gitea of the machine as `http://host.k3d.internal:3000`, so the course makes Gitea listen on `0.0.0.0` after `setup-gitea.md` (argocd).
 - Several `runtime: vm` hosts of a course reach each other by their names (`https://kube:6443` from the host `agent`), and each has its own terminal, which a step shows with one `terminal` panel per `target` (k3s).
 - Kubernetes, Podman and any other iptables user need the guest kernel of sidelab built from `scripts/firecracker_kernel.fragment` (`vmlinux-sidelab-<version>.bin`, `task setup:firecracker:bin`), and `FIRECRACKER_KERNEL` pointing at it:
   the CI kernel has no `xt_comment`, `xt_mark`, `multiport`, `statistic` or `recent` (kubernetes).
@@ -631,3 +634,41 @@ google-chrome --headless=new --screenshot=diagram.png --window-size=1040,430 "fi
   so a count names the pattern it counts, `grep -c '^      - \(uses\|name\)'` (helm).
 - The first run of a course written in one go had seven failing blocks of 70, all from the checks and none from the commands, and the third was green in about four minutes (helm).
 - The course on Helm has no UI in the lab, so it needs no Playwright probe, as for docker (helm).
+- A course whose steps need a web UI and a command line that talk to a server in a `runtime: vm` host publishes that server with a k3d port mapping and a NodePort, never with `kubectl port-forward`:
+  the command ends at the first connection the server resets (`lost connection to pod`), every later call is refused, and a restart loop loses the race against the next block.
+  `k3d cluster create --port "<host>:<nodeport>@loadbalancer"` at creation, then a `NodePort` Service, gives `http://docker:<host>` to the browser panel and `127.0.0.1:<host>` to the machine (argocd).
+- The `control` host reaches a service of the machine by the host name (`wget http://docker:8080/...`), which a block with no `target` checks, so the browser panel is known to work before the learner opens it (argocd).
+- A hard failure of a long course is read from the log, not waited for: `course verify --show-output` of a 99 block course with two clusters ran in 6 minutes, and `grep -n "✗"` finds the first failure at once (argocd).
+- Argo CD answers an empty `Sync Status:` for a second or two after an Application is created, so a wait loop ends on a value (`grep -q "^Sync Status: *[A-Z]"`), and a name already in the command cannot be the `expect` (argocd).
+- Argo CD sees a new commit within 3 minutes, so a block that waits for a change in Git calls `argocd app get <app> --refresh` inside its loop, and so does the block that turns `prune` on: a change of policy is seen at the next look at the repository (argocd).
+- Argo CD, started with `server.insecure: "true"`, accepts `argocd login --plaintext` through a NodePort, and not through `kubectl port-forward`, which dies on the reset (argocd).
+- The Argo CD health of an `Application` is not assessed since v1.8: the waves of an app of apps create everything at once, and only the Lua of `resource.customizations.health.argoproj.io_Application` in `argocd-cm` makes a wave wait,
+  with `Message: waiting for healthy state of argoproj.io/Application/<name>` in the sync of the root (argocd).
+- A sync that waits is tied to the commit it started with: after the fix is pushed, `argocd app terminate-op <root>` then a new sync reads the fixed layers (argocd).
+- A CRD-only Application stays `Progressing` until a hard refresh, and a CRD with its custom resource in one Application syncs fine, so the order of layers is shown with a Deployment and a broken path, not with a CRD (argocd).
+- An `argocd cluster add` takes the server address from the kubeconfig, a port of the machine that a Pod does not reach, and the second k3d cluster joins the Docker network of the first (`--network k3d-hub`), so the cluster Secret names `https://k3d-<name>-server-0:6443`;
+  the Secret is written by hand, and by Terraform in the next step, with a ServiceAccount token Secret (argocd).
+- `--kubeconfig-switch-context=false` on every second cluster keeps `kubectl` on the hub, and every command names its `--context` (argocd).
+- A `kubernetes_manifest` of an Argo CD `Application` fails at the plan before Argo CD exists, so Terraform installs the chart `argocd-apps` after the chart `argo-cd`, with `depends_on` (argocd).
+- Environment variables named `ARGOCD_*` are read by the `argocd` command line, so the variables of the course are `ARGOCDREL_*`, `ARGOCDCHART_*`, `UI_PORT` (argocd).
+- A docker run that mounts a scratch folder creates it as root: a file written with the editor tool then fails with `EACCES`, so the folder is made first, and a removal inside a `bash -c` of a container is refused by the permission check (argocd).
+- Quick facts of the roster of a project are counted with a script from its own file, with the date: 42 people with a role on Argo CD, 16 organizations, read on 13 October 2026 (argocd).
+- The course on Argo CD has a web UI, probed with Playwright against a k3d cluster of the host (Docker is there, the lab image runs Chrome with `--network host`):
+  the button texts are `Sync` and `Synchronize` in the DOM, upper-cased by CSS, so a locator uses `hasText: /^\s*Sync\s*$/i` (argocd).
+- A course with a web UI has an `automation.yaml`, with one page for the application, `goto` with a literal URL for each screen (the route of a single page application is reachable at once), and one `:action:` link per thing worth showing:
+  the login (the password comes from `env:` as `${UI_ADMIN_PASSWORD}`, set by a step with `argocd account update-password`), the list, an application, its diff, a sync, a node of the tree and its logs, the history, the settings (argocd).
+- The selectors of Argo CD v3.5.5: the DOM text is `Sync`, `Diff`, `History and rollback` in `span` elements and CSS upper-cases them, so a locator is `button:has(span:text-is("Sync"))`, the sync panel's button is `button[qe-id="application-sync-panel-button-synchronize"]`,
+  a node of the tree is `.application-resource-tree__node:has(.application-resource-tree__node-kind:text-is("deploy"))`, and the tabs of its panel are `a` elements of `.tabs__nav` (`.tabs__nav a:has-text("Logs")`) (argocd).
+- The **Diff** button of an application is disabled while it is `Synced`, so an action that clicks it runs when the application is `OutOfSync`, as in the step that shows the difference (argocd).
+- A runner of a dozen lines that applies an `automation.yaml` with Playwright, in the lab image with `--network host` against a k3d cluster of the host (`k3d cluster create --port "18095:30095@loadbalancer"`, a NodePort Service), checks every action before a run of the lab,
+  and `course record` runs them in the real lab, which the permission check of the agent did not let it start through a wrapper around the launcher script (argocd).
+- The history of an application in the interface has one card per sync: when, how long, who started it (a person or `automated sync policy`), the commit and its author, and a GPG signature column (argocd).
+- Argo CD refuses a team Application for a namespace the project does not list with the condition `application destination server '...' and namespace '...' do not match any of the allowed destinations in project '<name>'`, and still creates the Application (argocd).
+- An account is `accounts.<name>: login` in `argocd-cm`, its password is set by `argocd account update-password --account <name>` with the password of `admin` as `--current-password`, and a role in `argocd-rbac-cm` (`policy.csv`) maps it to one project;
+  `argocd --config <file> login` keeps its session apart from the one of `admin` (argocd).
+- An Application whose manifests include a `SealedSecret` fails on a cluster that has not the controller, so the application of the second cluster is the one without secrets, and a cluster gets its platform before its applications (argocd).
+- Sealed Secrets chart 2.20.0 installs by Argo CD from `https://bitnami.github.io/sealed-secrets` with `fullnameOverride: sealed-secrets-controller`, `kubeseal` 0.40.0 is checked against `sealed-secrets_0.40.0_checksums.txt`,
+  and `helm list` has no release for it, since Argo CD renders the chart with `helm template` (argocd).
+- A course can have several slide steps between lab steps (the design of many clusters comes before the lab of two clusters), each a `display: slides` step of several slides (argocd).
+- A course that explains a tool without running it still shows code that was run: the Terraform of the registration was applied against two k3d clusters (four resources added), and the Helm provider file was validated (argocd).
+- A full run of the lab with eleven steps, two clusters and 109 blocks took 5 minutes 30 seconds, and a first run with a failing wait took 9 minutes 36, just under the limit of a foreground command, so a failing wait is read from the log and fixed before another run (argocd).

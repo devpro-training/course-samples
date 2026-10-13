@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 480" width="1040" height="480">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker>
+    <marker id="arrowg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#16a34a"/></marker>
+    <marker id="arrowp" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#7c3aed"/></marker>
+    <marker id="arrowa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#b45309"/></marker>
+  </defs>
+  <rect x="0" y="0" width="1040" height="480" fill="#ffffff"/>
+  <text x="520.0" y="32" fill="#0f172a" font-family="sans-serif" font-size="22" font-weight="bold" text-anchor="middle">Many clusters: labels on the Secrets, folders in Git, generators in the hub</text>
+  <rect x="20" y="90" width="230" height="330" rx="8" fill="#f1f5f9" stroke="#7c3aed" stroke-width="2"/>
+  <text x="135.0" y="116" fill="#7c3aed" font-family="sans-serif" font-size="14" font-weight="bold" text-anchor="middle">Git repository</text>
+  <text x="135.0" y="140" fill="#475569" font-family="monospace" font-size="11" text-anchor="middle">platform/prod, platform/staging</text>
+  <text x="135.0" y="160" fill="#475569" font-family="monospace" font-size="11" text-anchor="middle">apps/shop/base</text>
+  <text x="135.0" y="180" fill="#475569" font-family="monospace" font-size="11" text-anchor="middle">apps/shop/overlays/prod</text>
+  <text x="135.0" y="200" fill="#475569" font-family="monospace" font-size="11" text-anchor="middle">apps/shop/overlays/staging</text>
+  <text x="135.0" y="220" fill="#475569" font-family="monospace" font-size="11" text-anchor="middle">bootstrap/platform.yaml</text>
+  <text x="135.0" y="240" fill="#475569" font-family="monospace" font-size="11" text-anchor="middle">bootstrap/apps.yaml</text>
+  <text x="135.0" y="260" fill="#0f172a" font-family="sans-serif" font-size="12" text-anchor="middle"></text>
+  <text x="135.0" y="280" fill="#0f172a" font-family="sans-serif" font-size="12" text-anchor="middle">secrets sealed for each cluster</text>
+  <rect x="330" y="70" width="350" height="350" rx="8" fill="#f1f5f9" stroke="#0284c7" stroke-width="2"/>
+  <text x="505.0" y="96" fill="#0284c7" font-family="sans-serif" font-size="14" font-weight="bold" text-anchor="middle">Hub cluster, Argo CD</text>
+  <text x="505.0" y="120" fill="#475569" font-family="monospace" font-size="11" text-anchor="middle">ApplicationSet platform</text>
+  <text x="505.0" y="140" fill="#0f172a" font-family="sans-serif" font-size="12" text-anchor="middle">clusters selector: env Exists</text>
+  <text x="505.0" y="160" fill="#475569" font-family="monospace" font-size="11" text-anchor="middle">path platform/{{env}}</text>
+  <text x="505.0" y="180" fill="#0f172a" font-family="sans-serif" font-size="12" text-anchor="middle"></text>
+  <text x="505.0" y="200" fill="#475569" font-family="monospace" font-size="11" text-anchor="middle">ApplicationSet apps</text>
+  <text x="505.0" y="220" fill="#0f172a" font-family="sans-serif" font-size="12" text-anchor="middle">matrix: folders of apps x clusters</text>
+  <text x="505.0" y="240" fill="#475569" font-family="monospace" font-size="11" text-anchor="middle">path apps/{{app}}/overlays/{{env}}</text>
+  <text x="505.0" y="260" fill="#0f172a" font-family="sans-serif" font-size="12" text-anchor="middle"></text>
+  <text x="505.0" y="280" fill="#475569" font-family="monospace" font-size="11" text-anchor="middle">RollingSync (beta)</text>
+  <text x="505.0" y="300" fill="#0f172a" font-family="sans-serif" font-size="12" text-anchor="middle">staging first, then prod by 10%</text>
+  <rect x="770" y="80" width="250" height="100" rx="8" fill="#f1f5f9" stroke="#16a34a" stroke-width="2"/>
+  <text x="895.0" y="106" fill="#16a34a" font-family="sans-serif" font-size="14" font-weight="bold" text-anchor="middle">prod-eu</text>
+  <text x="895.0" y="130" fill="#475569" font-family="monospace" font-size="11" text-anchor="middle">env=prod  region=eu</text>
+  <text x="895.0" y="150" fill="#0f172a" font-family="sans-serif" font-size="12" text-anchor="middle">its own sealed key</text>
+  <rect x="770" y="200" width="250" height="100" rx="8" fill="#f1f5f9" stroke="#16a34a" stroke-width="2"/>
+  <text x="895.0" y="226" fill="#16a34a" font-family="sans-serif" font-size="14" font-weight="bold" text-anchor="middle">prod-us</text>
+  <text x="895.0" y="250" fill="#475569" font-family="monospace" font-size="11" text-anchor="middle">env=prod  region=us</text>
+  <text x="895.0" y="270" fill="#0f172a" font-family="sans-serif" font-size="12" text-anchor="middle">its own sealed key</text>
+  <rect x="770" y="320" width="250" height="100" rx="8" fill="#f1f5f9" stroke="#b45309" stroke-width="2"/>
+  <text x="895.0" y="346" fill="#b45309" font-family="sans-serif" font-size="14" font-weight="bold" text-anchor="middle">staging</text>
+  <text x="895.0" y="370" fill="#475569" font-family="monospace" font-size="11" text-anchor="middle">env=staging  region=eu</text>
+  <text x="895.0" y="390" fill="#0f172a" font-family="sans-serif" font-size="12" text-anchor="middle">its own sealed key</text>
+  <line x1="252" y1="200" x2="328" y2="200" stroke="#16a34a" stroke-width="2" marker-end="url(#arrowg)"/>
+  <text x="290" y="190" fill="#16a34a" font-family="sans-serif" font-size="11" text-anchor="middle">pull</text>
+  <line x1="682" y1="130" x2="768" y2="130" stroke="#16a34a" stroke-width="2" marker-end="url(#arrowg)"/>
+  <line x1="682" y1="250" x2="768" y2="250" stroke="#16a34a" stroke-width="2" marker-end="url(#arrowg)"/>
+  <line x1="682" y1="370" x2="768" y2="370" stroke="#b45309" stroke-width="2" marker-end="url(#arrowa)"/>
+  <text x="725" y="62" fill="#16a34a" font-family="sans-serif" font-size="11" text-anchor="middle">one Application per cluster and per app</text>
+  <text x="520.0" y="466" fill="#475569" font-family="sans-serif" font-size="12" text-anchor="middle">A cluster is a Secret with labels: a new one is one more Secret, and the generators do the rest.</text>
+</svg>
