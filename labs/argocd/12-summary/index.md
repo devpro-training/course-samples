@@ -4,37 +4,37 @@
 
 ## Cheat sheet
 
-Task                                 | Command
--------------------------------------|-------------------------------------------------------------------------------
-Install a release                    | `kubectl apply --namespace argocd --server-side --force-conflicts --filename <manifest>`
-First password                       | `argocd admin initial-password --namespace argocd`
-Log in                               | `argocd login <host:port> --username admin` (`--plaintext` with no TLS)
-Applications, one of them            | `argocd app list`, `argocd app get <app> --refresh`
-Difference with Git                  | `argocd app diff <app>`, which exits with 1 when there is one
-Sync, and wait                       | `argocd app sync <app>`, `argocd app wait <app> --health`
-History, and go back                 | `argocd app history <app>`, `argocd app rollback <app> <id>` (refused with automated sync)
-End a sync that waits                | `argocd app terminate-op <app>`
-Repositories, clusters, projects     | `argocd repo list`, `argocd cluster list`, `argocd proj list`
-Leave a field to another controller  | `ignoreDifferences` in the Application, by `jsonPointers`, `jqPathExpressions` or `managedFieldsManagers`
-Seal a Secret for a cluster          | `kubeseal --controller-namespace <ns> --format yaml < secret.yaml > sealed.yaml`
-An account and its role              | `accounts.<name>: login` in `argocd-cm`, `g, <name>, role:<team>` in `argocd-rbac-cm`
-Where a repository or a cluster is   | A Secret of the namespace `argocd`, labeled `argocd.argoproj.io/secret-type: repository` or `cluster`
+Task                                | Command
+------------------------------------|----------------------------------------------------------------------------------------------------------
+Install a release                   | `kubectl apply --namespace argocd --server-side --force-conflicts --filename <manifest>`
+First password                      | `argocd admin initial-password --namespace argocd`
+Log in                              | `argocd login <host:port> --username admin` (`--plaintext` with no TLS)
+Applications, one of them           | `argocd app list`, `argocd app get <app> --refresh`
+Difference with Git                 | `argocd app diff <app>`, which exits with 1 when there is one
+Sync, and wait                      | `argocd app sync <app>`, `argocd app wait <app> --health`
+History, and go back                | `argocd app history <app>`, `argocd app rollback <app> <id>` (refused with automated sync)
+End a sync that waits               | `argocd app terminate-op <app>`
+Repositories, clusters, projects    | `argocd repo list`, `argocd cluster list`, `argocd proj list`
+Leave a field to another controller | `ignoreDifferences` in the Application, by `jsonPointers`, `jqPathExpressions` or `managedFieldsManagers`
+Seal a Secret for a cluster         | `kubeseal --controller-namespace <ns> --format yaml < secret.yaml > sealed.yaml`
+An account and its role             | `accounts.<name>: login` in `argocd-cm`, `g, <name>, role:<team>` in `argocd-rbac-cm`
+Where a repository or a cluster is  | A Secret of the namespace `argocd`, labeled `argocd.argoproj.io/secret-type: repository` or `cluster`
 
 ---
 
 ## Where things are
 
-What                               | Where
------------------------------------|----------------------------------------------------------------------
-The desired state                  | The branch `main` of the repository `deploy`
-The layers                         | The folder `bootstrap`, read by the Application `root`
-One folder per application         | The folder `apps`, read by the ApplicationSet `apps`
-Its credential                     | A token of Gitea with `read:repository`, in a Secret of the namespace `argocd`
-The health of an Application       | `resource.customizations.health.argoproj.io_Application` in `argocd-cm`
-The clusters                       | Secrets labeled `argocd.argoproj.io/secret-type: cluster`, written by hand or by Terraform
-The secrets                        | `SealedSecret` files next to the manifests, and the key of the controller backed up outside
-The teams                          | An `AppProject` each, in `bootstrap`, and the roles of `argocd-rbac-cm`
-The files of the lab               | `~/lab/argocd` of the machine
+What                         | Where
+-----------------------------|--------------------------------------------------------------------------------------------
+The desired state            | The branch `main` of the repository `deploy`
+The layers                   | The folder `bootstrap`, read by the Application `root`
+One folder per application   | The folder `apps`, read by the ApplicationSet `apps`
+Its credential               | A token of Gitea with `read:repository`, in a Secret of the namespace `argocd`
+The health of an Application | `resource.customizations.health.argoproj.io_Application` in `argocd-cm`
+The clusters                 | Secrets labeled `argocd.argoproj.io/secret-type: cluster`, written by hand or by Terraform
+The secrets                  | `SealedSecret` files next to the manifests, and the key of the controller backed up outside
+The teams                    | An `AppProject` each, in `bootstrap`, and the roles of `argocd-rbac-cm`
+The files of the lab         | `~/lab/argocd` of the machine
 
 ---
 
@@ -47,7 +47,8 @@ The files of the lab               | `~/lab/argocd` of the machine
 
 - **Give it a project, not `default`**: an `AppProject` limits the repositories, the clusters and namespaces and the roles of a team.
 
-- **Read-only credentials for Git**, and Secrets that Argo CD does not render: the documentation recommends filling them on the cluster, with Sealed Secrets or External Secrets Operator, and cautions against injecting them while rendering, since they would be cached in clear in Redis.
+- **Read-only credentials for Git**, and Secrets that Argo CD does not render: the documentation recommends filling them on the cluster, with Sealed Secrets or External Secrets Operator, and cautions against injecting them while rendering,
+  since they would be cached in clear in Redis.
 
 - **Secrets are sealed or referenced, never rendered**: a `SealedSecret` per cluster with its key backed up, or an `ExternalSecret` that points to a store.
 
@@ -67,25 +68,27 @@ The files of the lab               | `~/lab/argocd` of the machine
 
 ## Mistakes seen in the lab
 
-Mistake                                          | What happened
--------------------------------------------------|-----------------------------------------------------------------------------------
-A typo in the path of a layer                    | The root said `waiting for healthy state`, and the layers after it did not start
-No health check on Applications                  | The waves created everything at once, with the broken layer next to the others
-A rollback with automated sync                   | Refused, since the controller would undo it
-A file removed with no `prune`                   | The Service stayed, and the application was `OutOfSync`
-A team Application for another namespace         | Created, and invalid: the project did not allow the destination
+Mistake                                            | What happened
+---------------------------------------------------|-----------------------------------------------------------------------------------
+A typo in the path of a layer                      | The root said `waiting for healthy state`, and the layers after it did not start
+No health check on Applications                    | The waves created everything at once, with the broken layer next to the others
+A rollback with automated sync                     | Refused, since the controller would undo it
+A file removed with no `prune`                     | The Service stayed, and the application was `OutOfSync`
+A team Application for another namespace           | Created, and invalid: the project did not allow the destination
 The address of the cluster taken from a kubeconfig | A port of the machine that a Pod does not reach, so the Secret names the container
 
 ---
 
 ## Next
 
-Need                           | Next
--------------------------------|-----------------------------------------------------------
-The same loop, as a toolkit    | **Flux**: sources and Kustomizations as resources of the cluster
-A fleet of clusters            | **Rancher**, with Fleet, or the project `argocd-agent`
-Progressive delivery           | Argo Rollouts, the sibling project, for canary and blue/green
-Who may talk to whom           | **Zero trust** and **NeuVector**
-What the cluster does          | **Observability**: the three pillars
+Need                        | Next
+----------------------------|-----------------------------------------------------------------
+The same loop, as a toolkit | **Flux**: sources and Kustomizations as resources of the cluster
+A fleet of clusters         | **Rancher**, with Fleet, or the project `argocd-agent`
+Progressive delivery        | Argo Rollouts, the sibling project, for canary and blue/green
+Who may talk to whom        | **Zero trust** and **NeuVector**
+What the cluster does       | **Observability**: the three pillars
 
-- Reference: [Argo CD documentation](https://argo-cd.readthedocs.io/en/stable/), [declarative setup](https://argo-cd.readthedocs.io/en/stable/operator-manual/declarative-setup/), [cluster bootstrapping](https://argo-cd.readthedocs.io/en/stable/operator-manual/cluster-bootstrapping/), [ApplicationSet](https://argo-cd.readthedocs.io/en/stable/operator-manual/applicationset/), [argocd-agent](https://argocd-agent.readthedocs.io/latest/).
+- Reference: [Argo CD documentation](https://argo-cd.readthedocs.io/en/stable/), [declarative setup](https://argo-cd.readthedocs.io/en/stable/operator-manual/declarative-setup/),
+  [cluster bootstrapping](https://argo-cd.readthedocs.io/en/stable/operator-manual/cluster-bootstrapping/), [ApplicationSet](https://argo-cd.readthedocs.io/en/stable/operator-manual/applicationset/),
+  [argocd-agent](https://argocd-agent.readthedocs.io/latest/).

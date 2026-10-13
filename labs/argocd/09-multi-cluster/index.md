@@ -42,11 +42,11 @@ stringData:
 
 ## Three ways to organize it
 
-Topology                       | How it works                                                                       | What it costs
--------------------------------|------------------------------------------------------------------------------------|---------------------------------------------------------
-One hub                        | One Argo CD, the clusters are Secrets, ApplicationSets select them                 | The hub holds a credential per cluster, and is a failure domain
-One Argo CD per cluster        | Each cluster pulls its own folder, `clusters/<name>`, and reads Git only           | A view per cluster, and the same upgrade many times
-Hub with agents                | `argocd-agent`: agents on the clusters connect out to a central control plane      | A newer project: "active development with a stable core architecture", in its own words
+Topology                | How it works                                                                  | What it costs
+------------------------|-------------------------------------------------------------------------------|----------------------------------------------------------------------------------------
+One hub                 | One Argo CD, the clusters are Secrets, ApplicationSets select them            | The hub holds a credential per cluster, and is a failure domain
+One Argo CD per cluster | Each cluster pulls its own folder, `clusters/<name>`, and reads Git only      | A view per cluster, and the same upgrade many times
+Hub with agents         | `argocd-agent`: agents on the clusters connect out to a central control plane | A newer project: "active development with a stable core architecture", in its own words
 
 - **The hub is where most start**: the credentials are the weak point, so the identity of Argo CD in each cluster is narrowed to what it deploys, and the Secrets of the namespace `argocd` are protected as the clusters they open.
 - **Clusters that cannot be reached**, behind a firewall or a NAT, or air-gapped, are what the agents are for: the controllers run where the workloads are, and connect out.
@@ -162,13 +162,14 @@ spec:
 
 ## What breaks first
 
-Symptom                                         | Cause, and what to look at
-------------------------------------------------|------------------------------------------------------------------------------------------
-An Application is `Unknown` for one cluster     | The credential or the path to the API server: `argocd cluster list` shows the connection status
-Every Application of a cluster is `OutOfSync`   | A webhook or a controller changes fields: `ignoreDifferences`, or the managers that own them
-The hub is slow with many Applications          | Polling every 3 minutes (a webhook on `/api/webhook`), and the controller: clusters are sharded across its replicas, and the repository server has a limit of manifests generated at once
-A sealed file does not open on a cluster        | It was sealed for another cluster's key
-Everything changes at once                      | No progressive sync, no environments in the order of risk
+Symptom                                       | Cause, and what to look at
+----------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+An Application is `Unknown` for one cluster   | The credential or the path to the API server: `argocd cluster list` shows the connection status
+Every Application of a cluster is `OutOfSync` | A webhook or a controller changes fields: `ignoreDifferences`, or the managers that own them
+The hub is slow with many Applications        | Polling every 3 minutes (a webhook on `/api/webhook`), and the controller: clusters are sharded across its replicas, and the repository server has a limit of manifests generated at once
+A sealed file does not open on a cluster      | It was sealed for another cluster's key
+Everything changes at once                    | No progressive sync, no environments in the order of risk
 
 - **A new environment is one Secret**, and the cost of the twentieth cluster is the cost of that Secret, if the labels and the overlays are what carry the differences.
-- References: [cluster generator](https://argo-cd.readthedocs.io/en/stable/operator-manual/applicationset/Generators-Cluster/), [matrix generator](https://argo-cd.readthedocs.io/en/stable/operator-manual/applicationset/Generators-Matrix/), [progressive syncs](https://argo-cd.readthedocs.io/en/stable/operator-manual/applicationset/Progressive-Syncs/), [argocd-agent](https://argocd-agent.readthedocs.io/latest/).
+- References: [cluster generator](https://argo-cd.readthedocs.io/en/stable/operator-manual/applicationset/Generators-Cluster/), [matrix generator](https://argo-cd.readthedocs.io/en/stable/operator-manual/applicationset/Generators-Matrix/),
+  [progressive syncs](https://argo-cd.readthedocs.io/en/stable/operator-manual/applicationset/Progressive-Syncs/), [argocd-agent](https://argocd-agent.readthedocs.io/latest/).

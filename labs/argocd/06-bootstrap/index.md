@@ -178,7 +178,8 @@ The repository gets two more folders.
 ## The order is not what it seems
 
 The waves of an app of apps order the creation of the Applications, and wait for the health of each wave before the next.
-The health of an Application is not assessed by default: the documentation says the check "has been removed in argocd 1.8", and that it has to be restored "if you are using app-of-apps pattern and orchestrating synchronization using sync waves".
+The health of an Application is not assessed by default: the documentation says the check "has been removed in argocd 1.8",
+and that it has to be restored "if you are using app-of-apps pattern and orchestrating synchronization using sync waves".
 Without it, an Application counts as healthy the moment it exists, so a wave never waits.
 
 1. Restore the check in `argocd-cm`.
@@ -266,7 +267,8 @@ Without it, an Application counts as healthy the moment it exists, so a wave nev
 
    A new cluster needs the root only: the platform, then the applications, come from Git.
 
-8. In the interface, [open the root](:action:ui.open-root): an Application is a node of the tree like any other resource, so the root shows the platform and the ApplicationSet, and the Applications that the ApplicationSet made hang under it.
+8. In the interface, [open the root](:action:ui.open-root): an Application is a node of the tree like any other resource, so the root shows the platform and the ApplicationSet,
+   and the Applications that the ApplicationSet made hang under it.
    [The **ApplicationSets** page](:action:ui.applicationsets) lists the generator and the Applications it made, which is where to look when an application is missing.
 
 ## Argo CD managing itself

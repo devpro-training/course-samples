@@ -166,11 +166,11 @@ The address is the one the cluster reaches, `host.k3d.internal`, and not the loo
    The tree shows what Argo CD found in the repository: a Deployment and a Service, each marked as out of sync.
    The page has two states, side by side, and they are the two questions Argo CD answers:
 
-   Status      | Question                                   | Values
-   ------------|--------------------------------------------|--------------------------------------------------------
-   Sync        | Does the cluster match Git?                | `Synced`, `OutOfSync`, `Unknown`
-   Health      | Is what runs working?                      | `Healthy`, `Progressing`, `Degraded`, `Missing`, `Suspended`
-   Operation   | What did the last sync do?                 | `Sync OK`, `Sync failed`, `Syncing`
+   Status    | Question                    | Values
+   ----------|-----------------------------|-------------------------------------------------------------
+   Sync      | Does the cluster match Git? | `Synced`, `OutOfSync`, `Unknown`
+   Health    | Is what runs working?       | `Healthy`, `Progressing`, `Degraded`, `Missing`, `Suspended`
+   Operation | What did the last sync do?  | `Sync OK`, `Sync failed`, `Syncing`
 
 ## Sync
 
@@ -208,7 +208,8 @@ The address is the one the cluster reaches, `host.k3d.internal`, and not the loo
    The Namespace, the Service and the Deployment are green in the tree, down to the ReplicaSet and the Pod that Kubernetes made from them.
 
 4. Every node of the tree opens a panel.
-   [Open the Deployment](:action:ui.open-deployment): **Summary** has its labels and images, **Events** what Kubernetes said, **Live manifest** the object as it is in the cluster, **Desired manifest** the one rendered from Git, and **Diff** the difference.
+   [Open the Deployment](:action:ui.open-deployment): **Summary** has its labels and images, **Events** what Kubernetes said, **Live manifest** the object as it is in the cluster, **Desired manifest** the one rendered from Git,
+   and **Diff** the difference.
    For a Pod, [**Logs**](:action:ui.pod-logs) shows the output of the container, with no `kubectl`, which is what lets a team without access to the cluster read what runs.
    **Hide managed fields** keeps the live manifest readable, without the bookkeeping Kubernetes adds.
 
@@ -257,7 +258,8 @@ Each sync is kept in the history of the application, with the commit it applied.
    ```
 
 2. Go back to the first sync, and read the cluster and the application.
-   The interface lists the same history in [**HISTORY AND ROLLBACK**](:action:ui.history), one card per sync: when, how long it took, who started it (a person, or the automated sync policy), the commit with its author, and whether its GPG signature was checked, with a menu on each card that holds the rollback:
+   The interface lists the same history in [**HISTORY AND ROLLBACK**](:action:ui.history), one card per sync: when, how long it took, who started it (a person, or the automated sync policy), the commit with its author,
+   and whether its GPG signature was checked, with a menu on each card that holds the rollback:
 
    <!-- verify: timeout=120 expect="replicas in the cluster: 1" -->
 

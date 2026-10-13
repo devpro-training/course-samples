@@ -12,7 +12,7 @@ Any cluster and any Git server do: kind, minikube or a managed service, GitHub, 
 This lab keeps everything in one machine, with no account.
 
 System         | Install
----------------|---------------------------------------------------------------------------------------------------------------------------------------
+---------------|------------------------------------------------------------------------------------------------------------------------------------------------
 Windows, macOS | [Docker Desktop](https://docs.docker.com/desktop/), then k3d and `argocd` with Homebrew, Chocolatey or Scoop
 Linux          | Docker Engine, as in this step, then the binaries of the releases
 Any            | [k3d installation](https://k3d.io/stable/#installation), [Argo CD CLI installation](https://argo-cd.readthedocs.io/en/stable/cli_installation/)

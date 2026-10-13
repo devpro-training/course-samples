@@ -1,7 +1,8 @@
 # Secrets
 
 Everything Argo CD deploys comes from Git, and a Secret cannot be in Git as it is: a Secret file holds its value in base64, which is an encoding, and Git never forgets.
-The documentation of Argo CD takes a side: fill the Secrets on the destination cluster, with a tool such as Sealed Secrets or External Secrets Operator, and "strongly caution against" injecting them while the manifests are rendered, since Argo CD would then cache them in clear in Redis.
+The documentation of Argo CD takes a side: fill the Secrets on the destination cluster, with a tool such as Sealed Secrets or External Secrets Operator, and "strongly caution against" injecting them while the manifests are rendered,
+since Argo CD would then cache them in clear in Redis.
 This step uses Sealed Secrets: the repository holds a ciphertext that only the controller of one cluster can open.
 
 ## The problem
@@ -21,7 +22,8 @@ This step uses Sealed Secrets: the repository holds a ciphertext that only the c
 
 ## The controller, delivered by the root
 
-The controller is a Helm chart, and the `SealedSecret` of the shop is a custom resource whose definition comes from that chart: the controller is a platform, so it goes in the first wave, and the applications in the second wave wait for its health, as in the previous step.
+The controller is a Helm chart, and the `SealedSecret` of the shop is a custom resource whose definition comes from that chart:
+the controller is a platform, so it goes in the first wave, and the applications in the second wave wait for its health, as in the previous step.
 An Application can take a chart from a Helm repository with no repository declared, since the chart is public.
 
 1. Add the Application of the controller to the layers, and push:

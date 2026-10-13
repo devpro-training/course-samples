@@ -13,12 +13,12 @@ A new environment is a cluster, and a cluster is two things: infrastructure, whi
 
 ## The line between them
 
-Terraform                                     | Argo CD
-----------------------------------------------|----------------------------------------------------------
-The cluster and its nodes, the network        | The platform: ingress, certificates, policies, controllers
-The identity Argo CD uses on the cluster      | The applications, from folders and from clusters
-The Secret that registers the cluster         | Their sync, health, history and rollback
-Argo CD itself and the root, once             | Argo CD afterwards, if the root points to it
+Terraform                                | Argo CD
+-----------------------------------------|-----------------------------------------------------------
+The cluster and its nodes, the network   | The platform: ingress, certificates, policies, controllers
+The identity Argo CD uses on the cluster | The applications, from folders and from clusters
+The Secret that registers the cluster    | Their sync, health, history and rollback
+Argo CD itself and the root, once        | Argo CD afterwards, if the root points to it
 
 - **The Secret and its labels are the contract**: Terraform writes it, the ApplicationSets read it, and nothing else passes between them.
 - **A change of an application is never a `terraform apply`**: it is a commit, and Terraform stays out of what changes every day.
@@ -42,15 +42,16 @@ Argo CD itself and the root, once             | Argo CD afterwards, if the root 
 
 ## The providers
 
-Provider                 | Role in this chain
--------------------------|------------------------------------------------------------------------------------------------
-Cloud provider           | The cluster itself: `azurerm`, `aws`, `google`, as in the Azure course
-`hashicorp/helm`         | Installs the chart `argo-cd`, then the chart `argocd-apps` that makes the root Application
-`hashicorp/kubernetes`   | The identity in the new cluster (ServiceAccount, binding, token), and the cluster Secret in the hub
-`argoproj-labs/argocd`   | Manages the resources of Argo CD through its API: `argocd_cluster`, `argocd_application`, `argocd_application_set`, `argocd_project`, `argocd_repository`
+Provider               | Role in this chain
+-----------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------
+Cloud provider         | The cluster itself: `azurerm`, `aws`, `google`, as in the Azure course
+`hashicorp/helm`       | Installs the chart `argo-cd`, then the chart `argocd-apps` that makes the root Application
+`hashicorp/kubernetes` | The identity in the new cluster (ServiceAccount, binding, token), and the cluster Secret in the hub
+`argoproj-labs/argocd` | Manages the resources of Argo CD through its API: `argocd_cluster`, `argocd_application`, `argocd_application_set`, `argocd_project`, `argocd_repository`
 
 - The provider `argoproj-labs/argocd` is a community one in the registry (version 7.17.1 on 5 October 2026).
-  Its documentation says it "is not concerned with the installation/configuration of ArgoCD itself": it needs an Argo CD that exists, with an API server reachable from where Terraform runs, with `server_addr` and a token, a port-forward or the core mode.
+  Its documentation says it "is not concerned with the installation/configuration of ArgoCD itself": it needs an Argo CD that exists, with an API server reachable from where Terraform runs,
+  with `server_addr` and a token, a port-forward or the core mode.
 
 - The `kubernetes` provider writes the cluster Secret without the API of Argo CD: it only needs access to the namespace `argocd` of the hub, and the Secret is the resource that Argo CD reads.
   This course uses it, which keeps Terraform out of the API server of Argo CD.
@@ -174,12 +175,12 @@ resource "argocd_cluster" "new" {
 
 ## The order, and the way back
 
-Step                                        | Why it is in that order
---------------------------------------------|------------------------------------------------------------------------------------
-1. The cluster                              | Nothing else exists without it
-2. The identity and the Secret              | The Secret is the first thing Argo CD reads about it
-3. The generators make the Applications     | By labels: the platform wave first, then the applications, with a health check on Applications
-4. `terraform destroy`, in reverse          | The Secret goes first: Argo CD stops deploying, and the Applications of the cluster go with their generator, then the cluster is deleted
+Step                                 | Why it is in that order
+-------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------
+The cluster                          | Nothing else exists without it
+The identity and the Secret          | The Secret is the first thing Argo CD reads about it
+The generators make the Applications | By labels: the platform wave first, then the applications, with a health check on Applications
+`terraform destroy`, in reverse      | The Secret goes first: Argo CD stops deploying, and the Applications of the cluster go with their generator, then the cluster is deleted
 
 - **Delete the Secret before the cluster**: Argo CD stops deploying to a cluster that is going away, and its Application goes with its generator.
 - **A new environment is a variable file**: a name, a server, a label.
@@ -190,14 +191,15 @@ Step                                        | Why it is in that order
 
 Terraform can also install Argo CD in each new cluster, with its own root Application that points to `clusters/<name>` of the same repository, which is step 1 once per cluster.
 
-Hub                                           | One Argo CD per cluster
-----------------------------------------------|-------------------------------------------------------
-One place to see everything                   | A view per cluster, or an aggregation on top
-The hub holds a credential for each cluster   | No credential leaves a cluster: each pulls, and only reads Git
-One failure domain                            | One per cluster
-ApplicationSets over clusters                 | The same files, once per cluster, in a folder per cluster
-A path from the hub to every API server       | Only a path from every cluster to Git
+Hub                                         | One Argo CD per cluster
+--------------------------------------------|---------------------------------------------------------------
+One place to see everything                 | A view per cluster, or an aggregation on top
+The hub holds a credential for each cluster | No credential leaves a cluster: each pulls, and only reads Git
+One failure domain                          | One per cluster
+ApplicationSets over clusters               | The same files, once per cluster, in a folder per cluster
+A path from the hub to every API server     | Only a path from every cluster to Git
 
 - **The agent is a third way**: the project `argocd-agent` of `argoproj-labs` keeps the central view and moves the connection the other way, with agents on the clusters that connect out to the hub.
 
-- References: [Terraform provider for Argo CD](https://github.com/argoproj-labs/terraform-provider-argocd), [cluster bootstrapping](https://argo-cd.readthedocs.io/en/stable/operator-manual/cluster-bootstrapping/), [declarative setup](https://argo-cd.readthedocs.io/en/stable/operator-manual/declarative-setup/), [argocd-agent](https://argocd-agent.readthedocs.io/latest/).
+- References: [Terraform provider for Argo CD](https://github.com/argoproj-labs/terraform-provider-argocd), [cluster bootstrapping](https://argo-cd.readthedocs.io/en/stable/operator-manual/cluster-bootstrapping/),
+  [declarative setup](https://argo-cd.readthedocs.io/en/stable/operator-manual/declarative-setup/), [argocd-agent](https://argocd-agent.readthedocs.io/latest/).
