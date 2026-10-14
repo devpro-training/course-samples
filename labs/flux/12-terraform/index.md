@@ -10,11 +10,11 @@ The provider of Flux makes the join one resource.
 ![Terraform makes the cluster, its credentials and the Git token, the provider commits the Flux manifests to a folder of the repository and installs the controllers, which then pull the folders of the layers and apply them, with the key of the secrets given by Terraform or by hand](../assets/flux-terraform-dark.svg#gh-dark-mode-only)
 ![Terraform makes the cluster, its credentials and the Git token, the provider commits the Flux manifests to a folder of the repository and installs the controllers, which then pull the folders of the layers and apply them, with the key of the secrets given by Terraform or by hand](../assets/flux-terraform.svg#gh-light-mode-only)
 
-Terraform                                  | Flux
--------------------------------------------|-----------------------------------------------------------
-The cluster, its nodes and its network     | The platform: ingress, certificates, policies, controllers
-Flux itself, once, and its folder          | The applications, from the folder
-The first credentials (a token, a key)     | Their sync, health, drift and prune
+Terraform                              | Flux
+---------------------------------------|-----------------------------------------------------------
+The cluster, its nodes and its network | The platform: ingress, certificates, policies, controllers
+Flux itself, once, and its folder      | The applications, from the folder
+The first credentials (a token, a key) | Their sync, health, drift and prune
 
 - **The folder is the contract**: Terraform names `clusters/<name>`, and Flux follows what is in it.
 - **A change of an application is never a `terraform apply`**: it is a commit.
@@ -126,13 +126,13 @@ module "flux" {
 
 ## The order, and the way back
 
-Step                                  | Why it is in that order
---------------------------------------|----------------------------------------------------------------------------------------
-The cluster                           | Nothing else exists without it
-`flux_bootstrap_git`                  | It commits the folder and installs the controllers, which then pull the rest
+Step                                            | Why it is in that order
+------------------------------------------------|----------------------------------------------------------------------------------------------------------------------
+The cluster                                     | Nothing else exists without it
+`flux_bootstrap_git`                            | It commits the folder and installs the controllers, which then pull the rest
 The key of the secrets, by Terraform or by hand | A layer that holds secrets fails until the key exists, then retries, so the key comes first
-Flux applies the platform, then the apps | By `dependsOn` and `wait`, with no Terraform
-`terraform destroy`, in reverse        | `delete_git_manifests` defaults to `true`: the manifests leave the repository, then Flux is removed, then the cluster
+Flux applies the platform, then the apps        | By `dependsOn` and `wait`, with no Terraform
+`terraform destroy`, in reverse                 | `delete_git_manifests` defaults to `true`: the manifests leave the repository, then Flux is removed, then the cluster
 
 - **State holds the credentials**: the token of Git and the identity of the cluster are in the state, which is encrypted and has access control.
 - **A new environment is a variable file**: a name, a context, a branch.

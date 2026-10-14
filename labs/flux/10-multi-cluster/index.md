@@ -52,11 +52,11 @@ The documentation recommends one repository, a monorepo, with three folders:
 
 ## The credentials
 
-Design                        | Who holds what                                                              | Failure domain
-------------------------------|-----------------------------------------------------------------------------|--------------------------
-One Flux per cluster          | Each cluster holds a token that reads the repository, and its own SOPS key   | One cluster
-A hub that applies to others  | The hub holds a kubeconfig, or an identity, for every cluster it manages    | The hub and all its targets
-A hub with `kubeConfig` and an account | The same, and the hub impersonates a ServiceAccount of each target | Narrower, if the account is
+Design                                 | Who holds what                                                             | Failure domain
+---------------------------------------|----------------------------------------------------------------------------|----------------------------
+One Flux per cluster                   | Each cluster holds a token that reads the repository, and its own SOPS key | One cluster
+A hub that applies to others           | The hub holds a kubeconfig, or an identity, for every cluster it manages   | The hub and all its targets
+A hub with `kubeConfig` and an account | The same, and the hub impersonates a ServiceAccount of each target         | Narrower, if the account is
 
 - **A hub is a `Kustomization` or a `HelmRelease` with `spec.kubeConfig`**: it applies on a remote cluster, from a `secretRef` that holds a kubeconfig, or a `configMapRef` with a workload identity (AWS, Azure, GCP).
 - **With `serviceAccountName` too**, the controller impersonates that ServiceAccount on the target, which must exist there in a namespace with the same name as the `Kustomization`.
@@ -75,11 +75,11 @@ A hub with `kubeConfig` and an account | The same, and the hub impersonates a Se
 
 ## Choosing
 
-Choose                  | When
-------------------------|---------------------------------------------------------------------------------
-One Flux per cluster    | Clusters are many, in different networks or owned by different teams, and a credential must not leave a cluster
-A hub                   | The clusters are few, one team runs them all, and one place to look is worth a credential for each
-A UI on top             | In both cases, to see the state of the clusters in one screen: the Flux Operator, Headlamp, Capacitor, a Backstage plugin
+Choose               | When
+---------------------|--------------------------------------------------------------------------------------------------------------------------
+One Flux per cluster | Clusters are many, in different networks or owned by different teams, and a credential must not leave a cluster
+A hub                | The clusters are few, one team runs them all, and one place to look is worth a credential for each
+A UI on top          | In both cases, to see the state of the clusters in one screen: the Flux Operator, Headlamp, Capacitor, a Backstage plugin
 
 - Flux and the lab keep the first design, since it is the one with no credential that leaves a cluster.
 - An observability stack can gather the state of every Flux, which is in the status of its objects.

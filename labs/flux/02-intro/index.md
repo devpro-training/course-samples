@@ -29,27 +29,28 @@ A set of Kubernetes controllers that keep a cluster equal to a Git repository, w
 
 ## The controllers
 
-Controller                | Resources                                                 | What it does, from the documentation
---------------------------|-----------------------------------------------------------|------------------------------------------------------------------
-Source                    | `GitRepository`, `OCIRepository`, `HelmRepository`, `HelmChart`, `Bucket` | Fetches and manages the sources
-Kustomize                 | `Kustomization`                                           | Reconciles the objects a source holds, with Kustomize, SOPS and health checks
-Helm                      | `HelmRelease`                                             | Reconciles Helm releases
-Notification              | `Provider`, `Alert`, `Receiver`                           | Events out to chat and Git, webhooks in to trigger a reconciliation
-Image reflector and automation | `ImageRepository`, `ImagePolicy`, `ImageUpdateAutomation` | Scan a registry, pick a tag, and commit it to Git
+Controller                     | Resources                                                                 | What it does, from the documentation
+-------------------------------|---------------------------------------------------------------------------|------------------------------------------------------------------------------
+Source                         | `GitRepository`, `OCIRepository`, `HelmRepository`, `HelmChart`, `Bucket` | Fetches and manages the sources
+Kustomize                      | `Kustomization`                                                           | Reconciles the objects a source holds, with Kustomize, SOPS and health checks
+Helm                           | `HelmRelease`                                                             | Reconciles Helm releases
+Notification                   | `Provider`, `Alert`, `Receiver`                                           | Events out to chat and Git, webhooks in to trigger a reconciliation
+Image reflector and automation | `ImageRepository`, `ImagePolicy`, `ImageUpdateAutomation`                 | Scan a registry, pick a tag, and commit it to Git
 
 - The first four are installed by default, and the image controllers are added with `--components-extra`.
-- Two objects share the name `Kustomization`: the file of Kustomize in a folder, and the object of Flux in the cluster. Their `apiVersion` tells them apart.
+- Two objects share the name `Kustomization`: the file of Kustomize in a folder, and the object of Flux in the cluster.
+  Their `apiVersion` tells them apart.
 
 ---
 
 ## Kustomize, Kustomization and Helm
 
-Name                          | What it is                                                                  | In the lab
-------------------------------|-----------------------------------------------------------------------------|---------------------------
-Kustomize                     | The Kubernetes tool that patches plain YAML, with a `kustomization.yaml`; `kubectl apply -k` runs it too | The `kustomization.yaml` of `apps/shop`
-`Kustomization` of Flux       | A resource of Flux that builds a folder (with Kustomize), applies it, waits, prunes and corrects drift | `shop`, `infra`, `team-a`
-Helm                          | The package manager: charts with templates and values                       | The chart `podinfo`
-`HelmRelease` of Flux         | A resource of Flux that installs a chart with the Helm library, and upgrades it | `podinfo`
+Name                    | What it is                                                                                               | In the lab
+------------------------|----------------------------------------------------------------------------------------------------------|----------------------------------------
+Kustomize               | The Kubernetes tool that patches plain YAML, with a `kustomization.yaml`; `kubectl apply -k` runs it too | The `kustomization.yaml` of `apps/shop`
+`Kustomization` of Flux | A resource of Flux that builds a folder (with Kustomize), applies it, waits, prunes and corrects drift   | `shop`, `infra`, `team-a`
+Helm                    | The package manager: charts with templates and values                                                    | The chart `podinfo`
+`HelmRelease` of Flux   | A resource of Flux that installs a chart with the Helm library, and upgrades it                          | `podinfo`
 
 - **Kustomize and Helm are two ways to produce manifests**: one patches YAML, the other renders templates, and Flux runs either one.
 - **Helm is the first choice for software someone else packages**: a version of a chart, a file of values, and the release history Helm keeps.
@@ -111,16 +112,16 @@ Helm                          | The package manager: charts with templates and v
 
 ## Flux and Argo CD
 
-Topic            | Flux                                              | Argo CD
------------------|---------------------------------------------------|---------------------------------------------------
-Shape            | Controllers and resources, nothing else            | Controllers, an API server, a repository server and a UI
-Interface        | The `flux` command and `kubectl`, a UI from the ecosystem | A web UI, an API and a command line
-Unit of work     | `Kustomization`, `HelmRelease`                     | `Application`, `ApplicationSet`
-Access control   | The account named by the object, and Kubernetes RBAC | `AppProject`, accounts and RBAC of its own
-Secrets          | SOPS in the controller, operators as an option     | Plugins and operators, as in the Argo CD course
-Clusters         | One Flux per cluster, or `spec.kubeConfig`          | One Argo CD that registers clusters
-Both             | CNCF graduated, pull model, Git as the source of truth |
+Topic          | Flux                                                      | Argo CD
+---------------|-----------------------------------------------------------|---------------------------------------------------------
+Shape          | Controllers and resources, nothing else                   | Controllers, an API server, a repository server and a UI
+Interface      | The `flux` command and `kubectl`, a UI from the ecosystem | A web UI, an API and a command line
+Unit of work   | `Kustomization`, `HelmRelease`                            | `Application`, `ApplicationSet`
+Access control | The account named by the object, and Kubernetes RBAC      | `AppProject`, accounts and RBAC of its own
+Secrets        | SOPS in the controller, operators as an option            | Plugins and operators, as in the Argo CD course
+Clusters       | One Flux per cluster, or `spec.kubeConfig`                | One Argo CD that registers clusters
 
+- Both are graduated projects of the CNCF, with a pull model and Git as the source of truth.
 - The choice is often about the interface the team wants, and who runs the platform.
 - Both can run in the same organization, one per team or per cluster.
 

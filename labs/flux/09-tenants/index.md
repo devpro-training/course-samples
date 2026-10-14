@@ -119,11 +119,11 @@ A `Kustomization` can name a ServiceAccount instead, and the controller imperson
 A tenant that forgets `serviceAccountName` would be applied with the rights of the controller.
 The controllers have flags that close that door, which the lab does not set, since its own `Kustomizations` (`infra`, `shop`) would then need an account too:
 
-Flag                                 | Controllers                          | Effect
--------------------------------------|--------------------------------------|---------------------------------------------------------------
-`--default-service-account=<name>`   | `kustomize-controller`, `helm-controller` | An object with no `serviceAccountName` uses this account of its namespace
-`--no-cross-namespace-refs=true`     | All controllers                      | An object cannot use a source or a dependency of another namespace
-`--no-remote-bases=true`             | `kustomize-controller`               | A `kustomization.yaml` cannot load a base from a URL
+Flag                               | Controllers                               | Effect
+-----------------------------------|-------------------------------------------|--------------------------------------------------------------------------
+`--default-service-account=<name>` | `kustomize-controller`, `helm-controller` | An object with no `serviceAccountName` uses this account of its namespace
+`--no-cross-namespace-refs=true`   | All controllers                           | An object cannot use a source or a dependency of another namespace
+`--no-remote-bases=true`           | `kustomize-controller`                    | A `kustomization.yaml` cannot load a base from a URL
 
 - They are added to the controller Deployments by a patch in the `kustomization.yaml` of `clusters/<name>/flux-system`, which `flux bootstrap` keeps when it is run again.
 - The `Kustomization` `flux-system` itself names `serviceAccountName: kustomize-controller`, which is `cluster-admin`, so the platform keeps its rights.

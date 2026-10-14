@@ -688,8 +688,10 @@ google-chrome --headless=new --screenshot=diagram.png --window-size=1040,430 "fi
 - The courses of this series with a terminal and no web UI need no Playwright probe, as for docker (flux).
 - A cluster can be tried before writing a step on the host: its Docker runs `k3d`, so a command is checked in seconds there, where a run of `course verify` costs about ten minutes:
   the first drafts of this course were written and fixed against the lab machine only, which took a day, and the lab is then the confirmation, not the place to find the command (flux).
-- A course whose blocks wait for clusters, about 15 minutes in all, does not fit the ten minutes of a foreground command: it is verified in overlapping parts, a temporary copy in the repository with the steps that part needs (the folders are copied, the sections it does not need are cut),
-  and each block is green in at least one part. The bootstrap of a cluster takes about 120 seconds, the pull of four controller images, and is run twice by this course (flux).
+- A course whose blocks wait for clusters, about 15 minutes in all, does not fit the ten minutes of a foreground command:
+  it is verified in overlapping parts, a temporary copy in the repository with the steps that part needs (the folders are copied, the sections it does not need are cut),
+  and each block is green in at least one part.
+  The bootstrap of a cluster takes about 120 seconds, the pull of four controller images, and is run twice by this course (flux).
 - `flux bootstrap git` over HTTP needs `--token-auth` (the token goes in `--password`), `--allow-insecure-http` for a server with no TLS and `--silent`, and the URL it commits into `gotk-sync.yaml` is the one the cluster reaches,
   so `host.k3d.internal` is mapped to `127.0.0.1` in `/etc/hosts` of the machine and the same name works from a Pod and from the command line (flux).
 - A Gitea token made with `POST /api/v1/users/<user>/tokens` and the scope `write:repository` is enough for the bootstrap and for the reads that follow, and `flux` stores it in the Secret `flux-system` (`username`, `password`) (flux).
@@ -715,4 +717,5 @@ google-chrome --headless=new --screenshot=diagram.png --window-size=1040,430 "fi
 - A course that mentions an integration, here Terraform and Flux, has a diagram of it, one per integration and not one per course: the first draft had three diagrams and none of the Terraform chain,
   which the slides described only in text (flux).
 - The repositories the author points to at the start (here `../devpro-kubernetes-gitops` and `../fallstar`) are read for the layout of their files before the first step is written, not after:
-  the `HelmRepository` file per repository, the `helmrelease.yaml` per folder, `releaseName`, `targetNamespace`, `createNamespace` and `sourceRef.namespace` were rewritten into the Helm step after a first version that did not follow them (flux).
+  the `HelmRepository` file per repository, the `helmrelease.yaml` per folder, `releaseName`, `targetNamespace`, `createNamespace` and `sourceRef.namespace`
+  were rewritten into the Helm step after a first version that did not follow them (flux).

@@ -16,11 +16,11 @@ It cannot be in clear: a repository is cloned, forked, cached and kept forever.
 
 ## Three places for a secret
 
-Place                          | Git holds                         | Who decrypts or fetches        | Example
--------------------------------|-----------------------------------|--------------------------------|---------------------------
-In Git, encrypted              | The ciphertext                    | A controller of the cluster, with a key | SOPS, Sealed Secrets
-Outside the cluster, in a store | A reference to the secret         | An operator, with an identity   | External Secrets Operator, a CSI driver
-Only in the cluster            | Nothing                           | Nobody: created by hand        | The first credential
+Place                           | Git holds                 | Who decrypts or fetches                 | Example
+--------------------------------|---------------------------|-----------------------------------------|----------------------------------------
+In Git, encrypted               | The ciphertext            | A controller of the cluster, with a key | SOPS, Sealed Secrets
+Outside the cluster, in a store | A reference to the secret | An operator, with an identity           | External Secrets Operator, a CSI driver
+Only in the cluster             | Nothing                   | Nobody: created by hand                 | The first credential
 
 - **A team often uses two**: SOPS or a store for the secrets of applications, and a manual one for the key that opens them.
 - **Reference**: [Flux, secrets management](https://fluxcd.io/flux/security/secrets-management/).
