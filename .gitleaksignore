@@ -1,0 +1,8 @@
+# Findings of gitleaks that are not secrets, one fingerprint per line: <commit>:<file>:<rule>:<line>.
+# A finding stays in a commit of the history, so a fix in a later commit does not remove it, and the line keeps the history unchanged.
+
+# The key of devstoreaccount1, the built-in account of Azurite, the local emulator of Azure Storage.
+# It is the same on every machine, Microsoft publishes it in https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azurite,
+# and it opens nothing but an emulator on the loopback address.
+# The Azure course no longer holds it: its emulator step makes a key when it runs and gives it to Azurite in AZURITE_ACCOUNTS.
+b8d33150de73ed328d47570d192254e5cb596a02:labs/azure/lab.yaml:generic-api-key:26

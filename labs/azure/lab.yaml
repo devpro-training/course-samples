@@ -21,9 +21,9 @@ env:
   BICEP_SHA256: b09ec25a9d376c1f8e33ede6ed22b587f915ad68488d5db77a6f9541748c7f6e
   # https://www.npmjs.com/package/azurite, which needs Node.js 22 or newer.
   AZURITE_VERSION: 3.37.0
-  # https://learn.microsoft.com/en-us/azure/storage/common/storage-connect-azurite
-  AZURITE_ACCOUNT: devstoreaccount1
-  AZURITE_KEY: Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==
+  # https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azurite#custom-storage-accounts-and-keys
+  # The emulator step makes the key of this account when it runs, so the repository holds no key.
+  AZURITE_ACCOUNT: stcourseemulator
   # https://www.npmjs.com/package/npm, a registry tarball carries its dependencies, so it runs once unpacked.
   NPM_VERSION: 12.2.0
   # https://registry.npmjs.org, where npm and Azurite are downloaded from, with the metadata that holds their checksum.

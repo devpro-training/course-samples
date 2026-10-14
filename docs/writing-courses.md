@@ -457,6 +457,8 @@ google-chrome --headless=new --screenshot=diagram.png --window-size=1040,430 "fi
   which is why the course does not teach it (azure).
 - Azurite 3.37.0 needs Node.js 22 or newer, is started with `azurite-blob` only (the `azurite` program also opens the queue and table ports), accepts the requests of Azure CLI 2.91.0 with no `--skipApiVersionCheck`,
   puts the account name in the path of the URL, and answers an anonymous read of a private container with `403` and `x-ms-error-code: AuthorizationFailure` (azure).
+- The published key of Azurite's built-in account, `devstoreaccount1`, is flagged by gitleaks as a generic API key, so the emulator step makes a key with `head -c 64 /dev/urandom | base64 -w0`,
+  and `AZURITE_ACCOUNTS="<account>:<key>"` replaces the built-in account, which then answers `404` (azure).
 - The emulator holds the data plane only: `az storage account list` still answers "setup account", which makes the difference with the control plane visible (azure).
 - Azurite stops with `pkill -f "^node .*azurite-blob"`: the program is a Node.js script, and the anchor keeps the pattern from matching the shell that types it (azure).
 - The Azure Retail Prices API needs no account:

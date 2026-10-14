@@ -5,15 +5,29 @@ The control plane, Azure Resource Manager, creates the storage account.
 The data plane is the storage service itself, at `<account>.blob.core.windows.net`, where containers and blobs live.
 Azurite emulates the data plane on the local machine, which makes the difference visible.
 
+## The account and its key
+
+A storage account is addressed by its name and authorized by a key, or by a token of Microsoft Entra ID.
+Azurite has a built-in account, `devstoreaccount1`, whose key Microsoft publishes, so anyone can use it.
+Azure makes the key of an account when it creates it, and the course does the same, so no key is written in a file.
+
+1. Make a key of 64 random bytes, written in base64 like the keys of Azure, for the current shell and every new one:
+
+   ```bash exec
+   export AZURITE_KEY="$(head -c 64 /dev/urandom | base64 -w0)" && \
+   echo "export AZURITE_KEY='${AZURITE_KEY}'" >> ~/.bashrc
+   ```
+
 ## Start the emulator
 
-1. Start the blob service on the loopback address, in the background:
+1. Start the blob service on the loopback address, in the background, with the account and its key in `AZURITE_ACCOUNTS`, which replaces the built-in account:
 
    ```bash exec
    mkdir -p ~/lab/azure/emulator && cd ~/lab/azure/emulator
    ```
 
    ```bash exec
+   AZURITE_ACCOUNTS="${AZURITE_ACCOUNT}:${AZURITE_KEY}" \
    nohup azurite-blob --silent --location ~/lab/azure/emulator/data --blobHost 127.0.0.1 > azurite.log 2>&1 &
    ```
 
@@ -26,12 +40,7 @@ Azurite emulates the data plane on the local machine, which makes the difference
    until grep -q "listens" azurite.log; do sleep 1; done; cat azurite.log
    ```
 
-## The account and its key
-
-A storage account is addressed by its name and authorized by a key, or by a token of Microsoft Entra ID.
-Azurite accepts one well-known account, which is the same on every machine, so it is no secret.
-
-1. Put the connection string in the variable the CLI reads:
+3. Put the connection string in the variable the CLI reads:
 
    ```bash exec
    export AZURE_STORAGE_CONNECTION_STRING="DefaultEndpointsProtocol=http;AccountName=${AZURITE_ACCOUNT};AccountKey=${AZURITE_KEY};BlobEndpoint=http://127.0.0.1:10000/${AZURITE_ACCOUNT};" && \
