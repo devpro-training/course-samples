@@ -102,6 +102,8 @@ hosts:
   and `labs/shared/setup-terraform-machine.md` (`TERRAFORM_VERSION`, `HASHICORP_GPG_FINGERPRINT`),
   and a web UI of the machine is published with a k3d port mapping and a NodePort, since `kubectl port-forward` dies on the first reset connection (argocd).
 - A pod reaches Gitea of the machine as `http://host.k3d.internal:3000`, so the course makes Gitea listen on `0.0.0.0` after `setup-gitea.md` (argocd).
+- The Flux command line is installed in the machine by `labs/shared/setup-flux-cli.md` (`FLUXREL_VERSION`, `FLUXREL_URL`), and SOPS with age by `labs/shared/setup-sops.md` (`SOPS_VERSION`, `SOPS_URL`, age from apt),
+  after `setup-gitea.md` and the `labs/shared/setup-gitea-clusters.md` fragment that makes Gitea listen on `0.0.0.0` (flux).
 - Several `runtime: vm` hosts of a course reach each other by their names (`https://kube:6443` from the host `agent`), and each has its own terminal, which a step shows with one `terminal` panel per `target` (k3s).
 - Kubernetes, Podman and any other iptables user need the guest kernel of sidelab built from `scripts/firecracker_kernel.fragment` (`vmlinux-sidelab-<version>.bin`, `task setup:firecracker:bin`), and `FIRECRACKER_KERNEL` pointing at it:
   the CI kernel has no `xt_comment`, `xt_mark`, `multiport`, `statistic` or `recent` (kubernetes).
@@ -681,3 +683,34 @@ google-chrome --headless=new --screenshot=diagram.png --window-size=1040,430 "fi
 - A course that explains a tool without running it still shows code that was run: the Terraform of the registration was applied against two k3d clusters (four resources added), and the Helm provider file was validated (argocd).
 - A full run of the lab with eleven steps, two clusters and 109 blocks took 5 minutes 30 seconds, and a first run with a failing wait took 9 minutes 36, just under the limit of a foreground command,
   so a failing wait is read from the log and fixed before another run (argocd).
+- The courses of this series with a terminal and no web UI need no Playwright probe, as for docker (flux).
+- A cluster can be tried before writing a step on the host: its Docker runs `k3d`, so a command is checked in seconds there, where a run of `course verify` costs about ten minutes:
+  the first drafts of this course were written and fixed against the lab machine only, which took a day, and the lab is then the confirmation, not the place to find the command (flux).
+- A course whose blocks wait for clusters, about 15 minutes in all, does not fit the ten minutes of a foreground command: it is verified in overlapping parts, a temporary copy in the repository with the steps that part needs (the folders are copied, the sections it does not need are cut),
+  and each block is green in at least one part. The bootstrap of a cluster takes about 120 seconds, the pull of four controller images, and is run twice by this course (flux).
+- `flux bootstrap git` over HTTP needs `--token-auth` (the token goes in `--password`), `--allow-insecure-http` for a server with no TLS and `--silent`, and the URL it commits into `gotk-sync.yaml` is the one the cluster reaches,
+  so `host.k3d.internal` is mapped to `127.0.0.1` in `/etc/hosts` of the machine and the same name works from a Pod and from the command line (flux).
+- A Gitea token made with `POST /api/v1/users/<user>/tokens` and the scope `write:repository` is enough for the bootstrap and for the reads that follow, and `flux` stores it in the Secret `flux-system` (`username`, `password`) (flux).
+- A bootstrap pushes two commits made by `Flux` (the component manifests, then the sync manifests), so a clone made before it is behind, and `git pull --rebase` brings it back (flux).
+- `flux reconcile kustomization <name> --with-source` waits for the object to be ready, so a broken or blocked layer holds the command for its whole `--timeout` (5 minutes): the blocks that expect a failure use `--timeout 20s` (flux).
+- The `--timeout` of `flux create kustomization` is the time the command waits and not the field `spec.timeout`, which `--wait` sets to 2 minutes: the file is edited with `sed` to bound a health check at 40 seconds (flux).
+- A `Kustomization` fails with a message on several lines when a dry run is refused, so `flux get ... | tail -1` shows an empty line and a check reads `.status.conditions[?(@.type=="Ready")].message` with `tr '\n' ' '` (flux).
+- Flux applies a set after a server side dry run of all of it, so one refused object (a `ClusterRole` of a tenant) stops the others: the Deployment of the same folder was not created (flux).
+- The Helm release of a `HelmRelease` with a `targetNamespace` is named `<targetNamespace>-<name>` and its Secrets are in the namespace of the `HelmRelease` object, so the course sets `releaseName` and looks in `flux-system` (flux).
+- A `HelmRelease` is not corrected after `kubectl scale`, and is with `driftDetection: mode: enabled`, which the next reconciliation applies (flux).
+- A `Kustomization` of another namespace than its source needs the namespace in the reference, `--source GitRepository/flux-system.flux-system`, or it fails with "GitRepository ... not found" (flux).
+- `flux create tenant <name> --with-namespace <ns> --cluster-role admin --export` writes a namespace, a ServiceAccount and a RoleBinding, and the `Kustomization` of the tenant names `serviceAccountName`:
+  a `ClusterRole` in its folder answers `dry-run failed (Forbidden): ... User "system:serviceaccount:team-a:team-a" cannot patch resource "clusterroles"` (flux).
+- A SOPS file applied by a `Kustomization` with no `decryption` is refused by Flux with `Secret/shop/shop-db is SOPS encrypted, configuring decryption is required for this secret to be reconciled`,
+  which the course shows before the fix (flux).
+- `sops` indents the file it writes by 4 spaces whatever the input, so a `grep` of a key of an encrypted file allows any indentation, and `sops updatekeys --yes` adds a recipient from `.sops.yaml` without changing the values (flux).
+- age is a Debian 12 package (`age-keygen`), which `apt` checks, where its releases have no checksum file, and SOPS publishes `sops-<version>.checksums.txt` (flux).
+- Background of the project is dated from several pages: 15 July 2019, 12 March 2021 and 30 November 2022 from the CNCF page, the v1 repository archived and v2.0.0 on 5 July 2023 from GitHub,
+  the closure of Weaveworks on 5 February 2024 from the press, and a maintainer roster of 9 read from `CORE-MAINTAINERS` of `fluxcd/community` with the date (flux).
+- The Flux page on secrets management is the outline of a secrets slide: SOPS, decryption operators, external stores and CSI drivers, with the limits it states (flux).
+- The Terraform provider of Flux was validated, and planned, in the lab image with no cluster (`terraform init`, `validate`, `plan`), and the examples of the author came from `../wiz-playground/terraform` (flux).
+- A `<!-- include -->` fragment shared by two courses replaces a block that was inline in the first one: `labs/shared/setup-gitea-clusters.md` came from the Argo CD setup, whose steps are unchanged (flux).
+- A course that mentions an integration, here Terraform and Flux, has a diagram of it, one per integration and not one per course: the first draft had three diagrams and none of the Terraform chain,
+  which the slides described only in text (flux).
+- The repositories the author points to at the start (here `../devpro-kubernetes-gitops` and `../fallstar`) are read for the layout of their files before the first step is written, not after:
+  the `HelmRepository` file per repository, the `helmrelease.yaml` per folder, `releaseName`, `targetNamespace`, `createNamespace` and `sourceRef.namespace` were rewritten into the Helm step after a first version that did not follow them (flux).

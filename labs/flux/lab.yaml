@@ -1,0 +1,69 @@
+title: "Flux"
+description: "Flux, the GitOps toolkit of the CNCF with no UI of its own: who maintains it, strengths and weaknesses, bootstrap, sources and Kustomizations, Helm, layers, secrets with SOPS and age, tenants, many clusters, and Terraform."
+duration: 35
+tags:
+  - flux
+  - gitops
+  - kubernetes
+  - beginner
+sidebarWidth: 620
+backend: container
+# Every version and URL of the course, delivered to each host's environment, so a step refers to one by name.
+# Every version and URL of the course, delivered to each host's environment, so a step refers to one by name.
+env:
+  # https://docs.docker.com/engine/install/debian/
+  DOCKER_APT_URL: https://download.docker.com/linux/debian
+  # The fingerprint of the key that signs the packages, from the same page.
+  DOCKER_GPG_FINGERPRINT: 9DC858229FC7DD38854AE2D88D81803C0EBFCD88
+  # Output of apt-cache madison docker-ce, for Debian 12 (bookworm).
+  DOCKER_VERSION: 5:29.8.2-1~debian.12~bookworm
+  # https://github.com/k3d-io/k3d/releases
+  # Not K3D_*, which k3d itself reads as options of its own.
+  K3DCLI_VERSION: v5.9.0
+  K3DCLI_URL: https://github.com/k3d-io/k3d/releases/download
+  # https://kubernetes.io/releases/download/, the minor version of the cluster below.
+  KUBECTL_VERSION: v1.36.5
+  KUBECTL_URL: https://dl.k8s.io/release
+  # https://hub.docker.com/r/rancher/k3s/tags, the stable channel of https://update.k3s.io/v1-release/channels
+  # The image tag writes the + of the k3s version as a -.
+  NODE_IMAGE: rancher/k3s:v1.36.5-k3s1
+  # https://github.com/fluxcd/flux2/releases, the command line of one release.
+  # Not FLUX_*, which the flux command line reads as options of its own.
+  FLUXREL_VERSION: v2.9.6
+  FLUXREL_URL: https://github.com/fluxcd/flux2/releases/download
+  # https://github.com/getsops/sops/releases, a single binary with a checksum file.
+  # age comes from the Debian package of the machine, which apt checks.
+  SOPS_VERSION: v3.13.3
+  SOPS_URL: https://github.com/getsops/sops/releases/download
+  # https://github.com/stefanprodan/podinfo, a public chart of the Flux maintainer, and its repository.
+  PODINFO_CHART_URL: https://stefanprodan.github.io/podinfo
+  PODINFO_CHART_VERSION: 6.15.0
+  # The value of the Secret of the lab, which Git must never see in clear.
+  SHOP_DB_PASSWORD: s3cr3t-lab-value
+  # https://dl.gitea.com/gitea/, and https://docs.gitea.com/installation/install-from-binary
+  GITEA_VERSION: 28.1.0
+  GITEA_URL: https://dl.gitea.com/gitea
+  # The key that signs the releases, from the installation page, and where it is published.
+  GITEA_GPG_FINGERPRINT: 7C9E68152594688862D62AF62D9AE806EC1592E2
+  GITEA_KEYS_URL: https://keys.openpgp.org/vks/v1/by-fingerprint
+  # Where the server listens for the machine, where the clusters reach it (the gateway of the Docker network), and the account of the lab.
+  # The password only protects a server of a disposable machine.
+  GITEA_BASE_URL: http://127.0.0.1:3000
+  GITEA_CLUSTER_URL: http://host.k3d.internal:3000
+  GITEA_ADMIN_USER: ada
+  GITEA_ADMIN_PASSWORD: lab-password-1
+  GITEA_ADMIN_EMAIL: ada@example.com
+  # The identity commits are recorded with.
+  GIT_USER_NAME: Ada Lovelace
+  GIT_USER_EMAIL: ada@example.com
+  # https://hub.docker.com/r/traefik/whoami/tags, a web server that prints the request it receives.
+  WHOAMI_IMAGE: traefik/whoami:v1.11.0
+hosts:
+  # The lab itself, which only holds the slides.
+  - name: control
+  # The Git server, the clusters and Flux run in a virtual machine: k3d needs a kernel, root and cgroups.
+  - name: docker
+    runtime: vm
+    cores: 2
+    memory: 4096
+    disk: 12288

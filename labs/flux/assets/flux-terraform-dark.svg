@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 500" width="1040" height="500">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#94a3b8"/></marker>
+    <marker id="arrowg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#4ade80"/></marker>
+    <marker id="arrowp" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#a78bfa"/></marker>
+    <marker id="arrowa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#fbbf24"/></marker>
+    <marker id="arrowb" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#38bdf8"/></marker>
+  </defs>
+  <rect x="0" y="0" width="1040" height="500" fill="#0f172a"/>
+  <text x="520" y="34" fill="#e2e8f0" font-family="sans-serif" font-size="22" font-weight="bold" text-anchor="middle">Terraform makes the cluster and bootstraps Flux, then Flux pulls the rest from Git</text>
+  <rect x="20" y="70" width="240" height="150" rx="8" fill="#1e293b" stroke="#fbbf24" stroke-width="2"/>
+  <text x="140" y="96" fill="#fbbf24" font-family="sans-serif" font-size="14" font-weight="bold" text-anchor="middle">Terraform</text>
+  <text x="140" y="120" fill="#e2e8f0" font-family="sans-serif" font-size="12" text-anchor="middle">cloud provider: the cluster</text>
+  <text x="140" y="139" fill="#e2e8f0" font-family="sans-serif" font-size="12" text-anchor="middle">kubernetes: its credentials</text>
+  <text x="140" y="158" fill="#e2e8f0" font-family="monospace" font-size="11" text-anchor="middle">fluxcd/flux: flux_bootstrap_git</text>
+  <text x="140" y="177" fill="#94a3b8" font-family="sans-serif" font-size="12" text-anchor="middle">state holds the tokens</text>
+  <rect x="20" y="270" width="240" height="150" rx="8" fill="#1e293b" stroke="#334155" stroke-width="2"/>
+  <text x="140" y="296" fill="#e2e8f0" font-family="sans-serif" font-size="14" font-weight="bold" text-anchor="middle">Variables of an environment</text>
+  <text x="140" y="320" fill="#e2e8f0" font-family="monospace" font-size="11" text-anchor="middle">cluster name, context</text>
+  <text x="140" y="339" fill="#e2e8f0" font-family="monospace" font-size="11" text-anchor="middle">git_url, branch</text>
+  <text x="140" y="358" fill="#e2e8f0" font-family="monospace" font-size="11" text-anchor="middle">git_token (sensitive)</text>
+  <text x="140" y="377" fill="#94a3b8" font-family="sans-serif" font-size="12" text-anchor="middle">a new environment is a file</text>
+  <rect x="330" y="70" width="240" height="150" rx="8" fill="#1e293b" stroke="#a78bfa" stroke-width="2"/>
+  <text x="450" y="96" fill="#a78bfa" font-family="sans-serif" font-size="14" font-weight="bold" text-anchor="middle">Git repository</text>
+  <text x="450" y="120" fill="#e2e8f0" font-family="monospace" font-size="11" text-anchor="middle">clusters/&lt;name&gt;/flux-system/</text>
+  <text x="450" y="139" fill="#e2e8f0" font-family="monospace" font-size="11" text-anchor="middle">gotk-components.yaml</text>
+  <text x="450" y="158" fill="#e2e8f0" font-family="monospace" font-size="11" text-anchor="middle">gotk-sync.yaml</text>
+  <text x="450" y="177" fill="#94a3b8" font-family="sans-serif" font-size="12" text-anchor="middle">committed by the provider</text>
+  <rect x="330" y="270" width="240" height="150" rx="8" fill="#1e293b" stroke="#a78bfa" stroke-width="2"/>
+  <text x="450" y="296" fill="#a78bfa" font-family="sans-serif" font-size="14" font-weight="bold" text-anchor="middle">The folders Flux then follows</text>
+  <text x="450" y="320" fill="#e2e8f0" font-family="monospace" font-size="11" text-anchor="middle">infrastructure/  apps/</text>
+  <text x="450" y="339" fill="#e2e8f0" font-family="sans-serif" font-size="12" text-anchor="middle">one Kustomization per layer</text>
+  <text x="450" y="358" fill="#e2e8f0" font-family="monospace" font-size="11" text-anchor="middle">dependsOn, wait</text>
+  <rect x="640" y="50" width="380" height="400" rx="8" fill="#0f172a" stroke="#38bdf8" stroke-width="2" stroke-dasharray="8 5"/>
+  <text x="830" y="76" fill="#38bdf8" font-family="sans-serif" font-size="14" font-weight="bold" text-anchor="middle">The new cluster</text>
+  <rect x="660" y="100" width="160" height="120" rx="8" fill="#1e293b" stroke="#4ade80" stroke-width="2"/>
+  <text x="740" y="126" fill="#4ade80" font-family="sans-serif" font-size="14" font-weight="bold" text-anchor="middle">Flux controllers</text>
+  <text x="740" y="150" fill="#e2e8f0" font-family="sans-serif" font-size="12" text-anchor="middle">source, kustomize,</text>
+  <text x="740" y="169" fill="#e2e8f0" font-family="sans-serif" font-size="12" text-anchor="middle">helm, notification</text>
+  <text x="740" y="188" fill="#94a3b8" font-family="sans-serif" font-size="12" text-anchor="middle">installed by the provider</text>
+  <rect x="850" y="100" width="150" height="120" rx="8" fill="#1e293b" stroke="#fbbf24" stroke-width="2"/>
+  <text x="925" y="126" fill="#fbbf24" font-family="sans-serif" font-size="14" font-weight="bold" text-anchor="middle">Key of the secrets</text>
+  <text x="925" y="150" fill="#e2e8f0" font-family="monospace" font-size="11" text-anchor="middle">Secret sops-age</text>
+  <text x="925" y="169" fill="#94a3b8" font-family="sans-serif" font-size="12" text-anchor="middle">by Terraform</text>
+  <text x="925" y="188" fill="#94a3b8" font-family="sans-serif" font-size="12" text-anchor="middle">or by hand</text>
+  <rect x="660" y="280" width="340" height="120" rx="8" fill="#1e293b" stroke="#4ade80" stroke-width="2"/>
+  <text x="830" y="306" fill="#4ade80" font-family="sans-serif" font-size="14" font-weight="bold" text-anchor="middle">Platform, then applications</text>
+  <text x="830" y="330" fill="#e2e8f0" font-family="sans-serif" font-size="12" text-anchor="middle">applied layer after layer</text>
+  <text x="830" y="349" fill="#94a3b8" font-family="sans-serif" font-size="12" text-anchor="middle">by the Kustomizations</text>
+  <text x="830" y="368" fill="#94a3b8" font-family="sans-serif" font-size="12" text-anchor="middle">Terraform is not involved</text>
+  <line x1="262" y1="145" x2="328" y2="145" stroke="#fbbf24" stroke-width="2" marker-end="url(#arrowa)"/>
+  <text x="295" y="132" fill="#fbbf24" font-family="sans-serif" font-size="11" text-anchor="middle">1 commit</text>
+  <line x1="572" y1="145" x2="658" y2="145" stroke="#4ade80" stroke-width="2" marker-end="url(#arrowg)"/>
+  <text x="615" y="132" fill="#4ade80" font-family="sans-serif" font-size="11" text-anchor="middle">2 install</text>
+  <line x1="658" y1="195" x2="572" y2="195" stroke="#4ade80" stroke-width="2" marker-end="url(#arrowg)"/>
+  <text x="615" y="212" fill="#4ade80" font-family="sans-serif" font-size="11" text-anchor="middle">3 pull</text>
+  <line x1="450" y1="222" x2="450" y2="268" stroke="#a78bfa" stroke-width="2" marker-end="url(#arrowp)"/>
+  <line x1="572" y1="345" x2="658" y2="345" stroke="#4ade80" stroke-width="2" marker-end="url(#arrowg)"/>
+  <text x="615" y="332" fill="#4ade80" font-family="sans-serif" font-size="11" text-anchor="middle">4 apply</text>
+  <line x1="740" y1="222" x2="740" y2="278" stroke="#4ade80" stroke-width="2" marker-end="url(#arrowg)"/>
+  <line x1="140" y1="268" x2="140" y2="222" stroke="#94a3b8" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="520" y="486" fill="#94a3b8" font-family="sans-serif" font-size="12" text-anchor="middle">Terraform stays out of what changes every day: an application is a commit, never a terraform apply.</text>
+</svg>

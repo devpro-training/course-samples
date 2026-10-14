@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 500" width="1040" height="500">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker>
+    <marker id="arrowg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#16a34a"/></marker>
+    <marker id="arrowp" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#7c3aed"/></marker>
+    <marker id="arrowa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#b45309"/></marker>
+    <marker id="arrowb" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#0284c7"/></marker>
+  </defs>
+  <rect x="0" y="0" width="1040" height="500" fill="#ffffff"/>
+  <text x="520" y="34" fill="#0f172a" font-family="sans-serif" font-size="22" font-weight="bold" text-anchor="middle">One repository, one folder per cluster, one Flux per cluster</text>
+  <rect x="20" y="60" width="300" height="400" rx="8" fill="#f1f5f9" stroke="#7c3aed" stroke-width="2"/>
+  <text x="170" y="86" fill="#7c3aed" font-family="sans-serif" font-size="14" font-weight="bold" text-anchor="middle">Git repository fleet</text>
+  <text x="170" y="110" fill="#0f172a" font-family="monospace" font-size="11" text-anchor="middle">clusters/hub/</text>
+  <text x="170" y="129" fill="#0f172a" font-family="monospace" font-size="11" text-anchor="middle">clusters/staging/</text>
+  <text x="170" y="148" fill="#0f172a" font-family="monospace" font-size="11" text-anchor="middle">apps/shop/   (shared)</text>
+  <text x="170" y="167" fill="#0f172a" font-family="monospace" font-size="11" text-anchor="middle">apps/infra/  (shared)</text>
+  <text x="170" y="186" fill="#0f172a" font-family="monospace" font-size="11" text-anchor="middle">tenants/team-a/</text>
+  <text x="170" y="205" fill="#0f172a" font-family="monospace" font-size="11" text-anchor="middle">.sops.yaml (two recipients)</text>
+  <rect x="420" y="70" width="260" height="170" rx="8" fill="#f1f5f9" stroke="#16a34a" stroke-width="2"/>
+  <text x="550" y="96" fill="#16a34a" font-family="sans-serif" font-size="14" font-weight="bold" text-anchor="middle">Cluster hub</text>
+  <text x="550" y="120" fill="#0f172a" font-family="sans-serif" font-size="12" text-anchor="middle">Flux follows clusters/hub</text>
+  <text x="550" y="139" fill="#475569" font-family="sans-serif" font-size="12" text-anchor="middle">shop: 3 replicas</text>
+  <text x="550" y="158" fill="#0f172a" font-family="monospace" font-size="11" text-anchor="middle">key: age.agekey</text>
+  <text x="550" y="177" fill="#475569" font-family="sans-serif" font-size="12" text-anchor="middle">sops-age: hub key</text>
+  <rect x="420" y="290" width="260" height="170" rx="8" fill="#f1f5f9" stroke="#b45309" stroke-width="2"/>
+  <text x="550" y="316" fill="#b45309" font-family="sans-serif" font-size="14" font-weight="bold" text-anchor="middle">Cluster staging</text>
+  <text x="550" y="340" fill="#0f172a" font-family="sans-serif" font-size="12" text-anchor="middle">Flux follows clusters/staging</text>
+  <text x="550" y="359" fill="#475569" font-family="sans-serif" font-size="12" text-anchor="middle">shop: 1 replica, a patch</text>
+  <text x="550" y="378" fill="#0f172a" font-family="monospace" font-size="11" text-anchor="middle">key: staging.agekey</text>
+  <text x="550" y="397" fill="#475569" font-family="sans-serif" font-size="12" text-anchor="middle">sops-age: staging key</text>
+  <rect x="780" y="70" width="240" height="170" rx="8" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="2"/>
+  <text x="900" y="96" fill="#0f172a" font-family="sans-serif" font-size="14" font-weight="bold" text-anchor="middle">Shared by both</text>
+  <text x="900" y="120" fill="#0f172a" font-family="sans-serif" font-size="12" text-anchor="middle">the same Deployment file</text>
+  <text x="900" y="139" fill="#0f172a" font-family="sans-serif" font-size="12" text-anchor="middle">the same encrypted Secret</text>
+  <text x="900" y="158" fill="#475569" font-family="sans-serif" font-size="12" text-anchor="middle">each key opens it</text>
+  <rect x="780" y="290" width="240" height="170" rx="8" fill="#f1f5f9" stroke="#0284c7" stroke-width="2"/>
+  <text x="900" y="316" fill="#0284c7" font-family="sans-serif" font-size="14" font-weight="bold" text-anchor="middle">Other ways</text>
+  <text x="900" y="340" fill="#0f172a" font-family="sans-serif" font-size="12" text-anchor="middle">spec.kubeConfig: one Flux</text>
+  <text x="900" y="359" fill="#0f172a" font-family="sans-serif" font-size="12" text-anchor="middle">applies to remote clusters</text>
+  <text x="900" y="378" fill="#475569" font-family="sans-serif" font-size="12" text-anchor="middle">a hub, or one per cluster</text>
+  <line x1="322" y1="150" x2="418" y2="150" stroke="#16a34a" stroke-width="2" marker-end="url(#arrowg)"/>
+  <text x="370" y="140" fill="#16a34a" font-family="sans-serif" font-size="11" text-anchor="middle">pull</text>
+  <line x1="322" y1="360" x2="418" y2="360" stroke="#b45309" stroke-width="2" marker-end="url(#arrowa)"/>
+  <text x="370" y="350" fill="#b45309" font-family="sans-serif" font-size="11" text-anchor="middle">pull</text>
+  <line x1="682" y1="150" x2="778" y2="150" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="682" y1="360" x2="778" y2="200" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="520" y="486" fill="#475569" font-family="sans-serif" font-size="12" text-anchor="middle">Each cluster pulls its own folder: no cluster holds a credential for another, and a cluster that was off catches up.</text>
+</svg>

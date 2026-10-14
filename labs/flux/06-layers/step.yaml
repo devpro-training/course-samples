@@ -1,0 +1,4 @@
+title: Layers
+layout:
+  - type: terminal
+    target: docker
