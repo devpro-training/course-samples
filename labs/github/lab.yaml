@@ -1,5 +1,6 @@
 title: "GitHub"
 description: "Read a public GitHub repository with a browser, Git and the REST API, then follow a pull request and a workflow."
+logo: logo.png
 duration: 30
 tags:
   - github

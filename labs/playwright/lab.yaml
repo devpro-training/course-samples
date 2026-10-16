@@ -1,5 +1,6 @@
 title: "Playwright"
 description: "Install Playwright, then write end-to-end tests of a small web app: locators, auto-waiting assertions, a mocked API, a report and a trace."
+logo: logo.png
 duration: 30
 tags:
   - testing

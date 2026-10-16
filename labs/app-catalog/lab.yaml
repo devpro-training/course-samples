@@ -1,5 +1,6 @@
 title: "Application catalog"
 description: "Challenge the images and Helm charts a team deploys: who builds them, what proves it, how long they are maintained, and what it costs to leave."
+logo: logo.png
 duration: 30
 tags:
   - containers

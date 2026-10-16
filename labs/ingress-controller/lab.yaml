@@ -1,5 +1,6 @@
 title: "Ingress controller"
 description: "How HTTP reaches an application in Kubernetes: Services, Ingress and its controller, host and path routing, HTTPS with cert-manager, and Gateway API."
+logo: logo.png
 duration: 30
 tags:
   - kubernetes

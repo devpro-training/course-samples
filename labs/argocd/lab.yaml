@@ -1,5 +1,6 @@
 title: "Argo CD"
 description: "Argo CD, the GitOps controller with a UI: who maintains it, the interface, sync policy, ApplicationSets and bootstrap order, secrets, projects and access, many clusters, and Terraform for a new environment."
+logo: logo.png
 duration: 35
 tags:
   - argocd

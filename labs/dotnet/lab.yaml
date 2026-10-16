@@ -1,5 +1,6 @@
 title: ".NET"
 description: "Install the .NET SDK, create, build and run a C# console app, add a NuGet package, write a unit test, then a web app and a web API."
+logo: logo.png
 duration: 30
 tags:
   - dotnet

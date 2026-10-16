@@ -1,5 +1,6 @@
 title: "Infrastructure as Code"
 description: "Describe an environment in a file instead of a script: idempotence, a desired state, plan and apply, state, drift, the real tools, and a scan of the code before anything is created."
+logo: logo.png
 duration: 25
 tags:
   - infrastructure

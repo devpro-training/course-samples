@@ -1,5 +1,6 @@
 title: "GitOps"
 description: "Git as the source of truth of a cluster: a declarative repository, push and pull delivery, a reconciliation loop, drift, pull requests and secrets."
+logo: logo.png
 duration: 30
 tags:
   - gitops

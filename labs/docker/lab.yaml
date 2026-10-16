@@ -1,5 +1,6 @@
 title: "Docker"
 description: "Install Docker Engine, then run, build, store and connect containers."
+logo: logo.png
 duration: 30
 tags:
   - docker

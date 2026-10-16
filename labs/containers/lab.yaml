@@ -1,5 +1,6 @@
 title: "Containers"
 description: "What a container is: a process isolated by the Linux kernel, built by hand, then run the standard way."
+logo: logo.png
 duration: 30
 tags:
   - containers

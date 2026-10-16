@@ -1,5 +1,6 @@
 title: "Git"
 description: "Install and configure Git, then commit, branch, share and stash changes."
+logo: logo.png
 duration: 30
 tags:
   - git

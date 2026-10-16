@@ -1,5 +1,6 @@
 title: "CI/CD"
 description: "Build a pipeline that lints, tests and packages every push, run it on a Git server, deliver the artifact and roll it back."
+logo: logo.png
 duration: 30
 tags:
   - ci-cd

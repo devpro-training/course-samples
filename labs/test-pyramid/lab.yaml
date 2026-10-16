@@ -1,5 +1,6 @@
 title: "Automated testing, the test pyramid"
 description: "Write a unit test, an integration test and an end-to-end test for a small .NET web API, then see which layer catches which bug."
+logo: logo.png
 duration: 30
 tags:
   - testing

@@ -1,5 +1,6 @@
 title: "Kubernetes"
 description: "What Kubernetes is and why it exists, then a real cluster with k3s: nodes, Pods, Deployments, Services, configuration and the datastore."
+logo: logo.png
 duration: 40
 tags:
   - kubernetes

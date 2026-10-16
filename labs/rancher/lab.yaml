@@ -1,5 +1,6 @@
 title: "Rancher"
 description: "Rancher, the management layer of Kubernetes: the project and who maintains it, how it works, the install, the local cluster, a cluster of another machine imported, access through one proxy, users and projects, Fleet, Cluster API, a clean detach, and the alternatives."
+logo: logo.png
 duration: 40
 tags:
   - rancher

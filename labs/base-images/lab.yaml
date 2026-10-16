@@ -1,5 +1,6 @@
 title: "Container base images"
 description: "Compare the base images a Dockerfile starts from, in size, content and cost, then build, run and improve an image on them."
+logo: logo.png
 duration: 30
 tags:
   - docker

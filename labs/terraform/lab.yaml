@@ -1,5 +1,6 @@
 title: "Terraform"
 description: "Describe infrastructure in HCL and manage it with init, plan and apply: variables, state and drift, modules, providers, a backend, and OpenTofu as the compatible alternative."
+logo: logo.png
 duration: 30
 tags:
   - infrastructure

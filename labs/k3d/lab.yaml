@@ -1,5 +1,6 @@
 title: "k3d"
 description: "k3d, a small Kubernetes cluster in Docker for developers: nodes as containers, ingress and ports, storage, a local registry, a config file."
+logo: logo.png
 duration: 30
 tags:
   - kubernetes

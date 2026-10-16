@@ -1,5 +1,6 @@
 title: "Azure"
 description: "Microsoft's cloud, from a terminal and with no account: the hierarchy of tenant, subscription and resource group, Microsoft Entra and Azure Resource Manager, the portal, the CLI, Bicep and Terraform as clients of the same API, regions and prices, and a storage emulator."
+logo: logo.png
 duration: 30
 tags:
   - cloud

@@ -18,12 +18,18 @@ The sidelab reference is its `docs/courses.md`, this page only holds the choices
 ```txt
 labs/<course>/
 ├── lab.yaml
+├── logo.png           ← the image beside the title on the catalog card, `logo: logo.png` in lab.yaml
 ├── assets/            ← diagrams, a dark and a light SVG each
 ├── 01-setup/          ← installs the tools, from shared fragments
 ├── 02-intro/          ← slides: what, why, a diagram, what the lab covers
 ├── 03-.../            ← one step per key element, terminal and editor
 └── 0n-summary/        ← slides: cheat sheet, good practices, next course
 ```
+
+The logo is drawn by `scripts/make_logo.sh <course-dir> <monogram> <family>`, which needs ImageMagick and the DejaVu fonts.
+It is a 256 pixel tile in the colour of the course's family, with a monogram of two or three characters in white, so the catalog reads as one set.
+The families are `containers`, `kubernetes`, `gitops`, `iac`, `cloud`, `security`, `delivery`, `development`, `linux` and `demo`.
+Running the script again on a course reproduces its committed logo.
 
 `01-setup/index.md` starts with `<!-- include: ../../shared/setup.md -->`, then includes one `labs/shared/setup-<tool>.md` per tool.
 

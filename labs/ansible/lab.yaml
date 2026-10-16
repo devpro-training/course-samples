@@ -1,5 +1,6 @@
 title: "Ansible"
 description: "Configure machines from a playbook: an inventory, static or read from a CMDB, tasks and modules, idempotence, check mode, handlers, variables per environment, roles, Vault and a linter."
+logo: logo.png
 duration: 30
 tags:
   - infrastructure

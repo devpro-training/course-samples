@@ -1,5 +1,6 @@
 title: "k3s"
 description: "k3s, the lightweight Kubernetes distribution: what it is, where it comes from, how it is installed, what it bundles, then an upgrade, a second node and a clean removal."
+logo: logo.png
 duration: 40
 tags:
   - kubernetes

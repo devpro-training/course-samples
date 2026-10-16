@@ -1,5 +1,6 @@
 title: "Flux"
 description: "Flux, the GitOps toolkit of the CNCF with no UI of its own: who maintains it, strengths and weaknesses, bootstrap, sources and Kustomizations, Helm, layers, secrets with SOPS and age, tenants, many clusters, and Terraform."
+logo: logo.png
 duration: 35
 tags:
   - flux

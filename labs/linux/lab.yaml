@@ -1,5 +1,6 @@
 title: "Linux"
 description: "Understand a Linux system, its distributions and its users, then run the basic commands for files, text, packages, processes and services."
+logo: logo.png
 duration: 30
 tags:
   - linux

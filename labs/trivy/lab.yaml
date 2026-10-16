@@ -1,5 +1,6 @@
 title: "Trivy"
 description: "Scan an image, a project, its configuration and an SBOM with Trivy, gate a pipeline on the result, and compare it with other scanners."
+logo: logo.png
 duration: 30
 tags:
   - security

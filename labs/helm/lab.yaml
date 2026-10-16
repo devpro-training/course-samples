@@ -1,5 +1,6 @@
 title: "Helm"
 description: "Helm, the package manager of Kubernetes: why charts exist, a catalog, upgrades and rollbacks, a first chart, good practices, and a chart repository hosted for free."
+logo: logo.png
 duration: 30
 tags:
   - helm

@@ -1,5 +1,6 @@
 title: "Container security"
 description: "The risks of a container running as root, with a socket, a bind mount or a secret, and the options that deny them by default."
+logo: logo.png
 duration: 30
 tags:
   - containers
