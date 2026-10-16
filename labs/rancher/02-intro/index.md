@@ -36,15 +36,15 @@ The management layer of Kubernetes: one place for every cluster, every team and 
 
 ## The parts
 
-Part                         | What it does, from the documentation
------------------------------|---------------------------------------------------------------------------------------------------------------
-Rancher server               | The API, the interface and the controllers, in the `local` cluster, which should be dedicated to it
-Authentication proxy         | Authenticates every call, then forwards it to the cluster "with the proper Kubernetes impersonation headers"
-Cluster controller           | One per downstream cluster: watches it, brings it to the desired state, writes its access policies
-`cattle-cluster-agent`       | One per downstream cluster: "opens a tunnel to the corresponding cluster controller"
-`rancher-system-agent`       | On each node of an RKE2 or K3s cluster of Rancher: upgrades, etcd snapshots, the fallback tunnel
-Authorized cluster endpoint  | A direct kubeconfig to an RKE2 or K3s cluster, for when Rancher is down or far away
-Fleet, Turtles, the webhook  | GitOps, Cluster API, and the admission checks of Rancher's own resources
+Part                        | What it does, from the documentation
+----------------------------|------------------------------------------------------------------------------------------------------------
+Rancher server              | The API, the interface and the controllers, in the `local` cluster, which should be dedicated to it
+Authentication proxy        | Authenticates every call, then forwards it to the cluster "with the proper Kubernetes impersonation headers"
+Cluster controller          | One per downstream cluster: watches it, brings it to the desired state, writes its access policies
+`cattle-cluster-agent`      | One per downstream cluster: "opens a tunnel to the corresponding cluster controller"
+`rancher-system-agent`      | On each node of an RKE2 or K3s cluster of Rancher: upgrades, etcd snapshots, the fallback tunnel
+Authorized cluster endpoint | A direct kubeconfig to an RKE2 or K3s cluster, for when Rancher is down or far away
+Fleet, Turtles, the webhook | GitOps, Cluster API, and the admission checks of Rancher's own resources
 
 - **The tunnel starts from the cluster**: a downstream cluster needs to reach Rancher, and Rancher does not need to reach it.
 - Reference: [communicating with downstream clusters](https://ranchermanager.docs.rancher.com/reference-guides/rancher-manager-architecture/communicating-with-downstream-user-clusters).
@@ -53,32 +53,32 @@ Fleet, Turtles, the webhook  | GitOps, Cluster API, and the admission checks of 
 
 ## Capabilities
 
-Area               | What Rancher gives                                                                        | In the lab
--------------------|-------------------------------------------------------------------------------------------|----------------------------
-Inventory          | Every cluster, its provider, distribution, version and health, in one list                | Install, a second cluster
-Lifecycle          | Provision RKE2 and K3s, hosted EKS, AKS, GKE, upgrades, etcd snapshots, Cluster API        | Slides, Cluster API
-Access             | One sign-in (LDAP, OIDC, SAML, GitHub), global, cluster and project roles, one proxy      | Access, users and projects
-Multi-tenancy      | Projects: namespaces grouped with members, quotas and policies                           | Access, users and projects
-Applications       | A catalog of Helm charts per cluster, and extensions of the interface                     | The management layer
-GitOps             | Fleet, built in, a `GitRepo` deployed to clusters chosen by label                        | Fleet
-Operations         | Monitoring, logging, backups of Rancher, compliance scans, a shell in the browser          | The management layer
-Automation         | A REST API, every object a Kubernetes resource, a Terraform provider (`rancher2`)          | Every step
+Area          | What Rancher gives                                                                   | In the lab
+--------------|--------------------------------------------------------------------------------------|--------------------------
+Inventory     | Every cluster, its provider, distribution, version and health, in one list           | Install, a second cluster
+Lifecycle     | Provision RKE2 and K3s, hosted EKS, AKS, GKE, upgrades, etcd snapshots, Cluster API  | Slides, Cluster API
+Access        | One sign-in (LDAP, OIDC, SAML, GitHub), global, cluster and project roles, one proxy | Access, users and projects
+Multi-tenancy | Projects: namespaces grouped with members, quotas and policies                       | Access, users and projects
+Applications  | A catalog of Helm charts per cluster, and extensions of the interface                | The management layer
+GitOps        | Fleet, built in, a `GitRepo` deployed to clusters chosen by label                    | Fleet
+Operations    | Monitoring, logging, backups of Rancher, compliance scans, a shell in the browser    | The management layer
+Automation    | A REST API, every object a Kubernetes resource, a Terraform provider (`rancher2`)    | Every step
 
 ---
 
 ## Integrations
 
-Integration                     | What it is
---------------------------------|------------------------------------------------------------------------------------------------
-RKE2, K3s                       | The distributions of the project: RKE2 for hardened data centers, K3s for edge and small sites
-Longhorn                        | Distributed block storage, a CNCF incubating project since 4 November 2021
-NeuVector                       | Container security, at runtime and in the pipeline, the subject of a next course
-Harvester                       | Hyperconverged infrastructure on Kubernetes, virtual machines included, in **Virtualization Management**
-Kubewarden                      | Admission policies as WebAssembly, a CNCF sandbox project since 17 June 2022
-Elemental                       | The operating system of edge nodes, managed from Rancher
-Fleet, Turtles                  | GitOps, and Cluster API with its providers (AWS, Azure, GCP, vSphere)
-Monitoring, logging, backups    | Charts of the Rancher repository: Prometheus and Grafana, the Logging operator, Rancher Backups
-Cloud and identity              | EKS, AKS and GKE through cloud credentials, Active Directory, Entra ID, Keycloak, any OIDC or SAML
+Integration                  | What it is
+-----------------------------|--------------------------------------------------------------------------------------------------------
+RKE2, K3s                    | The distributions of the project: RKE2 for hardened data centers, K3s for edge and small sites
+Longhorn                     | Distributed block storage, a CNCF incubating project since 4 November 2021
+NeuVector                    | Container security, at runtime and in the pipeline, the subject of a next course
+Harvester                    | Hyperconverged infrastructure on Kubernetes, virtual machines included, in **Virtualization Management**
+Kubewarden                   | Admission policies as WebAssembly, a CNCF sandbox project since 17 June 2022
+Elemental                    | The operating system of edge nodes, managed from Rancher
+Fleet, Turtles               | GitOps, and Cluster API with its providers (AWS, Azure, GCP, vSphere)
+Monitoring, logging, backups | Charts of the Rancher repository: Prometheus and Grafana, the Logging operator, Rancher Backups
+Cloud and identity           | EKS, AKS and GKE through cloud credentials, Active Directory, Entra ID, Keycloak, any OIDC or SAML
 
 - Reference: [integrations](https://ranchermanager.docs.rancher.com/integrations-in-rancher).
 
@@ -104,11 +104,11 @@ Cloud and identity              | EKS, AKS and GKE through cloud credentials, Ac
 
 ## Community and Prime
 
-Edition                | What it is
------------------------|-------------------------------------------------------------------------------------------------------------
-Rancher (community)    | "Completely open source multi-cluster management": the same code, free, supported by the community
-SUSE Rancher Prime     | A subscription: 24x7 support, a lifecycle with dates, curated applications, and add-ons such as an AI agent
-Managed Rancher        | Rancher run by a provider: for example the [OVHcloud Managed Rancher Service](https://www.ovhcloud.com/en/public-cloud/managed-rancher-service/)
+Edition             | What it is
+--------------------|------------------------------------------------------------------------------------------------------------------------------------------------
+Rancher (community) | "Completely open source multi-cluster management": the same code, free, supported by the community
+SUSE Rancher Prime  | A subscription: 24x7 support, a lifecycle with dates, curated applications, and add-ons such as an AI agent
+Managed Rancher     | Rancher run by a provider: for example the [OVHcloud Managed Rancher Service](https://www.ovhcloud.com/en/public-cloud/managed-rancher-service/)
 
 - **Prime lifecycle**, from SUSE: v2.15 is supported from 27 August 2026, maintained until 27 February 2027, and reaches its end of life on 27 February 2028.
 - **The lab runs the community edition**, which has the capabilities of the previous slides.
@@ -118,15 +118,15 @@ Managed Rancher        | Rancher run by a provider: for example the [OVHcloud Ma
 
 ## In this lab
 
-Step                  | What it shows
-----------------------|---------------------------------------------------------------------------------------------------------------
-Setup                 | Docker Engine, k3d, kubectl and Helm in a machine, from checked binaries
-Install               | cert-manager, the chart of Rancher read then installed, its certificate, the server URL, the first login
-The management layer  | Rancher's own resources, the interface, a shell in the browser, the catalog and extensions
-A second cluster      | k3s in another machine, declared in Rancher, registered with one manifest, through an outgoing tunnel
-Access                | The authentication proxy and impersonation, a user, a project and its role, checked by the cluster
-Fleet                 | A `GitRepo` pinned to a commit, a cluster chosen by label, another environment by another label
-Cluster API           | What Rancher installs for it, its own providers, and the path to a CAPI cluster
-Detach                | The cluster removed from Rancher, still running, its workloads untouched
+Step                 | What it shows
+---------------------|--------------------------------------------------------------------------------------------------------
+Setup                | Docker Engine, k3d, kubectl and Helm in a machine, from checked binaries
+Install              | cert-manager, the chart of Rancher read then installed, its certificate, the server URL, the first login
+The management layer | Rancher's own resources, the interface, a shell in the browser, the catalog and extensions
+A second cluster     | k3s in another machine, declared in Rancher, registered with one manifest, through an outgoing tunnel
+Access               | The authentication proxy and impersonation, a user, a project and its role, checked by the cluster
+Fleet                | A `GitRepo` pinned to a commit, a cluster chosen by label, another environment by another label
+Cluster API          | What Rancher installs for it, its own providers, and the path to a CAPI cluster
+Detach               | The cluster removed from Rancher, still running, its workloads untouched
 
 > Two virtual machines and no account: Rancher in a k3d cluster of `docker`, and k3s in `kube`.

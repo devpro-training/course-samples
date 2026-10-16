@@ -6,19 +6,19 @@ What was run, what to keep, how to start, and what else exists.
 
 ## Cheat sheet
 
-Task                              | Command or place
-----------------------------------|---------------------------------------------------------------------------------------------------------
-Install                           | `helm install rancher rancher --repo <url> --namespace cattle-system --set hostname=<name>`, cert-manager first
-First password                    | `--set bootstrapPassword=...`, or the Secret `bootstrap-secret` of `cattle-system`
-Server URL                        | The first page, or `kubectl patch settings.management.cattle.io server-url`
-List the clusters                 | `kubectl get clusters.provisioning.cattle.io --all-namespaces`, or **Cluster Management**
-Import a cluster                  | A `Cluster` with no specification in `fleet-default`, then its manifest applied in the cluster
-Reach a cluster through Rancher   | A kubeconfig of **Download KubeConfig**, server `https://<rancher>/k8s/clusters/<id>`
-API login                         | `POST /v3-public/localProviders/local?action=login`, then `Authorization: Bearer <token>`
-A team                            | A `Project`, a `ProjectRoleTemplateBinding`, and namespaces annotated `field.cattle.io/projectId`
-GitOps                            | A `GitRepo` of `fleet.cattle.io`, with targets by `clusterSelector`
-Cluster API                       | `CAPIProvider`, `ClusterClass`, `Cluster`, and the label `cluster-api.cattle.io/rancher-auto-import`
-Detach                            | Delete the cluster in Rancher: the agents go, the workloads stay
+Task                            | Command or place
+--------------------------------|---------------------------------------------------------------------------------------------------------------
+Install                         | `helm install rancher rancher --repo <url> --namespace cattle-system --set hostname=<name>`, cert-manager first
+First password                  | `--set bootstrapPassword=...`, or the Secret `bootstrap-secret` of `cattle-system`
+Server URL                      | The first page, or `kubectl patch settings.management.cattle.io server-url`
+List the clusters               | `kubectl get clusters.provisioning.cattle.io --all-namespaces`, or **Cluster Management**
+Import a cluster                | A `Cluster` with no specification in `fleet-default`, then its manifest applied in the cluster
+Reach a cluster through Rancher | A kubeconfig of **Download KubeConfig**, server `https://<rancher>/k8s/clusters/<id>`
+API login                       | `POST /v3-public/localProviders/local?action=login`, then `Authorization: Bearer <token>`
+A team                          | A `Project`, a `ProjectRoleTemplateBinding`, and namespaces annotated `field.cattle.io/projectId`
+GitOps                          | A `GitRepo` of `fleet.cattle.io`, with targets by `clusterSelector`
+Cluster API                     | `CAPIProvider`, `ClusterClass`, `Cluster`, and the label `cluster-api.cattle.io/rancher-auto-import`
+Detach                          | Delete the cluster in Rancher: the agents go, the workloads stay
 
 ---
 
@@ -47,13 +47,13 @@ Detach                            | Delete the cluster in Rancher: the agents go
 
 ## Getting started
 
-Goal                   | Path
------------------------|------------------------------------------------------------------------------------------------------------------------
-Try it in minutes      | One container, `docker run -d --privileged -p 80:80 -p 443:443 rancher/rancher`, which the documentation keeps for development and tests
-Learn it               | This lab: a Helm chart on k3s or k3d, and a cluster imported
-Run it                 | Three nodes of RKE2 or K3s, the chart with a real certificate, Rancher Backups, an identity provider
-Buy support            | SUSE Rancher Prime, from SUSE or a cloud marketplace
-Have it run for you    | A managed Rancher, such as the OVHcloud Managed Rancher Service, which states a SLA of 99.9% and handles updates
+Goal                | Path
+--------------------|----------------------------------------------------------------------------------------------------------------------------------------
+Try it in minutes   | One container, `docker run -d --privileged -p 80:80 -p 443:443 rancher/rancher`, which the documentation keeps for development and tests
+Learn it            | This lab: a Helm chart on k3s or k3d, and a cluster imported
+Run it              | Three nodes of RKE2 or K3s, the chart with a real certificate, Rancher Backups, an identity provider
+Buy support         | SUSE Rancher Prime, from SUSE or a cloud marketplace
+Have it run for you | A managed Rancher, such as the OVHcloud Managed Rancher Service, which states a SLA of 99.9% and handles updates
 
 - References: [quick start](https://ranchermanager.docs.rancher.com/getting-started/quick-start-guides/deploy-rancher-manager/helm-cli),
   [requirements](https://ranchermanager.docs.rancher.com/getting-started/installation-and-upgrade/installation-requirements),
@@ -65,13 +65,13 @@ Have it run for you    | A managed Rancher, such as the OVHcloud Managed Rancher
 
 What ties a team to Rancher, and what does not:
 
-Free to leave                                                      | Tied to Rancher
--------------------------------------------------------------------|---------------------------------------------------------------------------------
-Apache 2.0, the full product free to run, with no licence key      | One vendor decides the roadmap, with no foundation behind Rancher itself
-Any CNCF conformant cluster imported, and detached in a minute     | RKE2 and K3s clusters it provisions are upgraded through it
-Workloads keep running without Rancher, as the lab showed           | Projects, role templates and the proxy are concepts of Rancher, not of Kubernetes
-Fleet deploys plain YAML, Helm and Kustomize from Git              | `fleet.yaml` and `GitRepo` are Fleet's own
-Cluster API, Helm, cert-manager, upstream projects                 | A Prime subscription is SUSE's, the same code without it
+Free to leave                                                  | Tied to Rancher
+---------------------------------------------------------------|---------------------------------------------------------------------------------
+Apache 2.0, the full product free to run, with no licence key  | One vendor decides the roadmap, with no foundation behind Rancher itself
+Any CNCF conformant cluster imported, and detached in a minute | RKE2 and K3s clusters it provisions are upgraded through it
+Workloads keep running without Rancher, as the lab showed      | Projects, role templates and the proxy are concepts of Rancher, not of Kubernetes
+Fleet deploys plain YAML, Helm and Kustomize from Git          | `fleet.yaml` and `GitRepo` are Fleet's own
+Cluster API, Helm, cert-manager, upstream projects             | A Prime subscription is SUSE's, the same code without it
 
 - **The test of a lock-in is the exit**: an imported cluster leaves with one deletion, its namespaces of Rancher removed and everything else kept.
 - **The cost of leaving is the work, not the clusters**: the roles, projects and pipelines rebuilt in the next tool.
@@ -80,15 +80,15 @@ Cluster API, Helm, cert-manager, upstream projects                 | A Prime sub
 
 ## The alternatives
 
-Product                                    | What it manages, read on its own pages (October 2026)
--------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------
-Red Hat Advanced Cluster Management        | A hub on OpenShift only, sold with OpenShift Platform Plus; EKS, AKS, GKE and conformant clusters are listed and imported, not created or upgraded
-Broadcom VMware, VCF                       | vSphere Kubernetes Service clusters on vSphere; Tanzu Mission Control SaaS ended on 15 November 2025, the self-managed version manages VKS and attaches conformant clusters
-Azure Arc-enabled Kubernetes               | "any CNCF certified Kubernetes clusters", from a control plane in Azure, with GitOps by Flux or Argo CD
-Spectro Cloud Palette, Kubermatic KKP      | Commercial platforms that provision and manage clusters on many infrastructures
-Open Cluster Management                    | The upstream of Red Hat ACM, a CNCF sandbox project since 9 November 2021: placement, policies, add-ons, no interface of its own
-Gardener, k0rdent                          | Open source cluster managers: Gardener under the NeoNephos Foundation, k0rdent of Mirantis under Apache 2.0
-Portainer, Headlamp, Lens                  | Interfaces over clusters, with less of the lifecycle and of the access model
+Product                               | What it manages, read on its own pages (October 2026)
+--------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Red Hat Advanced Cluster Management   | A hub on OpenShift only, sold with OpenShift Platform Plus; EKS, AKS, GKE and conformant clusters are listed and imported, not created or upgraded
+Broadcom VMware, VCF                  | vSphere Kubernetes Service clusters on vSphere; Tanzu Mission Control SaaS ended on 15 November 2025, the self-managed version manages VKS and attaches conformant clusters
+Azure Arc-enabled Kubernetes          | "any CNCF certified Kubernetes clusters", from a control plane in Azure, with GitOps by Flux or Argo CD
+Spectro Cloud Palette, Kubermatic KKP | Commercial platforms that provision and manage clusters on many infrastructures
+Open Cluster Management               | The upstream of Red Hat ACM, a CNCF sandbox project since 9 November 2021: placement, policies, add-ons, no interface of its own
+Gardener, k0rdent                     | Open source cluster managers: Gardener under the NeoNephos Foundation, k0rdent of Mirantis under Apache 2.0
+Portainer, Headlamp, Lens             | Interfaces over clusters, with less of the lifecycle and of the access model
 
 ---
 

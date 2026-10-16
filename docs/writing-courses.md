@@ -763,7 +763,8 @@ google-chrome --headless=new --screenshot=diagram.png --window-size=1040,430 "fi
 - Vendor comparisons quote each page with its date: Red Hat ACM 2.16 has a hub on OpenShift only and lists and imports EKS, AKS, GKE and conformant clusters without creating or upgrading them,
   Tanzu Mission Control SaaS ended on 15 November 2025,
   and a vendor page that failed to load (Google fleets) is left out rather than described from memory (rancher).
-- A course whose blocks wait for Rancher, about 15 minutes in all with two machines (76 blocks, green in the full run of the author), does not fit the ten minutes of a foreground command: it is verified in overlapping parts (setup and install, then up to Fleet without the long wait),
+- A course whose blocks wait for Rancher, about 15 minutes in all with two machines (76 blocks, green in the full run of the author), does not fit the ten minutes of a foreground command:
+  it is verified in overlapping parts (setup and install, then up to Fleet without the long wait),
   and the full run is started by the author in a terminal of their own (rancher).
 - `k3d cluster create` stopped once at `Starting node` for the whole timeout, in a run where the other runs took 25 to 30 seconds: a run that fails on a step that passed before is run again once before the course is changed (rancher).
 - The courses of this series with a web UI have a Playwright runner of a dozen lines that replays `automation.yaml` in the lab image against a host cluster,
@@ -771,3 +772,6 @@ google-chrome --headless=new --screenshot=diagram.png --window-size=1040,430 "fi
 - The first draft installed cert-manager with `kubectl apply` of its release manifest, copied from the ingress-controller course, while the examples of the author (the Instruqt track `rancher-keycloak`,
   `k8s_install_certmanager` of `../infrastructure-provisioning`) installed it with the Helm chart of Jetstack:
   the examples the author points to win over the habit of an earlier course, and a component of a cluster is a chart, as the section [Steps](#steps) says (rancher).
+- IstarCI failed the first commit on `MD060/table-column-style` (columns of a table padded wider than their longest cell) and one line of 284 characters:
+  `neatmd <file> -o <copy>` then a `diff` showed it aligns the columns as the lint wants, and also cuts the dashes of the last column to the width of its header,
+  which the earlier tables of the repository do not do, so its alignment is kept and the dashes of the last column stay as wide as its longest cell (rancher).
