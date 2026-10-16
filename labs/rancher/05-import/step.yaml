@@ -1,0 +1,8 @@
+title: A second cluster
+layout:
+  - type: vnc
+    page: rancher
+  - type: terminal
+    target: docker
+  - type: terminal
+    target: kube

@@ -1,0 +1,6 @@
+title: Cluster API
+layout:
+  - type: vnc
+    page: rancher
+  - type: terminal
+    target: docker

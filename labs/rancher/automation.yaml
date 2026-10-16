@@ -1,0 +1,134 @@
+version: 1
+
+defaults:
+  # ms per step primitive
+  timeout: 20000
+
+pages:
+  # One tab for the whole lab: the interface of Rancher, served by the machine `docker` on the port 443.
+  rancher:
+    url: "https://docker/"
+    selectors:
+      # The warning page of Chrome for a certificate it does not trust.
+      advanced: "#details-button"
+      proceed: "#proceed-link"
+      # The first login asks for the password only, the later ones for the user too.
+      password: 'input[type="password"]'
+      logIn: { testid: "login-submit" }
+      agreement: '[data-testid="setup-agreement"] .checkbox-custom'
+      continue: { testid: "setup-submit" }
+      manage: { testid: "cluster-management-manage-button" }
+      kubectlShell: "#btn-kubectl"
+      shellWindow: ".xterm"
+      charts: { role: heading, name: "Charts" }
+      extensions: { role: heading, name: "Extensions" }
+      importExisting: { testid: "cluster-manager-list-import" }
+      firstDownstream: '[data-testid^="menu-cluster-c-"]'
+      projectsLink: { role: link, name: "Projects/Namespaces" }
+      projectsHeading: { role: heading, name: "Projects/Namespaces" }
+      users: { role: heading, name: "Users" }
+      authProviders: { role: heading, name: "Authentication Providers" }
+      addRepository: { testid: "masthead-create" }
+      provisionSection: { text: "Provision new nodes and create a cluster using RKE2/K3s" }
+
+actions:
+  ui.proceed:
+    page: rancher
+    steps:
+      - click: advanced
+      - click: proceed
+      - waitFor: { target: password }
+
+  ui.login:
+    page: rancher
+    steps:
+      - fill: { target: password, value: "${UI_ADMIN_PASSWORD}" }
+      - click: logIn
+      - waitFor: { target: continue }
+
+  ui.setup:
+    page: rancher
+    steps:
+      - click: agreement
+      - click: continue
+      - waitFor: { target: manage }
+
+  ui.home:
+    page: rancher
+    steps:
+      - goto: "https://docker/dashboard/home"
+      - waitFor: { target: manage }
+
+  ui.local:
+    page: rancher
+    steps:
+      - goto: "https://docker/dashboard/c/local/explorer"
+      - waitFor: { target: kubectlShell }
+
+  ui.shell:
+    page: rancher
+    steps:
+      - goto: "https://docker/dashboard/c/local/explorer"
+      - waitFor: { target: kubectlShell }
+      - click: kubectlShell
+      - waitFor: { target: shellWindow }
+
+  ui.charts:
+    page: rancher
+    steps:
+      - goto: "https://docker/dashboard/c/local/apps/charts"
+      - waitFor: { target: charts }
+
+  ui.extensions:
+    page: rancher
+    steps:
+      - goto: "https://docker/dashboard/c/local/uiplugins"
+      - waitFor: { target: extensions }
+
+  ui.clusters:
+    page: rancher
+    steps:
+      - goto: "https://docker/dashboard/c/_/manager/provisioning.cattle.io.cluster"
+      - waitFor: { target: importExisting }
+
+  ui.kube:
+    page: rancher
+    steps:
+      - goto: "https://docker/dashboard/home"
+      - waitFor: { target: firstDownstream }
+      - click: firstDownstream
+      - waitFor: { target: kubectlShell }
+
+  ui.users:
+    page: rancher
+    steps:
+      - goto: "https://docker/dashboard/c/_/auth/management.cattle.io.user"
+      - waitFor: { target: users }
+
+  ui.auth:
+    page: rancher
+    steps:
+      - goto: "https://docker/dashboard/c/_/auth/config"
+      - waitFor: { target: authProviders }
+
+  ui.projects:
+    page: rancher
+    steps:
+      - goto: "https://docker/dashboard/home"
+      - waitFor: { target: firstDownstream }
+      - click: firstDownstream
+      - waitFor: { target: projectsLink }
+      - click: projectsLink
+      - waitFor: { target: projectsHeading }
+
+  ui.gitrepos:
+    page: rancher
+    steps:
+      - goto: "https://docker/dashboard/c/_/fleet/fleet.cattle.io.gitrepo"
+      - waitFor: { target: addRepository }
+
+  ui.create:
+    page: rancher
+    steps:
+      - goto: "https://docker/dashboard/c/_/manager/provisioning.cattle.io.cluster/create"
+      - waitFor: { target: provisionSection }

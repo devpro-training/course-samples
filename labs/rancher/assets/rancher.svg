@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 560" width="1040" height="560">
+  <defs>
+    <marker id="as" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker>
+    <marker id="ag" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#16a34a"/></marker>
+    <marker id="ab" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#0284c7"/></marker>
+    <marker id="ap" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#7c3aed"/></marker>
+    <marker id="ay" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#b45309"/></marker>
+  </defs>
+  <rect x="0" y="0" width="1040" height="560" fill="#ffffff"/>
+  <text x="520" y="34" fill="#0f172a" font-family="sans-serif" font-size="22" font-weight="bold" text-anchor="middle">Rancher: one management layer, and an agent in every cluster</text>
+  <rect x="20" y="70" width="200" height="110" rx="8" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="2"/>
+  <text x="120" y="94" fill="#475569" font-family="sans-serif" font-size="14" font-weight="bold" text-anchor="middle">People and tools</text>
+  <text x="120" y="114" fill="#0f172a" font-family="sans-serif" font-size="12" text-anchor="middle">browser, kubectl, API,</text>
+  <text x="120" y="132" fill="#0f172a" font-family="sans-serif" font-size="12" text-anchor="middle">Terraform rancher2</text>
+  <text x="120" y="150" fill="#475569" font-family="monospace" font-size="11" text-anchor="middle">/k8s/clusters/&lt;id&gt;</text>
+  <rect x="20" y="200" width="200" height="90" rx="8" fill="#f1f5f9" stroke="#b45309" stroke-width="2"/>
+  <text x="120" y="224" fill="#b45309" font-family="sans-serif" font-size="14" font-weight="bold" text-anchor="middle">Identity provider</text>
+  <text x="120" y="244" fill="#0f172a" font-family="sans-serif" font-size="12" text-anchor="middle">LDAP, Entra ID, OIDC,</text>
+  <text x="120" y="262" fill="#0f172a" font-family="sans-serif" font-size="12" text-anchor="middle">SAML, GitHub</text>
+  <rect x="20" y="310" width="200" height="90" rx="8" fill="#f1f5f9" stroke="#7c3aed" stroke-width="2"/>
+  <text x="120" y="334" fill="#7c3aed" font-family="sans-serif" font-size="14" font-weight="bold" text-anchor="middle">Git repository</text>
+  <text x="120" y="354" fill="#0f172a" font-family="sans-serif" font-size="12" text-anchor="middle">YAML, Helm, Kustomize</text>
+  <text x="120" y="372" fill="#475569" font-family="monospace" font-size="11" text-anchor="middle">GitRepo of Fleet</text>
+  <rect x="20" y="420" width="200" height="90" rx="8" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="2"/>
+  <text x="120" y="444" fill="#475569" font-family="sans-serif" font-size="14" font-weight="bold" text-anchor="middle">Cloud and hypervisor APIs</text>
+  <text x="120" y="464" fill="#0f172a" font-family="sans-serif" font-size="12" text-anchor="middle">EKS, AKS, GKE, EC2,</text>
+  <text x="120" y="482" fill="#0f172a" font-family="sans-serif" font-size="12" text-anchor="middle">vSphere, Harvester</text>
+  <rect x="260" y="60" width="400" height="470" rx="8" fill="#ffffff" stroke="#0284c7" stroke-width="2" stroke-dasharray="8 5"/>
+  <text x="460" y="84" fill="#0284c7" font-family="sans-serif" font-size="14" font-weight="bold" text-anchor="middle"></text>
+  <text x="460" y="84" fill="#0284c7" font-family="sans-serif" font-size="13" text-anchor="middle">The local cluster: Rancher and its controllers</text>
+  <rect x="280" y="100" width="360" height="80" rx="8" fill="#f1f5f9" stroke="#0284c7" stroke-width="2"/>
+  <text x="460" y="124" fill="#0284c7" font-family="sans-serif" font-size="14" font-weight="bold" text-anchor="middle">API and interface</text>
+  <text x="460" y="144" fill="#0f172a" font-family="sans-serif" font-size="12" text-anchor="middle">clusters, users, roles, projects, settings</text>
+  <text x="460" y="162" fill="#475569" font-family="monospace" font-size="11" text-anchor="middle">*.management.cattle.io resources</text>
+  <rect x="280" y="195" width="175" height="95" rx="8" fill="#f1f5f9" stroke="#b45309" stroke-width="2"/>
+  <text x="367" y="219" fill="#b45309" font-family="sans-serif" font-size="14" font-weight="bold" text-anchor="middle">Auth proxy</text>
+  <text x="367" y="239" fill="#0f172a" font-family="sans-serif" font-size="12" text-anchor="middle">signs in, then</text>
+  <text x="367" y="257" fill="#0f172a" font-family="sans-serif" font-size="12" text-anchor="middle">impersonates</text>
+  <text x="367" y="275" fill="#475569" font-family="monospace" font-size="11" text-anchor="middle">the user</text>
+  <rect x="465" y="195" width="175" height="95" rx="8" fill="#f1f5f9" stroke="#0284c7" stroke-width="2"/>
+  <text x="552" y="219" fill="#0284c7" font-family="sans-serif" font-size="14" font-weight="bold" text-anchor="middle">Cluster controllers</text>
+  <text x="552" y="239" fill="#0f172a" font-family="sans-serif" font-size="12" text-anchor="middle">one per cluster,</text>
+  <text x="552" y="257" fill="#0f172a" font-family="sans-serif" font-size="12" text-anchor="middle">desired state, RBAC</text>
+  <rect x="280" y="305" width="175" height="95" rx="8" fill="#f1f5f9" stroke="#7c3aed" stroke-width="2"/>
+  <text x="367" y="329" fill="#7c3aed" font-family="sans-serif" font-size="14" font-weight="bold" text-anchor="middle">Fleet</text>
+  <text x="367" y="349" fill="#0f172a" font-family="sans-serif" font-size="12" text-anchor="middle">GitRepo to bundles,</text>
+  <text x="367" y="367" fill="#0f172a" font-family="sans-serif" font-size="12" text-anchor="middle">targets by label</text>
+  <rect x="465" y="305" width="175" height="95" rx="8" fill="#f1f5f9" stroke="#16a34a" stroke-width="2"/>
+  <text x="552" y="329" fill="#16a34a" font-family="sans-serif" font-size="14" font-weight="bold" text-anchor="middle">Turtles, CAPI</text>
+  <text x="552" y="349" fill="#0f172a" font-family="sans-serif" font-size="12" text-anchor="middle">CAPIProvider, Cluster,</text>
+  <text x="552" y="367" fill="#0f172a" font-family="sans-serif" font-size="12" text-anchor="middle">RKE2 provisioning</text>
+  <rect x="280" y="415" width="360" height="95" rx="8" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="2"/>
+  <text x="460" y="439" fill="#475569" font-family="sans-serif" font-size="14" font-weight="bold" text-anchor="middle">cert-manager, webhook, Backups</text>
+  <text x="460" y="459" fill="#0f172a" font-family="sans-serif" font-size="12" text-anchor="middle">a certificate authority of Rancher,</text>
+  <text x="460" y="477" fill="#0f172a" font-family="sans-serif" font-size="12" text-anchor="middle">admission checks, the state backed up</text>
+  <rect x="800" y="70" width="220" height="135" rx="8" fill="#f1f5f9" stroke="#16a34a" stroke-width="2"/>
+  <text x="910" y="94" fill="#16a34a" font-family="sans-serif" font-size="14" font-weight="bold" text-anchor="middle">Imported cluster</text>
+  <text x="910" y="114" fill="#0f172a" font-family="sans-serif" font-size="12" text-anchor="middle">any CNCF conformant cluster,</text>
+  <text x="910" y="132" fill="#0f172a" font-family="sans-serif" font-size="12" text-anchor="middle">here k3s of another machine</text>
+  <text x="910" y="150" fill="#475569" font-family="monospace" font-size="11" text-anchor="middle">cattle-cluster-agent</text>
+  <text x="910" y="167" fill="#475569" font-family="monospace" font-size="11" text-anchor="middle">fleet-agent</text>
+  <rect x="800" y="220" width="220" height="140" rx="8" fill="#f1f5f9" stroke="#16a34a" stroke-width="2"/>
+  <text x="910" y="244" fill="#16a34a" font-family="sans-serif" font-size="14" font-weight="bold" text-anchor="middle">Provisioned cluster</text>
+  <text x="910" y="264" fill="#0f172a" font-family="sans-serif" font-size="12" text-anchor="middle">RKE2 or K3s, on machines</text>
+  <text x="910" y="282" fill="#0f172a" font-family="sans-serif" font-size="12" text-anchor="middle">of a driver, CAPI or custom</text>
+  <text x="910" y="300" fill="#475569" font-family="monospace" font-size="11" text-anchor="middle">cattle-cluster-agent</text>
+  <text x="910" y="317" fill="#475569" font-family="monospace" font-size="11" text-anchor="middle">fleet-agent</text>
+  <text x="910" y="334" fill="#475569" font-family="monospace" font-size="11" text-anchor="middle">rancher-system-agent</text>
+  <rect x="800" y="375" width="220" height="135" rx="8" fill="#f1f5f9" stroke="#16a34a" stroke-width="2"/>
+  <text x="910" y="399" fill="#16a34a" font-family="sans-serif" font-size="14" font-weight="bold" text-anchor="middle">Hosted cluster</text>
+  <text x="910" y="419" fill="#0f172a" font-family="sans-serif" font-size="12" text-anchor="middle">EKS, AKS or GKE,</text>
+  <text x="910" y="437" fill="#0f172a" font-family="sans-serif" font-size="12" text-anchor="middle">with a cloud credential</text>
+  <text x="910" y="455" fill="#475569" font-family="monospace" font-size="11" text-anchor="middle">cattle-cluster-agent</text>
+  <text x="910" y="472" fill="#475569" font-family="monospace" font-size="11" text-anchor="middle">fleet-agent</text>
+  <line x1="220" y1="125" x2="278" y2="140" stroke="#475569" stroke-width="2" marker-end="url(#as)"/>
+  <line x1="220" y1="245" x2="278" y2="245" stroke="#b45309" stroke-width="2" marker-end="url(#ay)"/>
+  <line x1="220" y1="355" x2="278" y2="352" stroke="#7c3aed" stroke-width="2" marker-end="url(#ap)"/>
+  <line x1="278" y1="465" x2="222" y2="465" stroke="#475569" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#as)"/>
+  <line x1="798" y1="137" x2="662" y2="245" stroke="#16a34a" stroke-width="2" marker-end="url(#ag)"/>
+  <line x1="798" y1="290" x2="662" y2="250" stroke="#16a34a" stroke-width="2" marker-end="url(#ag)"/>
+  <line x1="798" y1="442" x2="662" y2="262" stroke="#16a34a" stroke-width="2" marker-end="url(#ag)"/>
+  <text x="730" y="470" fill="#16a34a" font-family="sans-serif" font-size="12" text-anchor="middle">tunnels opened</text>
+  <text x="730" y="486" fill="#16a34a" font-family="sans-serif" font-size="12" text-anchor="middle">by the agents, 443</text>
+  <text x="520" y="550" fill="#475569" font-family="sans-serif" font-size="13" text-anchor="middle">A downstream cluster only needs to reach Rancher; its workloads keep running without it.</text>
+</svg>

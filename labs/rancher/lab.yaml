@@ -1,0 +1,75 @@
+title: "Rancher"
+description: "Rancher, the management layer of Kubernetes: the project and who maintains it, how it works, the install, the local cluster, a cluster of another machine imported, access through one proxy, users and projects, Fleet, Cluster API, a clean detach, and the alternatives."
+duration: 40
+tags:
+  - rancher
+  - kubernetes
+  - multi-cluster
+  - beginner
+sidebarWidth: 620
+backend: container
+# Every version and URL of the course, delivered to each host's environment, so a step refers to one by name.
+env:
+  # https://docs.docker.com/engine/install/debian/
+  DOCKER_APT_URL: https://download.docker.com/linux/debian
+  # The fingerprint of the key that signs the packages, from the same page.
+  DOCKER_GPG_FINGERPRINT: 9DC858229FC7DD38854AE2D88D81803C0EBFCD88
+  # Output of apt-cache madison docker-ce, for Debian 12 (bookworm).
+  DOCKER_VERSION: 5:29.8.2-1~debian.12~bookworm
+  # https://github.com/k3d-io/k3d/releases
+  # Not K3D_*, which k3d itself reads as options of its own.
+  K3DCLI_VERSION: v5.9.0
+  K3DCLI_URL: https://github.com/k3d-io/k3d/releases/download
+  # https://kubernetes.io/releases/download/, the minor version of the clusters below.
+  KUBECTL_VERSION: v1.36.5
+  KUBECTL_URL: https://dl.k8s.io/release
+  # https://hub.docker.com/r/rancher/k3s/tags, the stable channel of https://update.k3s.io/v1-release/channels
+  # The image tag writes the + of the k3s version as a -.
+  # Rancher v2.15.2 supports k3s 1.34 to 1.36 (https://www.suse.com/suse-rancher/support-matrix/all-supported-versions/rancher-v2-15-2/).
+  NODE_IMAGE: rancher/k3s:v1.36.5-k3s1
+  # https://github.com/helm/helm/releases
+  HELM_VERSION: 4.3.0
+  # https://github.com/cert-manager/cert-manager/releases, which the certificate of Rancher needs.
+  CERTMANAGER_VERSION: v1.21.2
+  CERTMANAGER_URL: https://github.com/cert-manager/cert-manager/releases/download
+  # https://github.com/rancher/rancher/releases, the chart of the stable repository.
+  # Not RANCHER_* or CATTLE_*, which Rancher and its agents read as settings of their own.
+  RANCHERCHART_URL: https://releases.rancher.com/server-charts/stable
+  RANCHERCHART_VERSION: 2.15.2
+  # The name of the machine, which the browser of the lab and the other machine both reach.
+  # It is the hostname of Rancher and the address its agents call.
+  UI_HOST: docker
+  # The bootstrap password of Rancher, which must have 12 characters at least, and which the browser then types.
+  # The password only protects a server of a disposable machine.
+  UI_ADMIN_PASSWORD: lab-rancher-1
+  # The account of a team, which only sees its own project.
+  DEV_USER: dev
+  DEV_PASSWORD: lab-dev-password-1
+  # The second cluster: k3s in its own machine, from https://github.com/k3s-io/k3s/releases.
+  # Not K3S_URL, which k3s itself reads as the address of the server to join.
+  K3S_VERSION: v1.36.5+k3s1
+  K3S_RELEASE_URL: https://github.com/k3s-io/k3s/releases/download
+  # https://github.com/rancher/fleet-examples, the examples of the Fleet maintainers, pinned to one commit of master.
+  FLEET_EXAMPLES_URL: https://github.com/rancher/fleet-examples
+  FLEET_EXAMPLES_REVISION: 684c2f1c0c9cd4635e65d13e652755613d59cef0
+  # https://hub.docker.com/r/traefik/whoami/tags, a web server that prints the request it receives.
+  WHOAMI_IMAGE: traefik/whoami:v1.11.0
+  # https://hub.docker.com/_/busybox
+  BUSYBOX_IMAGE: busybox:1.37
+hosts:
+  # The lab itself, which shows the web interface of Rancher.
+  - name: control
+  # Rancher runs in a k3d cluster of this machine: k3d needs a kernel, root and cgroups.
+  # The Rancher Pod alone used about 1.7 GiB in a probe, its node about 4.6 GiB.
+  - name: docker
+    runtime: vm
+    cores: 4
+    memory: 8192
+    disk: 16384
+  # Another machine, with its own k3s cluster, which Rancher manages from the first one.
+  # A k3s server asks for 2 cores and 2 GiB at least (https://docs.k3s.io/installation/requirements).
+  - name: kube
+    runtime: vm
+    cores: 2
+    memory: 3072
+    disk: 8192

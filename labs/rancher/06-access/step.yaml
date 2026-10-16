@@ -1,0 +1,8 @@
+title: Access, users and projects
+layout:
+  - type: vnc
+    page: rancher
+  - type: terminal
+    target: docker
+  - type: terminal
+    target: kube
