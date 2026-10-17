@@ -781,3 +781,20 @@ google-chrome --headless=new --screenshot=diagram.png --window-size=1040,430 "fi
 - IstarCI failed the first commit on `MD060/table-column-style` (columns of a table padded wider than their longest cell) and one line of 284 characters:
   `neatmd <file> -o <copy>` then a `diff` showed it aligns the columns as the lint wants, and also cuts the dashes of the last column to the width of its header,
   which the earlier tables of the repository do not do, so its alignment is kept and the dashes of the last column stay as wide as its longest cell (rancher).
+- A change made in a web UI is checked by `course verify` with a block marked `interactive action=<action> capture="<pattern>"`:
+  the block prints a value, the lab's browser runs the action, and the block waits, bounded, for the effect (a branch that moved in Git) and prints `moved: yes`,
+  so the UI part of a lab is verified like its terminal part (Fallstar lab in `../fallstar/labs/demo`).
+- A token a block creates, such as a Gitea token, reaches a form of the UI as `${code}`, captured from the line the block prints (Fallstar lab).
+- The lab container resolves a `runtime: vm` host by its name only once the launcher writes it into the lab's `/etc/hosts`:
+  without it, Chrome answered `ERR_NAME_NOT_RESOLVED` for `http://docker:4500` while the address of the machine answered, and a check from the machine itself passed, since the machine knows its own name (Fallstar lab).
+- A block with no `target` runs in the step's first terminal panel, under `course verify` too: the npm setup ran in the machine of a step whose first terminal was `docker`, so a block meant for the lab says `target=control` (Fallstar lab).
+- An `env:` value a tool reads changes every command of that tool: `FALLSTAR_SERVER` in `lab.yaml` sent `fallstar recipe show` to a server before the step that signs in, which failed with "not signed in",
+  so the variable is exported by the step that needs it, as for `K3S_URL` (Fallstar lab).
+- A package version that exists on a branch is not published until the pipeline of the default branch runs: `npm install` answered `ETARGET` for a version bumped on a feature branch, so the lab pins the published one (Fallstar lab).
+- A course with a required secret is refused by `task verify:course` before any block runs: with `KEEP=1` the disposable launcher stays up, and the owner sets the value through its API (`PUT /api/profile/secrets/<NAME>`),
+  typed in a terminal of their own, as sidelab's `docs/courses.md` shows (Fallstar lab).
+- An `automation.yaml` replayed with a Playwright runner that copies the engine (`getByRole` with a substring name, strict locators) against the real application found two faults before the lab ran:
+  a wait for a card the page never shows, since adding a repository opens it at once, and a commit without the app a previous link copied, since that link loads the app after the page shows
+  and **Review changes** exists while disabled, so the action waits for the card of the copied app instead (Fallstar lab).
+- A link whose accessible name holds a version (`Update podinfo on staging to 6.15.0`) changes with every release, so the selector names its target, `a[href*="/branch/staging?app=podinfo&version="]` (Fallstar lab).
+- The Fallstar lab, 71 blocks with two k3d clusters, Gitea, Flux and a server image, ran green in one `course verify` of about nine minutes, within the ten minutes of a foreground command.
