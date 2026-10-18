@@ -6,12 +6,11 @@ defaults:
 
 pages:
   # One tab for the whole lab: the interface of Rancher, served by the machine `docker` on the port 443.
+  # Its certificate is signed by the authority of this Rancher, which Chrome does not know: `docker` is a host of the course, so a goto proceeds past the warning.
   rancher:
     url: "https://docker/"
+    acceptInsecureCerts: true
     selectors:
-      # The warning page of Chrome for a certificate it does not trust.
-      advanced: "#details-button"
-      proceed: "#proceed-link"
       # The first login asks for the password only, the later ones for the user too.
       password: 'input[type="password"]'
       logIn: { testid: "login-submit" }
@@ -35,8 +34,7 @@ actions:
   ui.proceed:
     page: rancher
     steps:
-      - click: advanced
-      - click: proceed
+      - goto: $page
       - waitFor: { target: password }
 
   ui.login:

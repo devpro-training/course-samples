@@ -29,13 +29,14 @@ Its release archive installs in the home directory, with no administrator rights
    <!-- verify: timeout=90 expect="lastHeartbeat" -->
 
    ```bash exec
-   nohup code-server --auth none --bind-addr 127.0.0.1:8080 ~/lab > ~/code-server.log 2>&1 &
+   setsid nohup code-server --auth none --bind-addr 127.0.0.1:8080 ~/lab > ~/code-server.log 2>&1 < /dev/null &
    wget -qO- --retry-connrefused --tries=30 --waitretry=1 http://127.0.0.1:8080/healthz; echo
    ```
 
    > [!NOTE]
    > `/healthz` answers `expired` until a browser connects, then `alive`.
    > `--auth none` is only acceptable because code-server listens on `127.0.0.1`, inside the lab.
+   > `setsid` keeps it running when this terminal closes, a reload of the page included: code-server runs on Node.js, which resets the hang-up signal `nohup` alone would ignore.
    > Anywhere else, code-server must keep its password, or sit behind an authenticating proxy.
 
 4. [Open VS Code](:navigate:vscode:http://localhost:8080/) in the lab browser.
