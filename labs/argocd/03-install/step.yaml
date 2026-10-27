@@ -1,6 +1,0 @@
-title: Install
-layout:
-  - type: vnc
-    page: argocd
-  - type: terminal
-    target: docker

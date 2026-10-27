@@ -1,4 +1,0 @@
-title: Clusters
-layout:
-  - type: terminal
-    target: docker

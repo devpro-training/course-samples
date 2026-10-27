@@ -1,6 +1,0 @@
-title: An application
-layout:
-  - type: vnc
-    page: argocd
-  - type: terminal
-    target: docker

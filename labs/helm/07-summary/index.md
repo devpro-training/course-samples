@@ -70,7 +70,7 @@ The releases on GitHub | The assets of a release per chart version, made by char
 ## Security of the supply chain
 
 A chart is a recipe that runs with the rights of the user, and it names images that run in the cluster.
-Both are software from someone else, so both are part of the supply chain, as the courses on [application catalogs](../../app-catalog), [container security](../../container-security) and [Trivy](../../trivy) showed for images.
+Both are software from someone else, so both are part of the supply chain, as the courses on [application catalogs](../../app-catalog), [container security](../../container-security) and Trivy showed for images.
 
 Question                            | What to do
 ------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

@@ -1,6 +1,0 @@
-title: Sync policy
-layout:
-  - type: vnc
-    page: argocd
-  - type: terminal
-    target: docker

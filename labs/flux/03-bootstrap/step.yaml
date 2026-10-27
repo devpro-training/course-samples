@@ -1,4 +1,0 @@
-title: Bootstrap
-layout:
-  - type: terminal
-    target: docker

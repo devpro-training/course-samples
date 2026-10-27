@@ -1,6 +1,0 @@
-title: Scale
-layout:
-  - type: terminal
-    target: kube
-  - type: terminal
-    target: agent

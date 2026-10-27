@@ -1,6 +1,0 @@
-title: The management layer
-layout:
-  - type: vnc
-    page: rancher
-  - type: terminal
-    target: docker

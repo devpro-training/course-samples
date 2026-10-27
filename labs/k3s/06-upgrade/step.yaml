@@ -1,4 +1,0 @@
-title: Upgrade
-layout:
-  - type: terminal
-    target: kube

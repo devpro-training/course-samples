@@ -1,4 +1,0 @@
-title: Tenants
-layout:
-  - type: terminal
-    target: docker

@@ -1,4 +1,0 @@
-title: Kustomization
-layout:
-  - type: terminal
-    target: docker

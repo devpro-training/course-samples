@@ -1,4 +1,0 @@
-title: Bundled components
-layout:
-  - type: terminal
-    target: kube

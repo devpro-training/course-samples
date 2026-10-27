@@ -1,6 +1,0 @@
-title: Projects and access
-layout:
-  - type: vnc
-    page: argocd
-  - type: terminal
-    target: docker

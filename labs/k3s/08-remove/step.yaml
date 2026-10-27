@@ -1,4 +1,0 @@
-title: Remove
-layout:
-  - type: terminal
-    target: kube

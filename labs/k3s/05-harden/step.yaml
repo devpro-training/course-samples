@@ -1,4 +1,0 @@
-title: Harden
-layout:
-  - type: terminal
-    target: kube

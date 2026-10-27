@@ -1,4 +1,0 @@
-title: Install
-layout:
-  - type: terminal
-    target: kube

@@ -1,6 +1,0 @@
-title: Report
-layout:
-  - type: terminal
-  - type: editor
-  - type: vnc
-    page: report
