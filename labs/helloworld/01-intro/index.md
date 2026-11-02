@@ -4,6 +4,9 @@ This a self-hosted, interactive lab environment that lets you follow step-by-ste
 
 <!-- include: ../../shared/how-it-works.md -->
 
+![A block of the instructions run with its Run button, and its output in the terminal](../../shared/how-it-works-dark.svg#gh-dark-mode-only)
+![A block of the instructions run with its Run button, and its output in the terminal](../../shared/how-it-works.svg#gh-light-mode-only)
+
 ## Your first command
 
 Let's confirm everything is working.
