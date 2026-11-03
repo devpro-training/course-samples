@@ -1,8 +1,6 @@
 # course-samples: agent context
 
-Learning material.
-
-Linux or WSL2, Docker and `bash`.
+Sidelab course samples.
 
 ## Working rules
 
@@ -10,9 +8,11 @@ Linux or WSL2, Docker and `bash`.
   No background commands, no subagents, no forks, no parallel tasks, even for a long commands.
 - Headers stay: concise documentation still has sections.
 - Linters for YAML and Markdown are never run by an agent.
+  Lint is done in pipelines, which can run locally with `istarci` on every commit if installed.
 - Commit only when asked, and never push.
   Shell scripts are `snake_case` and committed with the executable bit (`git update-index --chmod=+x`).
-- Documentation is simple, exhaustive and precise, with only the essential information presented in an obvious way, in a normal human flow.
+- Documentation is simple, exhaustive and precise, with only the essential information presented in an obvious way,
+  in a normal human flow.
 
 ## Writing style
 
@@ -20,7 +20,7 @@ Applies to Markdown, code comments, commit messages and prose in scripts.
 
 - **A comment says why, not what, and the why is timeless.**
 - **One thought per line.**
-  Every sentence starts on its own line, can be cut if longer than 240 characters but on a natural break (before "and", "so", ",").
+  Every sentence starts on its own line, can be cut if longer than 240 characters but on a natural break (before "and", "so", ",", ";").
 - **No em dash, no en dash.**
   A colon, a comma, or a full stop.
 - **No second person.**

@@ -1,4 +1,0 @@
-title: A repository for the cluster
-layout:
-  - type: terminal
-    target: docker

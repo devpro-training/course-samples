@@ -1,4 +1,0 @@
-title: Filter the system calls
-layout:
-  - type: terminal
-    target: docker

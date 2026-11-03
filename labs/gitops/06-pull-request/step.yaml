@@ -1,4 +1,0 @@
-title: Change by pull request
-layout:
-  - type: terminal
-    target: docker

@@ -1,4 +1,0 @@
-title: Run as a user that is not root
-layout:
-  - type: terminal
-    target: docker
