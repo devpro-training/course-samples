@@ -22,3 +22,5 @@ env:
   # The ports the web apps listen on, set on the command line: https://learn.microsoft.com/aspnet/core/fundamentals/servers/kestrel/endpoints
   WEB_PORT: 5080
   API_PORT: 5090
+shared:
+  - ../shared

@@ -56,3 +56,5 @@ secrets:
   - name: APPCO_TOKEN
     description: Access token of the same account, from its Settings page
     optional: true
+shared:
+  - ../shared

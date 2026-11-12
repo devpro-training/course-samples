@@ -18,3 +18,5 @@ env:
   # The identity commits are recorded with, which a tenant or an account can set to its own.
   GIT_USER_NAME: Ada Lovelace
   GIT_USER_EMAIL: ada@example.com
+shared:
+  - ../shared

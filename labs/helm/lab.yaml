@@ -51,3 +51,5 @@ hosts:
     cores: 2
     memory: 3072
     disk: 10240
+shared:
+  - ../shared

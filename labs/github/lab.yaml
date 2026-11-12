@@ -28,3 +28,5 @@ env:
   SAMPLE_TAG: v4.2.2
   SAMPLE_PR: "1"
   SAMPLE_WORKFLOW: .github/workflows/test.yml
+shared:
+  - ../shared

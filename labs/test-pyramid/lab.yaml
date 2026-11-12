@@ -19,3 +19,5 @@ env:
   MVC_TESTING_VERSION: 10.0.12
   # The port the application listens on, set on the command line: https://learn.microsoft.com/aspnet/core/fundamentals/servers/kestrel/endpoints
   SHOP_PORT: 5080
+shared:
+  - ../shared

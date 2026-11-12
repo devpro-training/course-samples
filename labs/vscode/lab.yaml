@@ -20,3 +20,5 @@ env:
   GIT_USER_EMAIL: ada@example.com
   # https://github.com/coder/code-server/releases
   CODE_SERVER_VERSION: 4.140.0
+shared:
+  - ../shared
