@@ -1,0 +1,4 @@
+title: Create and commit
+layout:
+  - type: terminal
+  - type: editor

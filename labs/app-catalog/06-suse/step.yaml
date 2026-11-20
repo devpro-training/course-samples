@@ -1,0 +1,6 @@
+title: SUSE
+layout:
+  - type: vnc
+    url: https://apps.rancher.io/applications/postgresql
+    page: appco
+  - type: terminal

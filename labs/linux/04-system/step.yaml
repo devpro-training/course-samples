@@ -1,0 +1,4 @@
+title: The system
+layout:
+  - type: terminal
+    target: linux

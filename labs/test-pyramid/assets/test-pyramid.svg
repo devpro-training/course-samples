@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 470" width="1040" height="470">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#475569"/>
+    </marker>
+  </defs>
+  <rect x="0" y="0" width="1040" height="470" fill="#ffffff"/>
+  <text x="520" y="40" fill="#0f172a" font-family="sans-serif" font-size="22" font-weight="bold" text-anchor="middle">The test pyramid</text>
+
+  <polygon points="520,70 600,170 440,170" fill="#f1f5f9" stroke="#b45309" stroke-width="2"/>
+  <text x="520" y="150" fill="#0f172a" font-family="sans-serif" font-size="15" font-weight="bold" text-anchor="middle">End-to-end</text>
+
+  <polygon points="436,176 604,176 684,276 356,276" fill="#f1f5f9" stroke="#7c3aed" stroke-width="2"/>
+  <text x="520" y="232" fill="#0f172a" font-family="sans-serif" font-size="16" font-weight="bold" text-anchor="middle">Integration</text>
+
+  <polygon points="352,282 688,282 768,382 272,382" fill="#f1f5f9" stroke="#16a34a" stroke-width="2"/>
+  <text x="520" y="340" fill="#0f172a" font-family="sans-serif" font-size="17" font-weight="bold" text-anchor="middle">Unit</text>
+
+  <text x="800" y="124" fill="#b45309" font-family="monospace" font-size="13">Chrome + running app</text>
+  <text x="800" y="144" fill="#475569" font-family="sans-serif" font-size="12">everything, as a user sees it</text>
+  <text x="800" y="164" fill="#475569" font-family="sans-serif" font-size="12">e2e.sh</text>
+
+  <text x="800" y="224" fill="#7c3aed" font-family="monospace" font-size="13">WebApplicationFactory</text>
+  <text x="800" y="244" fill="#475569" font-family="sans-serif" font-size="12">routes, JSON, services together</text>
+  <text x="800" y="264" fill="#475569" font-family="sans-serif" font-size="12">Shop.IntegrationTests</text>
+
+  <text x="800" y="324" fill="#16a34a" font-family="monospace" font-size="13">xUnit + a fake</text>
+  <text x="800" y="344" fill="#475569" font-family="sans-serif" font-size="12">one class, no infrastructure</text>
+  <text x="800" y="364" fill="#475569" font-family="sans-serif" font-size="12">Shop.UnitTests</text>
+
+  <line x1="150" y1="378" x2="150" y2="78" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="40" y="98" fill="#0f172a" font-family="sans-serif" font-size="14" font-weight="bold">Slower</text>
+  <text x="40" y="118" fill="#0f172a" font-family="sans-serif" font-size="14" font-weight="bold">Costlier</text>
+  <text x="40" y="138" fill="#0f172a" font-family="sans-serif" font-size="14" font-weight="bold">Fewer</text>
+  <text x="40" y="340" fill="#475569" font-family="sans-serif" font-size="14" font-weight="bold">Fast</text>
+  <text x="40" y="360" fill="#475569" font-family="sans-serif" font-size="14" font-weight="bold">Cheap</text>
+  <text x="40" y="380" fill="#475569" font-family="sans-serif" font-size="14" font-weight="bold">Many</text>
+
+  <line x1="30" y1="420" x2="1010" y2="420" stroke="#cbd5e1" stroke-width="2"/>
+  <text x="520" y="448" fill="#475569" font-family="sans-serif" font-size="14" text-anchor="middle">The higher a test, the more it proves, and the harder it is to run, to read and to keep stable.</text>
+</svg>

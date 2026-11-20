@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 480" width="1040" height="480">
+  <rect x="0" y="0" width="1040" height="480" fill="#0f172a"/>
+  <text x="520" y="40" fill="#e2e8f0" font-family="sans-serif" font-size="22" font-weight="bold" text-anchor="middle">The VS Code window</text>
+
+  <rect x="150" y="60" width="740" height="380" rx="8" fill="#0f172a" stroke="#94a3b8" stroke-width="2"/>
+
+  <rect x="151" y="61" width="738" height="32" rx="7" fill="#1e293b"/>
+  <rect x="400" y="67" width="240" height="20" rx="5" fill="#0f172a" stroke="#38bdf8" stroke-width="1.5"/>
+  <text x="520" y="82" fill="#38bdf8" font-family="sans-serif" font-size="12" text-anchor="middle">Command Center</text>
+  <text x="652" y="82" fill="#94a3b8" font-family="monospace" font-size="12">Ctrl+P files, F1 commands</text>
+
+  <rect x="151" y="93" width="40" height="317" fill="#1e293b"/>
+  <rect x="161" y="105" width="20" height="20" rx="4" fill="none" stroke="#4ade80" stroke-width="2"/>
+  <rect x="161" y="137" width="20" height="20" rx="4" fill="none" stroke="#94a3b8" stroke-width="2"/>
+  <rect x="161" y="169" width="20" height="20" rx="4" fill="none" stroke="#94a3b8" stroke-width="2"/>
+  <rect x="161" y="201" width="20" height="20" rx="4" fill="none" stroke="#94a3b8" stroke-width="2"/>
+  <rect x="161" y="233" width="20" height="20" rx="4" fill="none" stroke="#94a3b8" stroke-width="2"/>
+  <text x="138" y="170" fill="#e2e8f0" font-family="sans-serif" font-size="15" font-weight="bold" text-anchor="end">Activity Bar</text>
+  <text x="138" y="190" fill="#94a3b8" font-family="sans-serif" font-size="12" text-anchor="end">one icon per view</text>
+
+  <rect x="196" y="98" width="160" height="307" rx="6" fill="#1e293b" stroke="#4ade80" stroke-width="2"/>
+  <text x="276" y="130" fill="#e2e8f0" font-family="sans-serif" font-size="15" font-weight="bold" text-anchor="middle">Side Bar</text>
+  <text x="276" y="160" fill="#94a3b8" font-family="sans-serif" font-size="12" text-anchor="middle">Explorer</text>
+  <text x="276" y="180" fill="#94a3b8" font-family="sans-serif" font-size="12" text-anchor="middle">Search</text>
+  <text x="276" y="200" fill="#94a3b8" font-family="sans-serif" font-size="12" text-anchor="middle">Source Control</text>
+  <text x="276" y="220" fill="#94a3b8" font-family="sans-serif" font-size="12" text-anchor="middle">Run and Debug</text>
+  <text x="276" y="240" fill="#94a3b8" font-family="sans-serif" font-size="12" text-anchor="middle">Extensions</text>
+  <text x="276" y="385" fill="#4ade80" font-family="monospace" font-size="12" text-anchor="middle">Ctrl+B</text>
+
+  <rect x="362" y="98" width="522" height="197" rx="6" fill="#1e293b" stroke="#a78bfa" stroke-width="2"/>
+  <rect x="362" y="98" width="110" height="26" rx="6" fill="#0f172a" stroke="#a78bfa" stroke-width="1.5"/>
+  <text x="417" y="116" fill="#a78bfa" font-family="monospace" font-size="12" text-anchor="middle">app.js</text>
+  <text x="623" y="195" fill="#e2e8f0" font-family="sans-serif" font-size="15" font-weight="bold" text-anchor="middle">Editor</text>
+  <text x="623" y="218" fill="#94a3b8" font-family="sans-serif" font-size="12" text-anchor="middle">one tab per open file, side by side with Ctrl+\</text>
+
+  <rect x="362" y="301" width="522" height="104" rx="6" fill="#1e293b" stroke="#fbbf24" stroke-width="2"/>
+  <text x="623" y="340" fill="#e2e8f0" font-family="sans-serif" font-size="15" font-weight="bold" text-anchor="middle">Panel</text>
+  <text x="623" y="362" fill="#94a3b8" font-family="sans-serif" font-size="12" text-anchor="middle">Terminal, Problems, Output, Debug Console</text>
+  <text x="623" y="385" fill="#fbbf24" font-family="monospace" font-size="12" text-anchor="middle">Ctrl+`</text>
+
+  <rect x="151" y="410" width="738" height="29" rx="0" fill="#1e293b"/>
+  <text x="165" y="429" fill="#38bdf8" font-family="monospace" font-size="12">main</text>
+  <text x="520" y="429" fill="#94a3b8" font-family="sans-serif" font-size="12" text-anchor="middle">Status Bar: branch, problems, cursor position, language</text>
+
+  <text x="520" y="468" fill="#94a3b8" font-family="sans-serif" font-size="13" text-anchor="middle">Shortcuts are for Windows and Linux, Cmd replaces Ctrl on macOS.</text>
+</svg>

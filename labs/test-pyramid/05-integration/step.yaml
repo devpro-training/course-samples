@@ -1,0 +1,4 @@
+title: Integration test
+layout:
+  - type: terminal
+  - type: editor

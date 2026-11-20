@@ -1,0 +1,4 @@
+title: The cluster
+layout:
+  - type: terminal
+    target: kube

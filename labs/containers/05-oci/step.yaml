@@ -1,0 +1,4 @@
+title: The standard way
+layout:
+  - type: terminal
+    target: machine

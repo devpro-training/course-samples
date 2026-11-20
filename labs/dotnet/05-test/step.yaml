@@ -1,0 +1,4 @@
+title: Unit test
+layout:
+  - type: terminal
+  - type: editor

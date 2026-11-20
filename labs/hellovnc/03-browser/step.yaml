@@ -1,6 +1,0 @@
-title: "Explore GitHub"
-layout:
-  - type: terminal
-    target: local
-  - type: vnc
-    url: https://github.com   # optional: navigate on step load

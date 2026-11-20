@@ -1,0 +1,36 @@
+title: "Docker"
+description: "Install Docker Engine, then run, build, store and connect containers."
+logo: logo.png
+duration: 30
+tags:
+  - docker
+  - containers
+  - beginner
+sidebarWidth: 620
+backend: container
+# Every version and URL of the course, delivered to each host's environment, so a step refers to one by name.
+env:
+  # https://docs.docker.com/engine/install/debian/
+  DOCKER_APT_URL: https://download.docker.com/linux/debian
+  # The fingerprint of the key that signs the packages, from the same page.
+  DOCKER_GPG_FINGERPRINT: 9DC858229FC7DD38854AE2D88D81803C0EBFCD88
+  # Output of apt-cache madison docker-ce, for Debian 12 (bookworm).
+  DOCKER_VERSION: 5:29.8.2-1~debian.12~bookworm
+  # https://hub.docker.com/_/nginx
+  NGINX_IMAGE: nginx:1.29-alpine
+  # https://hub.docker.com/_/alpine
+  ALPINE_IMAGE: alpine:3.22
+  # https://hub.docker.com/_/redis
+  REDIS_IMAGE: redis:8-alpine
+hosts:
+  # The lab itself, which only serves the course.
+  - name: control
+  # Docker needs a kernel, root and cgroups, which a lab container does not give, so it runs in a virtual machine of its own.
+  # The image is the lab image, and the disk is larger than its default since Docker Engine and the images pulled need about 1 GiB.
+  - name: docker
+    runtime: vm
+    cores: 2
+    memory: 2048
+    disk: 8192
+shared:
+  - ../shared

@@ -1,0 +1,6 @@
+title: Source control
+layout:
+  - type: vnc
+    url: http://localhost:8080/
+    page: vscode
+  - type: terminal

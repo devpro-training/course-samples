@@ -1,0 +1,4 @@
+title: Use a chart from a catalog
+layout:
+  - type: terminal
+    target: docker

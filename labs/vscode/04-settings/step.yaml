@@ -1,0 +1,6 @@
+title: Settings
+layout:
+  - type: vnc
+    url: http://localhost:8080/
+    page: vscode
+  - type: terminal

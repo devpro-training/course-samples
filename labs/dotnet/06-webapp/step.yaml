@@ -1,0 +1,5 @@
+title: Web app
+layout:
+  - type: terminal
+  - type: editor
+  - type: vnc

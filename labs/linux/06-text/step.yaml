@@ -1,0 +1,4 @@
+title: Text and pipes
+layout:
+  - type: terminal
+    target: linux

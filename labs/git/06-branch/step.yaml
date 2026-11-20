@@ -1,0 +1,4 @@
+title: Branch
+layout:
+  - type: terminal
+  - type: editor

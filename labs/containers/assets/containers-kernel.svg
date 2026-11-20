@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 430" width="1040" height="430">
+  <rect x="0" y="0" width="1040" height="430" fill="#ffffff"/>
+  <text x="520" y="40" fill="#0f172a" font-family="sans-serif" font-size="22" font-weight="bold" text-anchor="middle">Containers: processes on one kernel</text>
+
+  <rect x="30" y="70" width="300" height="190" rx="10" fill="#f1f5f9" stroke="#0284c7" stroke-width="2"/>
+  <text x="180" y="98" fill="#0284c7" font-family="sans-serif" font-size="15" font-weight="bold" text-anchor="middle">Container A</text>
+  <rect x="50" y="112" width="260" height="38" rx="6" fill="#ffffff" stroke="#cbd5e1"/>
+  <text x="180" y="136" fill="#0f172a" font-family="monospace" font-size="13" text-anchor="middle">process: the application</text>
+  <rect x="50" y="160" width="260" height="38" rx="6" fill="#ffffff" stroke="#7c3aed"/>
+  <text x="180" y="184" fill="#7c3aed" font-family="monospace" font-size="13" text-anchor="middle">namespaces: pid, net, mnt</text>
+  <rect x="50" y="208" width="260" height="38" rx="6" fill="#ffffff" stroke="#b45309"/>
+  <text x="180" y="232" fill="#b45309" font-family="monospace" font-size="13" text-anchor="middle">cgroup: memory, pids, cpu</text>
+
+  <rect x="370" y="70" width="300" height="190" rx="10" fill="#f1f5f9" stroke="#0284c7" stroke-width="2"/>
+  <text x="520" y="98" fill="#0284c7" font-family="sans-serif" font-size="15" font-weight="bold" text-anchor="middle">Container B</text>
+  <rect x="390" y="112" width="260" height="38" rx="6" fill="#ffffff" stroke="#cbd5e1"/>
+  <text x="520" y="136" fill="#0f172a" font-family="monospace" font-size="13" text-anchor="middle">process: another application</text>
+  <rect x="390" y="160" width="260" height="38" rx="6" fill="#ffffff" stroke="#7c3aed"/>
+  <text x="520" y="184" fill="#7c3aed" font-family="monospace" font-size="13" text-anchor="middle">namespaces: pid, net, mnt</text>
+  <rect x="390" y="208" width="260" height="38" rx="6" fill="#ffffff" stroke="#b45309"/>
+  <text x="520" y="232" fill="#b45309" font-family="monospace" font-size="13" text-anchor="middle">cgroup: memory, pids, cpu</text>
+
+  <rect x="710" y="70" width="300" height="190" rx="10" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="2"/>
+  <text x="860" y="98" fill="#475569" font-family="sans-serif" font-size="15" font-weight="bold" text-anchor="middle">The host</text>
+  <rect x="730" y="112" width="260" height="38" rx="6" fill="#ffffff" stroke="#cbd5e1"/>
+  <text x="860" y="136" fill="#0f172a" font-family="monospace" font-size="13" text-anchor="middle">processes of the system</text>
+  <rect x="730" y="160" width="260" height="38" rx="6" fill="#ffffff" stroke="#cbd5e1"/>
+  <text x="860" y="184" fill="#475569" font-family="monospace" font-size="13" text-anchor="middle">namespaces of the host</text>
+  <rect x="730" y="208" width="260" height="38" rx="6" fill="#ffffff" stroke="#cbd5e1"/>
+  <text x="860" y="232" fill="#475569" font-family="monospace" font-size="13" text-anchor="middle">root cgroup</text>
+
+  <rect x="30" y="300" width="980" height="70" rx="10" fill="#f1f5f9" stroke="#16a34a" stroke-width="2"/>
+  <text x="520" y="330" fill="#16a34a" font-family="sans-serif" font-size="16" font-weight="bold" text-anchor="middle">One Linux kernel, shared</text>
+  <text x="520" y="354" fill="#475569" font-family="sans-serif" font-size="13" text-anchor="middle">applies the namespaces and the cgroups, and runs every process</text>
+
+  <text x="520" y="405" fill="#475569" font-family="sans-serif" font-size="13" text-anchor="middle">Each container also has its own root filesystem, unpacked from an image</text>
+</svg>

@@ -1,0 +1,4 @@
+title: Isolate
+layout:
+  - type: terminal
+    target: machine
